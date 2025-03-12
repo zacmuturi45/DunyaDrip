@@ -1,4 +1,7 @@
 import localFont from "next/font/local";
+import Navbar from "./components/navbar";
+import Footer from "./components/footer";
+import { FlagProvider } from "./contexts/flagcontext";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -12,15 +15,19 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: "Basic Next Template",
-  description: "A basic setup for next.js projects",
+  title: "Dunya Drip",
+  description: "Achieve the Prime of your Life through our innovative health and wellness solutions.",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+        <FlagProvider>
+          <Navbar />
+          <main>{children}</main>
+          {/* <Footer /> */}
+        </FlagProvider>
       </body>
     </html>
   );
