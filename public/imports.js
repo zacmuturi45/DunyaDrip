@@ -7,6 +7,20 @@ import South_Africa from "./flags/South_Africa.svg";
 import UK from "./flags/UK.svg";
 import Kenya from "./flags/Kenya.svg";
 
+import featured_1 from "./dunya_featured1.webp";
+import featured_2 from "./dunya_featured2.webp";
+import featured_3 from "./dunya_featured3.webp";
+import featured_4 from "./dunya_featured4.webp";
+import featured_5 from "./dunya_featured1b.webp";
+import featured_6 from "./dunya_featured2b.webp";
+import featured_1b from "./dunya_featured1b.webp";
+import featured_2b from "./dunya_featured2b.webp";
+import featured_3b from "./dunya_featured3b.webp";
+import featured_4b from "./dunya_featured4b.webp";
+import featured_5b from "./dunya_featured5b.webp";
+import featured_6b from "./dunya_featured6b.webp";
+
+
 export { default as trial } from "./trial.jpeg";
 export { default as search } from "./search.svg";
 export { default as bag } from "./bag.svg";
@@ -42,6 +56,17 @@ export { default as hero4 } from "./dunya_hero4.jpg";
 export { default as hero5 } from "./dunya_hero5.jpg";
 export { default as hero7 } from "./dunya_hero6.webp";
 export { default as hero8 } from "./dunya_hero8.jpg";
+export { default as arrow_right } from "./arrow_right.svg";
+
+export const featured_array = [
+    { image: featured_1, image2: featured_1b, product_name: "Puff Jacket", product_price: "85", id: 100 },
+    { image: featured_2, image2: featured_2b, product_name: "Urban Shadow Hoodie", product_price: "65", id: 101 },
+    { image: featured_3, image2: featured_3b, product_name: "Street Luxe Cargo Pants", product_price: "75", id: 102 },
+    { image: featured_4, image2: featured_4b, product_name: "Neo-Futurist Windbreaker", product_price: "90", id: 103 },
+    { image: featured_5, image2: featured_5b, product_name: "DripMode Graphic Tee", product_price: "50", id: 104 },
+    { image: featured_6, image2: featured_6b, product_name: "Retro Varsity Bomber", product_price: "120", id: 106 }
+];
+
 
 
 export const newInArray = [
