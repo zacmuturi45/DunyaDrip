@@ -459,6 +459,13 @@ body {
   justify-content: center;
   padding: 25px;
 }
+.nav-main .nav-container .main-nav-content .newin .newin-filter {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+}
 .nav-main .nav-container .main-nav-content .newin .newin-container {
   border-top: 1px solid rgb(227, 227, 227);
   display: flex;
@@ -529,6 +536,13 @@ body {
   justify-content: center;
   z-index: 4;
 }
+.nav-main .nav-container .main-nav-content .men .men-filter {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+}
 .nav-main .nav-container .main-nav-content .men .men-container {
   border-top: 1px solid rgb(227, 227, 227);
   display: flex;
@@ -596,6 +610,13 @@ body {
   justify-content: center;
   z-index: 4;
 }
+.nav-main .nav-container .main-nav-content .women .women-filter {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+}
 .nav-main .nav-container .main-nav-content .women .women-container {
   border-top: 1px solid rgb(227, 227, 227);
   display: flex;
@@ -662,6 +683,13 @@ body {
   padding: 25px;
   justify-content: center;
   z-index: 4;
+}
+.nav-main .nav-container .main-nav-content .rep .rep-filter {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
 }
 .nav-main .nav-container .main-nav-content .rep .rep-container {
   border-top: 1px solid rgb(227, 227, 227);
@@ -742,6 +770,13 @@ body {
   padding: 25px;
   justify-content: center;
   z-index: 4;
+}
+.nav-main .nav-container .main-nav-content .kids .kids-filter {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
 }
 .nav-main .nav-container .main-nav-content .kids .kids-container {
   border-top: 1px solid rgb(227, 227, 227);
@@ -878,24 +913,27 @@ body {
 }
 
 .dunya_video-main {
-  padding: 50px 10px;
+  padding: 50px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .dunya_video-main .dunya_video-container {
-  width: 100%;
+  width: 1800px;
   height: auto;
 }
 .dunya_video-main .dunya_video-container > * {
   width: 100%;
-  height: auto;
+  height: 100%;
 }
 
 .featured_card_main {
-  width: 25%;
+  width: 100%;
 }
 .featured_card_main .card-img {
-  width: 100%;
+  width: 350px;
   position: relative;
-  height: 380px;
+  height: 400px;
   overflow: hidden;
 }
 .featured_card_main .card-img .card-img1 {
@@ -980,52 +1018,194 @@ body {
 }
 
 .featured-main {
-  padding: 50px 10px;
+  padding: 50px 0;
+  display: flex;
+  justify-content: center;
 }
 .featured-main .featured-container {
   overflow: hidden;
+  width: 1800px;
 }
 .featured-main .featured-container .featured-main-title {
   display: flex;
+  justify-content: space-between;
+  padding-right: 2.5rem;
 }
-.featured-main .featured-container .featured-main-title h3 {
+.featured-main .featured-container .featured-main-title .featured-main-title-navigation {
+  display: flex;
+  gap: 1rem;
+}
+.featured-main .featured-container .featured-main-title .featured-main-title-navigation :nth-child(1) {
+  transform: rotate(-90deg);
+  cursor: pointer;
+}
+.featured-main .featured-container .featured-main-title .featured-main-title-navigation :nth-child(2) {
+  transform: rotate(90deg);
+  cursor: pointer;
+}
+.featured-main .featured-container .featured-main-title .featured-main-title-container {
+  display: flex;
+}
+.featured-main .featured-container .featured-main-title .featured-main-title-container h3 {
   font-weight: 800;
   font-family: "Inter";
   font-size: 1.2rem;
   letter-spacing: 1px;
 }
-.featured-main .featured-container .featured-main-title .featured-main-sub-title {
+.featured-main .featured-container .featured-main-title .featured-main-title-container .featured-main-sub-title {
   display: flex;
   align-items: center;
   margin-left: 1rem;
   width: fit-content;
   cursor: pointer;
 }
-.featured-main .featured-container .featured-main-title .featured-main-sub-title:hover p {
+.featured-main .featured-container .featured-main-title .featured-main-title-container .featured-main-sub-title:hover p {
   transform: scale(0.99);
   transition: all 0.2s ease-in-out;
 }
-.featured-main .featured-container .featured-main-title .featured-main-sub-title:hover .featured-arrow {
+.featured-main .featured-container .featured-main-title .featured-main-title-container .featured-main-sub-title:hover .featured-arrow {
   transform: translateX(3px);
   transition: all 0.2s ease-in-out;
 }
-.featured-main .featured-container .featured-main-title .featured-main-sub-title p {
+.featured-main .featured-container .featured-main-title .featured-main-title-container .featured-main-sub-title p {
   font-size: 0.8rem;
   font-weight: 600;
   text-decoration: underline;
   letter-spacing: 1px;
   transition: all 0.2s ease-in-out;
 }
-.featured-main .featured-container .featured-main-title .featured-main-sub-title .featured-arrow {
+.featured-main .featured-container .featured-main-title .featured-main-title-container .featured-main-sub-title .featured-arrow {
   width: 20px;
   height: 20px;
   margin-left: 3px;
   transition: all 0.2s ease-in-out;
 }
-.featured-main .featured-container .featured-cards {
+.featured-main .featured-container .featured-cards .carousel {
+  width: 100%;
+  height: auto;
   margin: 2rem 0;
   display: flex;
   gap: 0.8rem;
+  overflow-x: scroll;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+}
+
+.summer-main {
+  display: flex;
+  justify-content: center;
+  padding: 50px 0;
+}
+.summer-main .summer-main-container {
+  width: 1800px;
+  display: flex;
+  gap: 2rem;
+  height: 700px;
+}
+.summer-main .summer-main-container .summer-content {
+  width: 1300px;
+  height: 700px;
+  background-image: url("/textured.jpg");
+  background-size: cover;
+  background-position: center;
+  padding: 2.5rem;
+  position: relative;
+}
+.summer-main .summer-main-container .summer-content .one h2 {
+  font-family: "Inter";
+  font-size: 2.8rem;
+  font-weight: 400;
+}
+.summer-main .summer-main-container .summer-content .two {
+  margin-top: 80px;
+}
+.summer-main .summer-main-container .summer-content .two h1 {
+  font-family: "Inter";
+  font-size: 5.5rem;
+  line-height: 1.2;
+  max-width: 840px;
+  font-weight: 800;
+}
+.summer-main .summer-main-container .summer-content .three {
+  margin-top: 1rem;
+}
+.summer-main .summer-main-container .summer-content .three h2 {
+  font-family: "Inter";
+  font-size: 2.8rem;
+  font-weight: 400;
+}
+.summer-main .summer-main-container .summer-content .four-container {
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
+}
+.summer-main .summer-main-container .summer-content .four-container p {
+  font-family: "Inter";
+  opacity: 0.5;
+}
+.summer-main .summer-main-container .summer-content .five-container {
+  position: absolute;
+  bottom: 50px;
+  left: 50px;
+}
+.summer-main .summer-main-container .summer-content .five-container h2 {
+  font-family: "Inter";
+  font-size: 2.8rem;
+  font-weight: 300;
+}
+.summer-main .summer-main-container .summer-content .five-container h2 span {
+  font-family: "Inter";
+  font-weight: 600;
+}
+.summer-main .summer-main-container .summer-side-container {
+  position: relative;
+  width: 450px;
+}
+.summer-main .summer-main-container .summer-side-container .summer-side {
+  height: fit-content;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.summer-main .summer-main-container .summer-side-container .summer-side h3 {
+  font-size: 2rem;
+  font-family: "Inter";
+  font-weight: 700;
+  letter-spacing: 3px;
+  max-width: 300px;
+  line-height: 0.9;
+}
+.summer-main .summer-main-container .summer-side-container .summer-side p {
+  font-family: "Inter";
+  margin: 0.5rem 0;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgb(66, 66, 66);
+}
+.summer-main .summer-main-container .summer-side-container .summer-side .category {
+  display: flex;
+  gap: 1.5rem;
+}
+.summer-main .summer-main-container .summer-side-container .summer-side .category p {
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.wild-main {
+  display: flex;
+  justify-content: center;
+  padding: 50px 0;
+}
+.wild-main .wild-container {
+  width: 1800px;
+}
+.wild-main .wild-container > * {
+  width: 100%;
+  height: auto;
 }
 
 @media screen and (max-width: 580px) {

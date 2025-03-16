@@ -444,7 +444,7 @@ export default function Navbar() {
                 <div className="main-nav-content" id='main-nav'>
 
                     <div className={newin ? "newin" : "hide-newin"} onMouseEnter={() => handleMouseEnter(setNewin)} onMouseLeave={() => handleMouseLeave(setNewin)} >
-
+                    <div className="newin-filter" onMouseEnter={() => handleMouseLeave(setNewin)}></div>
                         <div className="newin-container">
                             <div className="newin-detail">
                                 <h4>NEW IN</h4>
@@ -469,6 +469,7 @@ export default function Navbar() {
                     </div>
 
                     <div className={men ? "men" : "hide-men"} onMouseEnter={() => handleMouseEnter(setMen)} onMouseLeave={() => handleMouseLeave(setMen)} >
+                    <div className="men-filter" onMouseEnter={() => handleMouseLeave(setMen)}></div>
                         <div className="men-container">
 
                             <div className='men-clothing'>
@@ -512,7 +513,7 @@ export default function Navbar() {
                     </div>
 
                     <div className={rep ? "rep" : "hide-rep"} onMouseEnter={() => handleMouseEnter(setRep)} onMouseLeave={() => handleMouseLeave(setRep)} >
-
+                        <div className="rep-filter" onMouseEnter={() => handleMouseLeave(setRep)}></div>
                         <div className="rep-container">
 
                             <div className='rep-clothing'>
@@ -557,6 +558,7 @@ export default function Navbar() {
                     </div>
 
                     <div className={categories ? "kids" : "hide-kids"} id='catdiv' onMouseEnter={() => handleMouseEnter(setCategories)} onMouseLeave={() => handleMouseLeave(setCategories)}>
+                    <div className="kids-filter" onMouseEnter={() => handleMouseLeave(setCategories)}></div>
 
                         <div className="kids-container">
 
@@ -602,6 +604,7 @@ export default function Navbar() {
                     </div>
 
                     <div className={conditions ? "women" : "hide-women"} id='catdiv' onMouseEnter={() => handleMouseEnter(setConditions)} onMouseLeave={() => handleMouseLeave(setConditions)}>
+                    <div className="women-filter" onMouseEnter={() => handleMouseLeave(setConditions)}></div>
 
                         <div className="women-container">
 

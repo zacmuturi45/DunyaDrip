@@ -5,7 +5,7 @@ import { arrow, arrow_right, featured_array } from '../../../public/imports'
 import Featured_Card from '../components/featured_card'
 import Image from 'next/image'
 
-export default function Featured() {
+export default function MensArrivals() {
     const [carousel_index, setCarouselIndex] = useState(0);
     const carousel_ref = useRef(null);
 
@@ -35,7 +35,7 @@ export default function Featured() {
             <div className="featured-container">
                 <div className="featured-main-title">
                     <div className="featured-main-title-container">
-                        <h3>Featured</h3>
+                        <h3>Men's New Arrivals</h3>
                         <div className="featured-main-sub-title">
                             <p>See All</p>
                             <Image src={arrow_right} width={100} height={100} alt='arrow-right-svg' className='featured-arrow' />

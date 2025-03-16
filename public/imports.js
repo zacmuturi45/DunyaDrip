@@ -57,6 +57,8 @@ export { default as hero5 } from "./dunya_hero5.jpg";
 export { default as hero7 } from "./dunya_hero6.webp";
 export { default as hero8 } from "./dunya_hero8.jpg";
 export { default as arrow_right } from "./arrow_right.svg";
+export { default as textured } from "./textured.jpg";
+export { default as streetwear1 } from "./streetwear1.jpg";
 
 export const featured_array = [
     { image: featured_1, image2: featured_1b, product_name: "Puff Jacket", product_price: "85", id: 100 },
@@ -64,7 +66,13 @@ export const featured_array = [
     { image: featured_3, image2: featured_3b, product_name: "Street Luxe Cargo Pants", product_price: "75", id: 102 },
     { image: featured_4, image2: featured_4b, product_name: "Neo-Futurist Windbreaker", product_price: "90", id: 103 },
     { image: featured_5, image2: featured_5b, product_name: "DripMode Graphic Tee", product_price: "50", id: 104 },
-    { image: featured_6, image2: featured_6b, product_name: "Retro Varsity Bomber", product_price: "120", id: 106 }
+    { image: featured_6, image2: featured_6b, product_name: "Retro Varsity Bomber", product_price: "120", id: 106 },
+    { image: featured_1, image2: featured_1b, product_name: "Puff Jacket", product_price: "85", id: 100 },
+    { image: featured_2, image2: featured_2b, product_name: "Urban Shadow Hoodie", product_price: "65", id: 101 },
+    { image: featured_3, image2: featured_3b, product_name: "Street Luxe Cargo Pants", product_price: "75", id: 102 },
+    { image: featured_4, image2: featured_4b, product_name: "Neo-Futurist Windbreaker", product_price: "90", id: 103 },
+    { image: featured_5, image2: featured_5b, product_name: "DripMode Graphic Tee", product_price: "50", id: 104 },
+    { image: featured_6, image2: featured_6b, product_name: "Retro Varsity Bomber", product_price: "120", id: 106 },
 ];
 
 
