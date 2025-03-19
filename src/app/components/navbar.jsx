@@ -102,9 +102,9 @@ export default function Navbar() {
                                 <Image src={plus} width={15} height={15} alt='plus' onClick={() => open_drawer("drawer1")} className={hide_drawer.drawer1 ? "rotate" : ""} />
                             </div>
                             <div className={hide_drawer.drawer1 ? "one-drawer" : "hide-drawer"}>
-                                <p>Men's New In</p>
-                                <p>Women's New In</p>
-                                <p>Kid's New In</p>
+                                <p>Men&apos;s New In</p>
+                                <p>Women&apos;s New In</p>
+                                <p>Kid&apos;s New In</p>
                             </div>
                         </div>
 
@@ -394,7 +394,7 @@ export default function Navbar() {
                                 <div className="cards-container">
                                     {
                                         searchArray.map((item, index) => (
-                                            <Cards image={item.product_image} product_name={item.product_name} price={item.price} index={index} />
+                                            <Cards image={item.product_image} product_name={item.product_name} price={item.price} key={index} />
                                         ))
                                     }
                                 </div>

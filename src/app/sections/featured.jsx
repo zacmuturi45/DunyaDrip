@@ -50,7 +50,7 @@ export default function Featured() {
                     <div className="carousel" ref={carousel_ref}>
                         {
                             featured_array.map((item, index) => (
-                                <Featured_Card image={item.image} id={item.id} image2={item.image2} product_name={item.product_name} product_price={item.product_price} index={index} />
+                                <Featured_Card image={item.image} id={item.id} image2={item.image2} product_name={item.product_name} product_price={item.product_price} key={index} />
                             ))
                         }
                     </div>

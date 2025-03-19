@@ -35,7 +35,7 @@ export default function MensArrivals() {
             <div className="featured-container">
                 <div className="featured-main-title">
                     <div className="featured-main-title-container">
-                        <h3>Men's New Arrivals</h3>
+                        <h3>Men&apos;s New Arrivals</h3>
                         <div className="featured-main-sub-title">
                             <p>See All</p>
                             <Image src={arrow_right} width={100} height={100} alt='arrow-right-svg' className='featured-arrow' />
@@ -50,7 +50,7 @@ export default function MensArrivals() {
                     <div className="carousel" ref={carousel_ref}>
                         {
                             featured_array.map((item, index) => (
-                                <Featured_Card image={item.image} id={item.id} image2={item.image2} product_name={item.product_name} product_price={item.product_price} index={index} />
+                                <Featured_Card image={item.image} id={item.id} image2={item.image2} product_name={item.product_name} product_price={item.product_price} key={index} />
                             ))
                         }
                     </div>
