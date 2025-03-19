@@ -59,6 +59,7 @@ export { default as hero8 } from "./dunya_hero8.jpg";
 export { default as arrow_right } from "./arrow_right.svg";
 export { default as textured } from "./textured.jpg";
 export { default as streetwear1 } from "./streetwear1.jpg";
+export { default as globe } from "./globe.svg";
 
 export const featured_array = [
     { image: featured_1, image2: featured_1b, product_name: "Puff Jacket", product_price: "85", id: 100 },

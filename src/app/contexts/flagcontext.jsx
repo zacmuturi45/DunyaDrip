@@ -11,6 +11,9 @@ export const FlagProvider = ({ children }) => {
     const [apply_location, setApplyLocation] = useState({ flag_image: UK_flag, country_name: "UK", currency: "GBP" });
     const [flag_active, setFlagActive] = useState(false);
     const [color_index, setColorIndex] = useState(3000);
+    const [showFlagBox, setShowFlagBox] = useState(false);
+    const [timezone, setTimeZone] = useState("Great Britain");
+
 
 
     useEffect(() => {
@@ -24,6 +27,7 @@ export const FlagProvider = ({ children }) => {
                 const data = await getLocation();
                 const country_details = flag_array.find(item => data.country === item.country_name)
                 setLocation(country_details)
+                setTimeZone(data.timezone)
             } catch (error) {
                 console.error("Error fetching location:", error);
             }
@@ -34,7 +38,7 @@ export const FlagProvider = ({ children }) => {
     }, []);
 
     return (
-        <FlagContext.Provider value={{ color_index, setColorIndex, location, setLocation, apply_location, setApplyLocation, flag_active, setFlagActive }}>
+        <FlagContext.Provider value={{ color_index, setColorIndex, location, setLocation, apply_location, setApplyLocation, flag_active, setFlagActive, showFlagBox, setShowFlagBox, timezone }}>
             { children }
         </FlagContext.Provider>
     );

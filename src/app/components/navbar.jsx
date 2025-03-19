@@ -45,10 +45,9 @@ export default function Navbar() {
         sub_drawer4d2: false,
         sub_drawer4d3: false,
     });
-    const [showFlagBox, setShowFlagBox] = useState(false);
     const router = useRouter();
     const hideTimeout = useRef(null);
-    const { location, setFlagActive, flag_active, setLocation, apply_location, setColorIndex } = useContext(FlagContext);
+    const { location, setFlagActive, flag_active, setLocation, apply_location, setColorIndex, showFlagBox, setShowFlagBox } = useContext(FlagContext);
     const searchArray = [
         { product_image: shoe, product_name: "Nike Arreola", price: "65" },
         { product_image: shoe1, product_name: "Nike Blue Blood", price: "55" },

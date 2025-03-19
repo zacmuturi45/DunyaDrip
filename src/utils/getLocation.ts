@@ -4,10 +4,11 @@ export const getLocation = async () => {
         const data = await res.json();
         return {
             country: data.country_name,
-            currency: data.currency
+            currency: data.currency,
+            timezone: data.timezone
         };
     } catch (error) {
         console.error("Error fetching location:", error);
-        return { country: "Unknown", currency: "Unknown" };
+        return { country: "Unknown", currency: "Unknown", timezone: "unknown" };
     }
 };

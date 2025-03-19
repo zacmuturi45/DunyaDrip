@@ -3,20 +3,20 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useContext } from 'react'
-import { facebook, globe, instagram, ukflag, x, youtube } from '../../../public/imports'
+import { facebook, instagram, x } from '../../../public/imports'
 import { FlagContext } from '../contexts/flagcontext'
 
 export default function Footer() {
-    const { location, setShowFlagBox, timezone } = useContext(FlagContext);
+    const { location, setShowFlagBox } = useContext(FlagContext);
 
     return (
         <div className='footer-main'>
             <div className="footer-container">
                 <div className='footer-one'>
 
-                    <div className='collection bunch'>
+                    <div className='collection'>
                         <h3>Collection</h3>
-                        <div className="div-links">
+                        <div className="collection-links">
                             <Link href={"/"} className='links'>
                                 <p>New: Summer Collection</p>
                             </Link>
@@ -35,30 +35,9 @@ export default function Footer() {
                         </div>
                     </div>
 
-                    <div className='auxilliary bunch'>
-                        <h3>Auxilliary</h3>
-                        <div className="div-links">
-                            <Link href={"/"} className='links'>
-                                <p>New: Summer Collection</p>
-                            </Link>
-                            <Link href={"/"} className='links'>
-                                <p>Bestsellers</p>
-                            </Link>
-                            <Link href={"/"} className='links'>
-                                <p>Accessories</p>
-                            </Link>
-                            <Link href={"/"} className='links'>
-                                <p>Kids Wear</p>
-                            </Link>
-                            <Link href={"/"} className='links'>
-                                <p>Dunya Collection</p>
-                            </Link>
-                        </div>
-                    </div>
-
-                    <div className='customer bunch'>
-                        <h3>Customer</h3>
-                        <div className="div-links">
+                    <div className='customer'>
+                        <h3>Collection</h3>
+                        <div className="customer-links">
                             <Link href={"/"} className='links'>
                                 <p>My Account</p>
                             </Link>
@@ -80,9 +59,9 @@ export default function Footer() {
                         </div>
                     </div>
 
-                    <div className='legal bunch'>
+                    <div className='legal'>
                         <h3>Legal</h3>
-                        <div className="div-links">
+                        <div className="legal-links">
                             <Link href={"/"} className='links'>
                                 <p>Terms & Conditions</p>
                             </Link>
@@ -104,11 +83,10 @@ export default function Footer() {
                     <div className='social-media'>
                         <h3>Follow Us</h3>
                         <div className="icons">
-                            <Image src={facebook} width={17} height={17} alt='facebook-svg' />
-                            <Image src={instagram} width={17} height={17} alt='facebook-svg' />
-                            <Image src={youtube} width={17} height={17} alt='facebook-svg' />
+                            <Image src={facebook} width={25} height={25} alt='facebook-svg' />
+                            <Image src={instagram} width={25} height={25} alt='facebook-svg' />
+                            <Image src={x} width={25} height={25} alt='facebook-svg' />
                         </div>
-                        <p>© 2025 Dunya-Drip™. All rights reserved. <span>Privacy Policy</span></p>
                     </div>
 
                     <div className='subscription'>
@@ -119,13 +97,12 @@ export default function Footer() {
                                     type="text"
                                     name="name"
                                     className="search-input-form"
-                                    placeholder='Email Address'
+                                    placeholder=''
                                 />
                             </form>
-                            <button>Subscribe</button>
                         </div>
                         <div className="disclaimer">
-                            <p>By Subscribing You Agree To Our <span>Terms</span> & <span>Privcy Policy</span>.</p>
+                            <p>By Subscribing You Agree To Our Terms & Conditions.</p>
                         </div>
                     </div>
 
@@ -134,10 +111,6 @@ export default function Footer() {
                         <div className='language-flag' onClick={() => setShowFlagBox(true)}>
                             <Image src={location.flag_image} height={25} width={25} alt='flag' />
                             <p>{`${location.country_name}/${location.currency}`}</p>
-                        </div>
-                        <div className="timezone">
-                          <Image src={globe} height={17} width={17} alt='globe-image' />
-                          <p>{timezone}</p>
                         </div>
                     </div>
 

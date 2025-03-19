@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
         <FlagProvider>
           <Navbar />
           <main>{children}</main>
-          {/* <Footer /> */}
+          <Footer />
         </FlagProvider>
       </body>
     </html>
