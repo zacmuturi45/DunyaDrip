@@ -15,7 +15,7 @@ export default function TopPicks() {
 
                     <div className="picks-zero">
                         <h1>Own the Moment. Wear the Wild</h1>
-                        <p>Fashion isn&apos;t just what you wear—it&apos;s how you move, how you own every step. Inspired by the raw energy of the streets and the freedom of the wild, this collection is made for those who set trends, not follow them. Ready to make a statement? Let&apos;s go."This keeps it stylish, bold, and taps into that confident, fashion-forward mindset. Let me know if you want any tweaks! 🔥</p>
+                        <p>Fashion isn&apos;t just what you wear—it&apos;s how you move, how you own every step. Inspired by the raw energy of the streets and the freedom of the wild, this collection is made for those who set trends, not follow them. Ready to make a statement? Let&apos;s go!🔥</p>
                         <div className="butt">
                             <button>Shop now</button>
                         </div>
