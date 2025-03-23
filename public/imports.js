@@ -7,6 +7,25 @@ import South_Africa from "./flags/South_Africa.svg";
 import UK from "./flags/UK.svg";
 import Kenya from "./flags/Kenya.svg";
 
+const targetDate = new Date(Date.UTC(2025, 2, 30, 1, 0, 0)); // March 30, 2025, 01:00 AM UTC
+
+export const calculateTimeLeft = () => {
+    const now = new Date();
+
+    const difference = targetDate - now;
+
+    if (difference <=0) {
+        return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+    }
+
+    return {
+        days: Math.floor(difference / (1000 * 60 * 60 * 24 )),
+        hours: Math.floor((difference / (1000 * 60 * 60)) % 24 ),
+        minutes: Math.floor((difference / (1000 * 60 )) % 60),
+        seconds: Math.floor((difference / (1000)) % 60 ),
+    }
+}
+
 import featured_1 from "./dunya_featured1.webp";
 import featured_2 from "./dunya_featured2.webp";
 import featured_3 from "./dunya_featured3.webp";
@@ -19,6 +38,21 @@ import featured_3b from "./dunya_featured3b.webp";
 import featured_4b from "./dunya_featured4b.webp";
 import featured_5b from "./dunya_featured5b.webp";
 import featured_6b from "./dunya_featured6b.webp";
+
+import white_1b from "./white1b.webp";
+import white_2b from "./white2b.webp";
+import white_3b from "./white3b.webp";
+import white_4b from "./white4b.webp";
+import white_5b from "./white5b.webp";
+import white_6b from "./white6b.webp";
+
+
+import white_1 from "./white1.webp";
+import white_2 from "./white2.webp";
+import white_3 from "./white3.webp";
+import white_4 from "./white4.webp";
+import white_5 from "./white5.webp";
+import white_6 from "./white6.webp";
 
 
 export { default as trial } from "./trial.jpeg";
@@ -58,23 +92,66 @@ export { default as hero7 } from "./dunya_hero6.webp";
 export { default as hero8 } from "./dunya_hero8.jpg";
 export { default as arrow_right } from "./arrow_right.svg";
 export { default as textured } from "./textured.jpg";
-export { default as streetwear1 } from "./streetwear1.jpg";
+export { default as streetwear1 } from "./streetwear.webp";
 export { default as globe } from "./globe.svg";
 
+export { default as white1 } from "./white1.webp";
+export { default as white2 } from "./white2.webp";
+export { default as white3 } from "./white3.webp";
+export { default as white4 } from "./white4.webp";
+export { default as white5 } from "./white5.webp";
+export { default as white6 } from "./white6.webp";
+
+
+export { default as carl_main } from "./carl_main.jpeg";
+export { default as carl_one } from "./carl_one.jpeg";
+export { default as carl_two } from "./carl_two.jpeg";
+export { default as dark_one } from "./dark_one.jpeg";
+export { default as dark_two } from "./dark_two.jpeg";
+
+export { default as stripe } from "./stripe.svg";
+export { default as klarna } from "./klarna.svg";
+export { default as paypal } from "./paypal.svg";
+export { default as visa } from "./visa.svg";
+export { default as mastercard } from "./mastercard.svg";
+export { default as gpay } from "./gpay.svg";
+export { default as appay } from "./appay.svg";
+export { default as amex } from "./amex.svg";
+export { dark_black } from "./dark_black.jpg";
+
 export const featured_array = [
-    { image: featured_1, image2: featured_1b, product_name: "Puff Jacket", product_price: "85", id: 100 },
-    { image: featured_2, image2: featured_2b, product_name: "Urban Shadow Hoodie", product_price: "65", id: 101 },
-    { image: featured_3, image2: featured_3b, product_name: "Street Luxe Cargo Pants", product_price: "75", id: 102 },
-    { image: featured_4, image2: featured_4b, product_name: "Neo-Futurist Windbreaker", product_price: "90", id: 103 },
-    { image: featured_5, image2: featured_5b, product_name: "DripMode Graphic Tee", product_price: "50", id: 104 },
-    { image: featured_6, image2: featured_6b, product_name: "Retro Varsity Bomber", product_price: "120", id: 106 },
-    { image: featured_1, image2: featured_1b, product_name: "Puff Jacket", product_price: "85", id: 100 },
-    { image: featured_2, image2: featured_2b, product_name: "Urban Shadow Hoodie", product_price: "65", id: 101 },
-    { image: featured_3, image2: featured_3b, product_name: "Street Luxe Cargo Pants", product_price: "75", id: 102 },
-    { image: featured_4, image2: featured_4b, product_name: "Neo-Futurist Windbreaker", product_price: "90", id: 103 },
-    { image: featured_5, image2: featured_5b, product_name: "DripMode Graphic Tee", product_price: "50", id: 104 },
-    { image: featured_6, image2: featured_6b, product_name: "Retro Varsity Bomber", product_price: "120", id: 106 },
+    { image: white_1, image2: white_1b, product_name: "Puff Jacket", product_price: "85", id: 100 },
+    { image: white_2, image2: white_2b, product_name: "Urban Shadow Hoodie", product_price: "65", id: 101 },
+    { image: white_3, image2: white_3b, product_name: "Street Luxe Cargo Pants", product_price: "75", id: 102 },
+    { image: white_4, image2: white_4b, product_name: "Neo-Futurist Windbreaker", product_price: "90", id: 103 },
+    { image: white_5, image2: white_5b, product_name: "DripMode Graphic Tee", product_price: "50", id: 104 },
+    { image: white_6, image2: white_6b, product_name: "Retro Varsity Bomber", product_price: "120", id: 106 },
+    { image: white_1, image2: white_1b, product_name: "Puff Jacket", product_price: "85", id: 107 },
+    { image: white_2, image2: white_2b, product_name: "Urban Shadow Hoodie", product_price: "65", id: 108 },
+    { image: white_3, image2: white_3b, product_name: "Street Luxe Cargo Pants", product_price: "75", id: 109 },
+    { image: white_4, image2: white_4b, product_name: "Neo-Futurist Windbreaker", product_price: "90", id: 110 },
+    { image: white_5, image2: white_5b, product_name: "DripMode Graphic Tee", product_price: "50", id: 111 },
+    { image: white_6, image2: white_6b, product_name: "Retro Varsity Bomber", product_price: "120", id: 112 },
 ];
+
+
+export const localTime = () => {
+    const now = new Date()
+    const hours = now.getHours()
+    const minutes = now.getMinutes()
+    const timeZoneOffset = -now.getTimezoneOffset() / 60
+    const gmtSign = timeZoneOffset >= 0 ? '+' : '-';
+    const gmtOffset = `${gmtSign}${Math.abs(timeZoneOffset)}`;
+
+    const formattedHours = hours >=10 ? hours : `0${hours}`
+    const formattedMinutes = minutes >= 10 ? minutes : `0${minutes}`
+
+    const am_pm = hours >= 12 ? 'PM' : 'AM';
+
+    const time_now = `${formattedHours}:${formattedMinutes} ${am_pm} GMT${gmtOffset}`
+
+    return time_now
+}
 
 
 

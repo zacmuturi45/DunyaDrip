@@ -7,6 +7,9 @@ import SummerSale from "./sections/summer_sale";
 import MensArrivals from "./sections/mens_arrivals";
 import WomensArrivals from "./sections/womens_arrivals";
 import Wild from "./sections/wild";
+import ShopByCollection from "./sections/shop_by_collection";
+import TopPicks from "./sections/top_picks";
+import PreFooter from "./sections/pre_footer";
 
 export default function Home() {
   return (
@@ -14,11 +17,14 @@ export default function Home() {
       <Hero />
       <Banner />
       <Dunya_Video />
+      <ShopByCollection />
       <Featured />
       <SummerSale />
       <MensArrivals />
       <WomensArrivals />
       <Wild />
+      <TopPicks />
+      <PreFooter />
     </div>
   );
 }
