@@ -394,7 +394,7 @@ export default function Navbar() {
                                 <div className="cards-container">
                                     {
                                         searchArray.map((item, index) => (
-                                            <Cards image={item.product_image} product_name={item.product_name} price={item.price} index={index} />
+                                            <Cards image={item.product_image} product_name={item.product_name} price={item.price} key={`nav_card${index}`} index={index} />
                                         ))
                                     }
                                 </div>
