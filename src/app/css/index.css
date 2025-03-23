@@ -864,6 +864,7 @@ body {
 
 .hero-main {
   height: 110vh;
+  padding-top: 140px;
 }
 .hero-main .main-hero-image {
   width: 100%;
