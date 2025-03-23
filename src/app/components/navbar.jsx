@@ -3,7 +3,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import '../css/index.css';
 import Image from 'next/image';
-import { accessories, arrow, bag, dunya, dunyadrip, ethnic, facebook, flag_array, instagram, jacket, kids, kids_accessories, kids_clothing, kids_kicks, men_clothing, men_kicks, newInArray, plus, rep_accessories, rep_clothing, rep_footwear, search, shoe, shoe1, shoe2, shoe3, signin, summer, summer_newin, tiktok, trial, trial1, trial2, ukflag, women_accessories, women_clothing, women_kicks, women_summer, x, youtube } from '../../../public/imports';
+import { accessories, arrow, bag, dunya, dunyadrip, ethnic, facebook, flag_array, instagram, jacket, kids, kids_accessories, kids_clothing, kids_kicks, men_clothing, men_kicks, nav_fb, nav_insta, newInArray, plus, rep_accessories, rep_clothing, rep_footwear, search, shoe, shoe1, shoe2, shoe3, signin, summer, summer_newin, tiktok, trial, trial1, trial2, ukflag, women_accessories, women_clothing, women_kicks, women_summer, x, youtube } from '../../../public/imports';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import UseScroll from './navscroll';
@@ -362,10 +362,9 @@ export default function Navbar() {
                             <p>customercare@dunyadrip.co.uk</p>
                         </div>
                         <div className="nav-footer-socials">
-                            <Image src={facebook} width={20} height={20} alt='facebook' />
-                            <Image src={instagram} width={20} height={20} alt='facebook' />
+                            <Image src={nav_fb} width={20} height={20} alt='facebook' />
+                            <Image src={nav_insta} width={20} height={20} alt='facebook' />
                             <Image src={tiktok} width={20} height={20} alt='facebook' />
-                            <Image src={youtube} width={20} height={20} alt='facebook' />
                         </div>
                         </div>
 

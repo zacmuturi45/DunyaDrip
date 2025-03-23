@@ -3137,6 +3137,28 @@ body {
         }
     }
 
+    .drip-banner-main {
+        .banner-slider {
+            height: 100px;
+            width: fit-content;
+
+            p {
+                font-size: 45px;
+            }
+        }
+
+        .support-p {
+            height: fit-content;
+            padding: 0 10px;
+
+            p {
+                text-align: center;
+                font-size: .7rem;
+                max-width: 100%;
+            }
+        }
+    }
+
     .hero-main {
         padding-top: 109px;
     }

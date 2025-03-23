@@ -94,6 +94,9 @@ export { default as arrow_right } from "./arrow_right.svg";
 export { default as textured } from "./textured.jpg";
 export { default as streetwear1 } from "./streetwear.webp";
 export { default as globe } from "./globe.svg";
+export { default as nav_insta } from "./nav_insta.svg";
+export { default as nav_fb } from "./nav_fb.svg";
+
 
 export { default as white1 } from "./white1.webp";
 export { default as white2 } from "./white2.webp";

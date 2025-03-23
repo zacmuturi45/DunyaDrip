@@ -2350,6 +2350,22 @@ body {
     width: 200px;
     height: auto;
   }
+  .drip-banner-main .banner-slider {
+    height: 100px;
+    width: fit-content;
+  }
+  .drip-banner-main .banner-slider p {
+    font-size: 45px;
+  }
+  .drip-banner-main .support-p {
+    height: fit-content;
+    padding: 0 10px;
+  }
+  .drip-banner-main .support-p p {
+    text-align: center;
+    font-size: 0.7rem;
+    max-width: 100%;
+  }
   .hero-main {
     padding-top: 109px;
   }

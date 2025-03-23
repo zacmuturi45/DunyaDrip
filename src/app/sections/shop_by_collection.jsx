@@ -25,7 +25,7 @@ export default function ShopByCollection() {
                 <div className="array">
                     {
                         collection_array.map((item, index) => (
-                            <CollectionCircle image={item.image} label={item.label} key={index} />
+                            <CollectionCircle image={item.image} label={item.label} key={`collection_circle${index}`} index={index} />
                         ))
                     }
                 </div>
