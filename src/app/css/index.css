@@ -2501,6 +2501,16 @@ body {
   .pre_footer_main .pre_footer_container {
     padding: 60px 10px;
   }
+  .drip-card-main {
+    width: 350px;
+  }
+  .drip-main .drip-container {
+    width: 100%;
+    padding: 0 10px;
+  }
+  .drip-main .drip-container .drip-cards {
+    justify-content: space-between;
+  }
   .main-picks .picks-container {
     width: 100%;
     padding: 2rem 10px;
@@ -2692,6 +2702,9 @@ body {
   }
 }
 @media screen and (max-width: 480px) {
+  .drip-main {
+    padding-top: 145px;
+  }
   .main-picks {
     justify-content: flex-start;
     width: 100%;

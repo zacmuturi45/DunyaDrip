@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { extended_drip_array, plus } from "../../../public/imports";
 import DripCard from "../components/drip_card";
 
@@ -21,6 +21,46 @@ export default function Drip() {
     // State to track selected items (for checkmark visibility)
     const [selectedItems, setSelectedItems] = useState({});
     const [limit, setLimit] = useState(25);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+
+        window.addEventListener('resize', handleResize);
+        handleResize(); // Check window size initially
+
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    const handleMouseEnter = (which_button) => {
+        if (which_button === "Filters") {
+            !isMobile ? setHideFilters(true) : null;
+        } else if (which_button === "Sorts") {
+            !isMobile ? setHideSorts(true) : null;
+        }
+    }
+
+    const handleMouseLeave = (which_button) => {
+        if (which_button === "Filters") {
+            !isMobile ? setHideFilters(false) : null;
+        } else if (which_button === "Sorts") {
+            !isMobile ? setHideSorts(false) : null;
+        }
+    }
+
+    const handleClick = (which_button) => {
+        if (which_button === "Filters") {
+            setHideFilters(!hide_filters)
+        } else if (which_button === "Sorts") {
+            setHideSorts(!hide_sorts)
+        }
+    };
+
+    const handleDropDownClick = (event) => {
+        event.stopPropagation();
+    }
 
     // Data for filter sections
     const filterOptions = [
@@ -92,10 +132,11 @@ export default function Drip() {
     function scrollToTop() {
         window.scrollTo({
             top: 0,
-            behavior: 'smooth' 
+            behavior: 'smooth'
         });
     }
-    
+
+
 
     return (
         <div className="drip-main">
@@ -103,14 +144,14 @@ export default function Drip() {
                 <div className="drip-header">
                     <div className="title">
                         <h1>Trousers & Shorts</h1>
-                        <p>Explore premium men's outerwear, designed for the modern man, seeking an edge to accentuate his bold persona.</p>
+                        <p>Explore premium men&apos;s outerwear, designed for the modern man, seeking an edge to accentuate his bold persona.</p>
                     </div>
                     <div className="header-filters">
-                        <div className="filter-by" onMouseEnter={() => setHideFilters(true)} onMouseLeave={() => setHideFilters(false)}>
+                        <div className="filter-by" onMouseEnter={() => handleMouseEnter("Filters")} onMouseLeave={() => handleMouseLeave("Filters")} onClick={() => handleClick("Filters")}>
                             <div className="filter-p">
                                 <p>Filters</p>
                             </div>
-                            <div className={hide_filters ? "filters" : "hide-parameter"}>
+                            <div className={hide_filters ? "filters" : "hide-parameter"} onClick={handleDropDownClick}>
                                 {/* Dynamically render filter sections */}
                                 {filterOptions.map(({ title, id, drawerKey, options }) => (
                                     <div className="parameters" key={drawerKey}>
@@ -141,12 +182,12 @@ export default function Drip() {
                             </div>
                         </div>
 
-                        <div className="sort-by" onMouseEnter={() => setHideSorts(true)} onMouseLeave={() => setHideSorts(false)}>
+                        <div className="sort-by" onMouseEnter={() => handleMouseEnter("Sorts")} onMouseLeave={() => handleMouseLeave("Sorts")} onClick={() => handleClick("Sorts")}>
                             <div className="sort-p">
                                 <p>Sort By: <span>{sorts}</span></p>
                             </div>
 
-                            <div className={hide_sorts ? "sorts" : "hide-parameter"}>
+                            <div className={hide_sorts ? "sorts" : "hide-parameter"} onClick={handleDropDownClick}>
                                 {
                                     sort_array.map((item, index) => (
                                         <p key={index} onClick={() => setSorts(item)}>{item}</p>

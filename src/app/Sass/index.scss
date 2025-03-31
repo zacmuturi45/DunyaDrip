@@ -3253,6 +3253,19 @@ body {
         }
     }
 
+    .drip-card-main {
+        width: 350px;
+    }
+    .drip-main {
+        .drip-container {
+            width: 100%;
+            padding: 0 10px;
+            .drip-cards {
+                justify-content: space-between;
+            }
+        }
+    }
+
     .main-picks {
 
         .picks-container {
@@ -3510,6 +3523,9 @@ body {
 }
 
 @media screen and (max-width: 480px) {
+    .drip-main {
+        padding-top: 145px;
+    }
     .main-picks {
         justify-content: flex-start;
         width: 100%;
