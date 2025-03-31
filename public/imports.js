@@ -137,6 +137,55 @@ export const featured_array = [
     { image: white_6, image2: white_6b, product_name: "Retro Varsity Bomber", product_price: "120", id: 112 },
 ];
 
+export const drip_array = [
+    { image: white_1, image2: white_1b, product_name: "Puff Jacket", product_price: "85", id: 200 },
+    { image: white_2, image2: white_2b, product_name: "Urban Shadow Hoodie", product_price: "65", id: 201 },
+    { image: white_3, image2: white_3b, product_name: "Street Luxe Cargo Pants", product_price: "75", id: 202 },
+    { image: white_4, image2: white_4b, product_name: "Neo-Futurist Windbreaker", product_price: "90", id: 203 },
+    { image: white_5, image2: white_5b, product_name: "DripMode Graphic Tee", product_price: "50", id: 204 },
+    { image: white_6, image2: white_6b, product_name: "Retro Varsity Bomber", product_price: "120", id: 205 },
+    { image: white_1, image2: white_1b, product_name: "Techwear Puffer", product_price: "110", id: 206 },
+    { image: white_2, image2: white_2b, product_name: "Stealth Mode Hoodie", product_price: "70", id: 207 },
+    { image: white_3, image2: white_3b, product_name: "Combat Cargo Pants", product_price: "80", id: 208 },
+    { image: white_4, image2: white_4b, product_name: "Windproof Shell Jacket", product_price: "95", id: 209 },
+    { image: white_5, image2: white_5b, product_name: "Minimalist Street Tee", product_price: "55", id: 210 },
+    { image: white_6, image2: white_6b, product_name: "Vintage Bomber", product_price: "130", id: 211 },
+    { image: white_1, image2: white_1b, product_name: "Urban Combat Jacket", product_price: "99", id: 212 },
+    { image: white_2, image2: white_2b, product_name: "Graphic Oversized Hoodie", product_price: "85", id: 213 },
+    { image: white_3, image2: white_3b, product_name: "Tactical Cargo Trousers", product_price: "88", id: 214 },
+    { image: white_4, image2: white_4b, product_name: "Futuristic Anorak", product_price: "102", id: 215 },
+    { image: white_5, image2: white_5b, product_name: "Skater Fit Tee", product_price: "45", id: 216 },
+    { image: white_6, image2: white_6b, product_name: "Classic Varsity Jacket", product_price: "140", id: 217 },
+    { image: white_1, image2: white_1b, product_name: "Stormproof Puffer", product_price: "115", id: 218 },
+    { image: white_2, image2: white_2b, product_name: "Cyberpunk Hoodie", product_price: "95", id: 219 },
+    { image: white_3, image2: white_3b, product_name: "Slim Fit Joggers", product_price: "78", id: 220 },
+    { image: white_4, image2: white_4b, product_name: "Lightweight Parka", product_price: "100", id: 221 },
+    { image: white_5, image2: white_5b, product_name: "Urban Fit Tee", product_price: "48", id: 222 },
+    { image: white_6, image2: white_6b, product_name: "Retro Leather Bomber", product_price: "150", id: 223 },
+    { image: white_1, image2: white_1b, product_name: "Hybrid Puffer", product_price: "98", id: 224 },
+    { image: white_2, image2: white_2b, product_name: "Oversized Street Hoodie", product_price: "82", id: 225 },
+    { image: white_3, image2: white_3b, product_name: "Elastic Waist Cargo Pants", product_price: "85", id: 226 },
+    { image: white_4, image2: white_4b, product_name: "Techwear Rain Jacket", product_price: "110", id: 227 },
+    { image: white_5, image2: white_5b, product_name: "Oversized Cotton Tee", product_price: "52", id: 228 },
+    { image: white_6, image2: white_6b, product_name: "Heritage Varsity Jacket", product_price: "125", id: 229 },
+    { image: white_1, image2: white_1b, product_name: "Stealth Winter Puffer", product_price: "112", id: 230 },
+    { image: white_2, image2: white_2b, product_name: "Monochrome Hoodie", product_price: "77", id: 231 },
+    { image: white_3, image2: white_3b, product_name: "Convertible Cargo Pants", product_price: "95", id: 232 },
+    { image: white_4, image2: white_4b, product_name: "All-Weather Windbreaker", product_price: "105", id: 233 },
+    { image: white_5, image2: white_5b, product_name: "Minimalist Logo Tee", product_price: "49", id: 234 },
+    { image: white_6, image2: white_6b, product_name: "Varsity Heritage Bomber", product_price: "135", id: 235 },
+];
+
+// Duplicating and shuffling the list until we reach 80 items
+export const extended_drip_array = Array.from({ length: 80 }, (_, index) => {
+    const item = drip_array[index % drip_array.length]; // Loop through existing items
+    return {
+        ...item,
+        id: 236 + index, // Unique ID
+    };
+});
+
+
 
 export const localTime = () => {
     const now = new Date()

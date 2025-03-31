@@ -439,13 +439,13 @@ export default function Navbar() {
                     <ScrollingOffers />
                 </div>
 
-                <div className="main-nav-content" id='main-nav'>
+                <div className="main-nav-content" id='main-nav' style={{zIndex: 1100}}>
 
                     <div className={newin ? "newin" : "hide-newin"} onMouseEnter={() => handleMouseEnter(setNewin)} onMouseLeave={() => handleMouseLeave(setNewin)} >
                     <div className="newin-filter" onMouseEnter={() => handleMouseLeave(setNewin)}></div>
                         <div className="newin-container">
                             <div className="newin-detail">
-                                <h4>NEW IN</h4>
+                                <h4 onClick={() => router.push("/drip")}>NEW IN</h4>
                                 {
                                     newInArray.map((item, index) => (
                                         <p key={index}>{item}</p>
@@ -658,8 +658,8 @@ export default function Navbar() {
                         </div>
 
                         <div className='nav-tier2-two'>
-                            <Image src={dunyadrip} height={50} width={50} alt='dunya-drip-logo' unoptimized className='trial' />
-                            <Image src={dunya} height={50} width={50} alt='dunya-drip-logo' unoptimized className='trial1' />
+                            <Image src={dunyadrip} height={50} width={50} alt='dunya-drip-logo' unoptimized className='trial' onClick={() => router.push("/")} />
+                            <Image src={dunya} height={50} width={50} alt='dunya-drip-logo' unoptimized className='trial1' onClick={() => router.push("/")} style={{ cursor: "pointer"}}  />
                             </div>
 
                         <div className='nav-tier2-three'>

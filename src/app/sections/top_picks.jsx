@@ -5,11 +5,11 @@ import React, { useContext } from 'react'
 import { carl_main, carl_one, carl_two, dark_one, dark_two } from '../../../public/imports'
 import { FlagContext } from '../contexts/flagcontext';
 
-export default function TopPicks() {
+export default function TopPicks({ obsRef }) {
     const { location } = useContext(FlagContext);
 
     return (
-        <div className='main-picks'>
+        <div className='main-picks' ref={obsRef}>
             <div className="picks-container">
                 <div className="grid">
 
