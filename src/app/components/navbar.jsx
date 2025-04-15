@@ -439,7 +439,7 @@ export default function Navbar() {
                     <ScrollingOffers />
                 </div>
 
-                <div className="main-nav-content" id='main-nav' style={{zIndex: 1100}}>
+                <div className="main-nav-content" id='main-nav'>
 
                     <div className={newin ? "newin" : "hide-newin"} onMouseEnter={() => handleMouseEnter(setNewin)} onMouseLeave={() => handleMouseLeave(setNewin)} >
                     <div className="newin-filter" onMouseEnter={() => handleMouseLeave(setNewin)}></div>

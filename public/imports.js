@@ -96,6 +96,8 @@ export { default as streetwear1 } from "./streetwear.webp";
 export { default as globe } from "./globe.svg";
 export { default as nav_insta } from "./nav_insta.svg";
 export { default as nav_fb } from "./nav_fb.svg";
+export { default as black_start } from "./black_star.svg";
+export { default as size } from "./size.svg";
 
 
 export { default as white1 } from "./white1.webp";
@@ -121,6 +123,16 @@ export { default as gpay } from "./gpay.svg";
 export { default as appay } from "./appay.svg";
 export { default as amex } from "./amex.svg";
 export { dark_black } from "./dark_black.jpg";
+
+export const size_array = [
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL",
+    "XXXL"
+]
 
 export const featured_array = [
     { image: white_1, image2: white_1b, product_name: "Puff Jacket", product_price: "85", id: 100 },

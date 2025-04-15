@@ -202,7 +202,7 @@ export default function Drip() {
                 <div className="drip-cards">
                     {
                         extended_drip_array.slice(0, limit).map((item, index) => (
-                            <DripCard drip_image={item.image} product_name={item.product_name} product_price={item.product_price} index={index} key={`drip_card_component${index}`} />
+                            <DripCard id={item.id} drip_image={item.image} product_name={item.product_name} product_price={item.product_price} index={index} key={`drip_card_component${index}`} />
                         ))
                     }
                 </div>

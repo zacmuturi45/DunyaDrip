@@ -22,6 +22,11 @@ export default function SummerSale() {
     }, [])
 
     const animation = () => {
+        if (!text_one.current || !text_two.current) {
+            requestAnimationFrame(animation)
+            return;
+        }
+        
         if (xPercent <= -100) {
             xPercent = 0;
         }

@@ -14,6 +14,11 @@ export default function Banner() {
     }, [])
 
     const animation = () => {
+        if (!first_text.current || !second_text.current) {
+            requestAnimationFrame(animation)
+            return;
+        }
+        
         if (xPercent <= -100) {
             xPercent = 0;
         }

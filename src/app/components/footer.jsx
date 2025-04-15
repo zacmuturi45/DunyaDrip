@@ -141,7 +141,7 @@ export default function Footer() {
               <button>Subscribe</button>
             </div>
             <div className="disclaimer">
-              <p>By Subscribing You Agree To Our <span>Terms</span> & <span>Privcy Policy</span>.</p>
+              <p>By Subscribing You Agree To Our <span>Terms</span> & <span>Privacy Policy</span>.</p>
             </div>
           </div>
 
