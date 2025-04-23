@@ -98,6 +98,8 @@ export { default as nav_insta } from "./nav_insta.svg";
 export { default as nav_fb } from "./nav_fb.svg";
 export { default as black_start } from "./black_star.svg";
 export { default as size } from "./size.svg";
+export { default as finger } from "./finger.svg";
+export { default as shopping_bag } from "./shopping_bag.svg";
 
 
 export { default as white1 } from "./white1.webp";

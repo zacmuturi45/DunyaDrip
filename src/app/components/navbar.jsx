@@ -12,6 +12,7 @@ import { getLocation } from '@/utils/getLocation';
 import { FlagContext } from '../contexts/flagcontext';
 import FlagBoxes from './flagboxes';
 import ScrollingOffers from './scrollingoffers';
+import { useCart } from '../contexts/cart_context';
 
 
 export default function Navbar() {
@@ -45,6 +46,7 @@ export default function Navbar() {
         sub_drawer4d2: false,
         sub_drawer4d3: false,
     });
+    const { cart, setShowCart } = useCart();
     const router = useRouter();
     const hideTimeout = useRef(null);
     const { location, setFlagActive, flag_active, setLocation, apply_location, setColorIndex, showFlagBox, setShowFlagBox } = useContext(FlagContext);
@@ -665,7 +667,7 @@ export default function Navbar() {
                         <div className='nav-tier2-three'>
                             <div className='nav-tier2-login'><p>Login</p></div>
                             <div className='nav-tier2-search'><Image src={search} height={25} width={25} alt='search-svg' onClick={() => setShowSearchPanel(true)} /></div>
-                            <div className='nav-tier2-bag'><Image src={bag} height={20} width={20} alt='search-svg' /></div>
+                            <div className='nav-tier2-bag' onClick={() => setShowCart(true)} ><Image src={bag} height={20} width={20} alt='search-svg' />{cart.length !== 0 && <div className='bag-items'>{cart.length}</div>}</div>
                         </div>
 
                     </div>

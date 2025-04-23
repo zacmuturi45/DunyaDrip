@@ -1,16 +1,22 @@
 "use client"
 
 import { useParams } from 'next/navigation'
-import React, { use, useContext, useState } from 'react'
-import { black_start, extended_drip_array, plus, size, size_array } from '../../../public/imports';
+import React, { use, useContext, useEffect, useState } from 'react'
+import { black_start, extended_drip_array, finger, plus, size, size_array } from '../../../public/imports';
 import Image from 'next/image';
 import { FlagContext } from '../contexts/flagcontext';
 import DripCard from '../components/drip_card';
+import { useCart } from '../contexts/cart_context';
+import Loader from '../components/loader';
 
 export default function DripSlug() {
   const params = useParams();
   const { location } = useContext(FlagContext);
-  const [quantity, setQuantity] = useState(1);
+  const [merch_quantity, setMerchQuantity] = useState(1);
+  const [selected_size, setSelectedSize] = useState({ index: null, size: null })
+  const { cart, addToCart, setShowCart } = useCart();
+  const [show_cart_panel, setShowCartPanel] = useState(false);
+  const [loader, setLoader] = useState(false);
   const [blackBorder, setBlackBorder] = useState({
     image_one: true,
     image_two: false,
@@ -30,18 +36,52 @@ export default function DripSlug() {
     { rating: 4, comments: "Great merchandise, quality is good, threading was excellent.", client_name: "Crowley Fichtner" }
   ]
 
+
+  useEffect(() => {
+    const existing_product = cart.find(item => item.id === image_object.id && item.size === selected_size.size)
+    if (existing_product) {
+      setMerchQuantity(existing_product.quantity)
+    }
+  }, [cart])
+
+  useEffect(() => {
+    const existing_product = cart.find(item => item.id === image_object.id)
+    if (existing_product) {
+      setSelectedSize(prev => ({...prev, size: existing_product.size, index: size_array.indexOf(existing_product.size)}))
+      setMerchQuantity(existing_product.quantity)
+    }
+  }, [])
+
   const [main_image, setMainImage] = useState(image_object.image);
 
+
   const handleQuantity = (operation) => {
-    if (operation === "add") {
-      setQuantity(prevQuantity => prevQuantity + 1)
-    } else if (operation === "minus") {
-      setQuantity(prevQuantity => {
-        return prevQuantity !== 0 ? prevQuantity - 1 : 0;
-      })
+    if (!selected_size.size) {
+      setShowCartPanel(true)
+      setTimeout(() => {
+        setShowCartPanel(false)
+      }, 3000);
+      return;
     }
+    operation === "add" ? setMerchQuantity(prev => prev + 1) : setMerchQuantity(prev => Math.max(prev - 1, 1))
   }
-  
+
+  const handleAddToCart = (options) => {
+    if (!options) {
+      setShowCartPanel(true)
+      setTimeout(() => {
+        setShowCartPanel(false)
+      }, 3000);
+      return;
+    }
+    setLoader(true);
+    setTimeout(() => {
+      setLoader(false)
+      addToCart({ drip_image: image_object.image, product_name: image_object.product_name, product_price: image_object.product_price, id: image_object.id, size: selected_size.size, quantity: merch_quantity }, "add")
+      setShowCart(true)
+    }, 1500);
+  }
+
   const changeBorder = (img, imgSrc) => {
     setBlackBorder(prevState => {
       if (prevState[img]) return prevState;
@@ -85,13 +125,23 @@ export default function DripSlug() {
                 </div>
                 <p>4 Reviews</p>
               </div>
-              <p className='price'>{`${location.currency} ${image_object.product_price}`}</p>
+              <p className='price'>{`${location.currency} ${image_object.product_price*merch_quantity}`}</p>
               <p className='vat'>Inclusive VAT *</p>
             </div>
 
             <div className="two-detail">
               <div className="p">
                 <p>SIZE</p>
+                {
+                  show_cart_panel && (
+                    <div className="size_alert">
+                      <div className="thumbs-down">
+                        <Image src={finger} width={20} height={20} alt='finger-svg' className='floating' />
+                      </div>
+                      Please select size.
+                    </div>
+                  )
+                }
                 <div className='size-guide'>
                   <Image src={size} width={20} height={20} alt='size' />
                   <a href='https://www.spocket.co/blogs/uk-to-us-size-conversion-guide?srsltid=AfmBOootv1brqzwvIMXwOZRTrP8fINfNQomqtY3xLNdd5p-jHyvPRDoe' target='_blank' rel='noopener noreferrer'><p>size guide</p></a>
@@ -100,7 +150,7 @@ export default function DripSlug() {
               <div className="sizes">
                 {
                   size_array.map((item, index) => (
-                    <p key={`drip_sizes${index}`}>{item}</p>
+                    <p key={`drip_sizes${index}`} onClick={() => setSelectedSize(prev => ({ ...prev, index: index, size: item }))} className={selected_size.index === index ? "black-border" : ""}>{item}</p>
                   ))
                 }
               </div>
@@ -112,12 +162,12 @@ export default function DripSlug() {
                 <h4>Quantity</h4>
                 <div className="qtty">
                   <span onClick={() => handleQuantity("add")}>+</span>
-                  <p>{quantity}</p>
+                  <p>{merch_quantity}</p>
                   <span onClick={() => handleQuantity("minus")}>-</span>
                 </div>
               </div>
               <div className="add_to_cart">
-                <button>Add to Cart</button>
+                <button onClick={() => handleAddToCart(selected_size.index)}>{loader ? <Loader /> : <>Add to Cart</>}</button>
               </div>
               <div className="one-details">
                 <h4>Description</h4>
@@ -126,7 +176,7 @@ export default function DripSlug() {
                   <div className="case">
                     <div className="case_title">
                       <p>UK SHIPPING</p>
-                      <Image src={plus} width={20} height={20} alt='plus' style={{cursor: "pointer"}} onClick={() => showDeets(prevDeets => ({
+                      <Image src={plus} width={20} height={20} alt='plus' style={{ cursor: "pointer" }} onClick={() => showDeets(prevDeets => ({
                         ...prevDeets,
                         deets1: !prevDeets.deets1
                       }))} />
@@ -139,7 +189,7 @@ export default function DripSlug() {
                   <div className="case">
                     <div className="case_title">
                       <p>INTERNATIONAL SHIPPING</p>
-                      <Image src={plus} width={20} height={20} alt='plus' style={{cursor: "pointer"}} onClick={() => showDeets(prevDeets => ({
+                      <Image src={plus} width={20} height={20} alt='plus' style={{ cursor: "pointer" }} onClick={() => showDeets(prevDeets => ({
                         ...prevDeets,
                         deets2: !prevDeets.deets2
                       }))} />
@@ -152,7 +202,7 @@ export default function DripSlug() {
                   <div className="case" style={{ borderBottom: "1px solid rgb(223, 223, 223)", paddingBottom: "1rem" }}>
                     <div className="case_title">
                       <p>RETURNS</p>
-                      <Image src={plus} width={20} height={20} alt='plus' style={{cursor: "pointer"}} onClick={() => showDeets(prevDeets => ({
+                      <Image src={plus} width={20} height={20} alt='plus' style={{ cursor: "pointer" }} onClick={() => showDeets(prevDeets => ({
                         ...prevDeets,
                         deets3: !prevDeets.deets3
                       }))} />

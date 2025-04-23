@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useRef, useState } from 'react'
-import { arrow, arrow_right, featured_array } from '../../../public/imports'
+import { arrow, arrow_right, extended_drip_array, featured_array } from '../../../public/imports'
 import Featured_Card from '../components/featured_card'
 import Image from 'next/image'
 
@@ -49,7 +49,7 @@ export default function Featured() {
                 <div className="featured-cards">
                     <div className="carousel" ref={carousel_ref}>
                         {
-                            featured_array.map((item, index) => (
+                            extended_drip_array.slice(0, 10).map((item, index) => (
                                 <Featured_Card image={item.image} id={item.id} image2={item.image2} product_name={item.product_name} product_price={item.product_price} key={index} />
                             ))
                         }
