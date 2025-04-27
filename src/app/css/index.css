@@ -3708,6 +3708,9 @@ body {
   }
 }
 @media screen and (max-width: 480px) {
+  .cart_page_main .cart_page_container {
+    overflow-y: scroll;
+  }
   .cart_page_main .cart_page_container .carty .cart_page_two {
     border: 3px solid rgb(255, 255, 255);
   }

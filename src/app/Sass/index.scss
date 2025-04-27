@@ -4836,6 +4836,7 @@ body {
 @media screen and (max-width: 480px) {
     .cart_page_main {
         .cart_page_container {
+            overflow-y: scroll;
             .carty {
                 .cart_page_two {
                     border: 3px solid rgb(255, 255, 255);
@@ -4844,7 +4845,7 @@ body {
 
             .cart_footer {
                 box-sizing: border-box;
-
+                
                 .footer-one {
                     padding: 0 1rem;
 
