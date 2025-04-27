@@ -7,12 +7,12 @@ import { shopping_bag, x } from '../../../public/imports';
 import CartProduct from './cart_product';
 import { FlagContext } from '../contexts/flagcontext';
 import Loader from './loader';
+import { useRouter } from 'next/navigation';
 
 export default function CartPage() {
-    const { cart, show_cart, setShowCart, loader, setLoader } = useCart();
+    const { cart, show_cart, setShowCart, loader, setLoader, totalz, setTotalz } = useCart();
     const { location } = useContext(FlagContext);
-    const [sub_total, setSubTotal] = useState([]);
-    const [totalz, setTotalz] = useState(0);
+    const router = useRouter();
 
     useEffect(() => {
         const sum_total = cart.reduce((acc, item) => {
@@ -55,7 +55,7 @@ export default function CartPage() {
                                 <>
                                     {
                                         cart.map((item, index) => (
-                                            <CartProduct key={index} setSubTotal={setSubTotal} cart_image={item.drip_image} cart_item_title={item.product_name} cart_item_price={item.product_price} cart_item_size={item.size} id={item.id} cart_item_quantity={item.quantity} />
+                                            <CartProduct key={index} cart_image={item.drip_image} cart_item_title={item.product_name} cart_item_price={item.product_price} cart_item_size={item.size} id={item.id} cart_item_quantity={item.quantity} />
                                         ))
                                     }
                                 </>
@@ -86,7 +86,10 @@ export default function CartPage() {
                             </div>
 
                             <div className="footer-two">
-                                <button>Checkout</button>
+                                <button onClick={() => {
+                                    setShowCart(false)
+                                    router.push("/checkout")
+                                }}>Checkout</button>
                                 <p onClick={() => setShowCart(false)}>Or Continue Shopping</p>
                             </div>
                         </div>

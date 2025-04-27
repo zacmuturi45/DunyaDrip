@@ -7,7 +7,7 @@ import { x } from '../../../public/imports';
 import { useCart } from '../contexts/cart_context';
 import { useRouter } from 'next/navigation';
 
-export default function CartProduct({ sub_total, setSubTotal, cart_image, cart_item_title, cart_item_size, cart_item_price, id, cart_item_quantity }) {
+export default function CartProduct({ cart_image, cart_item_title, cart_item_size, cart_item_price, id, cart_item_quantity }) {
     const [quantity, setQuantity] = useState(1)
     const [price_object, setPriceObject] = useState({ id: id, total_price: cart_item_price });
     const { location } = useContext(FlagContext);
