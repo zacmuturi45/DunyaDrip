@@ -13,8 +13,7 @@ import ShopByCollection from "./sections/shop_by_collection";
 import TopPicks from "./sections/top_picks";
 import PreFooter from "./sections/pre_footer";
 import NewsLetter from "./components/newsletterbanner";
-import { Suspense, useEffect, useRef, useState } from "react";
-import Loader from "./components/loader";
+import { useEffect, useRef, useState } from "react";
 
 export default function Home() {
   const [showBanner, setShowBanner] = useState(false);
@@ -43,9 +42,7 @@ export default function Home() {
       <Banner />
       <Dunya_Video />
       <ShopByCollection />
-      <Suspense fallback={<Loader />}>
       <Featured />
-      </Suspense>
       <SummerSale />
       <MensArrivals />
       <WomensArrivals />
