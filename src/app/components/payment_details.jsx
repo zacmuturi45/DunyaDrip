@@ -11,10 +11,21 @@ const paymentMethods = [
     { id: "klarna", label: "Klarna" },
 ];
 
+
+
 export default function Payment() {
     const [selectedPayment, setSelectedPayment] = useState("credit_card");
     const [useShippingAddress, setUseShippingAddress] = useState(true);
     const [showmore, setShowMore] = useState(false);
+    const [expiry, setExpiry] = useState("");
+
+    const handleChange = (e) => {
+        let value = e.target.value.replace(/\D/g, "");
+        if (value.length >= 2) {
+            value = value.slice(0, 2) + "/" + value.slice(2, 4)
+        }
+        setExpiry(value.slice(0,5));
+    }
 
     const renderPaymentDetails = () => {
         switch (selectedPayment) {
@@ -24,7 +35,7 @@ export default function Payment() {
                         <div className="input-grid">
                             <input type="text" placeholder="Cardholder Name" className="input" />
                             <input type="text" placeholder="Card Number" className="input" />
-                            <input type="text" placeholder="Expiry Date (MM/YY)" className="input" />
+                            <input type="text" autoComplete="cc-exp" value={expiry} onChange={handleChange} placeholder="Expiry Date (MM/YY)" className="input" />
                             <input type="text" placeholder="CVC" className="input" />
                         </div>
 
