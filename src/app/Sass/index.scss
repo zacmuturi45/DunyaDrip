@@ -3359,11 +3359,12 @@ body {
                         height: 600px;
                         overflow-y: scroll;
                     }
+
                     .legal_checkout_two {
                         display: none;
                         margin: 20px 0;
                         padding-top: 1.5rem;
-                    
+
                         p {
                             font-family: "Inter";
                             margin-right: 1rem;
@@ -3371,13 +3372,97 @@ body {
                             cursor: pointer;
                             font-weight: 500;
                             font-size: .9rem;
-                    
+
                         }
                     }
                 }
             }
         }
     }
+}
+
+// AUTH/LOGIN/SIGNUP
+
+.verify-main {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-container {
+    padding: 200px 0;
+
+    .auth-form {
+        background: #fff;
+        padding: 2rem;
+        margin: 5rem auto;
+        max-width: 400px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+        h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        input {
+            display: block;
+            width: 100%;
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+
+            &:focus {
+                outline: none;
+                border-color: #111;
+            }
+        }
+
+        .error {
+            color: red;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        button {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: #111;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+
+            &:disabled {
+                background-color: #555;
+            }
+
+            &:hover:not(:disabled) {
+                background-color: #333;
+            }
+        }
+        
+        .toggle-text {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        
+            .link {
+              color: #0070f3;
+              text-decoration: underline;
+              cursor: pointer;
+        
+              &:hover {
+                color: #0051aa;
+              }
+            }
+          }
+        
+    }
+
 }
 
 
@@ -3639,8 +3724,15 @@ body {
 
 
 @media screen and (max-width: 580px) {
+    .auth-container {
+        padding: 50px 0;
+        .auth-form {
+            transform: scale(0.8);
+        }
+    }
     .address-form {
         padding: 1rem;
+
         .form-row {
             flex-direction: column;
             gap: 0;
@@ -3648,13 +3740,14 @@ body {
 
         .form-group {
             margin-bottom: 1rem;
-            
+
             input,
             select {
                 padding: 0.65rem;
             }
         }
     }
+
     .cart_page_main {
         .cart_page_container {
             width: 100%;
@@ -4388,17 +4481,21 @@ body {
         .checkout_container {
             display: flex;
             flex-direction: column;
+
             .checkout_div_one {
                 justify-content: center;
             }
+
             .checkout_div_two {
                 display: flex;
                 justify-content: center;
+
                 .checkout_div_two_container {
                     .checkout_div_two_cards {
                         .card_container {
                             height: auto;
                         }
+
                         .legal_checkout_two {
                             display: flex;
                         }
@@ -4407,6 +4504,7 @@ body {
             }
         }
     }
+
     .drip_page_main {
         .drip_page_container {
             width: 100%;
@@ -4756,6 +4854,7 @@ body {
     .cart_page_main {
         .cart_page_container {
             overflow-y: scroll;
+
             .carty {
                 .cart_page_two {
                     border: 3px solid rgb(255, 255, 255);
@@ -4764,7 +4863,7 @@ body {
 
             .cart_footer {
                 box-sizing: border-box;
-                
+
                 .footer-one {
                     padding: 0 1rem;
 
