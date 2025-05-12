@@ -28,7 +28,7 @@ export default function DripSlug() {
     deets2: false,
     deets3: false
   });
-  const image_object = extended_drip_array.find(image => image.id === parseInt(params.drip_page))
+  const image_object = extended_drip_array.find(image => image.id === 237)
   const reviews = [
     { rating: 4, comments: "Great merchandise, quality is good, threading was excellent.", client_name: "Jared Padalecki" },
     { rating: 4, comments: "Great merchandise, quality is good, threading was excellent.", client_name: "Jensen Ackles" },

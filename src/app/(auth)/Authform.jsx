@@ -43,7 +43,7 @@ export default function AuthForm() {
         if (response.error) {
             setServerError(response.error.message);
         } else {
-            router.push('/verify');
+            mode === 'login' ? router.push('/') : router.push('/login')
         }
 
         setLoading(false);

@@ -4,6 +4,7 @@ import Footer from "./components/footer";
 import { FlagProvider } from "./contexts/flagcontext";
 import { CartProvider } from "./contexts/cart_context";
 import CartPage from "./components/cart_page";
+import { AuthProvider } from "./contexts/auth_context";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -27,10 +28,12 @@ export default function RootLayout({ children }) {
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <FlagProvider>
           <CartProvider>
-            <Navbar />
-            <CartPage />
-            <main>{children}</main>
-            <Footer />
+            <AuthProvider>
+              <Navbar />
+              <CartPage />
+              <main>{children}</main>
+              <Footer />
+            </AuthProvider>
           </CartProvider>
         </FlagProvider>
       </body>

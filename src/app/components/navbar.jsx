@@ -13,6 +13,7 @@ import { FlagContext } from '../contexts/flagcontext';
 import FlagBoxes from './flagboxes';
 import ScrollingOffers from './scrollingoffers';
 import { useCart } from '../contexts/cart_context';
+import { useAuth } from '../contexts/auth_context';
 
 
 export default function Navbar() {
@@ -57,6 +58,10 @@ export default function Navbar() {
         { product_image: shoe2, product_name: "Nike Kratos", price: "77" },
         { product_image: jacket, product_name: "Nike Darkly", price: "85" }
     ]
+
+    const { user } = useAuth();
+
+    const display_name = user?.user_metadata?.firstName && user?.user_metadata?.lastName ? `${user.user_metadata.firstName}` : user?.email;
 
     useEffect(() => {
         if (scrollDirection === "up") {
@@ -355,22 +360,24 @@ export default function Navbar() {
                             <p onClick={() => {
                                 setBurgerActive(false)
                                 router.push("/login")
-                            }}>Login</p>
+                            }}>{
+                                    user ? `Welcome ${display_name}` : 'Login'
+                                }</p>
                             <div className="nav-footer-flag" onClick={() => setShowFlagBox(true)}>
-                            <Image src={location.flag_image} height={25} width={25} alt='flag' />
-                            <p>{`${location.country_name}/${location.currency}`}</p>
+                                <Image src={location.flag_image} height={25} width={25} alt='flag' />
+                                <p>{`${location.country_name}/${location.currency}`}</p>
                             </div>
 
                             <div className="nav-footer-contact">
-                            <h3>Contact Us</h3>
-                            <p>+447492804388</p>
-                            <p>customercare@dunyadrip.co.uk</p>
-                        </div>
-                        <div className="nav-footer-socials">
-                            <Image src={nav_fb} width={20} height={20} alt='facebook' />
-                            <Image src={nav_insta} width={20} height={20} alt='facebook' />
-                            <Image src={tiktok} width={20} height={20} alt='facebook' />
-                        </div>
+                                <h3>Contact Us</h3>
+                                <p>+447492804388</p>
+                                <p>customercare@dunyadrip.co.uk</p>
+                            </div>
+                            <div className="nav-footer-socials">
+                                <Image src={nav_fb} width={20} height={20} alt='facebook' />
+                                <Image src={nav_insta} width={20} height={20} alt='facebook' />
+                                <Image src={tiktok} width={20} height={20} alt='facebook' />
+                            </div>
                         </div>
 
 
@@ -447,7 +454,7 @@ export default function Navbar() {
                 <div className="main-nav-content" id='main-nav'>
 
                     <div className={newin ? "newin" : "hide-newin"} onMouseEnter={() => handleMouseEnter(setNewin)} onMouseLeave={() => handleMouseLeave(setNewin)} >
-                    <div className="newin-filter" onMouseEnter={() => handleMouseLeave(setNewin)}></div>
+                        <div className="newin-filter" onMouseEnter={() => handleMouseLeave(setNewin)}></div>
                         <div className="newin-container">
                             <div className="newin-detail">
                                 <h4 onClick={() => router.push("/drip")}>NEW IN</h4>
@@ -472,7 +479,7 @@ export default function Navbar() {
                     </div>
 
                     <div className={men ? "men" : "hide-men"} onMouseEnter={() => handleMouseEnter(setMen)} onMouseLeave={() => handleMouseLeave(setMen)} >
-                    <div className="men-filter" onMouseEnter={() => handleMouseLeave(setMen)}></div>
+                        <div className="men-filter" onMouseEnter={() => handleMouseLeave(setMen)}></div>
                         <div className="men-container">
 
                             <div className='men-clothing'>
@@ -561,7 +568,7 @@ export default function Navbar() {
                     </div>
 
                     <div className={categories ? "kids" : "hide-kids"} id='catdiv' onMouseEnter={() => handleMouseEnter(setCategories)} onMouseLeave={() => handleMouseLeave(setCategories)}>
-                    <div className="kids-filter" onMouseEnter={() => handleMouseLeave(setCategories)}></div>
+                        <div className="kids-filter" onMouseEnter={() => handleMouseLeave(setCategories)}></div>
 
                         <div className="kids-container">
 
@@ -607,7 +614,7 @@ export default function Navbar() {
                     </div>
 
                     <div className={conditions ? "women" : "hide-women"} id='catdiv' onMouseEnter={() => handleMouseEnter(setConditions)} onMouseLeave={() => handleMouseLeave(setConditions)}>
-                    <div className="women-filter" onMouseEnter={() => handleMouseLeave(setConditions)}></div>
+                        <div className="women-filter" onMouseEnter={() => handleMouseLeave(setConditions)}></div>
 
                         <div className="women-container">
 
@@ -664,11 +671,15 @@ export default function Navbar() {
 
                         <div className='nav-tier2-two'>
                             <Image src={dunyadrip} height={50} width={50} alt='dunya-drip-logo' unoptimized className='trial' onClick={() => router.push("/")} />
-                            <Image src={dunya} height={50} width={50} alt='dunya-drip-logo' unoptimized className='trial1' onClick={() => router.push("/")} style={{ cursor: "pointer"}}  />
-                            </div>
+                            <Image src={dunya} height={50} width={50} alt='dunya-drip-logo' unoptimized className='trial1' onClick={() => router.push("/")} style={{ cursor: "pointer" }} />
+                        </div>
 
                         <div className='nav-tier2-three'>
-                            <div className='nav-tier2-login' onClick={() => router.push("/login")}><p>Login</p></div>
+                            <div className='nav-tier2-login' onClick={() => router.push("/login")}><p>
+                                {
+                                    user ? `Welcome ${display_name}` : 'Login'
+                                }
+                            </p></div>
                             <div className='nav-tier2-search'><Image src={search} height={25} width={25} alt='search-svg' onClick={() => setShowSearchPanel(true)} /></div>
                             <div className='nav-tier2-bag' onClick={() => setShowCart(true)} ><Image src={bag} height={20} width={20} alt='search-svg' />{cart.length !== 0 && <div className='bag-items'>{cart.length}</div>}</div>
                         </div>

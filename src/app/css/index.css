@@ -2751,6 +2751,13 @@ body {
   color: #0051aa;
 }
 
+.dashboard_main {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .footer-main {
   display: flex;
   margin: 0;

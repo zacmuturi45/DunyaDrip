@@ -4,7 +4,7 @@ export default function Verify() {
   return (
     <div className='verify-main'>
         <h2>Thanks for registering!</h2>
-        <p>Before Logging in, you need to verify your email address.</p>
+        <p>Please check your email and click the link sent to activate your account.</p>
     </div>
   )
 }
