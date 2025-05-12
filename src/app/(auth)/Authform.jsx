@@ -95,7 +95,7 @@ export default function AuthForm() {
                 <p className="toggle-text">
                     {mode === 'login' ? (
                         <>
-                            Don't have an account?{' '}
+                            Don&apos;t have an account?{' '}
                             <span className="link" onClick={() => setMode('signup')}>
                                 Sign up
                             </span>
