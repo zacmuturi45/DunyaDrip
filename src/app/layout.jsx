@@ -5,6 +5,7 @@ import { FlagProvider } from "./contexts/flagcontext";
 import { CartProvider } from "./contexts/cart_context";
 import CartPage from "./components/cart_page";
 import { AuthProvider } from "./contexts/auth_context";
+import { Toaster } from "react-hot-toast";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -31,7 +32,7 @@ export default function RootLayout({ children }) {
             <AuthProvider>
               <Navbar />
               <CartPage />
-              <main>{children}</main>
+              <main>{children} <Toaster /></main>
               <Footer />
             </AuthProvider>
           </CartProvider>

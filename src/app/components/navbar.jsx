@@ -357,10 +357,7 @@ export default function Navbar() {
                         {/* REP-YOUR-COUNTRY */}
 
                         <div className="nav-footer">
-                            <p onClick={() => {
-                                setBurgerActive(false)
-                                router.push("/login")
-                            }}>{
+                            <p onClick={() => setBurgerActive(false)}>{
                                     user ? `Welcome ${display_name}` : 'Login'
                                 }</p>
                             <div className="nav-footer-flag" onClick={() => setShowFlagBox(true)}>
@@ -675,11 +672,11 @@ export default function Navbar() {
                         </div>
 
                         <div className='nav-tier2-three'>
-                            <div className='nav-tier2-login' onClick={() => router.push("/login")}><p>
+                            <div className='nav-tier2-login'>
                                 {
-                                    user ? `Welcome ${display_name}` : 'Login'
+                                    user ? <Image src={signin} width={25} height={25} alt='signin' onClick={() => router.push("/dashboard")} /> : <p onClick={() => router.push("/login")}>Login</p>
                                 }
-                            </p></div>
+                            </div>
                             <div className='nav-tier2-search'><Image src={search} height={25} width={25} alt='search-svg' onClick={() => setShowSearchPanel(true)} /></div>
                             <div className='nav-tier2-bag' onClick={() => setShowCart(true)} ><Image src={bag} height={20} width={20} alt='search-svg' />{cart.length !== 0 && <div className='bag-items'>{cart.length}</div>}</div>
                         </div>

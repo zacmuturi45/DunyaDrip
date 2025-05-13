@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from './supabase';
+import toast from 'react-hot-toast';
 
 export default function AuthForm() {
     const {
@@ -23,6 +24,7 @@ export default function AuthForm() {
 
         const { email, password, firstName, lastName } = data;
         let response;
+        const toastId = toast.loading('Logging in....');
 
         if (mode === 'login') {
             response = await supabase.auth.signInWithPassword({ email, password });
@@ -41,9 +43,13 @@ export default function AuthForm() {
         }
 
         if (response.error) {
-            setServerError(response.error.message);
+            toast.error(response.error.message, { id: toastId });
+            // setServerError(response.error.message);
         } else {
-            mode === 'login' ? router.push('/') : router.push('/login')
+            mode === 'login' ? toast.success('Login successful', { id: toastId }) : null;
+            setTimeout(() => {
+                mode === 'login' ? router.push('/') : router.push('/login')
+            }, 2000);
         }
 
         setLoading(false);
