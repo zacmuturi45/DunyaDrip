@@ -4,7 +4,7 @@ import React from 'react'
 import { supabase } from '../(auth)/supabase'
 import { useRouter } from 'next/navigation'
 
-export default function dashboard() {
+export default function Dashboard() {
   const router = useRouter();
   const handleLogout = async () => {
     const { error } = await supabase.auth.signOut();
