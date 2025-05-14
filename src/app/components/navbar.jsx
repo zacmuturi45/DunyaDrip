@@ -357,9 +357,9 @@ export default function Navbar() {
                         {/* REP-YOUR-COUNTRY */}
 
                         <div className="nav-footer">
-                            <p onClick={() => setBurgerActive(false)}>{
-                                    user ? `Welcome ${display_name}` : 'Login'
-                                }</p>
+                            <div>{
+                                    user ? <p onClick={() => router.push("/dashboard")}>{`Welcome ${display_name}`}</p> : <p onClick={() => router.push("/login")}>Login</p>
+                                }</div>
                             <div className="nav-footer-flag" onClick={() => setShowFlagBox(true)}>
                                 <Image src={location.flag_image} height={25} width={25} alt='flag' />
                                 <p>{`${location.country_name}/${location.currency}`}</p>
