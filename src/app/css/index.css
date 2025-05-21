@@ -2751,11 +2751,88 @@ body {
   color: #0051aa;
 }
 
-.dashboard_main {
-  min-height: 100vh;
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  border: 2px solid red;
+}
+
+.dashboard-content {
+  flex: 1;
+  padding: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #fafafa;
+  overflow-y: auto;
+}
+
+/* styles/sidebar.scss */
+.sidebar {
+  background-color: #111;
+  color: #fff;
+  height: 100vh;
+  width: 60px;
+  transition: width 0.3s ease;
+  overflow: hidden;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+}
+.sidebar:hover {
+  width: 240px;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+}
+.sidebar-header .brand-name {
+  margin-left: 0.5rem;
+  font-size: 1.2rem;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar:hover .brand-name {
+  opacity: 1;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  border-radius: 5px;
+}
+.sidebar-item span {
+  margin-left: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.sidebar-item:hover {
+  background: #222;
+}
+
+.sidebar:hover .sidebar-label {
+  opacity: 1;
+}
+
+.sidebar-item.active {
+  background: #333;
 }
 
 .footer-main {
