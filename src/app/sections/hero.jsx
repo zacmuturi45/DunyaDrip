@@ -6,7 +6,7 @@ import { hero1, hero2, hero3, hero4, hero5, hero6, hero7, hero8 } from '../../..
 export default function Hero() {
   return (
     <div className='hero-main'>
-      <Image src={hero7} width={100} height={100} alt='hero-image' unoptimized className='main-hero-image' />
+      <Image src={hero4} width={100} height={100} alt='hero-image' unoptimized className='main-hero-image' />
     </div>
   )
 }

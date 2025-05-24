@@ -2755,14 +2755,13 @@ body {
   display: flex;
   height: 100vh;
   border: 2px solid red;
+  padding: 150px 0 0 200px;
+  background-image: url("/pngtree.jpg");
+  background-size: cover;
 }
 
 .dashboard-content {
   flex: 1;
-  padding: 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background-color: #fafafa;
   overflow-y: auto;
 }
@@ -2770,9 +2769,11 @@ body {
 /* styles/sidebar.scss */
 .sidebar {
   background-color: #111;
+  box-sizing: content-box;
+  padding: 150px 10px 0 50px;
   color: #fff;
   height: 100vh;
-  width: 60px;
+  width: 100px;
   transition: width 0.3s ease;
   overflow: hidden;
   position: fixed;
@@ -2813,6 +2814,7 @@ body {
   display: flex;
   align-items: center;
   padding: 0.75rem 1rem;
+  margin: 2.5rem 0;
   cursor: pointer;
   transition: background 0.2s, color 0.2s;
   border-radius: 5px;
@@ -2826,6 +2828,17 @@ body {
 .sidebar-item:hover {
   background: #222;
 }
+.sidebar-item .sidebar-img {
+  border: 1px solid white;
+  padding: 0.5rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.sidebar-item .sidebar-img > * {
+  width: 35px;
+  height: 35px;
+}
 
 .sidebar:hover .sidebar-label {
   opacity: 1;
@@ -2835,11 +2848,86 @@ body {
   background: #333;
 }
 
+.page {
+  padding: 2.5rem 25px 0 300px;
+  background-image: url("/pngtree.jpg");
+  background-size: cover;
+}
+.page .template-one {
+  border-bottom: 1px solid rgb(103, 103, 103);
+  padding: 2rem 0;
+}
+.page .template-one h2 {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+.page .template-one button {
+  padding: 0.5rem 2rem;
+  background-color: black;
+  color: white;
+  outline: none;
+  border: none;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 0.5rem 0;
+  transition: all 0.2s ease-in-out;
+}
+.page .template-one button:hover {
+  opacity: 0.8;
+  transform: scale(0.99);
+  transition: all 0.2s ease-in-out;
+}
+.page .templates {
+  padding: 2rem 1rem 2rem 0;
+  border-bottom: 1px solid rgb(103, 103, 103);
+  min-height: 150px;
+}
+.page .templates .temp-title {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+.page .templates .temp-title h4 {
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+.page .templates .temp-title h4:nth-of-type(2) {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.page .templates .temp-title h4:nth-of-type(2):hover {
+  opacity: 0.8;
+  transform: scale(0.99);
+}
+.page .templates .temp-text p {
+  font-weight: 300;
+  line-height: 1.5;
+  font-size: 0.9rem;
+  max-width: 540px;
+}
+
+#profile-template p {
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+#profile-template p span {
+  font-weight: 300;
+}
+
 .footer-main {
   display: flex;
   margin: 0;
   justify-content: center;
   background: hsl(10, 3%, 8%);
+  z-index: 99;
 }
 .footer-main .links {
   text-decoration: none;

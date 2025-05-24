@@ -54,7 +54,10 @@ import white_4 from "./white4.webp";
 import white_5 from "./white5.webp";
 import white_6 from "./white6.webp";
 
-
+export { default as white_profile } from './white_profile.svg';
+export { default as white_bag } from './white_bag.svg';
+export { default as pay } from './pay.svg';
+export { default as address } from './address.svg';
 export { default as trial } from "./trial.jpeg";
 export { default as search } from "./search.svg";
 export { default as bag } from "./bag.svg";

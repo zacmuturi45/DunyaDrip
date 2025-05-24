@@ -14,6 +14,8 @@ export function AuthProvider({ children }) {
   const display_name = user?.user_metadata?.first_name && user?.user_metadata?.last_name
     ? `${user.user_metadata.first_name}`
     : user?.email;
+  const last_name = user?.user_metadata?.last_name
+  const user_email = user?.email
 
   useEffect(() => {
     const init = async () => {
@@ -55,7 +57,7 @@ export function AuthProvider({ children }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ session, user, shownav, setShowNav, display_name }}>
+    <AuthContext.Provider value={{ user_email, session, user, shownav, setShowNav, display_name, last_name }}>
       {children}
     </AuthContext.Provider>
   );
