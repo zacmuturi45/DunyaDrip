@@ -3542,10 +3542,10 @@ body {
 .dashboard-container {
     display: flex;
     height: 100vh;
-    border: 2px solid red;
     padding: 150px 0 0 200px;
-    background-image: url("/pngtree.jpg");
-    background-size: cover;
+    background-color: #fafafa;
+    // background-image: url("/pngtree.jpg");
+    // background-size: cover;
   }
   
   .dashboard-content {
@@ -3627,10 +3627,6 @@ body {
         width: 40px;
         height: 40px;
         border-radius: 50%;
-        >* {
-            width: 35px;
-            height: 35px;
-        }
     }
   }
   
@@ -3644,8 +3640,8 @@ body {
 
   .page {
     padding: 2.5rem 25px 0 300px;
-    background-image: url("/pngtree.jpg");
-    background-size: cover;
+    // background-image: url("/pngtree.jpg");
+    // background-size: cover;
 
     .template-one {
         border-bottom: 1px solid rgb(103, 103, 103);
@@ -4488,6 +4484,31 @@ body {
 
 
 @media screen and (max-width: 980px) {
+        .dashboard-container {
+        padding: 150px 0 0 25px;
+    }
+    .page {
+        padding: 1.5rem 25px 0 100px;
+    }
+
+    .sidebar {
+        padding-left: 10px;
+        width: 60px;
+        &:hover {
+            width: 60px;
+        }
+    }
+    .sidebar-item {
+        padding: 0.2rem .5rem;
+    }
+    .sidebar:hover .sidebar-label {
+        opacity: 0;
+    }
+    .sidebar-img {
+        padding: .2rem;
+        width: 20px;
+        height: 20px;
+    }
     .drip_page_main {
         .drip_page_container {
             .container-one {
@@ -4732,6 +4753,40 @@ body {
     }
 }
 
+@media screen and (max-width: 720px) {
+    .dashboard-container {
+        padding-left: 0;
+        .page {
+            .templates {
+                h4 {
+                    font-size: .85rem;
+                    letter-spacing: 0;
+                }
+                h4:nth-of-type(2) {
+                    font-size: .85rem;
+                }
+                .temp-text {
+                    p {
+                        font-size: .75rem;
+                    }
+                }
+            }
+        }
+    }
+    .sidebar {
+        display: none;
+    }
+    .dashboard-container {
+        padding-top: 100px;
+    }
+    .page {
+        padding: 1.5rem 25px;
+    }
+    .sidebar {
+        padding-top: 100px;
+    }
+}
+
 @media screen and (max-width: 1300px) {
     .checkout_main {
         .checkout_container {
@@ -4768,8 +4823,6 @@ body {
         }
     }
 }
-
-
 
 @media screen and (max-width: 1600px) {
     .drip-card-main {

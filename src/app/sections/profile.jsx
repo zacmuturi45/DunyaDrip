@@ -79,9 +79,9 @@ export default function Profile() {
       <button onClick={handleSignOut} disabled={loading}>
         {loading ? "Logging out..." : "Log Out"}
       </button>
-      <button onClick={handleDeleteAccount} disabled={loading}>
+      {/* <button onClick={handleDeleteAccount} disabled={loading}>
         {loading ? "Deleting..." : "Delete Account"}
-      </button>
+      </button> */}
       </div>
 
       <div className="templates">
