@@ -1,16 +1,20 @@
 // components/Sidebar.jsx
 
 import Image from 'next/image';
-import { address, bag, pay, signin, white_bag, white_profile } from '../../../public/imports';
+import { address, bag, pay, settings, signin, white_bag, white_profile } from '../../../public/imports';
+import { useAuth } from '../contexts/auth_context';
 
 const sections = [
   { key: 'profile', label: 'Account', img: white_profile },
   { key: 'orders', label: 'Orders', img: white_bag },
   { key: 'addresses', label: 'Addresses', img: address },
   { key: 'payments', label: 'Payments', img: pay },
+  { key: 'settings', label: 'Settings', img: settings}
 ];
 
-export default function Sidebar({ activeSection, setActiveSection }) {
+export default function Sidebar() {
+  const { activeSection, setActiveSection } = useAuth();
+
   return (
     <div className="sidebar">
       {/* <div className="sidebar-header">

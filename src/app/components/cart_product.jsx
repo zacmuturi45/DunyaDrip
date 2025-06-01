@@ -13,6 +13,7 @@ export default function CartProduct({ cart_image, cart_item_title, cart_item_siz
     const { location } = useContext(FlagContext);
     const { remove_from_cart, setCart, addToCart } = useCart();
     const router = useRouter()
+    console.log(`Olaaaaaiiii ${cart_image}`)
 
     const handleQuantity = (operation) => {
         addToCart({ id: id, size: cart_item_size, drip_image: cart_image, product_name: cart_item_title, product_price: cart_item_price }, operation)
@@ -28,11 +29,11 @@ export default function CartProduct({ cart_image, cart_item_title, cart_item_siz
     return (
         <div className='cart_product_main'>
             <div className="cart_product_div">
-                <Image src={cart_image} width={100} height={100} alt='cart_image'  onClick={() => router.push(`/${id}`)} />
+                <Image src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/product-images/${cart_image}`} width={100} height={100} alt='cart_image'/>
             </div>
 
             <div className="cart_product_details">
-                <h4 onClick={() => router.push(`/${id}`)}>{cart_item_title}</h4>
+                <h4>{cart_item_title}</h4>
                 <p>{`${location.currency} ${cart_item_price * cart_item_quantity}`}</p>
                 <p>Size: <span>{cart_item_size}</span></p>
 

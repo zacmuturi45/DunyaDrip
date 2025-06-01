@@ -1,13 +1,17 @@
 "use client"
 
-import React, { useRef, useState } from 'react'
-import { arrow, arrow_right, extended_drip_array, featured_array } from '../../../public/imports'
+import React, { useEffect, useRef, useState } from 'react'
+import { arrow, arrow_right, extended_drip_array, featured_array, sups } from '../../../public/imports'
 import Featured_Card from '../components/featured_card'
 import Image from 'next/image'
+import { createClient } from '@/utils/supabase/client'
+import { supabase_client } from '@/utils/supabase/clint'
+import { useCart } from '../contexts/cart_context'
 
 export default function Featured() {
     const [carousel_index, setCarouselIndex] = useState(0);
     const carousel_ref = useRef(null);
+    const { product } = useCart();
 
     const scrollToIndex = (newIndex) => {
         if(carousel_ref.current) {
@@ -17,7 +21,7 @@ export default function Featured() {
     };
 
     const nextSlide = () => {
-        if (carousel_index < featured_array.length - 1) {
+        if (carousel_index < 10) {
             setCarouselIndex(carousel_index + 1);
             scrollToIndex(carousel_index + 1)
         }
@@ -49,8 +53,8 @@ export default function Featured() {
                 <div className="featured-cards">
                     <div className="carousel" ref={carousel_ref}>
                         {
-                            extended_drip_array.slice(0, 10).map((item, index) => (
-                                <Featured_Card image={item.image} id={item.id} image2={item.image2} product_name={item.product_name} product_price={item.product_price} key={index} />
+                            product.slice(0, 10).map((item, index) => (
+                                <Featured_Card image={item.image_url} id={item.id} image2={item.image_url} product_name={item.name} product_price={item.price} key={index} />
                             ))
                         }
                     </div>

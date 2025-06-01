@@ -10,6 +10,8 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [shownav, setShowNav] = useState(false);
   const supabase = createClient();
+  const [activeSection, setActiveSection] = useState('profile');
+
 
   const display_name = user?.user_metadata?.first_name && user?.user_metadata?.last_name
     ? `${user.user_metadata.first_name}`
@@ -57,7 +59,7 @@ export function AuthProvider({ children }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user_email, session, user, shownav, setShowNav, display_name, last_name }}>
+    <AuthContext.Provider value={{ user_email, session, user, shownav, setShowNav, display_name, last_name, activeSection, setActiveSection }}>
       {children}
     </AuthContext.Provider>
   );

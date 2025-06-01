@@ -3470,73 +3470,6 @@ body {
 
 }
 
-// DASHBOARD
-// .sidebar {
-//     width: 300px;
-//     height: 100vh;
-//     background-color: #ffffff;
-//     padding: 50px;
-//     display: flex;
-//     flex-direction: column;
-//     gap: 2rem;
-//     color: white;
-//     border: 2px solid yellow;
-//   }
-  
-//   .brand {
-//     display: flex;
-//     align-items: center;
-//     gap: 0.5rem;
-//     font-weight: bold;
-//     font-size: 1.2rem;
-//     color: white;
-//     span {
-//         color: black;
-//     }
-//   }
-  
-//   .item {
-//     display: flex;
-//     align-items: center;
-//     gap: 0.5rem;
-//     padding: 0.75rem;
-//     border-radius: 8px;
-//     transition: background 0.3s;
-//     color: #333;
-//     text-decoration: none;
-//   }
-  
-//   .item:hover {
-//     background-color: #e0e0e0;
-//   }
-  
-//   .active {
-//     background-color: #c0c0c0;
-//     font-weight: bold;
-//   }
-
-//   .container {
-//     display: flex;
-//     height: 100vh;
-//     border: 2px solid red;
-//     background-color: rgb(255, 255, 255);
-//   }
-  
-//   .content {
-//     width: 96%;
-//     padding: 2rem;
-//     border: 2px solid blue;
-//     overflow-y: auto;
-//     padding-top: 140px;
-//   }
-
-// .dashboard_main {
-//     min-height: 100vh;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     background-color: black;
-// }
 
 
 .dashboard-container {
@@ -3663,6 +3596,7 @@ body {
             cursor: pointer;
             margin: .5rem 0;
             transition: all .2s ease-in-out;
+            margin-right: 1.5rem;
             &:hover {
                 opacity: 0.8;
                 transform: scale(0.99);
@@ -3717,6 +3651,201 @@ body {
         }
     }
   }
+
+
+  .addressSummary {
+    background: #fff;
+    border-radius: 3px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    padding: 2rem;
+    max-width: 600px;
+    margin: 2.5rem auto;
+  
+    h2 {
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+      color: #333;
+    }
+    
+  
+    button {
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.2s;
+  
+      &:not(:last-child) {
+        margin-right: 1rem;
+      }
+    }
+
+    p {
+        margin: 0.5rem 0;
+        font-size: 1rem;
+    
+        strong {
+          display: inline-block;
+          width: 165px;
+          color: #555;
+        }
+      }
+    
+      .buttons {
+        margin-top: 2rem;
+    
+        button {
+          margin-right: 1rem;
+          background: #10b981;
+    
+          &:hover {
+            background: #059669;
+          }
+    
+          &:last-child {
+            background: #000000;
+    
+            &:hover {
+              background: #2e2e2e;
+            }
+          }
+        }
+      }
+
+      @media (max-width: 600px) {
+        max-width: 100%;
+        padding: 1rem;
+        p {
+            font-size: .85rem;
+            strong {
+                width: 100px;
+            }
+        }
+        .buttons {
+            button {
+                transform: scale(0.8);
+            }
+        }
+      }
+  }
+  
+  .addressList {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 3rem;
+    justify-content: center;
+    align-items: center;
+    #add_new_address_button {
+        color: #fff;
+        background-color: black;
+        border: none;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.2s;
+        width: 200px;
+    }
+  }
+  
+  .addressForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    max-width: 500px;
+    margin: auto;
+    background: #f9f9f9;
+    margin-top: 2.5rem;
+  
+    h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+      color: #333;
+    }
+  
+    input {
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      width: 100%;
+    }
+
+    #checkbox-check {
+        width: fit-content;
+        margin-right: 1rem;
+    }
+
+    select {
+        padding: 0.5rem 0.75rem;
+        cursor: pointer;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 1rem;
+    }
+  
+    .phoneGroup {
+      display: flex;
+      gap: 0.5rem;
+  
+      select {
+        max-width: 35%;
+      }
+  
+      input {
+        flex: 1;
+      }
+  
+      @media (max-width: 600px) {
+        flex-direction: column;
+  
+        select {
+          max-width: 100%;
+        }
+      }
+    }
+
+    .checkbox {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        gap: 0.5rem;
+        font-size: 0.95rem;
+        color: #444;
+      
+        input[type="checkbox"] {
+            border: 1px solid blue;
+          transform: scale(1.2);
+        }
+      }
+  
+    button {
+      background: #000;
+      color: #fff;
+      border: none;
+      padding: 0.9rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+  
+      &:hover {
+        background: #333;
+      }
+    }
+  
+    @media (max-width: 600px) {
+      transform: scale(0.9);
+      transform-origin: center;
+    }
+  }
+  
+  
   
 
 // FOOTER
@@ -4756,6 +4885,7 @@ body {
 @media screen and (max-width: 720px) {
     .dashboard-container {
         padding-left: 0;
+        padding-bottom: 2.5rem;
         .page {
             .templates {
                 h4 {
@@ -4774,16 +4904,40 @@ body {
         }
     }
     .sidebar {
-        display: none;
+        position: fixed;
+        bottom: 0;
+        top: calc(100vh - 70px);
+        height: 70px;
+        width: 100%;
+        flex-direction: row;
+        padding: 0;
+        overflow: scroll;
+        justify-content: center;
+        align-items: center;
+        &:hover {
+            width: 100%;
+        }
+    }
+    .sidebar-item {
+        margin: 0 1rem;
+        padding: .4rem;
+        span {
+            display: none;
+        }
     }
     .dashboard-container {
         padding-top: 100px;
     }
+    .sidebar-menu {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+        margin: auto 25px;
+    }
+
     .page {
         padding: 1.5rem 25px;
-    }
-    .sidebar {
-        padding-top: 100px;
     }
 }
 

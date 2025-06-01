@@ -6,7 +6,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 
 export default function Profile() {
-  const { display_name, setShowNav, last_name, user_email } = useAuth(); 
+  const { display_name, setShowNav, last_name, user_email, setActiveSection } = useAuth(); 
   const router = useRouter();
   const [loading, setLoading] = useState(false)
 
@@ -37,39 +37,11 @@ export default function Profile() {
     }
   }
 
-  const handleDeleteAccount = async () => {
-    const confirm = window.confirm("Are you sure you want to delete your account? This action cannot be undone.");
-    if (!confirm) return;
-
-    setLoading(true);
-    const toastId = toast.loading("Deleting account...");
-
-    try {
-      const res = await fetch("/api/delete-account", {
-        method: "DELETE",
-      });
-
-      if (!res.ok) {
-        const { error } = await res.json();
-        throw new Error(error || "Failed to delete account");
-      }
-
-      toast.success("Account deleted successfully", { id: toastId });
-      setShowNav(false);
-      setLoading(false);
-      router.push('/');
-      setTimeout(() => {
-        window.location.reload();
-      }, 500);
-    } catch (err) {
-      toast.error(err.message, { id: toastId });
-    }
-  };
 
   return (
     <div className="page">
       <div className="template-one">
-      <h2>{`Hello, ${display_name}`}</h2>
+      <h2>{`Hello ${display_name === undefined ? "" : display_name}`}</h2>
       {/* <button onClick={() => {
         setShowNav(false)
         router.push("/")
@@ -79,9 +51,6 @@ export default function Profile() {
       <button onClick={handleSignOut} disabled={loading}>
         {loading ? "Logging out..." : "Log Out"}
       </button>
-      {/* <button onClick={handleDeleteAccount} disabled={loading}>
-        {loading ? "Deleting..." : "Delete Account"}
-      </button> */}
       </div>
 
       <div className="templates">
@@ -98,10 +67,10 @@ export default function Profile() {
       <div className="templates">
         <div className="temp-title">
           <h4>Addresses</h4>
-          <h4>Add your Address</h4>
+          <h4 onClick={() => setActiveSection('addresses')}>My Addresses</h4>
         </div>
         <div className="temp-text">
-          <p>Your shipping addresses will appear here.</p>
+          <p>Check out faster with a personal Address.</p>
         </div>
       </div>
 

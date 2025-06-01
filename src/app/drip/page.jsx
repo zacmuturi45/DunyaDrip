@@ -4,6 +4,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { extended_drip_array, plus } from "../../../public/imports";
 import DripCard from "../components/drip_card";
+import { useCart } from "../contexts/cart_context";
 
 export default function Drip() {
     // State to track the open drawers
@@ -22,6 +23,7 @@ export default function Drip() {
     const [selectedItems, setSelectedItems] = useState({});
     const [limit, setLimit] = useState(25);
     const [isMobile, setIsMobile] = useState(false);
+    const { product } = useCart();
 
     useEffect(() => {
         const handleResize = () => {
@@ -201,8 +203,8 @@ export default function Drip() {
 
                 <div className="drip-cards">
                     {
-                        extended_drip_array.slice(0, limit).map((item, index) => (
-                            <DripCard id={item.id} drip_image={item.image} product_name={item.product_name} product_price={item.product_price} index={index} key={`drip_card_component${index}`} />
+                        product.slice(0, limit).map((item, index) => (
+                            <DripCard id={item.id} drip_image={item.image_url} product_name={item.name} product_price={item.price} index={index} key={`drip_card_component${index}`} />
                         ))
                     }
                 </div>

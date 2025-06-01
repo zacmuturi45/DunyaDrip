@@ -2866,6 +2866,7 @@ body {
   cursor: pointer;
   margin: 0.5rem 0;
   transition: all 0.2s ease-in-out;
+  margin-right: 1.5rem;
 }
 .page .template-one button:hover {
   opacity: 0.8;
@@ -2912,6 +2913,176 @@ body {
 }
 #profile-template p span {
   font-weight: 300;
+}
+
+.addressSummary {
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+  max-width: 600px;
+  margin: 2.5rem auto;
+}
+.addressSummary h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  color: #333;
+}
+.addressSummary button {
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.addressSummary button:not(:last-child) {
+  margin-right: 1rem;
+}
+.addressSummary p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}
+.addressSummary p strong {
+  display: inline-block;
+  width: 165px;
+  color: #555;
+}
+.addressSummary .buttons {
+  margin-top: 2rem;
+}
+.addressSummary .buttons button {
+  margin-right: 1rem;
+  background: #10b981;
+}
+.addressSummary .buttons button:hover {
+  background: #059669;
+}
+.addressSummary .buttons button:last-child {
+  background: #000000;
+}
+.addressSummary .buttons button:last-child:hover {
+  background: #2e2e2e;
+}
+@media (max-width: 600px) {
+  .addressSummary {
+    max-width: 100%;
+    padding: 1rem;
+  }
+  .addressSummary p {
+    font-size: 0.85rem;
+  }
+  .addressSummary p strong {
+    width: 100px;
+  }
+  .addressSummary .buttons button {
+    transform: scale(0.8);
+  }
+}
+
+.addressList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 3rem;
+  justify-content: center;
+  align-items: center;
+}
+.addressList #add_new_address_button {
+  color: #fff;
+  background-color: black;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s;
+  width: 200px;
+}
+
+.addressForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  max-width: 500px;
+  margin: auto;
+  background: #f9f9f9;
+  margin-top: 2.5rem;
+}
+.addressForm h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #333;
+}
+.addressForm input {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  width: 100%;
+}
+.addressForm #checkbox-check {
+  width: fit-content;
+  margin-right: 1rem;
+}
+.addressForm select {
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+.addressForm .phoneGroup {
+  display: flex;
+  gap: 0.5rem;
+}
+.addressForm .phoneGroup select {
+  max-width: 35%;
+}
+.addressForm .phoneGroup input {
+  flex: 1;
+}
+@media (max-width: 600px) {
+  .addressForm .phoneGroup {
+    flex-direction: column;
+  }
+  .addressForm .phoneGroup select {
+    max-width: 100%;
+  }
+}
+.addressForm .checkbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  color: #444;
+}
+.addressForm .checkbox input[type=checkbox] {
+  border: 1px solid blue;
+  transform: scale(1.2);
+}
+.addressForm button {
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 0.9rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.addressForm button:hover {
+  background: #333;
+}
+@media (max-width: 600px) {
+  .addressForm {
+    transform: scale(0.9);
+    transform-origin: center;
+  }
 }
 
 .footer-main {
@@ -3657,6 +3828,7 @@ body {
 @media screen and (max-width: 720px) {
   .dashboard-container {
     padding-left: 0;
+    padding-bottom: 2.5rem;
   }
   .dashboard-container .page .templates h4 {
     font-size: 0.85rem;
@@ -3669,16 +3841,39 @@ body {
     font-size: 0.75rem;
   }
   .sidebar {
+    position: fixed;
+    bottom: 0;
+    top: calc(100vh - 70px);
+    height: 70px;
+    width: 100%;
+    flex-direction: row;
+    padding: 0;
+    overflow: scroll;
+    justify-content: center;
+    align-items: center;
+  }
+  .sidebar:hover {
+    width: 100%;
+  }
+  .sidebar-item {
+    margin: 0 1rem;
+    padding: 0.4rem;
+  }
+  .sidebar-item span {
     display: none;
   }
   .dashboard-container {
     padding-top: 100px;
   }
+  .sidebar-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    margin: auto 25px;
+  }
   .page {
     padding: 1.5rem 25px;
-  }
-  .sidebar {
-    padding-top: 100px;
   }
 }
 @media screen and (max-width: 1300px) {

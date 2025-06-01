@@ -10,11 +10,11 @@ import Newsletter from '../sections/newsletter';
 import Payments from '../sections/payments';
 import { usePathname } from 'next/navigation';
 import { useAuth } from '../contexts/auth_context';
+import Settings from '../sections/settings';
 
 export default function Dashboard() {
-  const [activeSection, setActiveSection] = useState('profile');
   const pathname = usePathname();
-  const { setShowNav } = useAuth();
+  const { setShowNav, activeSection } = useAuth();
 
   useEffect(() => {
     pathname === "/dashboard" ? setShowNav(true) : setShowNav(false);
@@ -32,6 +32,8 @@ export default function Dashboard() {
         return <Newsletter />;
       case 'payments':
         return <Payments />;
+      case 'settings':
+        return <Settings />;
       default:
         return <Orders />;
     }
@@ -39,7 +41,7 @@ export default function Dashboard() {
 
   return (
     <div className="dashboard-container">
-      <Sidebar activeSection={activeSection} setActiveSection={setActiveSection} />
+      <Sidebar />
       <div className="dashboard-content">
         {renderSection()}
       </div>

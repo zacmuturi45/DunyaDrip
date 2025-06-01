@@ -4,10 +4,12 @@ import React, { useRef, useState } from 'react'
 import { arrow, arrow_right, featured_array } from '../../../public/imports'
 import Featured_Card from '../components/featured_card'
 import Image from 'next/image'
+import { useCart } from '../contexts/cart_context'
 
 export default function WomensArrivals() {
     const [carousel_index, setCarouselIndex] = useState(0);
     const carousel_ref = useRef(null);
+    const { product } = useCart();
 
     const scrollToIndex = (newIndex) => {
         if(carousel_ref.current) {
@@ -49,8 +51,8 @@ export default function WomensArrivals() {
                 <div className="featured-cards">
                     <div className="carousel" ref={carousel_ref}>
                         {
-                            featured_array.map((item, index) => (
-                                <Featured_Card image={item.image} id={item.id} image2={item.image2} product_name={item.product_name} product_price={item.product_price} key={index} index={`womens${index}`} />
+                            product.slice(0, 12).map((item, index) => (
+                                <Featured_Card image={item.image_url} id={item.id} image2={item.image_url} product_name={item.name} product_price={item.price} key={index} index={`womens${index}`} />
                             ))
                         }
                     </div>

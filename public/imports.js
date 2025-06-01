@@ -105,6 +105,63 @@ export { default as finger } from "./finger.svg";
 export { default as shopping_bag } from "./shopping_bag.svg";
 export { default as redirect_image } from "./redirect.svg";
 export { default as paypal2 } from "./paypal2.svg";
+export { default as settings } from './settings.svg';
+
+
+export const countryCodes = [
+    { code: "+1", country: "USA/Canada" },
+    { code: "+44", country: "United Kingdom" },
+    { code: "+254", country: "Kenya" },
+    { code: "+91", country: "India" },
+    { code: "+61", country: "Australia" },
+    { code: "+81", country: "Japan" },
+    { code: "+49", country: "Germany" },
+    { code: "+33", country: "France" },
+    { code: "+86", country: "China" },
+    { code: "+55", country: "Brazil" },
+    { code: "+27", country: "South Africa" },
+    { code: "+234", country: "Nigeria" },
+    { code: "+971", country: "UAE" },
+    { code: "+966", country: "Saudi Arabia" },
+    { code: "+34", country: "Spain" },
+    { code: "+39", country: "Italy" },
+    { code: "+351", country: "Portugal" },
+    { code: "+7", country: "Russia" },
+    { code: "+82", country: "South Korea" },
+    { code: "+90", country: "Turkey" },
+    { code: "+31", country: "Netherlands" },
+    { code: "+46", country: "Sweden" },
+    { code: "+47", country: "Norway" },
+    { code: "+358", country: "Finland" },
+    { code: "+48", country: "Poland" },
+    { code: "+420", country: "Czech Republic" },
+    { code: "+32", country: "Belgium" },
+    { code: "+41", country: "Switzerland" },
+    { code: "+380", country: "Ukraine" },
+    { code: "+40", country: "Romania" },
+    { code: "+20", country: "Egypt" },
+    { code: "+212", country: "Morocco" },
+    { code: "+62", country: "Indonesia" },
+    { code: "+63", country: "Philippines" },
+    { code: "+60", country: "Malaysia" },
+    { code: "+66", country: "Thailand" },
+    { code: "+84", country: "Vietnam" },
+    { code: "+880", country: "Bangladesh" },
+    { code: "+92", country: "Pakistan" },
+    { code: "+98", country: "Iran" },
+    { code: "+353", country: "Ireland" },
+    { code: "+64", country: "New Zealand" },
+    { code: "+52", country: "Mexico" },
+    { code: "+57", country: "Colombia" },
+    { code: "+56", country: "Chile" },
+    { code: "+595", country: "Paraguay" },
+    { code: "+598", country: "Uruguay" },
+    { code: "+505", country: "Nicaragua" },
+    { code: "+507", country: "Panama" },
+    { code: "+51", country: "Peru" },
+    { code: "+54", country: "Argentina" },
+  ];
+  
 
 
 export { default as white1 } from "./white1.webp";

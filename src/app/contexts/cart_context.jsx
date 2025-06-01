@@ -1,6 +1,8 @@
 "use client"
 
-const { createContext, useState, useContext } = require("react")
+import { supabase_client } from "@/utils/supabase/clint";
+
+const { createContext, useState, useContext, useEffect } = require("react")
 
 const CartContext = createContext();
 
@@ -9,6 +11,30 @@ export const CartProvider = ({ children }) => {
     const [show_cart, setShowCart] = useState(false);
     const [loader, setLoader] = useState(false);
     const [totalz, setTotalz] = useState(0);
+    const supabase = supabase_client()
+    const [product, setProducts] = useState([]);
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            let ext_drip_array = []
+            const { data, error } = await supabase.from('all_products').select();
+            if (error) console.error('Fetch error:', error);
+            if(!data || data.length === 0) {
+                console.error("No fetches for youuu")
+                return;
+            }
+            ext_drip_array = Array.from({ length: 80 }, (_, index) => {
+                const item = data[index % data.length];
+                return {
+                    ...item,
+                    id: 100+index
+                };
+            })
+            setProducts(ext_drip_array)
+        };
+        fetchProducts()
+        console.log(product.slice(0, 5)[0])
+    }, []);
 
 
 
@@ -35,7 +61,7 @@ export const CartProvider = ({ children }) => {
     const clear_cart = () => setCart([]);
 
     return (
-        <CartContext.Provider value={{ totalz, setTotalz, loader, setLoader, cart, setCart, addToCart, remove_from_cart, clear_cart, show_cart, setShowCart }}>
+        <CartContext.Provider value={{ product, totalz, setTotalz, loader, setLoader, cart, setCart, addToCart, remove_from_cart, clear_cart, show_cart, setShowCart }}>
             { children }
         </CartContext.Provider>
     );
