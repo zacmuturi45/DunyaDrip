@@ -89,10 +89,10 @@ export default function Profile() {
       <div className="templates">
         <div className="temp-title">
           <h4>Payments</h4>
-          <h4>Add Credit Card</h4>
+          <h4>Payment History</h4>
         </div>
         <div className="temp-text">
-          <p>For faster checkouts, add credit card.</p>
+          <p>See payment history.</p>
         </div>
       </div>
 

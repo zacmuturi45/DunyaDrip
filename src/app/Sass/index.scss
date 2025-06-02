@@ -4105,6 +4105,15 @@ body {
 
 
 @media screen and (max-width: 580px) {
+    .drip-main {
+        .drip-container {
+            .drip-cards {
+                >* {
+                    margin: 0 auto;
+                }
+            }
+        }
+    }
     .auth-container {
         padding: 50px 0;
         .auth-form {

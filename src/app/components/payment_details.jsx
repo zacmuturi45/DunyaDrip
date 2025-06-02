@@ -3,6 +3,10 @@
 import { useState } from "react";
 import Image from "next/image";
 import { amex, diners, discover, elo, gpay, klarna, mastercard, paypal2, redirect_image, unionpay, visa } from "../../../public/imports";
+import { loadStripe } from "@stripe/stripe-js"
+import { useCart } from "../contexts/cart_context";
+
+const stripePromise = loadStripe(process.env.STRIPE_PUBLISHABLE_KEY)
 
 const paymentMethods = [
     { id: "credit_card", label: "Credit Card" },
@@ -18,6 +22,37 @@ export default function Payment() {
     const [useShippingAddress, setUseShippingAddress] = useState(true);
     const [showmore, setShowMore] = useState(false);
     const [expiry, setExpiry] = useState("");
+    const { cart } = useCart();
+
+    const handleCreditCardPayments = async () => {
+        if (cart.length <= 0) {
+            alert("Your cart is empty")
+            return;
+        }
+
+        const items = cart.map((item) => {
+            return { name: item.product_name, amount: item.product_price*100, quantity: item.quantity, size: item.size }
+        })
+        const stripe = await stripePromise;
+
+        const response = await fetch('/api/checkout-sessions/create', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ items }),
+        });
+
+        const session = await response.json();
+
+        const result = await stripe.redirectToCheckout({
+            sessionId: session.id,
+        });
+
+        if (result.error) {
+            console.error(result.error.message);
+        }
+    };
 
     const handleChange = (e) => {
         let value = e.target.value.replace(/\D/g, "");
@@ -114,7 +149,7 @@ export default function Payment() {
         }
 
         return (
-            <button className={buttonClass}>
+            <button onClick={handleCreditCardPayments} className={buttonClass}>
                 {buttonText}
             </button>
         );
