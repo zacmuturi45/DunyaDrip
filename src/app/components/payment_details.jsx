@@ -6,7 +6,7 @@ import { amex, diners, discover, elo, gpay, klarna, mastercard, paypal2, redirec
 import { loadStripe } from "@stripe/stripe-js"
 import { useCart } from "../contexts/cart_context";
 
-const stripePromise = loadStripe(process.env.STRIPE_PUBLISHABLE_KEY)
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
 
 const paymentMethods = [
     { id: "credit_card", label: "Credit Card" },
