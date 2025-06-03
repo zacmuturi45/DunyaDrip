@@ -1,0 +1,35 @@
+import Stripe from "stripe";
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
+export async function POST(request) {
+    const body = await request.json();
+
+    const { items } = body;
+
+    const line_items = items.map(item => ({
+        price_data: {
+            currency: 'usd',
+            product_data: {
+                name: `${item.name} (Size: ${item.size})`,
+            },
+            unit_amount: item.amount,
+        },
+        quantity: item.quantity,
+    }));
+
+    try {
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: ['card'],
+            line_items,
+            mode: 'payment',
+            success_url: `${request.headers.get('origin')}/success`,
+            cancel_url: `${request.headers.get('origin')}/cancel`,
+        });
+
+        return Response.json({ id: session.id });
+    } catch (err) {
+        console.error(err);
+        return new Response('Stripe session creation failed', { status: 500 });
+    }
+}
