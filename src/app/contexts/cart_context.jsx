@@ -33,7 +33,7 @@ export const CartProvider = ({ children }) => {
             setProducts(ext_drip_array)
         };
         fetchProducts()
-        console.log(product.slice(0, 5)[0])
+        console.log(`Tihihiii ${product.slice(0, 5)[0]}`)
     }, []);
 
 

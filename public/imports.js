@@ -190,7 +190,6 @@ export { default as discover } from "./discover.svg";
 export { default as diners } from "./diners.svg";
 export { default as elo } from "./elo.svg";
 export { default as unionpay } from "./unionpay.svg";
-export { dark_black } from "./dark_black.jpg";
 
 export const countries = [
     { country_value: "Afghanistan" },
