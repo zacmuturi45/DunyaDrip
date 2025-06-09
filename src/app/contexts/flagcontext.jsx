@@ -19,20 +19,22 @@ export const FlagProvider = ({ children }) => {
 
     useEffect(() => {
         const fetchLocation = async () => {
-            if(!navigator.onLine) {
-                console.log("No interenet connection")
-                return;
-            }
+            setLocation(defaultLocation)
+            setTimeZone("Great Britain")
+            // if(!navigator.onLine) {
+            //     console.log("No interenet connection")
+            //     return;
+            // }
 
-            try {
-                const data = await getLocation();
-                const country_details = flag_array.find(item => data.country === item.country_name)
-                setLocation(country_details)
-                setTimeZone(data.timezone || "Great Britain");
-            } catch (error) {
-                console.error("Error fetching location:", error);
-                setLocation(defaultLocation)
-            }
+            // try {
+            //     const data = await getLocation();
+            //     const country_details = flag_array.find(item => data.country === item.country_name)
+            //     setLocation(country_details)
+            //     setTimeZone(data.timezone || "Great Britain");
+            // } catch (error) {
+            //     console.error("Error fetching location:", error);
+            //     setLocation(defaultLocation)
+            // }
             
         };
 
