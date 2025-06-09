@@ -35,7 +35,9 @@ export default function AuthForm() {
       toast.success(mode === 'login' ? 'Login successful' : 'Signup successful', { id: toastId });
       if (mode === "login") {
         router.push('/')
-        
+        setTimeout(() => {
+          window.location.reload();
+        }, 500);
       } else {
         router.push('/verify')
       }
