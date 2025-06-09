@@ -42,10 +42,12 @@ export default async function RootLayout({ children }) {
         <FlagProvider>
           <CartProvider>
             <AuthProvider initialSession={session} initialUser={user}>
-              <Navbar />
-              <CartPage />
-              <main>{children} <Toaster /></main>
-              <Footer />
+              <div className="layout-root">
+                <Navbar />
+                <CartPage />
+                <main>{children} <Toaster /></main>
+                <Footer />
+              </div>
             </AuthProvider>
           </CartProvider>
         </FlagProvider>

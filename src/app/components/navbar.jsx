@@ -360,10 +360,7 @@ export default function Navbar() {
 
                             <div className="nav-footer">
                                 <div>{
-                                    user ? <p onClick={() => router.push("/dashboard")}>{`Welcome ${display_name}`}</p> : <p onClick={() => {
-                                        router.push("/login-out")
-                                        setBurgerActive(!burgerActive)
-                                    }}>Login</p>
+                                    user ? <Link className='next-link' href={"/dashboard"}><p>{`Welcome ${display_name}`}</p></Link> : <Link className='next-link' href={"/login-out"} onClick={() => setBurgerActive(!burgerActive)}><p>Login</p></Link>
                                 }</div>
                                 <div className="nav-footer-flag" onClick={() => setShowFlagBox(true)}>
                                 <Image src={location.flag_image} height={20} width={30} alt='flag' style={{borderRadius: "3px", overflow: "hidden"}} />
