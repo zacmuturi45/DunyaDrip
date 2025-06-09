@@ -49,6 +49,8 @@ export default function AddressForm() {
   };
 
   useEffect(() => {
+    if (!user) return;
+    
     const fetchAddresses = async () => {
       if (!user) return;
 

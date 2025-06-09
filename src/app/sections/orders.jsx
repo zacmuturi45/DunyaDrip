@@ -14,19 +14,27 @@ export default function Orders() {
   const [expanded, setExpanded] = useState(null)
 
   useEffect(() => {
+    if (!user_email) return;
+
+    setLoading(true);
+
     const fetchOrders = async () => {
       const { data, error } = await supabase
         .from('client_orders')
         .select('*')
         .eq('customer_email', user_email);
 
-      if (error) console.error(error);
-      else setOrders(data);
+      if (error) {
+        console.error(error);
+        setOrders([]);
+      } else {
+        setOrders(data);
+      }
 
       setLoading(false);
     };
     fetchOrders();
-  }, [])
+  }, [user_email])
 
   const toggleExpand = (id) => {
     setExpanded(expanded === id ? null : id);
