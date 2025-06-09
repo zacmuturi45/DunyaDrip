@@ -57,6 +57,10 @@ body {
     box-shadow: 0 0 0 12px rgba(37, 99, 235, 0.0666666667);
   }
 }
+.next-link {
+  text-decoration: none;
+  color: black;
+}
 
 @keyframes float {
   0%, 100% {
