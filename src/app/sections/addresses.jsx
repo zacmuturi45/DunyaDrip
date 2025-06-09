@@ -50,7 +50,7 @@ export default function AddressForm() {
 
   useEffect(() => {
     if (!user) return;
-    
+    console.log(`About to fetch addresses for ${user}`)
     const fetchAddresses = async () => {
       if (!user) return;
 
@@ -58,6 +58,7 @@ export default function AddressForm() {
         .from("addresses")
         .select("*")
         .eq("user_id", user.id);
+
 
       if (error) {
         console.error("Fetch Address Error:", error.message);

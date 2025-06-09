@@ -15,6 +15,7 @@ export default function Orders() {
 
   useEffect(() => {
     if (!user_email) return;
+    console.log(`About to fetch orders for ${user_email}`)
 
     setLoading(true);
 
@@ -23,6 +24,8 @@ export default function Orders() {
         .from('client_orders')
         .select('*')
         .eq('customer_email', user_email);
+
+        console.log(`FETCHED ORDERS AND THE RESULT IS ${{data, error}}`)
 
       if (error) {
         console.error(error);
