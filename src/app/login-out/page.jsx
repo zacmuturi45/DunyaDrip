@@ -12,6 +12,8 @@ export default function AuthForm() {
     formState: { errors }
   } = useForm();
 
+  const { refreshUser } = useAuth();
+
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [mode, setMode] = useState('login');
@@ -34,10 +36,9 @@ export default function AuthForm() {
 
       toast.success(mode === 'login' ? 'Login successful' : 'Signup successful', { id: toastId });
       if (mode === "login") {
+        await refreshUser();
         router.push('/')
-        setTimeout(() => {
-          window.location.reload();
-        }, 500);
+
       } else {
         router.push('/verify')
       }
