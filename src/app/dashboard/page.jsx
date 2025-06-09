@@ -5,6 +5,7 @@ import { useEffect, Suspense, lazy } from 'react';
 import Sidebar from '../components/sidebar';
 import { usePathname } from 'next/navigation';
 import { useAuth } from '../contexts/auth_context';
+import SectionLoader from '../components/section_loader';
 
 const Orders = lazy(() => import('../sections/orders'));
 const Profile = lazy(() => import('../sections/profile'));
@@ -37,7 +38,7 @@ export default function Dashboard() {
     <div className="dashboard-container">
       <Sidebar />
       <div className="dashboard-content">
-        <Suspense fallback={<div>Loading section...</div>}>
+        <Suspense fallback={<SectionLoader />}>
           {renderSection()}
         </Suspense>
       </div>

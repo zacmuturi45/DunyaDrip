@@ -4,6 +4,7 @@
 import { supabase_client } from "@/utils/supabase/clint";
 import { useAuth } from "../contexts/auth_context";
 import { useEffect, useState } from "react";
+import SectionLoader from "../components/section_loader";
 
 export default function Orders() {
   const { user_email } = useAuth();
@@ -31,7 +32,7 @@ export default function Orders() {
     setExpanded(expanded === id ? null : id);
   };
 
-  if (loading) return <p>Loading orders...</p>
+  if (loading) return <SectionLoader />
 
   return (
     <div>
