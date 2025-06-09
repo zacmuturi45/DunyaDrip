@@ -1,28 +1,54 @@
-import { ukflag } from "../../public/imports";
+interface IpWhoIsResponse {
+    country?: string;
+    currency?: string;
+    timezone?: { abbr?: string };
+    flag?: { img?: string };
+}
+interface IpApiCoResponse {
+    country_name?: string;
+    currency?: string;
+    timezone?: string;
+}
 
 export const getLocation = async () => {
+    const getBrowserTimezone = () =>
+        typeof Intl !== 'undefined' && Intl.DateTimeFormat().resolvedOptions().timeZone
+            ? Intl.DateTimeFormat().resolvedOptions().timeZone
+            : "Europe/London";
+
     try {
         const online = typeof navigator !== 'undefined' && navigator.onLine;
-
         if (!online) {
             return {
-                country: "UK",
+                country_name: "UK",
                 currency: "GBP",
-                timezone: "Local Time"
-            }
+                timezone: getBrowserTimezone(),
+                flag_image: "/ukflag.png"
+            };
         }
-        const res = await fetch("https://ipwho.is/");
-        const country_currency = await fetch("https://ipapi.co/json/");
-        const currency_data = await country_currency.json();
-        const data = await res.json();
+
+        const [ipwhoRes, ipapiRes] = await Promise.all([
+            fetch("https://ipwho.is/"),
+            fetch("https://ipapi.co/json/")
+        ]);
+
+        // Use type assertion to tell TS these are our expected shapes (or empty objects)
+        const ipwhoData = (ipwhoRes.ok ? await ipwhoRes.json() : {}) as IpWhoIsResponse;
+        const ipapiData = (ipapiRes.ok ? await ipapiRes.json() : {}) as IpApiCoResponse;
+
         return {
-            country_name: data.country_code || "UK",
-            currency: currency_data.currency || "GBP",
-            timezone: data.timezone.abbr || "Europe",
-            flag_image: data.flag.img || ukflag
+            country_name: ipwhoData.country || ipapiData.country_name || "UK",
+            currency: ipapiData.currency || ipwhoData.currency || "GBP",
+            timezone: ipwhoData.timezone?.abbr || ipapiData.timezone || getBrowserTimezone(),
+            flag_image: ipwhoData.flag?.img || "/ukflag.png"
         };
     } catch (error) {
         console.error("Error fetching location:", error);
-        return { country: "Unknown", currency: "Unknown", timezone: "unknown" };
+        return {
+            country_name: "UK",
+            currency: "GBP",
+            timezone: getBrowserTimezone(),
+            flag_image: "/ukflag.png"
+        };
     }
 };
