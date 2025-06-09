@@ -106,6 +106,7 @@ export { default as shopping_bag } from "./shopping_bag.svg";
 export { default as redirect_image } from "./redirect.svg";
 export { default as paypal2 } from "./paypal2.svg";
 export { default as settings } from './settings.svg';
+export { default as greentick } from './greentick.svg';
 
 
 export const countryCodes = [

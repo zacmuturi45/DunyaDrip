@@ -3085,6 +3085,237 @@ body {
   }
 }
 
+.success_product_main {
+  width: 500px;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+.success_product_main .success_product_div {
+  margin-right: 1.5rem;
+  cursor: pointer;
+}
+.success_product_main .success_product_details {
+  width: 40%;
+}
+.success_product_main .success_product_details h4 {
+  font-weight: 500;
+  font-family: "Inter";
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.success_product_main .success_product_details h4:hover {
+  opacity: 0.7;
+}
+.success_product_main .success_product_details p:nth-of-type(1) {
+  margin: 1rem 0;
+  color: rgb(131, 131, 131);
+  font-size: 0.9rem;
+  font-weight: 200;
+  font-family: "Inter";
+}
+.success_product_main .success_product_details p:nth-of-type(2) {
+  font-size: 0.85rem;
+}
+.success_product_main .success_product_details p:nth-of-type(2) span {
+  border: 1px solid black;
+  border-style: dotted;
+  width: 10px;
+  font-size: 0.7rem;
+  font-family: "Inter";
+  height: 10px;
+  padding: 3px 10px;
+  cursor: pointer;
+}
+.success_product_main .escape-x {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 17px;
+  height: 17px;
+  align-self: center;
+  cursor: pointer;
+}
+.success_product_main .escape-x .escape_x {
+  width: 100%;
+  height: 100%;
+}
+
+.success-page {
+  background-color: rgb(252, 252, 252);
+  min-height: 100vh;
+  color: black;
+  padding-top: 160px;
+}
+.success-page .success-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.success-page .success-container .success_one {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2.5rem;
+}
+.success-page .success-container .success_one .green_tick {
+  height: 250px;
+  width: 250px;
+  background-color: #ddf3e3;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: pulse_opacity 4s ease-in-out infinite;
+}
+.success-page .success-container .success_one .green_tick .green_one {
+  height: 120px;
+  width: 120px;
+  background-color: #c4f2d1;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.success-page .success-container .success_one .green_tick .green_one .greentick-circle {
+  width: 70;
+  height: 70;
+}
+.success-page .success-container .success_one .success_one_detail {
+  margin: 2.5rem 0;
+}
+.success-page .success-container .success_one .success_one_detail p {
+  text-align: center;
+  font-family: "Inter";
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin: 1rem 0;
+}
+.success-page .success-container .success_one .success_one_detail p:nth-of-type(2) {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: rgb(94, 94, 94);
+  opacity: 0.6;
+}
+.success-page .success-container .success_detail {
+  box-shadow: -1px 0px 39px -7px rgba(0, 0, 0, 0.75);
+  background-color: white;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 5px;
+  min-height: 50vh;
+  padding: 1rem;
+  box-sizing: content-box;
+}
+.success-page .success-container .success_detail .success_card_div {
+  align-self: center;
+}
+.success-page .success-container .success_detail .totals {
+  border-top: 1px solid rgb(209, 209, 209);
+  padding: 1rem 0;
+}
+.success-page .success-container .success_detail .totals p {
+  font-family: "Inter";
+  margin: 0.5rem 0;
+  display: flex;
+  margin-bottom: 1.5rem;
+  justify-content: space-between;
+}
+.success-page .success-container .success_detail .totals p span {
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+.success-page .success-container .success_detail .totals .total_price {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+  border-top: 1px solid rgb(209, 209, 209);
+  padding-top: 1rem;
+}
+.success-page .success-container .success_detail .totals .total_price button {
+  align-self: center;
+  color: #fff;
+  background-color: black;
+  border: none;
+  padding: 0.8rem;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s;
+  width: 250px;
+  margin: 1rem 0;
+}
+.success-page .success-container .success_detail .totals .total_price button:hover {
+  opacity: 0.8;
+}
+
+@keyframes pulse_opacity {
+  0% {
+    background-color: #f1f3f2;
+  }
+  50% {
+    background-color: #ddf3e3;
+  }
+  100% {
+    background-color: #f1f3f2;
+  }
+}
+.ordersPage {
+  padding: 2rem;
+}
+.ordersPage h2 {
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+}
+@media (max-width: 768px) {
+  .ordersPage {
+    padding: 1rem;
+  }
+  .ordersPage h2 {
+    font-size: 1.5rem;
+  }
+}
+
+.ordersTable {
+  width: 90%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+.ordersTable th, .ordersTable td {
+  padding: 1rem;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+.ordersTable th {
+  background-color: #f5f5f5;
+}
+.ordersTable button {
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.ordersTable button:hover {
+  background-color: #005bb5;
+}
+@media (max-width: 768px) {
+  .ordersTable th,
+  .ordersTable td {
+    padding: 0.5rem;
+    font-size: 0.85rem;
+  }
+  .ordersTable button {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+  }
+}
+
 .footer-main {
   display: flex;
   margin: 0;

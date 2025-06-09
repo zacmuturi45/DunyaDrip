@@ -13,7 +13,6 @@ export default function CartProduct({ cart_image, cart_item_title, cart_item_siz
     const { location } = useContext(FlagContext);
     const { remove_from_cart, setCart, addToCart } = useCart();
     const router = useRouter()
-    console.log(`Olaaaaaiiii ${cart_image}`)
 
     const handleQuantity = (operation) => {
         addToCart({ id: id, size: cart_item_size, drip_image: cart_image, product_name: cart_item_title, product_price: cart_item_price }, operation)

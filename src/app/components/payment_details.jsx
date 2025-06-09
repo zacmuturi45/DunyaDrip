@@ -5,6 +5,8 @@ import Image from "next/image";
 import { amex, diners, discover, elo, gpay, klarna, mastercard, paypal2, redirect_image, unionpay, visa } from "../../../public/imports";
 import { loadStripe } from "@stripe/stripe-js"
 import { useCart } from "../contexts/cart_context";
+import { useAuth } from "../contexts/auth_context";
+import toast from "react-hot-toast";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
 
@@ -23,43 +25,63 @@ export default function Payment() {
     const [showmore, setShowMore] = useState(false);
     const [expiry, setExpiry] = useState("");
     const { cart } = useCart();
+    const [isProcessing, setIsProcessing] = useState(false);
+    const { display_name, user_email } = useAuth();
+
 
     const handleCreditCardPayments = async () => {
         if (cart.length <= 0) {
-            alert("Your cart is empty")
+            toast.error('Your cart is emtpy')
             return;
         }
 
-        const items = cart.map((item) => {
-            return { name: item.product_name, amount: item.product_price*100, quantity: item.quantity, size: item.size }
-        })
-        const stripe = await stripePromise;
+        setIsProcessing(true);
 
-        const response = await fetch('/api/checkout-sessions/create', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ items }),
-        });
+        const items = cart.map((item) => ({
+            name: item.product_name,
+            amount: item.product_price * 100,
+            quantity: item.quantity,
+            size: item.size
+        }));
 
-        const session = await response.json();
+        try {
+            const stripe = await stripePromise;
 
-        const result = await stripe.redirectToCheckout({
-            sessionId: session.id,
-        });
+            const response = await fetch('/api/checkout-sessions/create', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    items,
+                    customer_email: user_email || 'Guest',
+                    customer_name: display_name || 'Guest',
+                }),
+            });
 
-        if (result.error) {
-            console.error(result.error.message);
+            const session = await response.json();
+
+            const result = await stripe.redirectToCheckout({
+                sessionId: session.id,
+            });
+
+            if (result.error) {
+                console.error(result.error.message);
+                setIsProcessing(false);
+            }
+        } catch (err) {
+            console.error("Checkout error:", err);
+            setIsProcessing(false);
         }
     };
+
 
     const handleChange = (e) => {
         let value = e.target.value.replace(/\D/g, "");
         if (value.length >= 2) {
             value = value.slice(0, 2) + "/" + value.slice(2, 4)
         }
-        setExpiry(value.slice(0,5));
+        setExpiry(value.slice(0, 5));
     }
 
     const renderPaymentDetails = () => {
@@ -129,19 +151,19 @@ export default function Payment() {
 
         switch (selectedPayment) {
             case "credit_card":
-                buttonText = "Pay Now";
+                buttonText = isProcessing ? "Processing..." : "Pay Now";
                 buttonClass = "pay-button black";
                 break;
             case "paypal":
-                buttonText = "Pay with PayPal";
+                buttonText = isProcessing ? "Processing..." : "Pay with PayPal";
                 buttonClass = "pay-button paypal";
                 break;
             case "google_pay":
-                buttonText = "Pay with Google Pay";
+                buttonText = isProcessing ? "Processing..." : "Pay with Google Pay";
                 buttonClass = "pay-button googlepay";
                 break;
             case "klarna":
-                buttonText = "Pay with Klarna";
+                buttonText = isProcessing ? "Processing..." : "Pay with Klarna";
                 buttonClass = "pay-button klarna";
                 break;
             default:
@@ -149,11 +171,16 @@ export default function Payment() {
         }
 
         return (
-            <button onClick={handleCreditCardPayments} className={buttonClass}>
+            <button
+                onClick={handleCreditCardPayments}
+                className={buttonClass}
+                disabled={isProcessing}
+            >
                 {buttonText}
             </button>
         );
     };
+
 
     return (
         <div className="payment-container">

@@ -5,7 +5,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 export async function POST(request) {
     const body = await request.json();
 
-    const { items } = body;
+    const { items, customer_email, customer_name } = body;
 
     const line_items = items.map(item => ({
         price_data: {
@@ -23,7 +23,12 @@ export async function POST(request) {
             payment_method_types: ['card'],
             line_items,
             mode: 'payment',
-            success_url: `${request.headers.get('origin')}/success`,
+            customer_email,
+            metadata: {
+                customer_name,
+                items: JSON.stringify(items),
+            },
+            success_url: `${request.headers.get('origin')}/success?session_id={CHECKOUT_SESSION_ID}`,
             cancel_url: `${request.headers.get('origin')}/cancel`,
         });
 

@@ -61,6 +61,7 @@ export default function Navbar() {
     ]
 
     const { user, display_name } = useAuth();
+    console.log(`Ayyyyyy ${user?.user_metadata?.first_name}`)
 
 
     useEffect(() => {

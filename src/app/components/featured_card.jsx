@@ -9,10 +9,16 @@ export default function Featured_Card({ image, image2, product_name, product_pri
     const { location } = useContext(FlagContext);
     const [which_image, setWhichImage] = useState("image1")
     const router = useRouter();
+    const [isLoading, setIsLoading] = useState(false);
 
     return (
         <div className='featured_card_main' key={index} >
-            <div className="card-img" onClick={() => router.push(`/${id}`)}>
+            <div className="card-img" onClick={() => {
+                setIsLoading(true)
+                setTimeout(() => {
+                    router.push(`/${id}`)
+                }, 3000);
+            }}>
                 <Image src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/product-images/${image}`} width={250} height={300} alt='card-image' unoptimized className={which_image === "image1" ? "card-img1 card-z-index" : "card-img1"} />
                 <Image src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/product-images/${image2}`} width={250} height={300} alt='card-image' unoptimized className={which_image === "image2" ? "card-img2 card-z-index" : "card-img2"} />
             </div>
