@@ -7,8 +7,9 @@ import { flag_array, UK_flag } from "../../../public/imports";
 export const FlagContext = createContext();
 
 export const FlagProvider = ({ children }) => {
-    const [location, setLocation] = useState({ flag_image: UK_flag, country_name: "UK", currency: "GBP" });
-    const [apply_location, setApplyLocation] = useState({ flag_image: UK_flag, country_name: "UK", currency: "GBP" });
+    const defaultLocation = { flag_image: UK_flag, country_name: "UK", currency: "GBP"};
+    const [location, setLocation] = useState(defaultLocation);
+    const [apply_location, setApplyLocation] = useState(defaultLocation);
     const [flag_active, setFlagActive] = useState(false);
     const [color_index, setColorIndex] = useState(3000);
     const [showFlagBox, setShowFlagBox] = useState(false);
@@ -27,9 +28,10 @@ export const FlagProvider = ({ children }) => {
                 const data = await getLocation();
                 const country_details = flag_array.find(item => data.country === item.country_name)
                 setLocation(country_details)
-                setTimeZone(data.timezone)
+                setTimeZone(data.timezone || "Great Britain");
             } catch (error) {
                 console.error("Error fetching location:", error);
+                setLocation(defaultLocation)
             }
             
         };
