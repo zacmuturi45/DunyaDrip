@@ -1,3 +1,5 @@
+import { ukflag } from "../../public/imports";
+
 export const getLocation = async () => {
     try {
         const online = typeof navigator !== 'undefined' && navigator.onLine;
@@ -12,9 +14,10 @@ export const getLocation = async () => {
         const res = await fetch("https://ipwho.is/");
         const data = await res.json();
         return {
-            country: data.country,
-            currency: data.continent_code,
-            timezone: data.timezone.abbr
+            country_name: data.country_code || "UK",
+            currency: data.continent_code || "EU",
+            timezone: data.timezone.abbr || "Europe",
+            flag_image: data.flag.img || ukflag
         };
     } catch (error) {
         console.error("Error fetching location:", error);

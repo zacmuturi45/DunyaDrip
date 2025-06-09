@@ -7,9 +7,8 @@ import { flag_array, UK_flag } from "../../../public/imports";
 export const FlagContext = createContext();
 
 export const FlagProvider = ({ children }) => {
-    const defaultLocation = { flag_image: UK_flag, country_name: "UK", currency: "GBP"};
-    const [location, setLocation] = useState(defaultLocation);
-    const [apply_location, setApplyLocation] = useState(defaultLocation);
+    const [location, setLocation] = useState({ flag_image: UK_flag, country_name: "UK", currency: "GBP" });
+    const [apply_location, setApplyLocation] = useState({ flag_image: UK_flag, country_name: "UK", currency: "GBP" });
     const [flag_active, setFlagActive] = useState(false);
     const [color_index, setColorIndex] = useState(3000);
     const [showFlagBox, setShowFlagBox] = useState(false);
@@ -19,22 +18,18 @@ export const FlagProvider = ({ children }) => {
 
     useEffect(() => {
         const fetchLocation = async () => {
-            setLocation(defaultLocation)
-            setTimeZone("Great Britain")
-            // if(!navigator.onLine) {
-            //     console.log("No interenet connection")
-            //     return;
-            // }
+            if(!navigator.onLine) {
+                console.log("No interenet connection")
+                return;
+            }
 
-            // try {
-            //     const data = await getLocation();
-            //     const country_details = flag_array.find(item => data.country === item.country_name)
-            //     setLocation(country_details)
-            //     setTimeZone(data.timezone || "Great Britain");
-            // } catch (error) {
-            //     console.error("Error fetching location:", error);
-            //     setLocation(defaultLocation)
-            // }
+            try {
+                const data = await getLocation();
+                setLocation(data)
+                setTimeZone(data.timezone)
+            } catch (error) {
+                console.error("Error fetching location:", error);
+            }
             
         };
 
