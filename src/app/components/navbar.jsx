@@ -679,7 +679,7 @@ export default function Navbar() {
                             <div className='nav-tier2-three'>
                                 <div className='nav-tier2-login'>
                                     {
-                                        user ? <Image src={signin} width={25} height={25} alt='signin' onClick={() => router.push("/dashboard")} /> : <p onClick={() => router.push("/login-out")}>Login</p>
+                                        user ? <Link href={"/dashboard"} style={{textDecoration: "none"}}><Image src={signin} width={25} height={25} alt='signin' /></Link> : <p onClick={() => router.push("/login-out")}>Login</p>
                                     }
                                 </div>
                                 <div className='nav-tier2-search'><Image src={search} height={25} width={25} alt='search-svg' onClick={() => setShowSearchPanel(true)} /></div>
