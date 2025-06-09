@@ -18,7 +18,7 @@ export default function FlagBoxes({ image, country, currency, index=null }) {
         }}
             style={color_index === index ? { backgroundColor: "rgb(154, 255, 255)" } : { backgroundColor: "hsla(0, 0%, 48%, 0.3)" }}
         >
-            <Image src={image} width={20} height={20} alt='flag-imge' />
+            <Image src={image} width={30} height={20} alt='flag-imge' style={{borderRadius: "3px", overflow: "hidden"}} unoptimized />
             <p>{`${country} / ${currency}`}</p>
         </div>
     )

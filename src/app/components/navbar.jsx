@@ -366,7 +366,7 @@ export default function Navbar() {
                                     }}>Login</p>
                                 }</div>
                                 <div className="nav-footer-flag" onClick={() => setShowFlagBox(true)}>
-                                    <Image src={location.flag_image} height={25} width={25} alt='flag' />
+                                <Image src={location.flag_image} height={20} width={30} alt='flag' style={{borderRadius: "3px", overflow: "hidden"}} />
                                     <p>{`${location.country_name}/${location.currency}`}</p>
                                 </div>
 
@@ -667,7 +667,7 @@ export default function Navbar() {
                             </div>
 
                             <div className='nav-tier2-one' onClick={() => setShowFlagBox(true)}>
-                                <Image src={location.flag_image} height={25} width={25} alt='flag' />
+                                <Image src={location.flag_image} height={20} width={30} alt='flag' style={{borderRadius: "3px", overflow: "hidden"}} />
                                 <p>{`${location.country_name}/${location.currency}`}</p>
                             </div>
 
