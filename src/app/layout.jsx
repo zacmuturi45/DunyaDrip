@@ -6,6 +6,8 @@ import { CartProvider } from "./contexts/cart_context";
 import CartPage from "./components/cart_page";
 import { AuthProvider } from "./contexts/auth_context";
 import { Toaster } from "react-hot-toast";
+import { cookies } from "next/headers";
+import { createServerClient } from "@supabase/ssr";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -23,13 +25,23 @@ export const metadata = {
   description: "Achieve the Prime of your Life through our innovative health and wellness solutions.",
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const cookieStore = cookies();
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+    { cookies: { getAll: () => cookieStore.getAll() } }
+  );
+
+  const { data: { session } } = await supabase.auth.getSession();
+  const { data: { user } } = await supabase.auth.getUser();
+
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <FlagProvider>
           <CartProvider>
-            <AuthProvider>
+            <AuthProvider initialSession={session} initialUser={user}>
               <Navbar />
               <CartPage />
               <main>{children} <Toaster /></main>

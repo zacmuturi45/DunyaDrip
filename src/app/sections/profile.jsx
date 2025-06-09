@@ -24,7 +24,6 @@ export default function Profile() {
       }
 
       toast.success('Logged out successfully', { id: toastId })
-      router.refresh()
       router.push('/')
       setTimeout(() => {
         window.location.reload();

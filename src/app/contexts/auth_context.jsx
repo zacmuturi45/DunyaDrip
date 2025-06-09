@@ -5,9 +5,9 @@ import { createContext, useContext, useEffect, useState } from 'react';
 
 const AuthContext = createContext();
 
-export function AuthProvider({ children }) {
-  const [session, setSession] = useState(null);
-  const [user, setUser] = useState(null);
+export function AuthProvider({ children, initialSession = null, initialUser = null }) {
+  const [session, setSession] = useState(initialSession);
+  const [user, setUser] = useState(initialUser);
   const [shownav, setShowNav] = useState(false);
   const supabase = createClient();
   const [activeSection, setActiveSection] = useState('profile');
