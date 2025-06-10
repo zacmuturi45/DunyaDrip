@@ -4,17 +4,16 @@ import React, { useEffect, useRef, useState } from 'react'
 import { arrow, arrow_right, extended_drip_array, featured_array, sups } from '../../../public/imports'
 import Featured_Card from '../components/featured_card'
 import Image from 'next/image'
-import { createClient } from '@/utils/supabase/client'
-import { supabase_client } from '@/utils/supabase/clint'
 import { useCart } from '../contexts/cart_context'
+import supabse_image_path from '@/utils/supabase/supabse_image_path'
 
 export default function Featured() {
     const [carousel_index, setCarouselIndex] = useState(0);
     const carousel_ref = useRef(null);
-    const { product } = useCart();
+    const { product, loadingProducts } = useCart();
 
     const scrollToIndex = (newIndex) => {
-        if(carousel_ref.current) {
+        if (carousel_ref.current) {
             const scrollAmount = newIndex * carousel_ref.current.clientWidth;
             carousel_ref.current.scrollTo({ left: scrollAmount, behavior: "smooth" });
         }
@@ -42,20 +41,31 @@ export default function Featured() {
                         <h3>Featured</h3>
                         <div className="featured-main-sub-title">
                             <p>See All</p>
-                            <Image src={arrow_right} width={100} height={100} alt='arrow-right-svg' className='featured-arrow' />
+                            <Image src={supabse_image_path('/arrow_right.svg')} width={100} height={100} alt='arrow-right-svg' className='featured-arrow' />
                         </div>
                     </div>
                     <div className="featured-main-title-navigation">
-                        <Image src={arrow} width={20} height={20} alt='arrow-svg' onClick={prevSlide} />
-                        <Image src={arrow} width={20} height={20} alt='arrow-svg' onClick={(nextSlide)} />
+                        <Image src={supabse_image_path('/arrow.svg')} width={20} height={20} alt='arrow-svg' onClick={prevSlide} />
+                        <Image src={supabse_image_path('/arrow.svg')} width={20} height={20} alt='arrow-svg' onClick={(nextSlide)} />
                     </div>
                 </div>
                 <div className="featured-cards">
                     <div className="carousel" ref={carousel_ref}>
-                        {
-                            product.slice(0, 10).map((item, index) => (
-                                <Featured_Card image={item.image_url} id={item.id} image2={item.image_url} product_name={item.name} product_price={item.price} key={index} />
-                            ))
+                        {loadingProducts
+                            ? (
+                                (
+                                    [...Array(12)].map((_, idx) => (
+                                        <div className="featured-card-skeleton" key={idx}>
+                                            <div className="skeleton-image" />
+                                            <div className="skeleton-text" />
+                                        </div>
+                                    ))
+                                )
+                            ) : (
+                                product.slice(0, 10).map((item, index) => (
+                                    <Featured_Card image={item.image_url} id={item.id} image2={item.image_url} product_name={item.name} product_price={item.price} key={index} index={`mens${index}`} />
+                                ))
+                            )
                         }
                     </div>
                 </div>

@@ -2,8 +2,9 @@
 
 import Image from 'next/image'
 import React, { useEffect, useRef, useState } from 'react'
-import { calculateTimeLeft, dunya } from '../../../public/imports'
+import { calculateTimeLeft } from '../../../public/imports'
 import gsap from 'gsap';
+import supabse_image_path from '@/utils/supabase/supabse_image_path';
 
 
 
@@ -59,7 +60,7 @@ export default function SummerSale() {
                     <div className="three"><h2>Free Delivery in UK</h2></div>
                     <div className="four-container">
                         <div className="four">
-                        <Image src={dunya} width={50} height={50} alt='dunya-logo' style={{opacity: 0.5}} className='dunya_summer_img' />
+                        <Image src={supabse_image_path('/dunya.svg')} width={50} height={50} alt='dunya-logo' style={{opacity: 0.5}} className='dunya_summer_img' />
                         <p>Ts & Cs Apply</p>
                         </div>
                     </div>

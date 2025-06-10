@@ -1,17 +1,15 @@
-import Image from 'next/image'
 import React from 'react'
-import { jacket, shoe } from '../../../public/imports'
 import CollectionCircle from '../components/collection_circle'
 
 const collection_array = [
-    { image: jacket, label: "Jackets" },
-    { image: shoe, label: "Shoes" },
-    { image: shoe, label: "Hoodies" },
-    { image: shoe, label: "Chinos" },
-    { image: shoe, label: "Denim" },
-    { image: shoe, label: "T-shirts" },
-    { image: shoe, label: "Pants" },
-    { image: shoe, label: "Accessories" }
+    { image: "jacket.webp", label: "Jackets" },
+    { image: "shoe4.webp", label: "Shoes" },
+    { image: "shoe3.webp", label: "Hoodies" },
+    { image: "shoe.webp", label: "Chinos" },
+    { image: "shoe4.webp", label: "Denim" },
+    { image: "shoe3.webp", label: "T-shirts" },
+    { image: "shoe.webp", label: "Pants" },
+    { image: "shoe4.webp", label: "Accessories" }
 ]
 
 export default function ShopByCollection() {

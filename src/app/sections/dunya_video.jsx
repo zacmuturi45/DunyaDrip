@@ -1,3 +1,4 @@
+import supabse_image_path from '@/utils/supabase/supabse_image_path'
 import React from 'react'
 
 export default function Dunya_Video() {
@@ -12,7 +13,7 @@ export default function Dunya_Video() {
                     playsInline
                     controls
                 >
-                    <source src="/dunya.mp4" type="video/mp4" />
+                    <source src={supabse_image_path('/dunya.mp4')} type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>
             </div>

@@ -7,6 +7,7 @@ import { loadStripe } from "@stripe/stripe-js"
 import { useCart } from "../contexts/cart_context";
 import { useAuth } from "../contexts/auth_context";
 import toast from "react-hot-toast";
+import supabse_image_path from "@/utils/supabase/supabse_image_path";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
 
@@ -129,14 +130,14 @@ export default function Payment() {
             case "google_pay":
                 return (
                     <div className="redirect-message">
-                        <Image src={redirect_image} width={100} height={100} alt="redirect_image" className="redirect_image" />
+                        <Image src={supabse_image_path('/redirect.svg')} width={100} height={100} alt="redirect_image" className="redirect_image" />
                         <p>After clicking “Pay with Google Pay”, you will be redirected to Google Pay to complete your purchase securely.</p>
                     </div>
                 );
             case "klarna":
                 return (
                     <div className="redirect-message">
-                        <Image src={redirect_image} width={100} height={100} alt="redirect_image" className="redirect_image" />
+                        <Image src={supabse_image_path('/redirect.svg')} width={100} height={100} alt="redirect_image" className="redirect_image" />
                         <p>After clicking “Pay with Klarna”, you will be redirected to Klarna to complete your purchase securely.</p>
                     </div>
                 );
@@ -202,7 +203,7 @@ export default function Payment() {
                         {
                             method.id === "klarna" && (
                                 <div className="logos_zero">
-                                    <Image src={klarna} alt="paypal2" width={60} height={60} />
+                                    <Image src={supabse_image_path('/klarna.svg')} alt="paypal2" width={60} height={60} />
                                 </div>
                             )
                         }
@@ -210,7 +211,7 @@ export default function Payment() {
                         {
                             method.id === "google_pay" && (
                                 <div className="logos_zero">
-                                    <Image src={gpay} alt="paypal2" width={60} height={60} />
+                                    <Image src={supabse_image_path('/gpay.svg')} alt="paypal2" width={60} height={60} />
                                 </div>
                             )
                         }
@@ -218,26 +219,26 @@ export default function Payment() {
                         {
                             method.id === "paypal" && (
                                 <div className="logos_zero">
-                                    <Image src={paypal2} alt="paypal2" width={60} height={60} />
+                                    <Image src={supabse_image_path('/paypal.svg')} alt="paypal2" width={60} height={60} />
                                 </div>
                             )
                         }
 
                         {method.id === "credit_card" && (
                             <div className="logos">
-                                <Image src={visa} alt="Visa" width={40} height={24} />
-                                <Image src={amex} alt="Amex" width={40} height={24} />
-                                <Image src={mastercard} alt="MasterCard" width={40} height={24} />
+                                <Image src={supabse_image_path('/visa.svg')} alt="Visa" width={40} height={24} />
+                                <Image src={supabse_image_path('/amex.svg')} alt="Amex" width={40} height={24} />
+                                <Image src={supabse_image_path('/mastercard.svg')} alt="MasterCard" width={40} height={24} />
                                 <div className="four_more" onMouseEnter={() => setShowMore(true)} onMouseLeave={() => setShowMore(false)}>
                                     <p>4+</p>
                                 </div>
                                 {
                                     showmore && (
                                         <div className="more_logos">
-                                            <Image src={discover} alt="Visa" width={40} height={24} />
-                                            <Image src={diners} alt="Amex" width={40} height={24} />
-                                            <Image src={elo} alt="MasterCard" width={40} height={24} />
-                                            <Image src={unionpay} alt="UnionPay" width={40} height={24} />
+                                            <Image src={supabse_image_path('/discover.svg')} alt="Visa" width={40} height={24} />
+                                            <Image src={supabse_image_path('/diners.svg')} alt="Amex" width={40} height={24} />
+                                            <Image src={supabse_image_path('/elo.svg')} alt="MasterCard" width={40} height={24} />
+                                            <Image src={supabse_image_path('/unionpay.svg')} alt="UnionPay" width={40} height={24} />
                                         </div>
                                     )
                                 }

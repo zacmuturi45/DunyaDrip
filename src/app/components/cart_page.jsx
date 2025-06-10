@@ -1,13 +1,13 @@
 "use client"
 
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useCart } from '../contexts/cart_context'
 import Image from 'next/image';
-import { shopping_bag, x } from '../../../public/imports';
 import CartProduct from './cart_product';
 import { FlagContext } from '../contexts/flagcontext';
 import Loader from './loader';
 import { useRouter } from 'next/navigation';
+import supabse_image_path from '@/utils/supabase/supabse_image_path';
 
 export default function CartPage() {
     const { cart, show_cart, setShowCart, loader, setLoader, totalz, setTotalz } = useCart();
@@ -45,7 +45,7 @@ export default function CartPage() {
                     <div className="cart_page_one">
                         <h3>My Cart <span>{cart.length > 0 && <>{`(${cart.length})`}</>}</span></h3>
                         <div className="escape">
-                            <Image src={x} width={30} height={30} alt='cancel' onClick={() => setShowCart(false)} />
+                            <Image src={supabse_image_path('/x.svg')} width={30} height={30} alt='cancel' onClick={() => setShowCart(false)} />
                         </div>
                     </div>
 
@@ -61,7 +61,7 @@ export default function CartPage() {
                                 </>
                             ) : (
                                 <div className='shopping_bag'>
-                                    <Image src={shopping_bag} width={100} height={100} alt='shopping_bag' />
+                                    <Image src={supabse_image_path('/shopping_bag.svg')} width={100} height={100} alt='shopping_bag' />
                                     <p>Your Cart is empty</p>
                                 </div>
                             )

@@ -1111,13 +1111,50 @@ body {
 }
 .featured-main .featured-container .featured-cards .carousel {
   width: 100%;
-  height: auto;
   margin: 2rem 0;
   display: flex;
   gap: 0.8rem;
   overflow-x: scroll;
   scrollbar-width: none;
   scroll-behavior: smooth;
+}
+.featured-main .featured-container .featured-cards .carousel .featured-card-skeleton {
+  width: 100%;
+  height: 450px;
+  background: #f3f4f6;
+  border-radius: 12px;
+  margin: 0 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+}
+.featured-main .featured-container .featured-cards .carousel .featured-card-skeleton .skeleton-image {
+  width: 350px;
+  height: 400px;
+  background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+  background-size: 400%, 100%;
+  background-position: 0 0;
+  border-radius: 8px;
+  animation: skeleton-loading 1.2s infinite;
+  margin-bottom: 1rem;
+}
+.featured-main .featured-container .featured-cards .carousel .featured-card-skeleton .skeleton-text {
+  width: 120px;
+  height: 18px;
+  background: #e5e7eb;
+  background-size: 400%, 100%;
+  background-position: 0 0;
+  border-radius: 4px;
+  animation: skeleton-loading 1.2s infinite;
+}
+@keyframes skeleton-loading {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: 200px 0;
+  }
 }
 
 .summer-main {
@@ -3191,19 +3228,6 @@ body {
   padding: 3px 10px;
   cursor: pointer;
 }
-.success_product_main .escape-x {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 17px;
-  height: 17px;
-  align-self: center;
-  cursor: pointer;
-}
-.success_product_main .escape-x .escape_x {
-  width: 100%;
-  height: 100%;
-}
 
 .success-page {
   background-color: rgb(252, 252, 252);
@@ -3559,6 +3583,18 @@ body {
 }
 
 @media screen and (max-width: 580px) {
+  .success_product_main {
+    width: 350px;
+    box-sizing: border-box;
+    padding: 0.5rem;
+  }
+  .success_product_main .success_product_div {
+    margin-right: 1rem;
+  }
+  .success-page .success-container .success_detail {
+    width: 350px;
+    padding: 0.5rem;
+  }
   .drip-main .drip-container .drip-cards > * {
     margin: 0 auto;
   }

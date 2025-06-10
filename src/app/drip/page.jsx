@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { extended_drip_array, plus } from "../../../public/imports";
 import DripCard from "../components/drip_card";
 import { useCart } from "../contexts/cart_context";
+import supabse_image_path from "@/utils/supabase/supabse_image_path";
 
 export default function Drip() {
     // State to track the open drawers
@@ -161,7 +162,7 @@ export default function Drip() {
                                         <div className="one">
                                             <p>{title}<span style={id === "prc" ? { visibility: "visible" } : { visibility: "hidden" }} > {`(GBP)`}</span></p>
                                             <Image
-                                                src={plus}
+                                                src={supabse_image_path('/plus.svg')}
                                                 width={15}
                                                 height={15}
                                                 alt="plus-svg"
@@ -211,7 +212,7 @@ export default function Drip() {
 
                 <div className="limit-butt">
                     {
-                        limit === extended_drip_array.length - 1 ? <button className="up-button" onClick={() => scrollToTop()}>Go Up</button> : <button className="limit-button" onClick={() => limit_func()}>
+                        limit === product.length - 1 ? <button className="up-button" onClick={() => scrollToTop()}>Go Up</button> : <button className="limit-button" onClick={() => limit_func()}>
                             Load more
                         </button>
                     }

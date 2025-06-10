@@ -3,7 +3,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import '../css/index.css';
 import Image from 'next/image';
-import { accessories, arrow, bag, dunya, dunyadrip, ethnic, facebook, flag_array, instagram, jacket, kids, kids_accessories, kids_clothing, kids_kicks, men_clothing, men_kicks, nav_fb, nav_insta, newInArray, plus, rep_accessories, rep_clothing, rep_footwear, search, shoe, shoe1, shoe2, shoe3, signin, summer, summer_newin, tiktok, trial, trial1, trial2, ukflag, women_accessories, women_clothing, women_kicks, women_summer, x, youtube } from '../../../public/imports';
+import { accessories, arrow, bag, dunya, dunyadrip, ethnic, facebook, flag_array, instagram, jacket, kids, kids_accessories, kids_clothing, kids_kicks, men_clothing, men_kicks, nav_fb, nav_insta, newInArray, plus, rep_accessories, rep_clothing, rep_footwear, search, shoe, shoe1, shoe2, shoe3, summer, summer_newin, tiktok, trial, trial1, trial2, ukflag, women_accessories, women_clothing, women_kicks, women_summer, x, youtube } from '../../../public/imports';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import UseScroll from './navscroll';
@@ -14,6 +14,7 @@ import FlagBoxes from './flagboxes';
 import ScrollingOffers from './scrollingoffers';
 import { useCart } from '../contexts/cart_context';
 import { useAuth } from '../contexts/auth_context';
+import supabse_image_path from '@/utils/supabase/supabse_image_path';
 
 
 export default function Navbar() {
@@ -29,6 +30,7 @@ export default function Navbar() {
     const [men, setMen] = useState(false);
     const [rep, setRep] = useState(false);
     const { shownav } = useAuth();
+    const signin = supabse_image_path('/signin.svg');
     const [hide_drawer, setHideDrawer] = useState({
         drawer1: false,
         drawer2: false,
@@ -108,7 +110,7 @@ export default function Navbar() {
                             <div className="mobile-nav-links">
                                 <div className="mobile-nav-links-title">
                                     <p>NEW IN</p>
-                                    <Image src={plus} width={15} height={15} alt='plus' onClick={() => open_drawer("drawer1")} className={hide_drawer.drawer1 ? "rotate" : ""} />
+                                    <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' onClick={() => open_drawer("drawer1")} className={hide_drawer.drawer1 ? "rotate" : ""} />
                                 </div>
                                 <div className={hide_drawer.drawer1 ? "one-drawer" : "hide-drawer"}>
                                     <p>Men&apos;s New In</p>
@@ -120,13 +122,13 @@ export default function Navbar() {
                             <div className="mobile-nav-links">
                                 <div className="mobile-nav-links-title">
                                     <p>MEN</p>
-                                    <Image src={plus} width={15} height={15} alt='plus' onClick={() => open_drawer("drawer2")} className={hide_drawer.drawer2 ? "rotate" : ""} />
+                                    <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' onClick={() => open_drawer("drawer2")} className={hide_drawer.drawer2 ? "rotate" : ""} />
                                 </div>
                                 <div className={hide_drawer.drawer2 ? "mobile-nav-links-detail" : "hide-drawer"}>
                                     <div>
                                         <div className="two-drawer">
                                             <p>Clothing</p>
-                                            <Image src={plus} width={15} height={15} alt='plus' onClick={() => open_drawer("sub_drawer1d1")} style={hide_drawer.sub_drawer1d1 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
+                                            <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' onClick={() => open_drawer("sub_drawer1d1")} style={hide_drawer.sub_drawer1d1 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
                                         </div>
                                         <div className={hide_drawer.sub_drawer1d1 ? "p-drawer" : "hide-drawer"}>
                                             <p>T-shirts</p>
@@ -140,7 +142,7 @@ export default function Navbar() {
                                     <div>
                                         <div className="two-drawer">
                                             <p>Kicks</p>
-                                            <Image src={plus} width={15} height={15} alt='plus' onClick={() => open_drawer("sub_drawer1d2")} style={hide_drawer.sub_drawer1d2 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
+                                            <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' onClick={() => open_drawer("sub_drawer1d2")} style={hide_drawer.sub_drawer1d2 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
                                         </div>
                                         <div className={hide_drawer.sub_drawer1d2 ? "p-drawer" : "hide-drawer"}>
                                             <p>T-shirts</p>
@@ -154,7 +156,7 @@ export default function Navbar() {
                                     <div>
                                         <div className="two-drawer">
                                             <p>Accessories</p>
-                                            <Image src={plus} width={15} height={15} alt='plus' onClick={() => open_drawer("sub_drawer1d3")} style={hide_drawer.sub_drawer1d3 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
+                                            <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' onClick={() => open_drawer("sub_drawer1d3")} style={hide_drawer.sub_drawer1d3 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
                                         </div>
                                         <div className={hide_drawer.sub_drawer1d3 ? "p-drawer" : "hide-drawer"}>
                                             <p>T-shirts</p>
@@ -173,13 +175,13 @@ export default function Navbar() {
                             <div className="mobile-nav-links">
                                 <div className="mobile-nav-links-title">
                                     <p>WOMEN</p>
-                                    <Image src={plus} width={15} height={15} alt='plus' onClick={() => open_drawer("drawer3")} className={hide_drawer.drawer3 ? "rotate" : ""} />
+                                    <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' onClick={() => open_drawer("drawer3")} className={hide_drawer.drawer3 ? "rotate" : ""} />
                                 </div>
                                 <div className={hide_drawer.drawer3 ? "mobile-nav-links-detail" : "hide-drawer"}>
                                     <div>
                                         <div className="two-drawer">
                                             <p>Clothing</p>
-                                            <Image src={plus} width={15} height={15} alt='plus' onClick={() => open_drawer("sub_drawer2d1")} style={hide_drawer.sub_drawer2d1 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
+                                            <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' onClick={() => open_drawer("sub_drawer2d1")} style={hide_drawer.sub_drawer2d1 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
                                         </div>
                                         <div className={hide_drawer.sub_drawer2d1 ? "p-drawer" : "hide-drawer"}>
                                             <p>Dresses</p>
@@ -193,7 +195,7 @@ export default function Navbar() {
                                     <div>
                                         <div className="two-drawer">
                                             <p>Shoes</p>
-                                            <Image src={plus} width={15} height={15} alt='plus' onClick={() => open_drawer("sub_drawer2d2")} style={hide_drawer.sub_drawer2d2 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
+                                            <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' onClick={() => open_drawer("sub_drawer2d2")} style={hide_drawer.sub_drawer2d2 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
                                         </div>
                                         <div className={hide_drawer.sub_drawer2d2 ? "p-drawer" : "hide-drawer"}>
                                             <p>Heels</p>
@@ -207,7 +209,7 @@ export default function Navbar() {
                                     <div>
                                         <div className="two-drawer">
                                             <p>Accessories</p>
-                                            <Image src={plus} width={15} height={15} alt='plus' onClick={() => open_drawer("sub_drawer2d3")} style={hide_drawer.sub_drawer2d3 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
+                                            <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' onClick={() => open_drawer("sub_drawer2d3")} style={hide_drawer.sub_drawer2d3 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
                                         </div>
                                         <div className={hide_drawer.sub_drawer2d3 ? "p-drawer" : "hide-drawer"}>
                                             <p>Handbags</p>
@@ -229,13 +231,13 @@ export default function Navbar() {
                             <div className="mobile-nav-links">
                                 <div className="mobile-nav-links-title">
                                     <p>KIDS</p>
-                                    <Image src={plus} width={15} height={15} alt='plus' onClick={() => open_drawer("drawer4")} className={hide_drawer.drawer4 ? "rotate" : ""} />
+                                    <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' onClick={() => open_drawer("drawer4")} className={hide_drawer.drawer4 ? "rotate" : ""} />
                                 </div>
                                 <div className={hide_drawer.drawer4 ? "mobile-nav-links-detail" : "hide-drawer"}>
                                     <div>
                                         <div className="two-drawer">
                                             <p>Clothing</p>
-                                            <Image src={plus} width={15} height={15} alt='plus' onClick={() => open_drawer("sub_drawer3d1")} style={hide_drawer.sub_drawer3d1 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
+                                            <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' onClick={() => open_drawer("sub_drawer3d1")} style={hide_drawer.sub_drawer3d1 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
                                         </div>
                                         <div className={hide_drawer.sub_drawer3d1 ? "p-drawer" : "hide-drawer"}>
                                             <p>Shirts</p>
@@ -249,7 +251,7 @@ export default function Navbar() {
                                     <div>
                                         <div className="two-drawer">
                                             <p>Shoes</p>
-                                            <Image src={plus} width={15} height={15} alt='plus' onClick={() => open_drawer("sub_drawer3d2")} style={hide_drawer.sub_drawer3d2 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
+                                            <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' onClick={() => open_drawer("sub_drawer3d2")} style={hide_drawer.sub_drawer3d2 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
                                         </div>
                                         <div className={hide_drawer.sub_drawer3d2 ? "p-drawer" : "hide-drawer"}>
                                             <p>Boots</p>
@@ -263,7 +265,7 @@ export default function Navbar() {
                                     <div>
                                         <div className="two-drawer">
                                             <p>Accessories</p>
-                                            <Image src={plus} width={15} height={15} alt='plus' onClick={() => open_drawer("sub_drawer3d3")} style={hide_drawer.sub_drawer3d3 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
+                                            <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' onClick={() => open_drawer("sub_drawer3d3")} style={hide_drawer.sub_drawer3d3 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
                                         </div>
                                         <div className={hide_drawer.sub_drawer3d3 ? "p-drawer" : "hide-drawer"}>
                                             <p>Hats</p>
@@ -308,13 +310,13 @@ export default function Navbar() {
                             <div className="mobile-nav-links">
                                 <div className="mobile-nav-links-title">
                                     <p>REP YOUR COUNTRY</p>
-                                    <Image src={plus} width={15} height={15} alt='plus' onClick={() => open_drawer("drawer5")} className={hide_drawer.drawer5 ? "rotate" : ""} />
+                                    <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' onClick={() => open_drawer("drawer5")} className={hide_drawer.drawer5 ? "rotate" : ""} />
                                 </div>
                                 <div className={hide_drawer.drawer5 ? "mobile-nav-links-detail" : "hide-drawer"}>
                                     <div>
                                         <div className="two-drawer">
                                             <p>National Wear</p>
-                                            <Image src={plus} width={15} height={15} alt='plus' onClick={() => open_drawer("sub_drawer4d1")} style={hide_drawer.sub_drawer4d1 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
+                                            <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' onClick={() => open_drawer("sub_drawer4d1")} style={hide_drawer.sub_drawer4d1 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
                                         </div>
                                         <div className={hide_drawer.sub_drawer4d1 ? "p-drawer" : "hide-drawer"}>
                                             <p>African Prints</p>
@@ -328,7 +330,7 @@ export default function Navbar() {
                                     <div>
                                         <div className="two-drawer">
                                             <p>Sports Jerseys</p>
-                                            <Image src={plus} width={15} height={15} alt='plus' onClick={() => open_drawer("sub_drawer4d2")} style={hide_drawer.sub_drawer4d2 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
+                                            <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' onClick={() => open_drawer("sub_drawer4d2")} style={hide_drawer.sub_drawer4d2 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
                                         </div>
                                         <div className={hide_drawer.sub_drawer4d2 ? "p-drawer" : "hide-drawer"}>
                                             <p>Soccer</p>
@@ -342,7 +344,7 @@ export default function Navbar() {
                                     <div>
                                         <div className="two-drawer">
                                             <p>Flags & Accessories</p>
-                                            <Image src={plus} width={15} height={15} alt='plus' onClick={() => open_drawer("sub_drawer4d3")} style={hide_drawer.sub_drawer4d3 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
+                                            <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' onClick={() => open_drawer("sub_drawer4d3")} style={hide_drawer.sub_drawer4d3 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
                                         </div>
                                         <div className={hide_drawer.sub_drawer4d3 ? "p-drawer" : "hide-drawer"}>
                                             <p>Flag T-shirts</p>
@@ -373,9 +375,9 @@ export default function Navbar() {
                                     <p>customercare@dunyadrip.co.uk</p>
                                 </div>
                                 <div className="nav-footer-socials">
-                                    <Image src={nav_fb} width={20} height={20} alt='facebook' />
-                                    <Image src={nav_insta} width={20} height={20} alt='facebook' />
-                                    <Image src={tiktok} width={20} height={20} alt='facebook' />
+                                    <Image src={supabse_image_path('/nav_fb.svg')} width={20} height={20} alt='facebook' />
+                                    <Image src={supabse_image_path('/nav_insta.svg')} width={20} height={20} alt='facebook' />
+                                    <Image src={supabse_image_path('/tiktok.svg')} width={20} height={20} alt='facebook' />
                                 </div>
                             </div>
 
@@ -386,7 +388,7 @@ export default function Navbar() {
                     {
                         showSearchPanel && (
                             <div className="search-panel">
-                                <div className="x" onClick={() => setShowSearchPanel(false)}><Image src={x} width={25} height={25} alt='x-button' /></div>
+                                <div className="x" onClick={() => setShowSearchPanel(false)}><Image src={supabse_image_path('/x.svg')} width={25} height={25} alt='x-button' /></div>
 
                                 <div className="searchbar">
                                     <form action="">
@@ -416,7 +418,7 @@ export default function Navbar() {
                     <div className={showFlagBox ? "flag-box" : "hide-flag-box flag-box"}>
                         <div className="flag-box-container">
                             <div className="flag-box-one">
-                                <Image src={x} height={20} width={20} alt='x-button' className='flag-x' onClick={() => setShowFlagBox(false)} />
+                                <Image src={supabse_image_path('/x.svg')} height={20} width={20} alt='x-button' className='flag-x' onClick={() => setShowFlagBox(false)} />
                                 <h4 style={{ fontSize: ".7rem" }}>CURRENT LOCATION</h4>
                                 <FlagBoxes image={location.flag_image} country={location.country_name} currency={location.currency} />
                                 <p className='shipping-text'>{`You are currently shipping to ${location.country_name} and your order will be billed in (${location.currency})`}</p>
@@ -466,7 +468,7 @@ export default function Navbar() {
 
                                 <div className="summer-collection">
                                     <div className="summer-card">
-                                        <Image src={summer_newin} width={100} height={100} unoptimized alt='summer-collection' className='summer-image' />
+                                        <Image src={supabse_image_path('/newin.webp')} width={100} height={100} unoptimized alt='summer-collection' className='summer-image' />
                                         <div className="summer-card-detail">
                                             <h4>Exclusive: Summer Collection 2025</h4>
                                             <p>Shop Now</p>
@@ -510,7 +512,7 @@ export default function Navbar() {
 
                                 <div className="summer-collection">
                                     <div className="summer-card">
-                                        <Image src={summer} width={100} height={100} unoptimized alt='summer-collection' className='summer-image' />
+                                        <Image src={supabse_image_path('/summer.webp')} width={100} height={100} unoptimized alt='summer-collection' className='summer-image' />
                                         <div className="summer-card-detail">
                                             <h4>Exclusive: Summer Collection 2025</h4>
                                             <p>Shop Now</p>
@@ -554,7 +556,7 @@ export default function Navbar() {
 
                                 <div className="summer-collection">
                                     <div className="summer-card">
-                                        <Image src={ethnic} width={100} height={100} unoptimized alt='summer-collection' className='summer-image' />
+                                        <Image src={supabse_image_path('/ethnic.jpeg')} width={100} height={100} unoptimized alt='summer-collection' className='summer-image' />
                                         <div className="summer-card-detail">
                                             <h4>Exclusive: Summer Collection 2025</h4>
                                             <p>Shop Now</p>
@@ -600,7 +602,7 @@ export default function Navbar() {
 
                                 <div className="summer-collection">
                                     <div className="summer-card">
-                                        <Image src={kids} width={100} height={100} unoptimized alt='summer-collection' className='summer-image' />
+                                        <Image src={supabse_image_path('/kids.jpg')} width={100} height={100} unoptimized alt='summer-collection' className='summer-image' />
                                         <div className="summer-card-detail">
                                             <h4>Exclusive: Summer Collection 2025</h4>
                                             <p>Shop Now</p>
@@ -646,7 +648,7 @@ export default function Navbar() {
 
                                 <div className="summer-collection">
                                     <div className="summer-card">
-                                        <Image src={women_summer} width={100} height={100} unoptimized alt='summer-collection' className='summer-image' />
+                                        <Image src={supabse_image_path('/women_summer.webp')} width={100} height={100} unoptimized alt='summer-collection' className='summer-image' />
                                         <div className="summer-card-detail">
                                             <h4>Exclusive: Summer Collection 2025</h4>
                                             <p>Shop Now</p>
@@ -669,8 +671,8 @@ export default function Navbar() {
                             </div>
 
                             <div className='nav-tier2-two'>
-                                <Image src={dunyadrip} height={50} width={50} alt='dunya-drip-logo' unoptimized className='trial' onClick={() => router.push("/")} />
-                                <Image src={dunya} height={50} width={50} alt='dunya-drip-logo' unoptimized className='trial1' onClick={() => router.push("/")} style={{ cursor: "pointer" }} />
+                                <Image src={supabse_image_path('/dunyadriptransparent.png')} height={50} width={50} alt='dunya-drip-logo' unoptimized className='trial' onClick={() => router.push("/")} />
+                                <Image src={supabse_image_path('/dunyatransparent.png')} height={50} width={50} alt='dunya-drip-logo' unoptimized className='trial1' onClick={() => router.push("/")} style={{ cursor: "pointer" }} />
                             </div>
 
                             <div className='nav-tier2-three'>
@@ -679,8 +681,8 @@ export default function Navbar() {
                                         user ? <Link href={"/dashboard"} style={{textDecoration: "none"}}><Image src={signin} width={25} height={25} alt='signin' /></Link> : <Link className='next-link' href={"/login-out"}><p>Login</p></Link>
                                     }
                                 </div>
-                                <div className='nav-tier2-search'><Image src={search} height={25} width={25} alt='search-svg' onClick={() => setShowSearchPanel(true)} /></div>
-                                <div className='nav-tier2-bag' onClick={() => setShowCart(true)} ><Image src={bag} height={20} width={20} alt='search-svg' />{cart.length !== 0 && <div className='bag-items'>{cart.length}</div>}</div>
+                                <div className='nav-tier2-search'><Image src={supabse_image_path('/search.svg')} height={25} width={25} alt='search-svg' onClick={() => setShowSearchPanel(true)} /></div>
+                                <div className='nav-tier2-bag' onClick={() => setShowCart(true)} ><Image src={supabse_image_path('/bag.svg')} height={20} width={20} alt='search-svg' />{cart.length !== 0 && <div className='bag-items'>{cart.length}</div>}</div>
                             </div>
 
                         </div>

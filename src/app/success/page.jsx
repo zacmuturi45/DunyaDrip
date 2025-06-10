@@ -3,11 +3,11 @@
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation'
 import React, { useContext, useEffect, useState } from 'react'
-import { greentick } from '../../../public/imports';
 import SuccessCard from '../components/success_card';
 import Link from 'next/link';
 import { FlagContext } from '../contexts/flagcontext';
 import { supabase_client } from '@/utils/supabase/clint';
+import supabse_image_path from '@/utils/supabase/supabse_image_path';
 
 export default function SuccessPage() {
   const searchParams = useSearchParams();
@@ -69,7 +69,7 @@ export default function SuccessPage() {
         <div className='success_one'>
           <div className="green_tick">
             <div className='green_one'>
-              <Image src={greentick} width={70} height={70} alt='green_check' className='greentick-circle' />
+              <Image src={supabse_image_path('/greentick.svg')} width={70} height={70} alt='green_check' className='greentick-circle' />
             </div>
           </div>
           <div className="success_one_detail">

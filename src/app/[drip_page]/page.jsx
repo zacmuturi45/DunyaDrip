@@ -8,6 +8,7 @@ import { FlagContext } from '../contexts/flagcontext';
 import DripCard from '../components/drip_card';
 import { useCart } from '../contexts/cart_context';
 import Loader from '../components/loader';
+import supabse_image_path from '@/utils/supabase/supabse_image_path';
 
 export default function DripSlug() {
   const params = useParams();
@@ -139,7 +140,7 @@ export default function DripSlug() {
                     <div className="stars">
                       {
                         [...Array(4)].map((_, i) => (
-                          <Image src={black_start} width={100} height={100} alt='black_star' key={i} />
+                          <Image src={supabse_image_path('/black_star.svg')} width={100} height={100} alt='black_star' key={i} />
                         ))
                       }
                     </div>
@@ -156,14 +157,14 @@ export default function DripSlug() {
                       show_cart_panel && (
                         <div className="size_alert">
                           <div className="thumbs-down">
-                            <Image src={finger} width={20} height={20} alt='finger-svg' className='floating' />
+                            <Image src={supabse_image_path('/finger.svg')} width={20} height={20} alt='finger-svg' className='floating' />
                           </div>
                           Please select size.
                         </div>
                       )
                     }
                     <div className='size-guide'>
-                      <Image src={size} width={20} height={20} alt='size' />
+                      <Image src={supabse_image_path('/size.svg')} width={20} height={20} alt='size' />
                       <a href='https://www.spocket.co/blogs/uk-to-us-size-conversion-guide?srsltid=AfmBOootv1brqzwvIMXwOZRTrP8fINfNQomqtY3xLNdd5p-jHyvPRDoe' target='_blank' rel='noopener noreferrer'><p>size guide</p></a>
                     </div>
                   </div>
@@ -196,7 +197,7 @@ export default function DripSlug() {
                       <div className="case">
                         <div className="case_title">
                           <p>UK SHIPPING</p>
-                          <Image src={plus} width={20} height={20} alt='plus' style={{ cursor: "pointer" }} onClick={() => showDeets(prevDeets => ({
+                          <Image src={supabse_image_path('/plus.svg')} width={20} height={20} alt='plus' style={{ cursor: "pointer" }} onClick={() => showDeets(prevDeets => ({
                             ...prevDeets,
                             deets1: !prevDeets.deets1
                           }))} />
@@ -209,7 +210,7 @@ export default function DripSlug() {
                       <div className="case">
                         <div className="case_title">
                           <p>INTERNATIONAL SHIPPING</p>
-                          <Image src={plus} width={20} height={20} alt='plus' style={{ cursor: "pointer" }} onClick={() => showDeets(prevDeets => ({
+                          <Image src={supabse_image_path('/plus.svg')} width={20} height={20} alt='plus' style={{ cursor: "pointer" }} onClick={() => showDeets(prevDeets => ({
                             ...prevDeets,
                             deets2: !prevDeets.deets2
                           }))} />
@@ -222,7 +223,7 @@ export default function DripSlug() {
                       <div className="case" style={{ borderBottom: "1px solid rgb(223, 223, 223)", paddingBottom: "1rem" }}>
                         <div className="case_title">
                           <p>RETURNS</p>
-                          <Image src={plus} width={20} height={20} alt='plus' style={{ cursor: "pointer" }} onClick={() => showDeets(prevDeets => ({
+                          <Image src={supabse_image_path('/plus.svg')} width={20} height={20} alt='plus' style={{ cursor: "pointer" }} onClick={() => showDeets(prevDeets => ({
                             ...prevDeets,
                             deets3: !prevDeets.deets3
                           }))} />

@@ -18,7 +18,6 @@ body {
     margin: 0;
     padding: 0;
 }
-
 .section-loader {
     display: flex;
     flex-direction: column;
@@ -1464,13 +1463,46 @@ body {
         .featured-cards {
             .carousel {
                 width: 100%;
-                height: auto;
                 margin: 2rem 0;
                 display: flex;
                 gap: .8rem;
                 overflow-x: scroll;
                 scrollbar-width: none;
                 scroll-behavior: smooth;
+                .featured-card-skeleton {
+                    width: 100%;
+                    height: 450px;
+                    background: #f3f4f6;
+                    border-radius: 12px;
+                    margin: 0 8px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    padding: 1rem;
+                    .skeleton-image {
+                      width: 350px;
+                      height: 400px;
+                      background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+                      background-size: 400%, 100%;
+                      background-position: 0 0;
+                      border-radius: 8px;
+                      animation: skeleton-loading 1.2s infinite;
+                      margin-bottom: 1rem;
+                    }
+                    .skeleton-text {
+                      width: 120px;
+                      height: 18px;
+                      background: #e5e7eb;
+                      background-size: 400%, 100%;
+                      background-position: 0 0;
+                      border-radius: 4px;
+                      animation: skeleton-loading 1.2s infinite;
+                    }
+                  }
+                  @keyframes skeleton-loading {
+                    0% { background-position: -200px 0; }
+                    100% { background-position: 200px 0; }
+                  }
             }
         }
     }
@@ -3974,30 +4006,6 @@ body {
             }
         }
 
-        // .qtty {
-        //     border: 1px solid rgb(163, 163, 163);
-        //     display: flex;
-        //     justify-content: space-between;
-        //     align-items: center;
-        //     height: 25px;
-        //     width: 80px;
-        //     margin: 1rem 0;
-        // }
-    }
-
-    .escape-x {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 17px;
-        height: 17px;
-        align-self: center;
-        cursor: pointer;
-
-        .escape_x {
-            width: 100%;
-            height: 100%;
-        }
     }
 }
 .success-page {
@@ -4483,6 +4491,23 @@ body {
 
 
 @media screen and (max-width: 580px) {
+    .success_product_main {
+        width: 350px;
+        box-sizing: border-box;
+        padding: .5rem;
+        .success_product_div {
+            margin-right: 1rem;
+        }
+    }
+
+    .success-page {
+        .success-container {
+            .success_detail {
+                width: 350px;
+                padding: .5rem;
+            }
+        }
+    }
     .drip-main {
         .drip-container {
             .drip-cards {

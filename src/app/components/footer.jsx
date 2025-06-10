@@ -3,9 +3,10 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useContext, useEffect, useState } from 'react'
-import { amex, appay, facebook, globe, gpay, instagram, klarna, localTime, mastercard, paypal, stripe, ukflag, visa, x, youtube } from '../../../public/imports'
+import { localTime } from '../../../public/imports'
 import { FlagContext } from '../contexts/flagcontext'
 import { useAuth } from '../contexts/auth_context'
+import supabse_image_path from '@/utils/supabase/supabse_image_path'
 
 export default function Footer() {
   const { location, setShowFlagBox, timezone } = useContext(FlagContext);
@@ -125,9 +126,9 @@ export default function Footer() {
                 <div className='social-media'>
                   <h3>Follow Us</h3>
                   <div className="icons">
-                    <Image src={facebook} width={17} height={17} alt='facebook-svg' />
-                    <Image src={instagram} width={17} height={17} alt='facebook-svg' />
-                    <Image src={youtube} width={17} height={17} alt='facebook-svg' />
+                    <Image src={supabse_image_path('/facebook.svg')} width={17} height={17} alt='facebook-svg' />
+                    <Image src={supabse_image_path('/instagram.svg')} width={17} height={17} alt='facebook-svg' />
+                    <Image src={supabse_image_path('/tiktok_white.svg')} width={17} height={17} alt='facebook-svg' />
                   </div>
                   <p>© 2025 Dunya-Drip™. All rights reserved. <span>Privacy Policy</span></p>
                 </div>
@@ -162,19 +163,19 @@ export default function Footer() {
 
               <div className="footer-three">
                 <div className="three-one">
-                  <Image src={stripe} height={35} width={35} alt='globe-image' />
-                  <Image src={klarna} height={35} width={35} alt='globe-image' />
-                  <Image src={paypal} height={35} width={35} alt='globe-image' />
-                  <Image src={visa} height={35} width={35} alt='globe-image' />
-                  <Image src={mastercard} height={35} width={35} alt='globe-image' />
-                  <Image src={gpay} height={35} width={35} alt='globe-image' />
-                  <Image src={appay} height={35} width={35} alt='globe-image' />
-                  <Image src={amex} height={35} width={35} alt='globe-image' />
+                  <Image src={supabse_image_path('/stripe.svg')} height={35} width={35} alt='globe-image' />
+                  <Image src={supabse_image_path('/klarna.svg')} height={35} width={35} alt='globe-image' />
+                  <Image src={supabse_image_path('/paypal.svg')} height={35} width={35} alt='globe-image' />
+                  <Image src={supabse_image_path('/visa.svg')} height={35} width={35} alt='globe-image' />
+                  <Image src={supabse_image_path('/mastercard.svg')} height={35} width={35} alt='globe-image' />
+                  <Image src={supabse_image_path('/gpay.svg')} height={35} width={35} alt='globe-image' />
+                  <Image src={supabse_image_path('/appay.svg')} height={35} width={35} alt='globe-image' />
+                  <Image src={supabse_image_path('/amex.svg')} height={35} width={35} alt='globe-image' />
                 </div>
 
                 <div className="three-two">
                   <div className="timezone">
-                    <Image src={globe} height={17} width={17} alt='globe-image' />
+                    <Image src={supabse_image_path('/globe.svg')} height={17} width={17} alt='globe-image' />
                     <p>{timezone}</p>
                   </div>
                   <p>{time}</p>

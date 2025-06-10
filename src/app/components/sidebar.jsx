@@ -1,15 +1,15 @@
 // components/Sidebar.jsx
 
 import Image from 'next/image';
-import { address, bag, pay, settings, signin, white_bag, white_profile } from '../../../public/imports';
 import { useAuth } from '../contexts/auth_context';
+import supabse_image_path from '@/utils/supabase/supabse_image_path';
 
 const sections = [
-  { key: 'profile', label: 'Account', img: white_profile },
-  { key: 'orders', label: 'Orders', img: white_bag },
-  { key: 'addresses', label: 'Addresses', img: address },
-  { key: 'payments', label: 'Payments', img: pay },
-  { key: 'settings', label: 'Settings', img: settings}
+  { key: 'profile', label: 'Account', img: "white_profile.svg" },
+  { key: 'orders', label: 'Orders', img: "white_bag.svg" },
+  { key: 'addresses', label: 'Addresses', img: "address.svg" },
+  { key: 'payments', label: 'Payments', img: "pay.svg" },
+  { key: 'settings', label: 'Settings', img: "settings.svg"}
 ];
 
 export default function Sidebar() {
@@ -28,7 +28,7 @@ export default function Sidebar() {
             className={`sidebar-item ${activeSection === section.key ? 'active' : ''}`}
             onClick={() => setActiveSection(section.key)}
           >
-            <Image src={section.img} alt="icon" width={20} height={20} className='sidebar-img' />
+            <Image src={supabse_image_path(`/${section.img}`)} alt="icon" width={20} height={20} className='sidebar-img' />
             <span className="sidebar-label">{section.label}</span>
           </li>
         ))}

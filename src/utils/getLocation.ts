@@ -1,3 +1,5 @@
+import supabse_image_path from "./supabase/supabse_image_path";
+
 interface IpWhoIsResponse {
     country?: string;
     currency?: string;
@@ -11,6 +13,7 @@ interface IpApiCoResponse {
 }
 
 export const getLocation = async () => {
+    const uk_flag = supabse_image_path('/flags/UK.svg')
     const getBrowserTimezone = () =>
         typeof Intl !== 'undefined' && Intl.DateTimeFormat().resolvedOptions().timeZone
             ? Intl.DateTimeFormat().resolvedOptions().timeZone
@@ -23,7 +26,7 @@ export const getLocation = async () => {
                 country_name: "UK",
                 currency: "GBP",
                 timezone: getBrowserTimezone(),
-                flag_image: "/ukflag.png"
+                flag_image: uk_flag
             };
         }
 
@@ -40,7 +43,7 @@ export const getLocation = async () => {
             country_name: ipwhoData.country || ipapiData.country_name || "UK",
             currency: ipapiData.currency || ipwhoData.currency || "GBP",
             timezone: ipwhoData.timezone?.abbr || ipapiData.timezone || getBrowserTimezone(),
-            flag_image: ipwhoData.flag?.img || "/ukflag.png"
+            flag_image: ipwhoData.flag?.img || uk_flag
         };
     } catch (error) {
         console.error("Error fetching location:", error);
@@ -48,7 +51,7 @@ export const getLocation = async () => {
             country_name: "UK",
             currency: "GBP",
             timezone: getBrowserTimezone(),
-            flag_image: "/ukflag.png"
+            flag_image: uk_flag
         };
     }
 };

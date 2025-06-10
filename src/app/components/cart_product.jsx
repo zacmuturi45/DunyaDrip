@@ -6,6 +6,7 @@ import { FlagContext } from '../contexts/flagcontext';
 import { x } from '../../../public/imports';
 import { useCart } from '../contexts/cart_context';
 import { useRouter } from 'next/navigation';
+import supabse_image_path from '@/utils/supabase/supabse_image_path';
 
 export default function CartProduct({ cart_image, cart_item_title, cart_item_size, cart_item_price, id, cart_item_quantity }) {
     const [quantity, setQuantity] = useState(1)
@@ -28,7 +29,7 @@ export default function CartProduct({ cart_image, cart_item_title, cart_item_siz
     return (
         <div className='cart_product_main'>
             <div className="cart_product_div">
-                <Image src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/product-images/${cart_image}`} width={100} height={100} alt='cart_image'/>
+                <Image src={cart_image} width={100} height={100} alt='cart_image'/>
             </div>
 
             <div className="cart_product_details">
@@ -44,7 +45,7 @@ export default function CartProduct({ cart_image, cart_item_title, cart_item_siz
             </div>
 
             <div className="escape-x">
-                <Image src={x} width={30} height={30} alt='cancel' className='escape_x' onClick={() => clear_cart_object()} />
+                <Image src={supabse_image_path('/x.svg')} width={30} height={30} alt='cancel' className='escape_x' onClick={() => clear_cart_object()} />
             </div>
         </div>
     )

@@ -4,6 +4,7 @@ import Image from 'next/image'
 import React, { useContext } from 'react'
 import { carl_main, carl_one, carl_two, dark_one, dark_two } from '../../../public/imports'
 import { FlagContext } from '../contexts/flagcontext';
+import supabse_image_path from '@/utils/supabase/supabse_image_path';
 
 export default function TopPicks({ obsRef }) {
     const { location } = useContext(FlagContext);
@@ -23,25 +24,25 @@ export default function TopPicks({ obsRef }) {
 
                     <div className="picks-both">
                         <div className='picks-one'>
-                            <Image src={carl_main} width={100} height={100} alt='carl_main' unoptimized className='carl_main' />
+                            <Image src={supabse_image_path('/carl_main.jpg')} width={100} height={100} alt='carl_main' unoptimized className='carl_main' />
                         </div>
 
                         <div className='picks-two'>
 
                             <div className="picks-two-cards">
-                                <Image src={carl_one} width={100} height={100} alt='carl_main' unoptimized className='carl_main' />
+                                <Image src={supabse_image_path('/carl_one.jpg')} width={100} height={100} alt='carl_main' unoptimized className='carl_main' />
                             </div>
 
                             <div className="picks-two-cards">
-                                <Image src={dark_one} width={100} height={100} alt='carl_main' unoptimized className='carl_main' />
+                                <Image src={supabse_image_path('/dark_one.jpg')} width={100} height={100} alt='carl_main' unoptimized className='carl_main' />
                             </div>
 
                             <div className="picks-two-cards">
-                                <Image src={dark_two} width={100} height={100} alt='carl_main' unoptimized className='carl_main' />
+                                <Image src={supabse_image_path('/dark_two.jpg')} width={100} height={100} alt='carl_main' unoptimized className='carl_main' />
                             </div>
 
                             <div className="picks-two-cards">
-                                <Image src={carl_two} width={100} height={100} alt='carl_main' unoptimized className='carl_main' />
+                                <Image src={supabse_image_path('/carl_two.jpg')} width={100} height={100} alt='carl_main' unoptimized className='carl_main' />
                             </div>
 
                         </div>

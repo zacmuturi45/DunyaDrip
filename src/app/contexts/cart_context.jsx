@@ -1,6 +1,7 @@
 "use client"
 
 import { supabase_client } from "@/utils/supabase/clint";
+import supabse_image_path from "@/utils/supabase/supabse_image_path";
 
 const { createContext, useState, useContext, useEffect } = require("react")
 
@@ -13,13 +14,15 @@ export const CartProvider = ({ children }) => {
     const [totalz, setTotalz] = useState(0);
     const supabase = supabase_client()
     const [product, setProducts] = useState([]);
+    const [loadingProducts, setLoadingProducts] = useState(true);
 
     useEffect(() => {
         const fetchProducts = async () => {
+            setLoadingProducts(true)
             let ext_drip_array = []
             const { data, error } = await supabase.from('all_products').select();
             if (error) console.error('Fetch error:', error);
-            if(!data || data.length === 0) {
+            if (!data || data.length === 0) {
                 console.error("No fetches for youuu")
                 return;
             }
@@ -27,25 +30,26 @@ export const CartProvider = ({ children }) => {
                 const item = data[index % data.length];
                 return {
                     ...item,
-                    id: 100+index
+                    id: 100 + index,
+                    image_url: item.image_url ? supabse_image_path(`/${item.image_url}`) : null
                 };
             })
             setProducts(ext_drip_array)
+            setLoadingProducts(false);
         };
         fetchProducts()
-        console.log(`Tihihiii ${product.slice(0, 5)[0]}`)
     }, []);
 
 
 
-    const addToCart = (item, operation=null) => {
+    const addToCart = (item, operation = null) => {
         setCart((prevCart) => {
             const existing_product = prevCart.find(
                 (i) => i.id === item.id && i.size === item.size
             );
             if (existing_product) {
-                return prevCart.map((i) => 
-                    i.id === item.id && i.size === item.size ? (operation ? (operation === "add" ? {...i, quantity: i.quantity + 1} : {...i, quantity: Math.max(i.quantity - 1, 0)}) : item) : i
+                return prevCart.map((i) =>
+                    i.id === item.id && i.size === item.size ? (operation ? (operation === "add" ? { ...i, quantity: i.quantity + 1 } : { ...i, quantity: Math.max(i.quantity - 1, 0) }) : item) : i
                 ).filter(item => item.quantity > 0)
             }
             return [...prevCart, item];
@@ -61,8 +65,8 @@ export const CartProvider = ({ children }) => {
     const clear_cart = () => setCart([]);
 
     return (
-        <CartContext.Provider value={{ product, totalz, setTotalz, loader, setLoader, cart, setCart, addToCart, remove_from_cart, clear_cart, show_cart, setShowCart }}>
-            { children }
+        <CartContext.Provider value={{ product, totalz, setTotalz, loader, setLoader, cart, setCart, addToCart, remove_from_cart, clear_cart, show_cart, setShowCart, loadingProducts }}>
+            {children}
         </CartContext.Provider>
     );
 };
