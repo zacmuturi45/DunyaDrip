@@ -1,43 +1,17 @@
 // components/pages/Orders.jsx
 "use client"
 
-import { supabase_client } from "@/utils/supabase/clint";
-import { useAuth } from "../contexts/auth_context";
-import { useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import SectionLoader from "../components/section_loader";
+import { useOrders } from "../contexts/my_orders_context";
+import SuccessCard from "../components/success_card";
+import { FlagContext } from "../contexts/flagcontext";
 
 export default function Orders() {
-  const { user_email } = useAuth();
-  const supabase = supabase_client();
-  const [orders, setOrders] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { orders, loading } = useOrders();
   const [expanded, setExpanded] = useState(null)
+  const { location } = useContext(FlagContext);
 
-  useEffect(() => {
-    if (!user_email) return;
-    console.log(`About to fetch orders for ${user_email}`)
-
-    setLoading(true);
-
-    const fetchOrders = async () => {
-      const { data, error } = await supabase
-        .from('client_orders')
-        .select('*')
-        .eq('customer_email', user_email);
-
-        console.log(`FETCHED ORDERS AND THE RESULT IS ${{data, error}}`)
-
-      if (error) {
-        console.error(error);
-        setOrders([]);
-      } else {
-        setOrders(data);
-      }
-
-      setLoading(false);
-    };
-    fetchOrders();
-  }, [user_email])
 
   const toggleExpand = (id) => {
     setExpanded(expanded === id ? null : id);
@@ -53,51 +27,51 @@ export default function Orders() {
         <div>
           <div className="ordersPage">
             <h2>My Orders</h2>
-            <table className="ordersTable">
-              <thead>
-                <tr>
-                  <th>Order ID</th>
-                  <th>Email</th>
-                  <th>Item Count</th>
-                  <th>Total</th>
-                  <th>Date</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                {orders.map((order) => {
-                  const date = new Date(order.created_at * 1000).toLocaleDateString("en-GB");
-                  return (
-                    <tr key={order.id}>
-                      <td>{order.id.slice(0, 6)}...</td>
-                      <td>{order.customer_email}</td>
-                      <td>{order.items.length}</td>
-                      <td>{(order.total / 100).toFixed(2)}</td>
-                      <td>{date}</td>
-                      <td>
-                        <button onClick={() => toggleExpand(order.id)}>
-                          {expanded === order.id ? "Hide" : "Details"}
-                        </button>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+            <div className="table_container">
+              <table className="ordersTable">
+                <thead>
+                  <tr>
+                    <th>Order ID</th>
+                    <th>Email</th>
+                    <th>Item Count</th>
+                    <th>Total</th>
+                    <th>Date</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {orders.map((order) => {
+                    const date = new Date(order.created_at).toLocaleDateString("en-GB");
+                    console.log(`DATE IZZZZZZZZZZ ${date}`)
+                    return (
+                      <tr key={order.id}>
+                        <td>{order.id.slice(0, 6)}...</td>
+                        <td>{order.customer_email}</td>
+                        <td>{order.items.length}</td>
+                        <td>{(order.total / 100).toFixed(2)}</td>
+                        <td>{date}</td>
+                        <td>
+                          <button onClick={() => toggleExpand(order.id)}>
+                            {expanded === order.id ? "Hide" : "Details"}
+                          </button>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
 
             {expanded && (
-              <div className="ordersDetails">
+              <div className="orderDetails">
                 <h3>Order Details</h3>
-                <ul>
+                <div className="order_detail_card">
                   {orders
                     .find((o) => o.id === expanded)
                     .items.map((item, index) => (
-                      <li key={index}>
-                        <strong>{item.name}</strong> - Size: {item.size}, Qty: {item.quantity}, Price: £
-                        {(item.amount / 100).toFixed(2)}
-                      </li>
+                      <SuccessCard cart_item_price={`${location.currency} ${(item.amount / 100).toFixed(2)}`} cart_item_quantity={item.quantity} cart_item_size={item.size} cart_item_title={item.name} key={index} identifier={index} />
                     ))}
-                </ul>
+                </div>
               </div>
             )}
           </div>

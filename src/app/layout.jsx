@@ -8,6 +8,7 @@ import { AuthProvider } from "./contexts/auth_context";
 import { Toaster } from "react-hot-toast";
 import { cookies } from "next/headers";
 import { createServerClient } from "@supabase/ssr";
+import { OrderProvider } from "./contexts/my_orders_context";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -42,12 +43,14 @@ export default async function RootLayout({ children }) {
         <FlagProvider>
           <CartProvider>
             <AuthProvider initialSession={session} initialUser={user}>
-              <div className="layout-root">
-                <Navbar />
-                <CartPage />
-                <main>{children} <Toaster /></main>
-                <Footer />
-              </div>
+              <OrderProvider>
+                <div className="layout-root">
+                  <Navbar />
+                  <CartPage />
+                  <main>{children} <Toaster /></main>
+                  <Footer />
+                </div>
+              </OrderProvider>
             </AuthProvider>
           </CartProvider>
         </FlagProvider>

@@ -4,11 +4,13 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "../contexts/auth_context";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { useOrders } from "../contexts/my_orders_context";
 
 export default function Profile() {
   const { display_name, setShowNav, last_name, user_email, setActiveSection } = useAuth(); 
   const router = useRouter();
   const [loading, setLoading] = useState(false)
+  const { orders }  = useOrders();
 
   const handleSignOut = async () => {
     setLoading(true)
@@ -54,12 +56,20 @@ export default function Profile() {
 
       <div className="templates">
         <div className="temp-title">
-          <h4>Orders(0)</h4>
-          <h4 onClick={() => router.push("/drip")}>Shop Now</h4>
+          <h4>{`Orders (${orders.length})`}</h4>
+          <h4 onClick={() => setActiveSection('orders')}>My Orders</h4>
         </div>
         <div className="temp-text">
-          <p>You do not have any orders for now.</p>
+          {
+            orders.length > 0 ? (<p>
+              {`You have ${orders.length} orders.`}
+            </p>) : (
+              <>
+              <p>You do not have any orders for now.</p>
           <p>All your orders will be displayed here.</p>
+              </>
+            )
+          }
         </div>
       </div>
 
