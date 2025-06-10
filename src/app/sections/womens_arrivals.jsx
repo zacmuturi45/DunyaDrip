@@ -45,7 +45,7 @@ export default function WomensArrivals() {
                     </div>
                     <div className="featured-main-title-navigation">
                         <Image src={supabse_image_path('/arrow.svg')} width={20} height={20} alt='arrow-svg' onClick={prevSlide} />
-                        <Image src={supabse_image_path('/arrow')} width={20} height={20} alt='arrow-svg' onClick={(nextSlide)} />
+                        <Image src={supabse_image_path('/arrow.svg')} width={20} height={20} alt='arrow-svg' onClick={(nextSlide)} />
                     </div>
                 </div>
                 <div className="featured-cards">

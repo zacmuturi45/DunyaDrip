@@ -3591,9 +3591,30 @@ body {
   .success_product_main .success_product_div {
     margin-right: 1rem;
   }
+  .success-page {
+    padding-top: 75px;
+  }
+  .success-page .success-container .success_one .green_tick {
+    transform: scale(0.85);
+  }
+  .success-page .success-container .success_one .success_one_detail p {
+    font-size: 1.2rem;
+  }
+  .success-page .success-container .success_one .success_one_detail p:nth-of-type(2) {
+    font-size: 0.8rem;
+  }
   .success-page .success-container .success_detail {
     width: 350px;
     padding: 0.5rem;
+  }
+  .success-page .success-container .success_detail .totals p {
+    font-size: 0.8rem;
+  }
+  .success-page .success-container .success_detail .totals p span {
+    font-size: 0.8rem;
+  }
+  .success-page .success-container .success_detail .totals .total_price button {
+    transform: scale(0.9);
   }
   .drip-main .drip-container .drip-cards > * {
     margin: 0 auto;

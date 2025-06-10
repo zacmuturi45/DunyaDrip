@@ -6,6 +6,7 @@ import { FlagContext } from '../contexts/flagcontext'
 import { useRouter } from 'next/navigation';
 import { finger, size_array } from '../../../public/imports';
 import { useCart } from '../contexts/cart_context';
+import supabse_image_path from '@/utils/supabase/supabse_image_path';
 
 export default function DripCard({ drip_image, product_name, product_price, index, id }) {
     const { location } = useContext(FlagContext);
@@ -58,7 +59,7 @@ export default function DripCard({ drip_image, product_name, product_price, inde
                                 show_finger && (
                                     <div className="size_alert">
                                         <div className="thumbs-down">
-                                            <Image src={finger} width={20} height={20} alt='finger-svg' className='floating' />
+                                            <Image src={supabse_image_path('/finger.svg')} width={20} height={20} alt='finger-svg' className='floating' />
                                         </div>
                                         Please select size.
                                     </div>

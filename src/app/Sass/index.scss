@@ -4501,10 +4501,37 @@ body {
     }
 
     .success-page {
+        padding-top: 75px;
         .success-container {
+            .success_one {
+                .green_tick {
+                    transform: scale(0.85);
+                }
+                .success_one_detail {
+                    p {
+                        font-size: 1.2rem;
+                    }
+                    p:nth-of-type(2) {
+                        font-size: 0.8rem;
+                    }
+                }
+            }
             .success_detail {
                 width: 350px;
                 padding: .5rem;
+                .totals {
+                    p {
+                        font-size: .8rem;
+                        span {
+                            font-size: .8rem;
+                        }
+                    }
+                    .total_price {
+                        button {
+                            transform: scale(0.9);
+                        }
+                    }
+                }
             }
         }
     }
