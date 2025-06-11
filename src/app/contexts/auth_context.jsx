@@ -1,6 +1,7 @@
 'use client';
 
 import { createClient } from '@/utils/supabase/client';
+import { supabase_client } from '@/utils/supabase/clint';
 import { createContext, useContext, useEffect, useState } from 'react';
 
 const AuthContext = createContext();
@@ -11,13 +12,33 @@ export function AuthProvider({ children, initialSession = null, initialUser = nu
   const [shownav, setShowNav] = useState(false);
   const supabase = createClient();
   const [activeSection, setActiveSection] = useState('profile');
+  const [profile, setProfile] = useState(null);
 
 
-  const display_name = user?.user_metadata?.first_name && user?.user_metadata?.last_name
-    ? `${user.user_metadata.first_name}`
+  const display_name = profile?.first_name
+    ? `${profile.first_name}`
     : user?.email;
-  const last_name = user?.user_metadata?.last_name
-  const user_email = user?.email
+  const last_name = profile?.last_name;
+  const user_email = user?.email;
+
+
+  const fetchProfile = async (userId) => {
+    if (!userId) {
+      setProfile(null);
+      return;
+    }
+    const { data, error } = await supabase
+    .from('profiles')
+    .select('first_name, last_name')
+    .eq('unique_identifier', userId)
+    .single();
+    if (!error) {
+      setProfile(data);
+      
+    } else {
+      setProfile(null)
+    }
+  };
 
   const refreshUser = async () => {
     const { data: { session } } = await supabase.auth.getSession();
@@ -29,9 +50,11 @@ export function AuthProvider({ children, initialSession = null, initialUser = nu
         setUser(userData.user);
       } else {
         setUser(null);
+        setProfile(null)
       }
     } else {
       setUser(null);
+      setProfile(null);
     }
   };
 
@@ -49,11 +72,14 @@ export function AuthProvider({ children, initialSession = null, initialUser = nu
         const { data: userData, error } = await supabase.auth.getUser();
         if (!error) {
           setUser(userData.user);
+          fetchProfile(userData.user.id)
         } else {
           setUser(null);
+          setProfile(null);
         }
       } else {
         setUser(null);
+        setProfile(null);
       }
     });
 
@@ -61,7 +87,7 @@ export function AuthProvider({ children, initialSession = null, initialUser = nu
   }, []);
 
   return (
-    <AuthContext.Provider value={{ refreshUser, user_email, session, user, shownav, setShowNav, display_name, last_name, activeSection, setActiveSection }}>
+    <AuthContext.Provider value={{ profile, refreshUser, user_email, session, user, shownav, setShowNav, display_name, last_name, activeSection, setActiveSection }}>
       {children}
     </AuthContext.Provider>
   );

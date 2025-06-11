@@ -46,6 +46,17 @@ export async function POST(request) {
     if (error) {
       return NextResponse.json({ error: error.message }, { status: 400 })
     }
+
+    if (data.user) {
+      const { id } = data.user
+      const { error: profileError } = await supabase
+      .from('profiles')
+      .insert([{ unique_identifier: id, first_name: firstName, last_name: lastName }])
+
+      if(profileError) {
+        return NextResponse.json({ error: profileError.message }, { status: 500 })
+      }
+    }
   
     return NextResponse.json({ user: data.user })
   } catch (err) {

@@ -5,10 +5,10 @@ import { useAuth } from '../contexts/auth_context';
 import supabse_image_path from '@/utils/supabase/supabse_image_path';
 
 const sections = [
-  { key: 'profile', label: 'Account', img: "white_profile.svg" },
+  { key: 'account', label: 'Account', img: "account.svg" },
   { key: 'orders', label: 'Orders', img: "white_bag.svg" },
   { key: 'addresses', label: 'Addresses', img: "address.svg" },
-  { key: 'payments', label: 'Payments', img: "pay.svg" },
+  { key: 'profile_settings', label: 'Profile', img: "white_profile.svg" },
   { key: 'settings', label: 'Settings', img: "settings.svg"}
 ];
 

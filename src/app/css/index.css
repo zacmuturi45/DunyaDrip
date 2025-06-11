@@ -3186,6 +3186,79 @@ body {
   }
 }
 
+.profile-form {
+  max-width: 400px;
+  margin: 2.5rem auto;
+  padding: 2rem 2.5rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.07);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.profile-form h2 {
+  margin-bottom: 1rem;
+  font-size: 1.6rem;
+  text-align: center;
+  color: #363636;
+  font-family: "Inter";
+  letter-spacing: 2px;
+}
+.profile-form__group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.profile-form__group label {
+  font-size: 1rem;
+  color: #666;
+  font-weight: 500;
+}
+.profile-form__group input {
+  padding: 0.7rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #fafafa;
+  transition: border 0.2s;
+}
+.profile-form__group input:focus {
+  border-color: #6c63ff;
+  outline: none;
+}
+.profile-form button {
+  padding: 0.8rem 0;
+  background: #000000;
+  color: #fff;
+  font-size: 1.05rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+.profile-form button:hover:not(:disabled) {
+  background: #202020;
+}
+.profile-form button:disabled {
+  background: #666666;
+  cursor: not-allowed;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+  .profile-form {
+    padding: 1rem 0.7rem;
+    max-width: 95%;
+  }
+  .profile-form h2 {
+    font-size: 1.2rem;
+  }
+  .profile-form button {
+    font-size: 1rem;
+  }
+}
 .success_product_main {
   width: 500px;
   padding: 1rem;
@@ -3616,6 +3689,9 @@ body {
 }
 
 @media screen and (max-width: 580px) {
+  .profile-form {
+    transform: scale(0.85);
+  }
   .success_product_main {
     width: 350px;
     box-sizing: border-box;

@@ -3,10 +3,12 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useAuth } from "../contexts/auth_context";
+import { useRouter } from "next/navigation";
 
 export default function Settings() {
     const [loading, setLoading] = useState(false);
     const { setShowNav } = useAuth();
+    const router = useRouter();
 
     const handleDeleteAccount = async () => {
         const confirm = window.confirm("Are you sure you want to delete your account? This action cannot be undone.");

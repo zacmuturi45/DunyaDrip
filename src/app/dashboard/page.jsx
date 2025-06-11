@@ -11,7 +11,7 @@ const Orders = lazy(() => import('../sections/orders'));
 const Profile = lazy(() => import('../sections/profile'));
 const Addresses = lazy(() => import('../sections/addresses'));
 const Newsletter = lazy(() => import('../sections/newsletter'));
-const Payments = lazy(() => import('../sections/payments'));
+const ProfileSettings = lazy(() => import('../sections/profile_settings'));
 const Settings = lazy(() => import('../sections/settings'));
 
 export default function Dashboard() {
@@ -24,13 +24,13 @@ export default function Dashboard() {
 
   const renderSection = () => {
     switch (activeSection) {
-      case 'profile': return <Profile />;
+      case 'account': return <Profile />;
       case 'orders': return <Orders />;
       case 'addresses': return <Addresses />;
       case 'newsletter': return <Newsletter />;
-      case 'payments': return <Payments />;
+      case 'profile_settings': return <ProfileSettings />;
       case 'settings': return <Settings />;
-      default: return <Orders />;
+      default: return <Profile />;
     }
   };
 
