@@ -15,9 +15,12 @@ export function AuthProvider({ children, initialSession = null, initialUser = nu
   const [profile, setProfile] = useState(null);
 
 
+  // const displa_name = user?.user_metadata?.first_name && user?.user_metadata?.last_name
+  // ? `${user.user_metadata.first_name}`
+  // : user?.email;
   const display_name = profile?.first_name
     ? `${profile.first_name}`
-    : user?.email;
+    : user?.user_metadata?.first_name
   const last_name = profile?.last_name;
   const user_email = user?.email;
 
@@ -34,7 +37,7 @@ export function AuthProvider({ children, initialSession = null, initialUser = nu
     .single();
     if (!error) {
       setProfile(data);
-      
+      window.location.reload();
     } else {
       setProfile(null)
     }
