@@ -21,7 +21,7 @@ export function AuthProvider({ children, initialSession = null, initialUser = nu
   const display_name = profile?.first_name
     ? `${profile.first_name}`
     : user?.user_metadata?.first_name
-  const last_name = profile?.last_name;
+  const last_name = profile?.last_name || user?.user_metadata?.last_name;
   const user_email = user?.email;
 
 
