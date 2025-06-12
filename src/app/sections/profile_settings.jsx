@@ -50,7 +50,7 @@ export default function EditProfileForm() {
         toast.error("Failed to save profile.");
       } else {
         toast.success("Profile updated successfully!");
-        window.location.reload();
+        // window.location.reload();
       }
     } catch (err) {
       toast.error("An error occurred while saving profile.");

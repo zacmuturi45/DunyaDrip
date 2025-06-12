@@ -39,9 +39,9 @@ export default function Settings() {
         }
       };
     return (
-        <div className="page">
+        <div className="settings-page">
             <h2>Settings</h2>
-            <p>Change your account settings</p>
+            <p>Warning: This action is irreversible.</p>
             <button onClick={handleDeleteAccount} disabled={loading}>
                 {loading ? "Deleting..." : "Delete Account"}
             </button>
