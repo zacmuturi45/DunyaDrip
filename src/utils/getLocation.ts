@@ -1,3 +1,4 @@
+import { countryCurrencyMap } from "../../public/imports";
 import supabse_image_path from "./supabase/supabse_image_path";
 
 interface IpWhoIsResponse {
@@ -30,19 +31,19 @@ export const getLocation = async () => {
             };
         }
 
-        const [ipwhoRes, ipapiRes] = await Promise.all([
+        const [ipwhoRes] = await Promise.all([
             fetch("https://ipwho.is/"),
-            fetch("https://ipapi.co/json/")
         ]);
 
         // Use type assertion to tell TS these are our expected shapes (or empty objects)
         const ipwhoData = (ipwhoRes.ok ? await ipwhoRes.json() : {}) as IpWhoIsResponse;
-        const ipapiData = (ipapiRes.ok ? await ipapiRes.json() : {}) as IpApiCoResponse;
+        const found_country = ipwhoData.country || "United Kingodm"
+        const found_currency = countryCurrencyMap[found_country]
 
         return {
-            country_name: ipwhoData.country || ipapiData.country_name || "UK",
-            currency: ipapiData.currency || ipwhoData.currency || "GBP",
-            timezone: ipwhoData.timezone?.abbr || ipapiData.timezone || getBrowserTimezone(),
+            country_name: ipwhoData.country || "UK",
+            currency: found_currency || "GBP",
+            timezone: ipwhoData.timezone?.abbr || getBrowserTimezone(),
             flag_image: ipwhoData.flag?.img || uk_flag
         };
     } catch (error) {

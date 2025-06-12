@@ -14,7 +14,11 @@ export const OrderProvider = ({ children }) => {
     const supabase = supabase_client();
 
     useEffect(() => {
-        if (!user_email) return;
+        if (!user_email) {
+            setOrders([]);
+            setLoading(false);
+            return;
+        }
 
         setLoading(true);
 

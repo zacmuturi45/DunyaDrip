@@ -15,13 +15,11 @@ export function AuthProvider({ children, initialSession = null, initialUser = nu
   const [profile, setProfile] = useState(null);
 
 
-  // const displa_name = user?.user_metadata?.first_name && user?.user_metadata?.last_name
-  // ? `${user.user_metadata.first_name}`
-  // : user?.email;
+  
   const display_name = profile?.first_name
     ? `${profile.first_name}`
-    : user?.user_metadata?.first_name
-  const last_name = profile?.last_name || user?.user_metadata?.last_name;
+    : user?.user_metadata.first_name;
+  const last_name = profile?.last_name ? profile.last_name : user?.user_metadata.last_name;
   const user_email = user?.email;
 
 
@@ -37,7 +35,6 @@ export function AuthProvider({ children, initialSession = null, initialUser = nu
     .single();
     if (!error) {
       setProfile(data);
-      window.location.reload();
     } else {
       setProfile(null)
     }
@@ -62,6 +59,11 @@ export function AuthProvider({ children, initialSession = null, initialUser = nu
   };
 
   useEffect(() => {
+    if (user?.id) fetchProfile(user.id);
+    else setProfile(null);
+  }, [user]);
+
+  useEffect(() => {
     const init = async () => {
       await refreshUser();
     };
@@ -75,7 +77,6 @@ export function AuthProvider({ children, initialSession = null, initialUser = nu
         const { data: userData, error } = await supabase.auth.getUser();
         if (!error) {
           setUser(userData.user);
-          fetchProfile(userData.user.id)
         } else {
           setUser(null);
           setProfile(null);
