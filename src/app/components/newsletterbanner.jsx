@@ -1,16 +1,17 @@
 import Image from 'next/image'
 import React from 'react'
 import { carl_main, hero1, hero3, hero4, hero5, x } from '../../../public/imports'
+import supabse_image_path from '@/utils/supabase/supabse_image_path'
 
 export default function NewsLetter({ setShowBanner }) {
     return (
         <div className='newsletter-main'>
             <div className="newsletter-container">
                 <div className='image-div'>
-                    <Image src={hero5} width={100} height={100} unoptimized alt='newsletter-main' className='news-image' />
+                    <Image src={supabse_image_path('/summer.webp')} width={100} height={100} unoptimized alt='newsletter-main' className='news-image' />
                 </div>
                 <div className='newsletter-text'>
-                    <Image src={x} width={20} height={20} alt='x-svg' className='x-svg' onClick={() => setShowBanner(false)} />
+                    <Image src={supabse_image_path('/x.svg')} width={20} height={20} alt='x-svg' className='x-svg' onClick={() => setShowBanner(false)} />
                     <h2>Newsletter Signup</h2>
                     <p>Sign up for exclusive offers, promotions, new arrivals, collaborations and much more - straight to your inbox.</p>
                     <div className="input-box">
