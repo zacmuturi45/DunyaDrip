@@ -29,12 +29,14 @@ export async function POST(request) {
                 items: JSON.stringify(items),
             },
             success_url: `${request.headers.get('origin')}/success?session_id={CHECKOUT_SESSION_ID}`,
-            cancel_url: `${request.headers.get('origin')}/cancel`,
-        });
+            cancel_url: `${request.headers.get('origin')}/cancel?session_id={CHECKOUT_SESSION_ID}`,        });
 
         return Response.json({ id: session.id });
     } catch (err) {
         console.error(err);
-        return new Response('Stripe session creation failed', { status: 500 });
+        return new Response(JSON.stringify({ error: 'Stripe session creation failed' }), {
+            status: 500,
+            headers: { "Content Type": "application/json"}
+        });
     }
 }

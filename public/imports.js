@@ -28,6 +28,7 @@ export const calculateTimeLeft = () => {
 
 export { default as UK_flag } from "./flags/UK.svg";
 export { default as ukflag } from "./ukflag.svg";
+export { default as cancel } from "./cancel.svg";
 
 // Object mapping country names (as returned by ipwho.is) to ISO currency codes
 export const countryCurrencyMap = {

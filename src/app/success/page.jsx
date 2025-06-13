@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { FlagContext } from '../contexts/flagcontext';
 import { supabase_client } from '@/utils/supabase/clint';
 import supabse_image_path from '@/utils/supabase/supabse_image_path';
+import { useAuth } from '../contexts/auth_context';
 
 export default function SuccessPage() {
   const searchParams = useSearchParams();
@@ -17,6 +18,7 @@ export default function SuccessPage() {
   const router = useRouter();
   const [vat_value, setVatValue] = useState(0);
   const supabase = supabase_client();
+  const { user } = useAuth();
 
 
   useEffect(() => {
@@ -74,7 +76,7 @@ export default function SuccessPage() {
           </div>
           <div className="success_one_detail">
             <p>Thank you for your Purchase!</p>
-            <p>The order confirmation has been sent to <span>{sessionData.customer_email}</span></p>
+            <p>The order confirmation has been sent to <span>{user ? `${sessionData.customer_email}` : 'your email'}</span></p>
           </div>
         </div>
 

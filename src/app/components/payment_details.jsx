@@ -55,10 +55,17 @@ export default function Payment() {
                 },
                 body: JSON.stringify({
                     items,
-                    customer_email: user_email || 'Guest',
-                    customer_name: display_name || 'Guest',
+                    customer_email: user_email || undefined,
+                    customer_name: display_name || undefined,
                 }),
             });
+
+            if (!response.ok) {
+                const errorMsg = await response.json();
+                toast.error(errorMsg.error || "Checkout failed");
+                setIsProcessing(false);
+                return;
+            }
 
             const session = await response.json();
 
