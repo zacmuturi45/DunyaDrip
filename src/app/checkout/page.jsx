@@ -57,7 +57,7 @@ export default function CheckOut() {
                         <div className='checkout_payment_details'>
 
                             <div className="payment_form">
-                                <Payment />
+                                <Payment shippingDetails={checkoutForm} />
                             </div>
                         </div>
                     </div>
@@ -72,7 +72,7 @@ export default function CheckOut() {
                         <div className='checkout_div_two_title'>
                             <h1>Summary</h1>
 
-                            <div className="promo-code-section">
+                            {/* <div className="promo-code-section">
                                 <input
                                     type="text"
                                     className="promo-input"
@@ -94,7 +94,7 @@ export default function CheckOut() {
                                     Apply
                                 </button>
                                 {promoMessage && <p className="promo-message">{promoMessage}</p>}
-                            </div>
+                            </div> */}
 
                             <div className="summary">
                                 <div>
@@ -123,10 +123,6 @@ export default function CheckOut() {
                                         <CartProduct key={index} cart_image={item.drip_image} cart_item_title={item.product_name} cart_item_price={item.product_price} cart_item_size={item.size} id={item.id} cart_item_quantity={item.quantity} />
                                     ))
                                 }
-                            </div>
-                            <div className="legal_checkout_two">
-                                <p>Refund Policy</p>
-                                <p>Privacy Policy</p>
                             </div>
                         </div>
                     </div>

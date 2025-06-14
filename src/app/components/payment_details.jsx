@@ -2,25 +2,25 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { amex, diners, discover, elo, gpay, klarna, mastercard, paypal2, redirect_image, unionpay, visa } from "../../../public/imports";
 import { loadStripe } from "@stripe/stripe-js"
 import { useCart } from "../contexts/cart_context";
 import { useAuth } from "../contexts/auth_context";
 import toast from "react-hot-toast";
 import supabse_image_path from "@/utils/supabase/supabse_image_path";
+import PayPalButton from "./PaypalButton";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
 
 const paymentMethods = [
     { id: "credit_card", label: "Credit Card" },
     { id: "paypal", label: "Paypal" },
-    { id: "google_pay", label: "Google Pay" },
-    { id: "klarna", label: "Klarna" },
+    // { id: "google_pay", label: "Google Pay" },
+    // { id: "klarna", label: "Klarna" },
 ];
 
 
 
-export default function Payment() {
+export default function Payment({ shippingDetails }) {
     const [selectedPayment, setSelectedPayment] = useState("credit_card");
     const [useShippingAddress, setUseShippingAddress] = useState(true);
     const [showmore, setShowMore] = useState(false);
@@ -57,6 +57,7 @@ export default function Payment() {
                     items,
                     customer_email: user_email || undefined,
                     customer_name: display_name || undefined,
+                    shippingDetails,
                 }),
             });
 
@@ -83,6 +84,15 @@ export default function Payment() {
         }
     };
 
+    const handlePayPalSuccess = (details) => {
+        toast.success("Payment completed!");
+    };
+
+    const handlePayPalError = (err) => {
+        toast.error("Paypal payment failed!");
+        console.error(err);
+    };
+
 
     const handleChange = (e) => {
         let value = e.target.value.replace(/\D/g, "");
@@ -96,42 +106,48 @@ export default function Payment() {
         switch (selectedPayment) {
             case "credit_card":
                 return (
-                    <div className="payment-details">
-                        <div className="input-grid">
-                            <input type="text" placeholder="Cardholder Name" className="input" />
-                            <input type="text" placeholder="Card Number" className="input" />
-                            <input type="text" autoComplete="cc-exp" value={expiry} onChange={handleChange} placeholder="Expiry Date (MM/YY)" className="input" />
-                            <input type="text" placeholder="CVC" className="input" />
-                        </div>
-
-                        <div className="checkbox-wrapper">
-                            <input
-                                type="checkbox"
-                                id="billingAddress"
-                                checked={useShippingAddress}
-                                onChange={() => setUseShippingAddress(!useShippingAddress)}
-                            />
-                            <label htmlFor="billingAddress">Use shipping address as billing address</label>
-                        </div>
-
-                        {!useShippingAddress && (
-                            <div className="billing-form">
-                                <input type="text" placeholder="Billing Address Line 1" className="input" />
-                                <input type="text" placeholder="Billing Address Line 2" className="input" />
-                                <input type="text" placeholder="City" className="input" />
-                                <input type="text" placeholder="State" className="input" />
-                                <input type="text" placeholder="Postal Code" className="input" />
-                                <input type="text" placeholder="Country" className="input" />
-                            </div>
-                        )}
+                    <div className="redirect-message">
+                        <Image src={supabse_image_path('/cards.svg')} width={100} height={100} alt="redirect_image" className="redirect_image" />
+                        <p>Fast, secure checkout with all major credit and debit cards.</p>
                     </div>
+                    // <div className="payment-details">
+                    //     <div className="input-grid">
+                    //         <input type="text" placeholder="Cardholder Name" className="input" />
+                    //         <input type="text" placeholder="Card Number" className="input" />
+                    //         <input type="text" autoComplete="cc-exp" value={expiry} onChange={handleChange} placeholder="Expiry Date (MM/YY)" className="input" />
+                    //         <input type="text" placeholder="CVC" className="input" />
+                    //     </div>
+
+                    //     <div className="checkbox-wrapper">
+                    //         <input
+                    //             type="checkbox"
+                    //             id="billingAddress"
+                    //             checked={useShippingAddress}
+                    //             onChange={() => setUseShippingAddress(!useShippingAddress)}
+                    //         />
+                    //         <label htmlFor="billingAddress">Use shipping address as billing address</label>
+                    //     </div>
+
+                    //     {!useShippingAddress && (
+                    //         <div className="billing-form">
+                    //             <input type="text" placeholder="Billing Address Line 1" className="input" />
+                    //             <input type="text" placeholder="Billing Address Line 2" className="input" />
+                    //             <input type="text" placeholder="City" className="input" />
+                    //             <input type="text" placeholder="State" className="input" />
+                    //             <input type="text" placeholder="Postal Code" className="input" />
+                    //             <input type="text" placeholder="Country" className="input" />
+                    //         </div>
+                    //     )}
+                    // </div>
                 );
             case "paypal":
                 return (
-                    <div className="redirect-message">
-                        <Image src={redirect_image} width={100} height={100} alt="redirect_image" className="redirect_image" />
-                        <p>After clicking “Pay with Paypal”, you will be redirected to PayPal to complete your purchase securely.
-                        </p>
+                    <div className="paypal-section">
+                        <PayPalButton
+                            amount={cart.reduce((sum, item) => sum + item.product_price * item.quantity, 0)}
+                            onSuccess={handlePayPalSuccess}
+                            onError={handlePayPalError}
+                        />
                     </div>
                 );
             case "google_pay":
@@ -159,13 +175,13 @@ export default function Payment() {
 
         switch (selectedPayment) {
             case "credit_card":
-                buttonText = isProcessing ? "Processing..." : "Pay Now";
+                buttonText = isProcessing ? "Processing..." : "Pay with Card";
                 buttonClass = "pay-button black";
                 break;
-            case "paypal":
-                buttonText = isProcessing ? "Processing..." : "Pay with PayPal";
-                buttonClass = "pay-button paypal";
-                break;
+            // case "paypal":
+            //     buttonText = isProcessing ? "Processing..." : "Pay with PayPal";
+            //     buttonClass = "pay-button paypal";
+            //     break;
             case "google_pay":
                 buttonText = isProcessing ? "Processing..." : "Pay with Google Pay";
                 buttonClass = "pay-button googlepay";
@@ -261,7 +277,7 @@ export default function Payment() {
                 </div>
             ))}
 
-            <div className="button-wrapper">
+            <div className={selectedPayment === "paypal" ? "no_display" : "button-wrapper"}>
                 {renderButton()}
             </div>
 

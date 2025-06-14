@@ -9,6 +9,7 @@ import DripCard from '../components/drip_card';
 import { useCart } from '../contexts/cart_context';
 import Loader from '../components/loader';
 import supabse_image_path from '@/utils/supabase/supabse_image_path';
+import Spinner from '../components/spinner';
 
 export default function DripSlug() {
   const params = useParams();
@@ -188,7 +189,7 @@ export default function DripSlug() {
                     </div>
                   </div>
                   <div className="add_to_cart">
-                    <button onClick={() => handleAddToCart(selected_size.index)}>{loader ? <Loader /> : <>Add to Cart</>}</button>
+                    <button onClick={() => handleAddToCart(selected_size.index)}>{loader ? <Spinner /> : <>Add to Cart</>}</button>
                   </div>
                   <div className="one-details">
                     <h4>Description</h4>
