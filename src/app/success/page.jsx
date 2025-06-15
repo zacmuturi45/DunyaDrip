@@ -70,7 +70,6 @@ export default function SuccessPage() {
     <div className='success-page'>
       <div className="success-container">
         <div className='success_one'>
-          <Spinner />
           <div className="green_tick">
             <div className='green_one'>
               <Image src={supabse_image_path('/greentick.svg')} width={70} height={70} alt='green_check' className='greentick-circle' />

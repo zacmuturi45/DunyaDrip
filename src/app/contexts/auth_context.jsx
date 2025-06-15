@@ -1,7 +1,6 @@
 'use client';
 
 import { createClient } from '@/utils/supabase/client';
-import { supabase_client } from '@/utils/supabase/clint';
 import { createContext, useContext, useEffect, useState } from 'react';
 
 const AuthContext = createContext();
