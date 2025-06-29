@@ -15,6 +15,7 @@ export const CartProvider = ({ children }) => {
     const supabase = supabase_client()
     const [product, setProducts] = useState([]);
     const [loadingProducts, setLoadingProducts] = useState(true);
+    const [filteredProduct, setFilteredProduct] = useState([])
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -31,10 +32,16 @@ export const CartProvider = ({ children }) => {
                 return {
                     ...item,
                     id: 100 + index,
-                    image_url: item.image_url ? supabse_image_path(`/${item.image_url}`) : null
+                    image_url: item.image_url ? supabse_image_path(`/${item.image_url}`) : null,
+                    product_type: item.product_type,
+                    color: item.color,
+                    size: item.size,
+                    season: item.season,
+                    category: item.category,
                 };
             })
             setProducts(ext_drip_array)
+            setFilteredProduct(ext_drip_array)
             setLoadingProducts(false);
         };
         fetchProducts()
@@ -65,7 +72,7 @@ export const CartProvider = ({ children }) => {
     const clear_cart = () => setCart([]);
 
     return (
-        <CartContext.Provider value={{ product, totalz, setTotalz, loader, setLoader, cart, setCart, addToCart, remove_from_cart, clear_cart, show_cart, setShowCart, loadingProducts }}>
+        <CartContext.Provider value={{ product, totalz, setTotalz, loader, setLoader, cart, setCart, addToCart, remove_from_cart, clear_cart, show_cart, setShowCart, loadingProducts, filteredProduct, setFilteredProduct }}>
             {children}
         </CartContext.Provider>
     );

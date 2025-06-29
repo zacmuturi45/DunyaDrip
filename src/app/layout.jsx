@@ -9,6 +9,7 @@ import { Toaster } from "react-hot-toast";
 import { cookies } from "next/headers";
 import { createServerClient } from "@supabase/ssr";
 import { OrderProvider } from "./contexts/my_orders_context";
+import { SortProvider } from "./contexts/sort_context";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -27,7 +28,7 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
@@ -44,12 +45,14 @@ export default async function RootLayout({ children }) {
           <CartProvider>
             <AuthProvider initialSession={session} initialUser={user}>
               <OrderProvider>
-                <div className="layout-root">
-                  <Navbar />
-                  <CartPage />
-                  <main>{children} <Toaster /></main>
-                  <Footer />
-                </div>
+                <SortProvider>
+                  <div className="layout-root">
+                    <Navbar />
+                    <CartPage />
+                    <main>{children} <Toaster /></main>
+                    <Footer />
+                  </div>
+                </SortProvider>
               </OrderProvider>
             </AuthProvider>
           </CartProvider>

@@ -2,10 +2,11 @@
 
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import { extended_drip_array, plus } from "../../../public/imports";
+import { desert } from "../../../public/imports";
 import DripCard from "../components/drip_card";
 import { useCart } from "../contexts/cart_context";
 import supabse_image_path from "@/utils/supabase/supabse_image_path";
+import { useSort } from "../contexts/sort_context";
 
 export default function Drip() {
     // State to track the open drawers
@@ -21,10 +22,41 @@ export default function Drip() {
     const sort_array = ["Newest", "Oldest", "Price High to Low", "Price Low to High"];
     const [hide_sorts, setHideSorts] = useState(false)
     // State to track selected items (for checkmark visibility)
-    const [selectedItems, setSelectedItems] = useState({});
     const [limit, setLimit] = useState(25);
     const [isMobile, setIsMobile] = useState(false);
-    const { product } = useCart();
+    const { product, filteredProduct } = useCart();
+    const { filterOptions, selectedItems, handleFilterChange, product_type, filters, to_filter } = useSort();
+
+
+
+    const drip_filtered_products = product.filter(item => {
+        // First filter by category based on to_filter
+        const matchesCategory = to_filter === "All" || item.category === to_filter;
+
+        // Then apply the other filters
+        const matchesProductType = filters.product_type.length === 0 || filters.product_type.includes(item.product_type);
+        const matchesColor = filters.color.length === 0 || filters.color.some(color => item.color.includes(color));
+        const matchesSize = filters.size.length === 0 || filters.size.some(size => item.size.includes(size));
+        const matchesSeason = filters.season.length === 0 || filters.season.some(season => item.season.includes(season));
+
+        return matchesCategory && matchesProductType && matchesColor && matchesSize && matchesSeason;
+    })
+        .sort((a, b) => {
+            if (sorts === "Newest") {
+                return new Date(b.created_at) - new Date(a.created_at);
+            }
+            if (sorts === "Oldest") {
+                return new Date(a.created_at) - new Date(b.created_at);
+            }
+            if (sorts === "Price Low to High") {
+                return a.price - b.price;
+            }
+            if (sorts === "Price High to Low") {
+                return b.price - a.price;
+            }
+            return 0;
+        })
+
 
     useEffect(() => {
         const handleResize = () => {
@@ -66,46 +98,6 @@ export default function Drip() {
     }
 
     // Data for filter sections
-    const filterOptions = [
-        {
-            title: "Product Type",
-            drawerKey: "drawer1",
-            options: [
-                "Chino Shorts",
-                "Summer Shorts",
-                "Denim Shorts",
-                "Swim Shorts",
-                "Casual Shorts",
-                "Trousers",
-                "Tracksuits",
-                "Casual Trousers",
-            ],
-        },
-        {
-            title: "Color",
-            drawerKey: "drawer2",
-            options: ["Black", "White", "Navy", "Beige", "Grey", "Olive"],
-            id: "cl"
-        },
-        {
-            title: "Size",
-            drawerKey: "drawer3",
-            options: ["XS", "S", "M", "L", "XL", "XXL"],
-            id: "sz"
-        },
-        {
-            title: "Price",
-            drawerKey: "drawer4",
-            options: ["Under  200", " 2,00 - 500", " 500 - 1000", "Above  1000"],
-            id: "prc"
-        },
-        {
-            title: "Season",
-            drawerKey: "drawer5",
-            options: ["Spring", "Summer", "Autumn", "Winter"],
-            id: "szn"
-        },
-    ];
 
     // Function to toggle drawer visibility
     const openDrawer = (drawerKey) => {
@@ -115,19 +107,12 @@ export default function Drip() {
         }));
     };
 
-    // Function to toggle checkmark visibility
-    const toggleCheckmark = (option) => {
-        setSelectedItems((prev) => ({
-            ...prev,
-            [option]: !prev[option],
-        }));
-    };
 
     const limit_func = () => {
-        if (limit + 25 <= extended_drip_array.length - 1) {
+        if (limit + 25 <= drip_filtered_products.length - 1) {
             setLimit(limit + 25)
         } else {
-            setLimit(extended_drip_array.length - 1)
+            setLimit(drip_filtered_products.length - 1)
         }
         // limit + 25 <= extended_drip_array.length - 1 ? setLimit(limit + 25) :  
     }
@@ -146,8 +131,7 @@ export default function Drip() {
             <div className="drip-container">
                 <div className="drip-header">
                     <div className="title">
-                        <h1>Trousers & Shorts</h1>
-                        <p>Explore premium men&apos;s outerwear, designed for the modern man, seeking an edge to accentuate his bold persona.</p>
+                        <h1>{`${to_filter}'s ${product_type}`}</h1>
                     </div>
                     <div className="header-filters">
                         <div className="filter-by" onMouseEnter={() => handleMouseEnter("Filters")} onMouseLeave={() => handleMouseLeave("Filters")} onClick={() => handleClick("Filters")}>
@@ -175,7 +159,7 @@ export default function Drip() {
                                         {/* Options List */}
                                         <div className={hideDrawer[drawerKey] ? "one-parameters" : "hide-parameter"}>
                                             {options.map((option) => (
-                                                <p key={option} onClick={() => toggleCheckmark(option)} style={{ cursor: "pointer" }}>
+                                                <p key={option} onClick={() => handleFilterChange(title, option)} style={{ cursor: "pointer" }}>
                                                     <span>{selectedItems[option] ? "✅" : ""}</span> {option}
                                                 </p>
                                             ))}
@@ -204,19 +188,28 @@ export default function Drip() {
 
                 <div className="drip-cards">
                     {
-                        product.slice(0, limit).map((item, index) => (
+                        drip_filtered_products.slice(0, limit).map((item, index) => (
                             <DripCard id={item.id} drip_image={item.image_url} product_name={item.name} product_price={item.price} index={index} key={`drip_card_component${index}`} />
                         ))
                     }
                 </div>
 
-                <div className="limit-butt">
-                    {
-                        limit === product.length - 1 ? <button className="up-button" onClick={() => scrollToTop()}>Go Up</button> : <button className="limit-button" onClick={() => limit_func()}>
-                            Load more
-                        </button>
-                    }
-                </div>
+                {
+                    drip_filtered_products && drip_filtered_products.length > 0 ? (
+                        <div className="limit-butt">
+                            {
+                                limit === product.length - 1 ? <button className="up-button" onClick={() => scrollToTop()}>Go Up</button> : <button className="limit-button" onClick={() => limit_func()}>
+                                    Load more
+                                </button>
+                            }
+                        </div>
+                    ) : (
+                        <div className="desert">
+                            <Image src={desert} width={100} height={100} alt="desert" className="desert_img" />
+                            <h2>No Items</h2>
+                        </div>
+                    )
+                }
             </div>
         </div>
     );

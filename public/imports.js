@@ -6,6 +6,9 @@ import Colombia from "./flags/Colombia.svg";
 import South_Africa from "./flags/South_Africa.svg";
 import UK from "./flags/UK.svg";
 import Kenya from "./flags/Kenya.svg";
+import Germany from "./flags/germany.svg";
+import Netherlands from "./flags/netherlands.svg"
+import Belgium from "./flags/belgium.svg";
 
 const targetDate = new Date(Date.UTC(2025, 5, 25, 1, 0, 0)); // March 30, 2025, 01:00 AM UTC
 
@@ -14,21 +17,22 @@ export const calculateTimeLeft = () => {
 
     const difference = targetDate - now;
 
-    if (difference <=0) {
+    if (difference <= 0) {
         return { days: 0, hours: 0, minutes: 0, seconds: 0 };
     }
 
     return {
-        days: Math.floor(difference / (1000 * 60 * 60 * 24 )),
-        hours: Math.floor((difference / (1000 * 60 * 60)) % 24 ),
-        minutes: Math.floor((difference / (1000 * 60 )) % 60),
-        seconds: Math.floor((difference / (1000)) % 60 ),
+        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((difference / (1000 * 60)) % 60),
+        seconds: Math.floor((difference / (1000)) % 60),
     }
 }
 
 export { default as UK_flag } from "./flags/UK.svg";
 export { default as ukflag } from "./ukflag.svg";
 export { default as cancel } from "./cancel.svg";
+export { default as desert } from "./desert.svg";
 
 // Object mapping country names (as returned by ipwho.is) to ISO currency codes
 export const countryCurrencyMap = {
@@ -226,8 +230,8 @@ export const countryCurrencyMap = {
     "Yemen": "YER",
     "Zambia": "ZMW",
     "Zimbabwe": "ZWL"
-  };
-  
+};
+
 export const countryCodes = [
     { code: "+1", country: "USA/Canada" },
     { code: "+44", country: "United Kingdom" },
@@ -280,7 +284,7 @@ export const countryCodes = [
     { code: "+507", country: "Panama" },
     { code: "+51", country: "Peru" },
     { code: "+54", country: "Argentina" },
-  ];
+];
 
 // export { default as stripe } from "./stripe.svg";
 // export { default as klarna } from "./klarna.svg";
@@ -491,8 +495,8 @@ export const countries = [
     { country_value: "Yemen" },
     { country_value: "Zambia" },
     { country_value: "Zimbabwe" }
-  ];
-  
+];
+
 
 export const size_array = [
     "XS",
@@ -512,7 +516,7 @@ export const localTime = () => {
     const gmtSign = timeZoneOffset >= 0 ? '+' : '-';
     const gmtOffset = `${gmtSign}${Math.abs(timeZoneOffset)}`;
 
-    const formattedHours = hours >=10 ? hours : `0${hours}`
+    const formattedHours = hours >= 10 ? hours : `0${hours}`
     const formattedMinutes = minutes >= 10 ? minutes : `0${minutes}`
 
     const am_pm = hours >= 12 ? 'PM' : 'AM';
@@ -525,20 +529,18 @@ export const localTime = () => {
 
 
 export const newInArray = [
-    "Men's new in",
-    "Women's new in", 
-    "Kid's new in"
+    "Hoodies",
+    "Sweatpants",
+    "T-Shirts"
 ]
 
 export const men_clothing = [
-    "T-shirts",
-    "Sweatshirts",
-    "Coats",
-    "Chinos",
-    "Denim",
-    "Shirts",
-    "Shorts",
-    "Underwear"
+    "Hoodies",
+    "Sweaters",
+    "Sweatpants",
+    "Varsity Jackets",
+    "Leather Vests",
+    "T-Shirts",
 ]
 
 export const men_kicks = [
@@ -547,6 +549,11 @@ export const men_kicks = [
     "Shoes",
     "Slides",
     "Formal"
+]
+
+export const men_accessories = [
+    "Bags",
+    "Caps"
 ]
 
 export const accessories = [
@@ -559,15 +566,11 @@ export const accessories = [
 ]
 
 export const women_clothing = [
-    "Dresses",
-    "Tops",
-    "Blouses",
+    "Hoodies",
     "Sweaters",
-    "Jackets",
-    "Jeans",
-    "Skirts",
-    "Leggings",
-    "Lingerie"
+    "Sweatpants",
+    "Varsity Jackets",
+    "T-Shirts",
 ];
 
 export const women_kicks = [
@@ -579,13 +582,9 @@ export const women_kicks = [
 ];
 
 export const women_accessories = [
-    "Handbags",
-    "Earrings",
-    "Necklaces",
-    "Bracelets",
-    "Sunglasses",
-    "Hats",
-    "Scarves"
+    "Caps",
+    "Bags",
+    "Leggings",
 ];
 
 export const rep_clothing = [
@@ -644,36 +643,15 @@ export const kids_accessories = [
 ];
 
 export const flag_array = [
-    { flag_image: UK, country_name: "UK", currency: "GBP" },
-    { flag_image: South_Africa, country_name: "South Africa", currency: "ZAR" },
-    { flag_image: Taiwan, country_name: "Taiwan", currency: "TWD" },
-    { flag_image: France, country_name: "France", currency: "EUR" },
-    { flag_image: Egypt, country_name: "Egypt", currency: "EGP" },
-    { flag_image: Colombia, country_name: "Colombia", currency: "COP" },
-    { flag_image: USA, country_name: "United States", currency: "USD" },
-    { flag_image: Kenya, country_name: "Kenya", currency: "KES" },
-    { flag_image: UK, country_name: "UK", currency: "GBP" },
-    { flag_image: South_Africa, country_name: "South Africa", currency: "ZAR" },
-    { flag_image: Taiwan, country_name: "Taiwan", currency: "TWD" },
-    { flag_image: France, country_name: "France", currency: "EUR" },
-    { flag_image: Egypt, country_name: "Egypt", currency: "EGP" },
-    { flag_image: Colombia, country_name: "Colombia", currency: "COP" },
-    { flag_image: USA, country_name: "United States", currency: "USD" },
-    { flag_image: Kenya, country_name: "Kenya", currency: "KES" },
-    { flag_image: UK, country_name: "UK", currency: "GBP" },
-    { flag_image: South_Africa, country_name: "South Africa", currency: "ZAR" },
-    { flag_image: Taiwan, country_name: "Taiwan", currency: "TWD" },
-    { flag_image: France, country_name: "France", currency: "EUR" },
-    { flag_image: Egypt, country_name: "Egypt", currency: "EGP" },
-    { flag_image: Colombia, country_name: "Colombia", currency: "COP" },
-    { flag_image: USA, country_name: "United States", currency: "USD" },
-    { flag_image: Kenya, country_name: "Kenya", currency: "KES" },
-    { flag_image: UK, country_name: "UK", currency: "GBP" },
-    { flag_image: South_Africa, country_name: "South Africa", currency: "ZAR" },
-    { flag_image: Taiwan, country_name: "Taiwan", currency: "TWD" },
-    { flag_image: France, country_name: "France", currency: "EUR" },
-    { flag_image: Egypt, country_name: "Egypt", currency: "EGP" },
-    { flag_image: Colombia, country_name: "Colombia", currency: "COP" },
-    { flag_image: USA, country_name: "United States", currency: "USD" },
-    { flag_image: Kenya, country_name: "Kenya", currency: "KES" },
+  { flag_image: UK, country_name: "UK", currency: "GBP" },
+  { flag_image: South_Africa, country_name: "South Africa", currency: "ZAR" },
+  { flag_image: Taiwan, country_name: "Taiwan", currency: "TWD" },
+  { flag_image: France, country_name: "France", currency: "EUR" },
+  { flag_image: Egypt, country_name: "Egypt", currency: "EGP" },
+  { flag_image: Colombia, country_name: "Colombia", currency: "COP" },
+  { flag_image: USA, country_name: "United States", currency: "USD" },
+  { flag_image: Kenya, country_name: "Kenya", currency: "KES" },
+  { flag_image: Germany, country_name: "Germany", currency: "EUR" },
+  { flag_image: Netherlands, country_name: "Netherlands", currency: "EUR" },
+  { flag_image: Belgium, country_name: "Belgium", currency: "EUR" }
 ];

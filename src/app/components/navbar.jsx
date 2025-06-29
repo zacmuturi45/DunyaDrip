@@ -3,18 +3,18 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import '../css/index.css';
 import Image from 'next/image';
-import { accessories, flag_array, jacket, kids_accessories, kids_clothing, kids_kicks, men_clothing, men_kicks, newInArray, rep_accessories, rep_clothing, rep_footwear, shoe, shoe1, shoe2, shoe3, women_accessories, women_clothing, women_kicks, women_summer, x, youtube } from '../../../public/imports';
+import { accessories, flag_array, jacket, kids_accessories, kids_clothing, kids_kicks, men_accessories, men_clothing, men_kicks, newInArray, rep_accessories, rep_clothing, rep_footwear, shoe, shoe1, shoe2, shoe3, women_accessories, women_clothing, women_kicks, women_summer, x, youtube } from '../../../public/imports';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import UseScroll from './navscroll';
 import Cards from './cards';
-import { getLocation } from '@/utils/getLocation';
 import { FlagContext } from '../contexts/flagcontext';
 import FlagBoxes from './flagboxes';
 import ScrollingOffers from './scrollingoffers';
 import { useCart } from '../contexts/cart_context';
 import { useAuth } from '../contexts/auth_context';
 import supabse_image_path from '@/utils/supabase/supabse_image_path';
+import { useSort } from '../contexts/sort_context';
 
 
 export default function Navbar() {
@@ -23,13 +23,10 @@ export default function Navbar() {
     const [visible, setVisible] = useState(false);
     const [categories, setCategories] = useState(false);
     const [conditions, setConditions] = useState(false);
-    const [showProducts, setShowProducts] = useState(false);
-    const [showConditions, setShowConditions] = useState(false);
     const [showSearchPanel, setShowSearchPanel] = useState(false);
     const [newin, setNewin] = useState(false);
     const [men, setMen] = useState(false);
     const [rep, setRep] = useState(false);
-    const { shownav } = useAuth();
     const signin = supabse_image_path('/signin.svg');
     const [hide_drawer, setHideDrawer] = useState({
         drawer1: false,
@@ -63,7 +60,8 @@ export default function Navbar() {
     ]
 
     const { user, display_name } = useAuth();
-    console.log(`Ayyyyyy ${user?.user_metadata?.first_name}`)
+    const { setProductType, handleFilterChange, setExclusiveFilter } = useSort();
+    const { setFilteredProduct, product } = useCart();
 
 
     useEffect(() => {
@@ -96,6 +94,11 @@ export default function Navbar() {
         }));
     }
 
+    const handleClick = (item = null, category) => {
+        setExclusiveFilter(category, item);
+        router.push("/drip");
+    };
+
 
 
 
@@ -113,9 +116,9 @@ export default function Navbar() {
                                     <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' onClick={() => open_drawer("drawer1")} className={hide_drawer.drawer1 ? "rotate" : ""} />
                                 </div>
                                 <div className={hide_drawer.drawer1 ? "one-drawer" : "hide-drawer"}>
-                                    <p>Men&apos;s New In</p>
-                                    <p>Women&apos;s New In</p>
-                                    <p>Kid&apos;s New In</p>
+                                    <p>Hoodies</p>
+                                    <p>Sweatpants</p>
+                                    <p>T-Shirts</p>
                                 </div>
                             </div>
 
@@ -131,15 +134,16 @@ export default function Navbar() {
                                             <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' onClick={() => open_drawer("sub_drawer1d1")} style={hide_drawer.sub_drawer1d1 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
                                         </div>
                                         <div className={hide_drawer.sub_drawer1d1 ? "p-drawer" : "hide-drawer"}>
-                                            <p>T-shirts</p>
-                                            <p>Denim</p>
-                                            <p>Shorts</p>
-                                            <p>Chinos</p>
-                                            <p>Pants</p>
+                                            <p>Hoodies</p>
+                                            <p>Sweaters</p>
+                                            <p>Sweatpants</p>
+                                            <p>Varsity Jackets</p>
+                                            <p>Leather Vests</p>
+                                            <p>T-Shirts</p>
                                         </div>
                                     </div>
 
-                                    <div>
+                                    {/* <div>
                                         <div className="two-drawer">
                                             <p>Kicks</p>
                                             <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' onClick={() => open_drawer("sub_drawer1d2")} style={hide_drawer.sub_drawer1d2 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
@@ -151,7 +155,7 @@ export default function Navbar() {
                                             <p>Chinos</p>
                                             <p>Pants</p>
                                         </div>
-                                    </div>
+                                    </div> */}
 
                                     <div>
                                         <div className="two-drawer">
@@ -159,11 +163,8 @@ export default function Navbar() {
                                             <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' onClick={() => open_drawer("sub_drawer1d3")} style={hide_drawer.sub_drawer1d3 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
                                         </div>
                                         <div className={hide_drawer.sub_drawer1d3 ? "p-drawer" : "hide-drawer"}>
-                                            <p>T-shirts</p>
-                                            <p>Denim</p>
-                                            <p>Shorts</p>
-                                            <p>Chinos</p>
-                                            <p>Pants</p>
+                                            <p>Caps</p>
+                                            <p>Bags</p>
                                         </div>
                                     </div>
 
@@ -283,19 +284,18 @@ export default function Navbar() {
 
                             <div className="mobile-nav-links">
                                 <div className="mobile-nav-links-title">
-                                    <p>GIFT</p>
+                                    <p>BAGS</p>
                                     {/* <Image src={plus} width={15} height={15} alt='plus' /> */}
                                 </div>
                                 <div className="mobile-nav-links-detail"></div>
                             </div>
 
-                            <div className="mobile-nav-links">
+                            {/* <div className="mobile-nav-links">
                                 <div className="mobile-nav-links-title">
                                     <p>EYEWEAR</p>
-                                    {/* <Image src={plus} width={15} height={15} alt='plus' /> */}
                                 </div>
                                 <div className="mobile-nav-links-detail"></div>
-                            </div>
+                            </div> */}
                             <div className="mobile-nav-links">
                                 <div className="mobile-nav-links-title">
                                     <p>BRAND</p>
@@ -365,7 +365,7 @@ export default function Navbar() {
                                     user ? <Link className='next-link' href={"/dashboard"}><p>{`Welcome ${display_name}`}</p></Link> : <Link className='next-link' href={"/login-out"} onClick={() => setBurgerActive(!burgerActive)}><p>Login</p></Link>
                                 }</div>
                                 <div className="nav-footer-flag" onClick={() => setShowFlagBox(true)}>
-                                <Image src={location.flag_image} height={20} width={30} alt='flag' style={{borderRadius: "3px", overflow: "hidden"}} />
+                                    <Image src={location.flag_image} height={20} width={30} alt='flag' style={{ borderRadius: "3px", overflow: "hidden" }} />
                                     <p>{`${location.country_name}/${location.currency}`}</p>
                                 </div>
 
@@ -385,6 +385,9 @@ export default function Navbar() {
                         </div>
 
                     </div>
+
+                    {/* END OF MOBILE NAV SECTION */}
+
                     {
                         showSearchPanel && (
                             <div className="search-panel">
@@ -421,7 +424,7 @@ export default function Navbar() {
                                 <Image src={supabse_image_path('/x.svg')} height={20} width={20} alt='x-button' className='flag-x' onClick={() => setShowFlagBox(false)} />
                                 <h4 style={{ fontSize: ".7rem" }}>CURRENT LOCATION</h4>
                                 <FlagBoxes image={location.flag_image} country={location.country_name} currency={location.currency} />
-                                <p className='shipping-text'>{`You are currently shipping to ${location.country_name} and your order will be billed in (${location.currency})`}</p>
+                                <p className='shipping-text'>{`You are currently shipping to ${location.country_name}.`}</p>
                             </div>
 
                             <div className="flag-box-two">
@@ -452,16 +455,18 @@ export default function Navbar() {
                         <ScrollingOffers />
                     </div>
 
+                    {/* MAIN NAV SECTION */}
+
                     <div className="main-nav-content" id='main-nav'>
 
                         <div className={newin ? "newin" : "hide-newin"} onMouseEnter={() => handleMouseEnter(setNewin)} onMouseLeave={() => handleMouseLeave(setNewin)} >
                             <div className="newin-filter" onMouseEnter={() => handleMouseLeave(setNewin)}></div>
                             <div className="newin-container">
                                 <div className="newin-detail">
-                                    <h4 onClick={() => router.push("/drip")}>NEW IN</h4>
+                                    <h4>NEW IN</h4>
                                     {
                                         newInArray.map((item, index) => (
-                                            <p key={index}>{item}</p>
+                                            <p key={index} onClick={() => handleClick(item, "NEW IN")}>{item}</p>
                                         ))
                                     }
                                 </div>
@@ -479,6 +484,8 @@ export default function Navbar() {
 
                         </div>
 
+                        {/* FILTER IS USED HERE */}
+
                         <div className={men ? "men" : "hide-men"} onMouseEnter={() => handleMouseEnter(setMen)} onMouseLeave={() => handleMouseLeave(setMen)} >
                             <div className="men-filter" onMouseEnter={() => handleMouseLeave(setMen)}></div>
                             <div className="men-container">
@@ -487,16 +494,7 @@ export default function Navbar() {
                                     <h4>Clothing</h4>
                                     {
                                         men_clothing.map((item, index) => (
-                                            <p key={index}>{item}</p>
-                                        ))
-                                    }
-                                </div>
-
-                                <div className='men-clothing'>
-                                    <h4>Kicks</h4>
-                                    {
-                                        men_kicks.map((item, index) => (
-                                            <p key={index}>{item}</p>
+                                            <p key={index} onClick={() => handleClick(item, "Men")}>{item}</p>
                                         ))
                                     }
                                 </div>
@@ -504,8 +502,8 @@ export default function Navbar() {
                                 <div className='men-clothing'>
                                     <h4>Accessories</h4>
                                     {
-                                        accessories.map((item, index) => (
-                                            <p key={index}>{item}</p>
+                                        men_accessories.map((item, index) => (
+                                            <p key={index} onClick={() => handleClick(item, "ACCESSORIES")}>{item}</p>
                                         ))
                                     }
                                 </div>
@@ -515,13 +513,19 @@ export default function Navbar() {
                                         <Image src={supabse_image_path('/summer.webp')} width={100} height={100} unoptimized alt='summer-collection' className='summer-image' />
                                         <div className="summer-card-detail">
                                             <h4>Exclusive: Summer Collection 2025</h4>
-                                            <p>Shop Now</p>
+                                            <p onClick={() => {
+                                                handleFilterChange("Season", "Summer")
+                                                setProductType("SUMMER COLLECTION")
+                                                router.push("/drip")
+                                            }}>Shop Now</p>
                                         </div>
                                     </div>
                                 </div>
 
                             </div>
                         </div>
+
+                        {/* FILTER IS USED HERE */}
 
                         <div className={rep ? "rep" : "hide-rep"} onMouseEnter={() => handleMouseEnter(setRep)} onMouseLeave={() => handleMouseLeave(setRep)} >
                             <div className="rep-filter" onMouseEnter={() => handleMouseLeave(setRep)}></div>
@@ -623,25 +627,29 @@ export default function Navbar() {
                                     <h4>Clothing</h4>
                                     {
                                         women_clothing.map((item, index) => (
-                                            <p key={index}>{item}</p>
+                                            <p key={index} onClick={() => {
+                                                handleClick(item, "Women")
+                                            }}>{item}</p>
                                         ))
                                     }
                                 </div>
 
-                                <div className='women-clothing'>
+                                {/* <div className='women-clothing'>
                                     <h4>Kicks</h4>
                                     {
                                         women_kicks.map((item, index) => (
                                             <p key={index}>{item}</p>
                                         ))
                                     }
-                                </div>
+                                </div> */}
 
                                 <div className='women-clothing'>
                                     <h4>Accessories</h4>
                                     {
                                         women_accessories.map((item, index) => (
-                                            <p key={index}>{item}</p>
+                                            <p key={index} onClick={() => {
+                                                handleClick(item, "Women")
+                                            }}>{item}</p>
                                         ))
                                     }
                                 </div>
@@ -666,8 +674,8 @@ export default function Navbar() {
                             </div>
 
                             <div className='nav-tier2-one' onClick={() => setShowFlagBox(true)}>
-                                <Image src={location.flag_image} height={20} width={30} alt='flag' style={{borderRadius: "3px", overflow: "hidden"}} />
-                                <p>{`${location.country_name}/${location.currency}`}</p>
+                                <Image src={location.flag_image} height={20} width={30} alt='flag' style={{ borderRadius: "3px", overflow: "hidden" }} />
+                                <p>{`${location.country_name}`}</p>
                             </div>
 
                             <div className='nav-tier2-two'>
@@ -678,7 +686,7 @@ export default function Navbar() {
                             <div className='nav-tier2-three'>
                                 <div className='nav-tier2-login'>
                                     {
-                                        user ? <Link href={"/dashboard"} style={{textDecoration: "none"}}><Image src={signin} width={25} height={25} alt='signin' /></Link> : <Link className='next-link' href={"/login-out"}><p>Login</p></Link>
+                                        user ? <Link href={"/dashboard"} style={{ textDecoration: "none" }}><Image src={signin} width={25} height={25} alt='signin' /></Link> : <Link className='next-link' href={"/login-out"}><p>Login</p></Link>
                                     }
                                 </div>
                                 <div className='nav-tier2-search'><Image src={supabse_image_path('/search.svg')} height={25} width={25} alt='search-svg' onClick={() => setShowSearchPanel(true)} /></div>
@@ -696,13 +704,13 @@ export default function Navbar() {
                                 <p>NEW IN</p>
                                 <div className="indicator"></div>
                             </Link>
-                            <Link href="/shop" className='links' onMouseEnter={() => {
+                            <div className='links' onMouseEnter={() => {
                                 handleMouseEnter(setMen, setNewin)
                                 setConditions(false)
-                            }} onMouseLeave={() => handleMouseLeave(setMen)}>
+                            }} onMouseLeave={() => handleMouseLeave(setMen)} onClick={() => handleClick(null, "MEN")}>
                                 <p>MEN</p>
                                 <div className="indicator"></div>
-                            </Link>
+                            </div>
                             <Link href="/interior" className='links' id='wellsol' onMouseEnter={() => {
                                 handleMouseEnter(setConditions, setMen)
                                 setCategories(false)
@@ -715,11 +723,7 @@ export default function Navbar() {
                                 <div className="indicator"></div>
                             </Link>
                             <Link href="/blog" className='links' id='blogdiv'>
-                                <p>GIFT</p>
-                                <div className="indicator"></div>
-                            </Link>
-                            <Link href="/blog" className='links' id='blogdiv'>
-                                <p>EYEWEAR</p>
+                                <p>BAGS</p>
                                 <div className="indicator"></div>
                             </Link>
                             <Link href="/blog" className='links' id='blogdiv'>

@@ -2,10 +2,10 @@ import React from 'react'
 
 export default function ScrollingOffers() {
     const offers = [
-        "50% off for orders above $70",
-        "20% off for veterans",
-        "Free shipping for orders over $50",
-        "Buy 1 get 1 free on select items"
+        "10% off your first order",
+        "Free shipping over £50",
+        "Summer Drip Sale - Up to 30% Off Selected Items",
+        "Student Discount - 15% off"
     ];
     return (
         <div className='offer-track'>
