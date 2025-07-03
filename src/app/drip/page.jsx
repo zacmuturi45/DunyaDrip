@@ -131,7 +131,7 @@ export default function Drip() {
             <div className="drip-container">
                 <div className="drip-header">
                     <div className="title">
-                        <h1>{`${to_filter}'s ${product_type}`}</h1>
+                        <h1>{product_type}</h1>
                     </div>
                     <div className="header-filters">
                         <div className="filter-by" onMouseEnter={() => handleMouseEnter("Filters")} onMouseLeave={() => handleMouseLeave("Filters")} onClick={() => handleClick("Filters")}>

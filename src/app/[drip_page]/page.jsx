@@ -2,7 +2,7 @@
 
 import { useParams, useRouter } from 'next/navigation'
 import React, { useContext, useEffect, useState } from 'react'
-import { black_start, finger, plus, size, size_array } from '../../../public/imports';
+import { size_array } from '../../../public/imports';
 import Image from 'next/image';
 import { FlagContext } from '../contexts/flagcontext';
 import DripCard from '../components/drip_card';
@@ -16,10 +16,9 @@ export default function DripSlug() {
   const { location } = useContext(FlagContext);
   const [merch_quantity, setMerchQuantity] = useState(1);
   const [selected_size, setSelectedSize] = useState({ index: null, size: "M" })
-  const { cart, addToCart, setShowCart } = useCart();
+  const { cart, addToCart, setShowCart, product } = useCart();
   const [show_cart_panel, setShowCartPanel] = useState(false);
   const [loader, setLoader] = useState(false);
-  const { product } = useCart();
   const [main_image, setMainImage] = useState(null);
   const [loadingProduct, setLoadingProduct] = useState(true);
   const params_id = parseInt(params.drip_page, 10);
@@ -114,6 +113,8 @@ export default function DripSlug() {
     });
     setMainImage(image_object[imgSrc])
   }
+
+  if (!image_object) return <Loader />
 
   return (
     <div className='drip_page_main'>

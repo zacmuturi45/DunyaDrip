@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useContext, useEffect, useState } from 'react'
-import { localTime } from '../../../public/imports'
+import { byterobot, flags, localTime } from '../../../public/imports'
 import { FlagContext } from '../contexts/flagcontext'
 import { useAuth } from '../contexts/auth_context'
 import supabse_image_path from '@/utils/supabase/supabse_image_path'
@@ -171,6 +171,13 @@ export default function Footer() {
                   <Image src={supabse_image_path('/gpay.svg')} height={35} width={35} alt='globe-image' />
                   <Image src={supabse_image_path('/appay.svg')} height={35} width={35} alt='globe-image' />
                   <Image src={supabse_image_path('/amex.svg')} height={35} width={35} alt='globe-image' />
+                </div>
+
+                <div className="zacdiv">
+                  {/* <Image src={flags} width={15} height={15} alt='flag-svg' style={{transform: "rotateY(180deg)"}} /> */}
+                  <p>zac.muturi.codes</p>
+                  {/* <Image src={flags} width={15} height={15} alt='flag-svg' /> */}
+
                 </div>
 
                 <div className="three-two">

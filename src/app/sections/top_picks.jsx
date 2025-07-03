@@ -5,6 +5,7 @@ import React, { useContext } from 'react'
 import { carl_main, carl_one, carl_two, dark_one, dark_two } from '../../../public/imports'
 import { FlagContext } from '../contexts/flagcontext';
 import supabse_image_path from '@/utils/supabase/supabse_image_path';
+import Link from 'next/link';
 
 export default function TopPicks({ obsRef }) {
     const { location } = useContext(FlagContext);
@@ -18,7 +19,7 @@ export default function TopPicks({ obsRef }) {
                         <h1>Own the Moment. Wear the Wild</h1>
                         <p>Fashion isn&apos;t just what you wear—it&apos;s how you move, how you own every step. Inspired by the raw energy of the streets and the freedom of the wild, this collection is made for those who set trends, not follow them. Ready to make a statement? Let&apos;s go!🔥</p>
                         <div className="butt">
-                            <button>Shop now</button>
+                            <Link href={"/drip"} className='next-link'><button>Shop now</button></Link>
                         </div>
                     </div>
 

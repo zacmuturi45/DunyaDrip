@@ -265,8 +265,8 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  background-color: hsla(0, 0%, 0%, 0.2);
-  backdrop-filter: blur(8px);
+  background-color: hsl(0, 0%, 100%);
+  backdrop-filter: blur(20px);
   height: 100vh;
   width: 100vw;
   z-index: 10;
@@ -315,7 +315,7 @@ body {
   width: 650px;
   height: 55px;
   border-radius: 5px;
-  background-color: hsla(0, 0%, 69%, 0.6);
+  background-color: hsla(0, 0%, 84%, 0.6);
   padding-left: 1.5rem;
   outline: none;
   border: none;
@@ -337,9 +337,47 @@ body {
   font-family: "JetBrains Mono";
 }
 .nav-main .nav-container .search-panel .search-results-container .cards-container {
-  display: flex;
-  justify-content: space-between;
   margin-top: 25px;
+}
+.nav-main .nav-container .search-panel .search-results-container .cards-container .carousel-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.nav-main .nav-container .search-panel .search-results-container .cards-container .carousel-arrow {
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 50%;
+  font-size: 2rem;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 4px;
+  padding: 0;
+  transition: background 0.2s;
+}
+.nav-main .nav-container .search-panel .search-results-container .cards-container .carousel-arrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+.nav-main .nav-container .search-panel .search-results-container .cards-container .carousel-viewport {
+  overflow: hidden;
+  width: 100%;
+  /* optional: set max width for the cards row */
+}
+.nav-main .nav-container .search-panel .search-results-container .cards-container .carousel-inner {
+  display: flex;
+  will-change: transform;
+}
+.nav-main .nav-container .search-panel .search-results-container .cards-container .carousel-item {
+  /* Each .carousel-item should take up 1/4th of the viewport */
+  padding: 0 8px;
+  box-sizing: border-box;
 }
 .nav-main .nav-container .banner {
   background-color: black;
@@ -915,7 +953,7 @@ body {
 
 .hero-main {
   height: 110vh;
-  padding-top: 140px;
+  padding-top: 0;
 }
 .hero-main .main-hero-image {
   width: 100%;
@@ -3479,7 +3517,8 @@ body {
   border-collapse: collapse;
   margin-bottom: 1rem;
 }
-.ordersTable th, .ordersTable td {
+.ordersTable th,
+.ordersTable td {
   padding: 1rem;
   border: 1px solid #ddd;
   text-align: left;
@@ -3802,6 +3841,19 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 0;
+}
+.footer-main .footer-container .footer-three .zacdiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  transform: scale(0.9);
+}
+.footer-main .footer-container .footer-three .zacdiv p {
+  color: white;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  cursor: pointer;
 }
 .footer-main .footer-container .footer-three .three-one > * {
   margin-right: 0.5rem;
@@ -4451,6 +4503,16 @@ body {
   }
 }
 @media screen and (max-width: 720px) {
+  .nav-main .nav-container .search-panel .search-results-container p {
+    text-align: center;
+  }
+  .nav-main .nav-container .search-panel .search-results-container .cards-container {
+    width: 100vw;
+    height: 100%;
+  }
+  .nav-main .nav-container .search-panel .search-results-container .cards-container .carousel-wrapper .carousel-viewport {
+    width: 100%;
+  }
   .dashboard-container {
     padding-left: 0;
     padding-bottom: 2.5rem;

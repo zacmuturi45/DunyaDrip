@@ -3,13 +3,11 @@ import CollectionCircle from '../components/collection_circle'
 
 const collection_array = [
     { image: "jacket.webp", label: "Jackets" },
-    { image: "shoe4.webp", label: "Shoes" },
     { image: "shoe3.webp", label: "Hoodies" },
-    { image: "shoe.webp", label: "Chinos" },
-    { image: "shoe4.webp", label: "Denim" },
-    { image: "shoe3.webp", label: "T-shirts" },
-    { image: "shoe.webp", label: "Pants" },
-    { image: "shoe4.webp", label: "Accessories" }
+    { image: "shoe.webp", label: "Sweatpants" },
+    { image: "shoe4.webp", label: "Bags" },
+    { image: "shoe3.webp", label: "T-Shirts" },
+    { image: "shoe.webp", label: "Caps" },
 ]
 
 export default function ShopByCollection() {

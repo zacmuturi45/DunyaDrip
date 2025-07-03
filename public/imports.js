@@ -33,6 +33,8 @@ export { default as UK_flag } from "./flags/UK.svg";
 export { default as ukflag } from "./ukflag.svg";
 export { default as cancel } from "./cancel.svg";
 export { default as desert } from "./desert.svg";
+export { default as search_head } from "./search-head.svg";
+export { default as flags } from "./flags.svg";
 
 // Object mapping country names (as returned by ipwho.is) to ISO currency codes
 export const countryCurrencyMap = {
@@ -611,35 +613,15 @@ export const rep_accessories = [
 ];
 
 export const kids_clothing = [
+    "Hoodies",
+    "Sweaters",
+    "Sweatpants",
     "T-Shirts",
-    "Sweatshirts",
-    "Jackets",
-    "Jeans",
-    "Shorts",
-    "Dresses",
-    "Leggings",
-    "Sleepwear",
-    "School Uniforms"
-];
-
-export const kids_kicks = [
-    "Sneakers",
-    "Sandals",
-    "Boots",
-    "Slip-Ons",
-    "Formal Shoes",
-    "Running Shoes"
 ];
 
 export const kids_accessories = [
-    "Hats",
-    "Scarves",
-    "Backpacks",
-    "Belts",
-    "Gloves",
-    "Socks",
-    "Sunglasses",
-    "Hairbands"
+    "Caps",
+    "Bags",
 ];
 
 export const flag_array = [

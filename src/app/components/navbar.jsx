@@ -3,7 +3,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import '../css/index.css';
 import Image from 'next/image';
-import { accessories, flag_array, jacket, kids_accessories, kids_clothing, kids_kicks, men_accessories, men_clothing, men_kicks, newInArray, rep_accessories, rep_clothing, rep_footwear, shoe, shoe1, shoe2, shoe3, women_accessories, women_clothing, women_kicks, women_summer, x, youtube } from '../../../public/imports';
+import { accessories, flag_array, jacket, kids_accessories, kids_clothing, kids_kicks, men_accessories, men_clothing, men_kicks, newInArray, rep_accessories, rep_clothing, rep_footwear, search_head, shoe, shoe1, shoe2, shoe3, women_accessories, women_clothing, women_kicks, women_summer, x, youtube } from '../../../public/imports';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import UseScroll from './navscroll';
@@ -63,6 +63,53 @@ export default function Navbar() {
     const { setProductType, handleFilterChange, setExclusiveFilter } = useSort();
     const { setFilteredProduct, product } = useCart();
 
+    const [searchQuery, setSearchQuery] = useState("");
+    const [searchResults, setSearchResults] = useState([]);
+    const [searchLoading, setSearchLoading] = useState(false);
+    const searchDelay = useRef(null);
+    const [carouselPosition, setCarouselPosition] = useState(0);
+    const CAROUSEL_VISIBLE_COUNT = 4;
+
+    // ...rest of your state and hooks...
+
+    // Search handler
+    useEffect(() => {
+        // Only search if search panel is open and query is not empty
+        if (!showSearchPanel || searchQuery.trim() === "") {
+            setSearchResults([]);
+            setSearchLoading(false);
+            return;
+        }
+
+        setSearchLoading(true);
+        // Debounce the search to avoid running it on every keystroke
+        if (searchDelay.current) clearTimeout(searchDelay.current);
+        searchDelay.current = setTimeout(() => {
+            // Fake async for loader effect (replace with actual async if needed)
+            const query = searchQuery.trim().toLowerCase();
+            // You can customize which fields to search (name, type, color, etc)
+            const results = product.filter(item =>
+                (item.name && item.name.toLowerCase().includes(query)) ||
+                (item.product_type && item.product_type.toLowerCase().includes(query)) ||
+                (item.color && item.color.some(c => c.toLowerCase().includes(query))) ||
+                (item.category && item.category.toLowerCase().includes(query))
+            );
+            setSearchResults(results);
+            setSearchLoading(false);
+        }, 400); // 400ms debounce
+
+        return () => clearTimeout(searchDelay.current);
+    }, [searchQuery, product, showSearchPanel]);
+
+    const handleLeft = () => {
+        setCarouselPosition((prev) => Math.max(prev - 1, 0));
+    };
+
+    const handleRight = () => {
+        setCarouselPosition((prev) =>
+            Math.min(prev + 1, Math.max(0, searchResults.length - CAROUSEL_VISIBLE_COUNT))
+        );
+    };
 
     useEffect(() => {
         if (scrollDirection === "up") {
@@ -98,6 +145,34 @@ export default function Navbar() {
         setExclusiveFilter(category, item);
         router.push("/drip");
     };
+
+    useEffect(() => {
+        if (showFlagBox) {
+            // Prevent scrolling
+            document.body.style.overflow = 'hidden';
+        } else {
+            // Re-enable scrolling
+            document.body.style.overflow = '';
+        }
+        // Cleanup in case the component unmounts while panel is open
+        return () => {
+            document.body.style.overflow = '';
+        }
+    }, [showFlagBox]);
+
+    useEffect(() => {
+        if (showSearchPanel) {
+            // Prevent scrolling
+            document.body.style.overflow = 'hidden';
+        } else {
+            // Re-enable scrolling
+            document.body.style.overflow = '';
+        }
+        // Cleanup in case the component unmounts while panel is open
+        return () => {
+            document.body.style.overflow = '';
+        }
+    }, [showSearchPanel]);
 
 
 
@@ -387,36 +462,94 @@ export default function Navbar() {
                     </div>
 
                     {/* END OF MOBILE NAV SECTION */}
+                    {showSearchPanel && (
+                        <div className="search-panel">
+                            <div className="x" onClick={() => setShowSearchPanel(false)}>
+                                <Image src={supabse_image_path('/x.svg')} width={25} height={25} alt='x-button' />
+                            </div>
 
-                    {
-                        showSearchPanel && (
-                            <div className="search-panel">
-                                <div className="x" onClick={() => setShowSearchPanel(false)}><Image src={supabse_image_path('/x.svg')} width={25} height={25} alt='x-button' /></div>
+                            <div className="searchbar">
+                                <form action="" onSubmit={e => e.preventDefault()}>
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        className="search-input-form"
+                                        placeholder='SEARCH DUNYA DRIP'
+                                        value={searchQuery}
+                                        onChange={e => setSearchQuery(e.target.value)}
+                                        autoFocus
+                                    />
+                                </form>
+                            </div>
 
-                                <div className="searchbar">
-                                    <form action="">
-                                        <input
-                                            type="text"
-                                            name="name"
-                                            className="search-input-form"
-                                            placeholder='SEARCH DUNYA DRIP'
-                                        />
-                                    </form>
-                                </div>
-
-                                <div className="search-results-container">
-                                    <p>SEARCH RESULTS</p>
-                                    <div className="cards-container">
-                                        {
-                                            searchArray.map((item, index) => (
-                                                <Cards image={item.product_image} product_name={item.product_name} price={item.price} key={`nav_card${index}`} index={index} />
-                                            ))
-                                        }
-                                    </div>
+                            <div className="search-results-container">
+                                <p>SEARCH RESULTS</p>
+                                <div className="cards-container">
+                                    {searchLoading ? (
+                                        <div className="search-loader" style={{ textAlign: "center", width: "100%" }}>
+                                            {/* Replace below with your <Loader /> or <Spinner /> if you have */}
+                                            <span>Loading...</span>
+                                        </div>
+                                    ) : (
+                                        searchQuery.trim() === "" ? (
+                                            <div className="search-placeholder" style={{ textAlign: "center", width: "100%" }}>
+                                                <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: "2rem" }}>
+                                                    <Image src={search_head} width={100} height={100} alt='search-head' />
+                                                    <span>Type to search for products...</span>
+                                                </div>
+                                            </div>
+                                        ) : searchResults.length === 0 ? (
+                                            <div className="search-no-results" style={{ textAlign: "center", width: "100%" }}>
+                                                <span>No results found.</span>
+                                            </div>
+                                        ) : (
+                                            <div className="carousel-wrapper">
+                                                {searchResults.length > CAROUSEL_VISIBLE_COUNT && (
+                                                    <button className="carousel-arrow left" onClick={handleLeft} disabled={carouselPosition === 0}>
+                                                        &#8592;
+                                                    </button>
+                                                )}
+                                                <div className="carousel-viewport">
+                                                    <div
+                                                        className="carousel-inner"
+                                                        style={{
+                                                            transform: `translateX(-${carouselPosition * 25}%)`,
+                                                            transition: 'transform 0.3s',
+                                                            display: 'flex',
+                                                        }}
+                                                    >
+                                                        {searchResults.map((item, index) => (
+                                                            <div
+                                                                className="carousel-item"
+                                                                style={{ flex: `0 0 ${100 / CAROUSEL_VISIBLE_COUNT}%`, boxSizing: 'border-box' }}
+                                                                key={`nav_card${index}`}
+                                                            >
+                                                                <Cards
+                                                                    image={item.image_url}
+                                                                    product_name={item.name}
+                                                                    price={item.price}
+                                                                    index={index}
+                                                                />
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                                {searchResults.length > CAROUSEL_VISIBLE_COUNT && (
+                                                    <button
+                                                        className="carousel-arrow right"
+                                                        onClick={handleRight}
+                                                        disabled={carouselPosition >= searchResults.length - CAROUSEL_VISIBLE_COUNT}
+                                                    >
+                                                        &#8594;
+                                                    </button>
+                                                )}
+                                            </div>
+                                        )
+                                    )}
                                 </div>
                             </div>
-                        )
-                    }
+                        </div>
+                    )}
 
                     <div className={showFlagBox ? "flag-box" : "hide-flag-box flag-box"}>
                         <div className="flag-box-container">
@@ -476,7 +609,11 @@ export default function Navbar() {
                                         <Image src={supabse_image_path('/newin.webp')} width={100} height={100} unoptimized alt='summer-collection' className='summer-image' />
                                         <div className="summer-card-detail">
                                             <h4>Exclusive: Summer Collection 2025</h4>
-                                            <p>Shop Now</p>
+                                            <p onClick={() => {
+                                                handleFilterChange("Season", "Summer")
+                                                setProductType("SUMMER COLLECTION")
+                                                router.push("/drip")
+                                            }}>Shop Now</p>
                                         </div>
                                     </div>
                                 </div>
@@ -535,16 +672,7 @@ export default function Navbar() {
                                     <h4>Clothing</h4>
                                     {
                                         rep_clothing.map((item, index) => (
-                                            <p key={index}>{item}</p>
-                                        ))
-                                    }
-                                </div>
-
-                                <div className='rep-clothing'>
-                                    <h4>Kicks</h4>
-                                    {
-                                        rep_footwear.map((item, index) => (
-                                            <p key={index}>{item}</p>
+                                            <p key={index} onClick={() => handleClick(item, "CLOTHING")}>{item}</p>
                                         ))
                                     }
                                 </div>
@@ -553,7 +681,7 @@ export default function Navbar() {
                                     <h4>Accessories</h4>
                                     {
                                         rep_accessories.map((item, index) => (
-                                            <p key={index}>{item}</p>
+                                            <p key={index} onClick={() => handleClick(item, "ACCESSORIES")}>{item}</p>
                                         ))
                                     }
                                 </div>
@@ -563,7 +691,11 @@ export default function Navbar() {
                                         <Image src={supabse_image_path('/ethnic.jpeg')} width={100} height={100} unoptimized alt='summer-collection' className='summer-image' />
                                         <div className="summer-card-detail">
                                             <h4>Exclusive: Summer Collection 2025</h4>
-                                            <p>Shop Now</p>
+                                            <p onClick={() => {
+                                                handleFilterChange("Season", "Summer")
+                                                setProductType("SUMMER COLLECTION")
+                                                router.push("/drip")
+                                            }}>Shop Now</p>
                                         </div>
                                     </div>
                                 </div>
@@ -581,16 +713,7 @@ export default function Navbar() {
                                     <h4>Clothing</h4>
                                     {
                                         kids_clothing.map((item, index) => (
-                                            <p key={index}>{item}</p>
-                                        ))
-                                    }
-                                </div>
-
-                                <div className='kids-clothing'>
-                                    <h4>Kicks</h4>
-                                    {
-                                        kids_kicks.map((item, index) => (
-                                            <p key={index}>{item}</p>
+                                            <p key={index} onClick={() => handleClick(item, "KID'S CLOTHING")}>{item}</p>
                                         ))
                                     }
                                 </div>
@@ -599,7 +722,7 @@ export default function Navbar() {
                                     <h4>Accessories</h4>
                                     {
                                         kids_accessories.map((item, index) => (
-                                            <p key={index}>{item}</p>
+                                            <p key={index} onClick={() => handleClick(item, "KID'S ACCESSORIES")}>{item}</p>
                                         ))
                                     }
                                 </div>
@@ -609,7 +732,11 @@ export default function Navbar() {
                                         <Image src={supabse_image_path('/kids.jpg')} width={100} height={100} unoptimized alt='summer-collection' className='summer-image' />
                                         <div className="summer-card-detail">
                                             <h4>Exclusive: Summer Collection 2025</h4>
-                                            <p>Shop Now</p>
+                                            <p onClick={() => {
+                                                handleFilterChange("Season", "Summer")
+                                                setProductType("SUMMER COLLECTION")
+                                                router.push("/drip")
+                                            }}>Shop Now</p>
                                         </div>
                                     </div>
                                 </div>
@@ -659,7 +786,11 @@ export default function Navbar() {
                                         <Image src={supabse_image_path('/women_summer.webp')} width={100} height={100} unoptimized alt='summer-collection' className='summer-image' />
                                         <div className="summer-card-detail">
                                             <h4>Exclusive: Summer Collection 2025</h4>
-                                            <p>Shop Now</p>
+                                            <p onClick={() => {
+                                                handleFilterChange("Season", "Summer")
+                                                setProductType("SUMMER COLLECTION")
+                                                router.push("/drip")
+                                            }}>Shop Now</p>
                                         </div>
                                     </div>
                                 </div>
