@@ -523,13 +523,20 @@ export default function Navbar() {
                                                                 className="carousel-item"
                                                                 style={{ flex: `0 0 ${100 / CAROUSEL_VISIBLE_COUNT}%`, boxSizing: 'border-box' }}
                                                                 key={`nav_card${index}`}
+                                                                onClick={() => {
+                                                                    setSearchQuery("")
+                                                                    setShowSearchPanel(false)
+                                                                }}
                                                             >
-                                                                <Cards
-                                                                    image={item.image_url}
-                                                                    product_name={item.name}
-                                                                    price={item.price}
-                                                                    index={index}
-                                                                />
+                                                                <Link href={`/${item.id}`} className='next-link'>
+                                                                    <Cards
+                                                                        image={item.image_url}
+                                                                        product_name={item.name}
+                                                                        price={item.price}
+                                                                        index={index}
+                                                                        id={item.id}
+                                                                    />
+                                                                </Link>
                                                             </div>
                                                         ))}
                                                     </div>

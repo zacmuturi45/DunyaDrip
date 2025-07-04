@@ -38,6 +38,7 @@ export const CartProvider = ({ children }) => {
                     size: item.size,
                     season: item.season,
                     category: item.category,
+                    description: item.description,
                 };
             })
             setProducts(ext_drip_array)

@@ -194,7 +194,7 @@ export default function DripSlug() {
                   </div>
                   <div className="one-details">
                     <h4>Description</h4>
-                    <p className='description-container-two'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti atque esse nemo amet facere asperiores doloremque quae omnis natus, dolor incidunt. Quidem adipisci dolorum est ipsam illum voluptatum dolorem ipsum explicabo voluptatibus ut? Corporis asperiores accusamus, magni impedit fugit qui officia quo molestiae temporibus quod alias harum aliquid odit earum!</p>
+                    <p className='description-container-two'>{image_object.description}</p>
                     <div className="shipping-details">
                       <div className="case">
                         <div className="case_title">

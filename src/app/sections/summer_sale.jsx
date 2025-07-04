@@ -5,6 +5,8 @@ import React, { useEffect, useRef, useState } from 'react'
 import { calculateTimeLeft } from '../../../public/imports'
 import gsap from 'gsap';
 import supabse_image_path from '@/utils/supabase/supabse_image_path';
+import { useSort } from '../contexts/sort_context';
+import { useRouter } from 'next/navigation';
 
 
 
@@ -14,7 +16,9 @@ export default function SummerSale() {
     const text_slider = useRef(null);
     const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
     const [isClient, setIsClient] = useState(false);
-    
+    const { setExclusiveFilter, setProductType } = useSort();
+    const router = useRouter();
+
 
     let xPercent = 0;
 
@@ -27,7 +31,7 @@ export default function SummerSale() {
             requestAnimationFrame(animation)
             return;
         }
-        
+
         if (xPercent <= -100) {
             xPercent = 0;
         }
@@ -51,6 +55,18 @@ export default function SummerSale() {
         setIsClient(true)
     }, [timeLeft])
 
+    const handleShopMen = () => {
+        setExclusiveFilter("Men", null);
+        setProductType("WOMEN")
+        router.push('/drip');
+    };
+
+    const handleShopWomen = () => {
+        setExclusiveFilter("Women", null);
+        setProductType("WOMEN")
+        router.push('/drip');
+    };
+
     return (
         <div className='summer-main'>
             <div className="summer-main-container">
@@ -60,8 +76,8 @@ export default function SummerSale() {
                     <div className="three"><h2>Free Delivery in UK</h2></div>
                     <div className="four-container">
                         <div className="four">
-                        <Image src={supabse_image_path('/dunyatransparent.png')} width={50} height={50} alt='dunya-logo' style={{opacity: 0.5}} className='dunya_summer_img' />
-                        <p>Ts & Cs Apply</p>
+                            <Image src={supabse_image_path('/dunyatransparent.png')} width={50} height={50} alt='dunya-logo' style={{ opacity: 0.5 }} className='dunya_summer_img' />
+                            <p>Ts & Cs Apply</p>
                         </div>
                     </div>
                     <div className="five-container"><div className="five"><h2>Use code: <span>summer30</span></h2></div></div>
@@ -98,7 +114,7 @@ export default function SummerSale() {
                                     <p ref={text_two}>Summer Countdown •</p>
                                 </div>
                             </div>
-{/* 
+                            {/* 
                             <div className="summer_message">
                                 <p>Exclusive Summer Sale</p>
                             </div> */}
@@ -109,8 +125,8 @@ export default function SummerSale() {
                         <h3>Summer sale is here!</h3>
                         <p>30% off for fully priced merchandise</p>
                         <div className="category">
-                            <p>Shop men</p>
-                            <p>Shop women</p>
+                            <p onClick={handleShopMen}>Shop men</p>
+                            <p onClick={handleShopWomen}>Shop women</p>
                         </div>
                     </div>
                 </div>

@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useContext, useEffect, useState } from 'react'
-import { byterobot, flags, localTime } from '../../../public/imports'
+import { localTime } from '../../../public/imports'
 import { FlagContext } from '../contexts/flagcontext'
 import { useAuth } from '../contexts/auth_context'
 import supabse_image_path from '@/utils/supabase/supabse_image_path'

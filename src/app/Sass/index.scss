@@ -4813,19 +4813,20 @@ body {
             align-items: center;
             padding: 1rem 0;
 
-                            .zacdiv {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    gap: .5rem;
-                    transform: scale(.9);
-                    p {
-                        color: white;
-                        font-size: .6rem;
-                        text-transform: uppercase;
-                        cursor: pointer;
-                    }
+            .zacdiv {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: .5rem;
+                transform: scale(.9);
+
+                p {
+                    color: white;
+                    font-size: .6rem;
+                    text-transform: uppercase;
+                    cursor: pointer;
                 }
+            }
 
             .three-one {
                 >* {
@@ -5757,9 +5758,11 @@ body {
                     p {
                         text-align: center;
                     }
+
                     .cards-container {
                         width: 100vw;
                         height: 100%;
+
                         .carousel-wrapper {
                             .carousel-viewport {
                                 width: 100%;
@@ -5770,6 +5773,7 @@ body {
             }
         }
     }
+
     .dashboard-container {
         padding-left: 0;
         padding-bottom: 2.5rem;

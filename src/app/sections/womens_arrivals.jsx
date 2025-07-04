@@ -5,14 +5,18 @@ import Featured_Card from '../components/featured_card'
 import Image from 'next/image'
 import { useCart } from '../contexts/cart_context'
 import supabse_image_path from '@/utils/supabase/supabse_image_path'
+import { useSort } from '../contexts/sort_context'
+import { useRouter } from 'next/navigation'
 
 export default function WomensArrivals() {
     const [carousel_index, setCarouselIndex] = useState(0);
     const carousel_ref = useRef(null);
     const { product, loadingProducts } = useCart();
+    const { setExclusiveFilter, setProductType } = useSort();
+    const router = useRouter();
 
     const scrollToIndex = (newIndex) => {
-        if(carousel_ref.current) {
+        if (carousel_ref.current) {
             const scrollAmount = newIndex * carousel_ref.current.clientWidth;
             carousel_ref.current.scrollTo({ left: scrollAmount, behavior: "smooth" });
         }
@@ -32,6 +36,12 @@ export default function WomensArrivals() {
         }
     };
 
+    const handleClick = () => {
+        setExclusiveFilter(null, null)
+        setProductType("")
+        router.push("/drip")
+    }
+
     return (
         <div className='featured-main'>
             <div className="featured-container">
@@ -39,7 +49,7 @@ export default function WomensArrivals() {
                     <div className="featured-main-title-container">
                         <h3>Women&apos;s New Arrivals</h3>
                         <div className="featured-main-sub-title">
-                            <p>See All</p>
+                            <p onClick={handleClick}>See All</p>
                             <Image src={supabse_image_path('/arrow_right.svg')} width={100} height={100} alt='arrow-right-svg' className='featured-arrow' />
                         </div>
                     </div>
@@ -50,7 +60,7 @@ export default function WomensArrivals() {
                 </div>
                 <div className="featured-cards">
                     <div className="carousel" ref={carousel_ref}>
-                    {loadingProducts
+                        {loadingProducts
                             ? (
                                 (
                                     [...Array(12)].map((_, idx) => (

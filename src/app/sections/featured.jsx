@@ -1,16 +1,19 @@
 "use client"
 
-import React, { useEffect, useRef, useState } from 'react'
-import { arrow, arrow_right, extended_drip_array, featured_array, sups } from '../../../public/imports'
+import React, { useRef, useState } from 'react'
 import Featured_Card from '../components/featured_card'
 import Image from 'next/image'
 import { useCart } from '../contexts/cart_context'
 import supabse_image_path from '@/utils/supabase/supabse_image_path'
+import { useSort } from '../contexts/sort_context'
+import { useRouter } from 'next/navigation'
 
 export default function Featured() {
     const [carousel_index, setCarouselIndex] = useState(0);
     const carousel_ref = useRef(null);
     const { product, loadingProducts } = useCart();
+    const { setExclusiveFilter, setProductType } = useSort();
+    const router = useRouter();
 
     const scrollToIndex = (newIndex) => {
         if (carousel_ref.current) {
@@ -33,6 +36,12 @@ export default function Featured() {
         }
     };
 
+    const handleClick = () => {
+        setExclusiveFilter(null, null)
+        setProductType("")
+        router.push("/drip")
+    }
+
     return (
         <div className='featured-main'>
             <div className="featured-container">
@@ -40,7 +49,7 @@ export default function Featured() {
                     <div className="featured-main-title-container">
                         <h3>Featured</h3>
                         <div className="featured-main-sub-title">
-                            <p>See All</p>
+                            <p onClick={handleClick}>See All</p>
                             <Image src={supabse_image_path('/arrow_right.svg')} width={100} height={100} alt='arrow-right-svg' className='featured-arrow' />
                         </div>
                     </div>
