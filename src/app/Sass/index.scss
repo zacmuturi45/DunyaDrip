@@ -4607,6 +4607,194 @@ body {
 // CANCEL
 
 
+// OUR STORY
+.story-main {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+
+    .story-container {
+        padding-top: 140px;
+        width: 100%;
+
+        .story_one {
+            .img {
+                width: 100%;
+                height: auto;
+
+                >* {
+                    width: 100%;
+                    height: auto;
+                }
+            }
+        }
+
+        .story_two {
+            text-align: center;
+            padding: 100px 0;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+
+            h2 {
+                font-weight: 800;
+                text-transform: uppercase;
+            }
+
+            p {
+                max-width: 1000px;
+                text-align: center;
+                margin-top: 1.5rem;
+                font-size: .8rem;
+            }
+        }
+
+        .story_three {
+            background-color: black;
+            display: flex;
+
+            .story_three_container {
+                display: flex;
+                justify-content: center;
+
+                .three_img {
+                    .three {
+                        width: 700px;
+                        height: auto;
+                    }
+                }
+                .text_container {
+                    display: flex;
+                    flex-direction: column;
+                    padding: 100px 2rem;
+                    p {
+                        color: white;
+                        font-size: .8rem;
+                        margin: 1.5rem 0;
+                        max-width: 540px;
+                        line-height: 2;
+                    }
+                    .three_text_container {
+                        display: flex;
+                        h3 {
+                            color: white;
+                        }
+                    }
+                    .more_text {
+                        margin-top: 2.5rem;
+                        text-align: center;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        h2 {
+                            color: white;
+                            text-align: center;
+                        }
+                        .text {
+                            margin-top: 1.5rem;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            p {
+                                max-width: 800px;
+                                align-self: center;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1024px) {
+  .story-main {
+    .story-container {
+      .story_two {
+        padding: 60px 1rem;
+        p {
+          font-size: 0.9rem;
+        }
+      }
+
+      .story_three {
+        .story_three_container {
+          flex-direction: column;
+          align-items: center;
+
+          .three_img {
+            margin-bottom: 2rem;
+            .three {
+              width: 100%;
+              display: block;
+              margin: 0 auto;
+            }
+          }
+
+          .text_container {
+            padding: 40px 1rem;
+            .three_text_container {
+              flex-direction: column;
+              gap: 2rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Phones and small screens
+@media (max-width: 600px) {
+  .story-main {
+    .story-container {
+
+      .story_two {
+        padding: 40px 0.5rem;
+        h2 {
+          font-size: 1.3rem;
+        }
+        p {
+          max-width: 95vw;
+        }
+      }
+
+      .story_three {
+        .story_three_container {
+          padding: 0;
+          .three_img {
+            .three {
+              width: 100vw;
+            }
+          }
+          .text_container {
+            padding: 25px 0.5rem;
+            .three_text_container {
+              flex-direction: column;
+              gap: 1.5rem;
+            }
+            .more_text {
+              h2 {
+                font-size: 1.1rem;
+              }
+              .text {
+                p {
+                  font-size: 0.97rem;
+                  max-width: 98vw;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// OUR STORY
+
+
 // FOOTER
 .footer-main {
     display: flex;

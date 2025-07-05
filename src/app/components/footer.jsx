@@ -3,15 +3,19 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useContext, useEffect, useState } from 'react'
-import { localTime } from '../../../public/imports'
+import { flags, localTime } from '../../../public/imports'
 import { FlagContext } from '../contexts/flagcontext'
 import { useAuth } from '../contexts/auth_context'
 import supabse_image_path from '@/utils/supabase/supabse_image_path'
+import { useSort } from '../contexts/sort_context'
+import { useRouter } from 'next/navigation'
 
 export default function Footer() {
   const { location, setShowFlagBox, timezone } = useContext(FlagContext);
   const [time, setTime] = useState("");
-  const { shownav } = useAuth();
+  const { shownav, user } = useAuth();
+  const { setExclusiveFilter } =useSort();
+  const router = useRouter();
 
   useEffect(() => {
     setTime(localTime())
@@ -27,6 +31,15 @@ export default function Footer() {
     }, secondsDifference);
   }
 
+  const handleClick = (e, dest) => {
+    e.preventDefault()
+
+    if (user) {
+      router.push(dest)
+    } else {
+      router.push("/login-out")
+    }
+  }
 
   return (
     <>
@@ -37,28 +50,28 @@ export default function Footer() {
               <div className='footer-one'>
 
                 <div className='collection bunch'>
-                  <h3>Collection</h3>
+                  <h3>Featured</h3>
                   <div className="div-links">
-                    <Link href={"/"} className='links'>
-                      <p>New: Summer Collection</p>
+                    <Link href={"/drip"} className='links' onClick={() => setExclusiveFilter(null, "T-Shirts")}>
+                      <p>T-Shirts</p>
                     </Link>
-                    <Link href={"/"} className='links'>
-                      <p>Bestsellers</p>
+                    <Link href={"/drip"} className='links' onClick={() => setExclusiveFilter(null, "Hoodies")}>
+                      <p>Hoodies</p>
                     </Link>
-                    <Link href={"/"} className='links'>
-                      <p>Accessories</p>
+                    <Link href={"/drip"} className='links' onClick={() => setExclusiveFilter(null, "Sweatpants")}>
+                      <p>Sweatpants</p>
                     </Link>
-                    <Link href={"/"} className='links'>
-                      <p>Kids Wear</p>
+                    <Link href={"/drip"} className='links' onClick={() => setExclusiveFilter(null, "Sweaters")}>
+                      <p>Sweaters</p>
                     </Link>
-                    <Link href={"/"} className='links'>
-                      <p>Dunya Collection</p>
+                    <Link href={"/drip"} className='links' onClick={() => setExclusiveFilter(null, "Varsity Jackets")}>
+                      <p>Varsity Jackets</p>
                     </Link>
                   </div>
                 </div>
 
                 <div className='auxilliary bunch'>
-                  <h3>Auxilliary</h3>
+                  <h3>Collection</h3>
                   <div className="div-links">
                     <Link href={"/"} className='links'>
                       <p>New: Summer Collection</p>
@@ -81,7 +94,7 @@ export default function Footer() {
                 <div className='customer bunch'>
                   <h3>Customer</h3>
                   <div className="div-links">
-                    <Link href={"/"} className='links'>
+                    <Link href={user ? "/dashboard" : "login-out"} className='links'>
                       <p>My Account</p>
                     </Link>
                     <Link href={"/"} className='links'>
@@ -174,9 +187,9 @@ export default function Footer() {
                 </div>
 
                 <div className="zacdiv">
-                  {/* <Image src={flags} width={15} height={15} alt='flag-svg' style={{transform: "rotateY(180deg)"}} /> */}
+                  <Image src={flags} width={15} height={15} alt='flag-svg' style={{transform: "rotateY(180deg)"}} />
                   <p>zac.muturi.codes</p>
-                  {/* <Image src={flags} width={15} height={15} alt='flag-svg' /> */}
+                  <Image src={flags} width={15} height={15} alt='flag-svg' />
 
                 </div>
 

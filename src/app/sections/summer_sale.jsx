@@ -80,7 +80,7 @@ export default function SummerSale() {
                             <p>Ts & Cs Apply</p>
                         </div>
                     </div>
-                    <div className="five-container"><div className="five"><h2>Use code: <span>summer30</span></h2></div></div>
+                    {/* <div className="five-container"><div className="five"><h2>Use code: <span>summer30</span></h2></div></div> */}
                 </div>
 
                 <div className="summer-side-container">
