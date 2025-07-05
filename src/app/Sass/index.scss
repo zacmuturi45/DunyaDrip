@@ -4748,28 +4748,40 @@ body {
 // Phones and small screens
 @media (max-width: 600px) {
   .story-main {
+    max-width: 100vw;
+    box-sizing: border-box;
     .story-container {
 
       .story_two {
         padding: 40px 0.5rem;
+        box-sizing: border-box;
         h2 {
           font-size: 1.3rem;
         }
         p {
-          max-width: 95vw;
+          max-width: 100%;
+          font-size: .8rem;
         }
       }
 
       .story_three {
+        box-sizing: border-box;
+        overflow-x: hidden; 
         .story_three_container {
           padding: 0;
           .three_img {
+            padding: 0;
             .three {
-              width: 100vw;
+              width: 100%;
+              max-width: 100%;
+              height: auto;
+              display: block;
             }
           }
           .text_container {
             padding: 25px 0.5rem;
+            max-width: 100%;
+            box-sizing: border-box;
             .three_text_container {
               flex-direction: column;
               gap: 1.5rem;
@@ -4777,11 +4789,12 @@ body {
             .more_text {
               h2 {
                 font-size: 1.1rem;
+                text-align: start;
               }
               .text {
                 p {
-                  font-size: 0.97rem;
-                  max-width: 98vw;
+                  font-size: 0.8rem;
+                  text-align: start;
                 }
               }
             }

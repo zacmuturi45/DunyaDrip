@@ -3811,23 +3811,41 @@ body {
   }
 }
 @media (max-width: 600px) {
+  .story-main {
+    max-width: 100vw;
+    box-sizing: border-box;
+  }
   .story-main .story-container .story_two {
     padding: 40px 0.5rem;
+    box-sizing: border-box;
   }
   .story-main .story-container .story_two h2 {
     font-size: 1.3rem;
   }
   .story-main .story-container .story_two p {
-    max-width: 95vw;
+    max-width: 100%;
+    font-size: 0.8rem;
+  }
+  .story-main .story-container .story_three {
+    box-sizing: border-box;
+    overflow-x: hidden;
   }
   .story-main .story-container .story_three .story_three_container {
     padding: 0;
   }
+  .story-main .story-container .story_three .story_three_container .three_img {
+    padding: 0;
+  }
   .story-main .story-container .story_three .story_three_container .three_img .three {
-    width: 100vw;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
   }
   .story-main .story-container .story_three .story_three_container .text_container {
     padding: 25px 0.5rem;
+    max-width: 100%;
+    box-sizing: border-box;
   }
   .story-main .story-container .story_three .story_three_container .text_container .three_text_container {
     flex-direction: column;
@@ -3835,10 +3853,11 @@ body {
   }
   .story-main .story-container .story_three .story_three_container .text_container .more_text h2 {
     font-size: 1.1rem;
+    text-align: start;
   }
   .story-main .story-container .story_three .story_three_container .text_container .more_text .text p {
-    font-size: 0.97rem;
-    max-width: 98vw;
+    font-size: 0.8rem;
+    text-align: start;
   }
 }
 .footer-main {
