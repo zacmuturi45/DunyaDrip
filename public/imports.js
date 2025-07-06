@@ -37,6 +37,36 @@ export { default as search_head } from "./search-head.svg";
 export { default as flags } from "./flags.svg";
 
 // Object mapping country names (as returned by ipwho.is) to ISO currency codes
+
+export const shippingData = [
+    { country: "Austria", price: "£15.00", time: "3-5 working days" },
+    { country: "Belgium", price: "£15.00", time: "3-5 working days" },
+    { country: "Bulgaria", price: "£25.00", time: "5-7 working days" },
+    { country: "Croatia", price: "£22.00", time: "4-6 working days" },
+    { country: "Czech Republic", price: "£20.00", time: "4-6 working days" },
+    { country: "Denmark", price: "£18.00", time: "3-5 working days" },
+    { country: "Estonia", price: "£22.00", time: "4-6 working days" },
+    { country: "Finland", price: "£22.00", time: "4-6 working days" },
+    { country: "France", price: "£16.00", time: "3-5 working days" },
+    { country: "Germany", price: "£16.00", time: "3-5 working days" },
+    { country: "Greece", price: "£25.00", time: "5-7 working days" },
+    { country: "Hungary", price: "£22.00", time: "4-6 working days" },
+    { country: "Ireland", price: "£15.00", time: "3-5 working days" },
+    { country: "Italy", price: "£18.00", time: "3-5 working days" },
+    { country: "Latvia", price: "£22.00", time: "4-6 working days" },
+    { country: "Lithuania", price: "£22.00", time: "4-6 working days" },
+    { country: "Luxembourg", price: "£15.00", time: "3-5 working days" },
+    { country: "Netherlands", price: "£15.00", time: "3-5 working days" },
+    { country: "Poland", price: "£20.00", time: "4-6 working days" },
+    { country: "Portugal", price: "£20.00", time: "4-6 working days" },
+    { country: "Romania", price: "£25.00", time: "5-7 working days" },
+    { country: "Slovakia", price: "£20.00", time: "4-6 working days" },
+    { country: "Slovenia", price: "£20.00", time: "4-6 working days" },
+    { country: "Spain", price: "£18.00", time: "3-5 working days" },
+    { country: "Sweden", price: "£20.00", time: "4-6 working days" },
+    { country: "USA", price: "£30.00", time: "5-10 working days" },
+];
+
 export const countryCurrencyMap = {
     "Afghanistan": "AFN",
     "Albania": "ALL",

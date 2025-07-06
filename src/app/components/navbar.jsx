@@ -373,7 +373,7 @@ export default function Navbar() {
                             </div> */}
                             <div className="mobile-nav-links">
                                 <div className="mobile-nav-links-title">
-                                    <p>BRAND</p>
+                                    <Link className='nav-link' href={"/our_story"}><p>BRAND</p></Link>
                                     {/* <Image src={plus} width={15} height={15} alt='plus' /> */}
                                 </div>
                                 <div className="mobile-nav-links-detail"></div>
@@ -864,7 +864,7 @@ export default function Navbar() {
                                 <p>BAGS</p>
                                 <div className="indicator"></div>
                             </Link>
-                            <Link href="/blog" className='links' id='blogdiv'>
+                            <Link href="/our_story" className='links' id='blogdiv'>
                                 <p>BRAND</p>
                                 <div className="indicator"></div>
                             </Link>

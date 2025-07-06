@@ -14,7 +14,7 @@ export default function Footer() {
   const { location, setShowFlagBox, timezone } = useContext(FlagContext);
   const [time, setTime] = useState("");
   const { shownav, user } = useAuth();
-  const { setExclusiveFilter } =useSort();
+  const { setExclusiveFilter, setSummerFilter, setProductType } =useSort();
   const router = useRouter();
 
   useEffect(() => {
@@ -73,20 +73,32 @@ export default function Footer() {
                 <div className='auxilliary bunch'>
                   <h3>Collection</h3>
                   <div className="div-links">
-                    <Link href={"/"} className='links'>
+                    <Link href={"/drip"} className='links'  onClick={() => {
+                      setSummerFilter("Spring", null, null)
+                      setProductType("SUMMER COLLECTION")
+                    }}>
                       <p>New: Summer Collection</p>
                     </Link>
-                    <Link href={"/"} className='links'>
-                      <p>Bestsellers</p>
+                    <Link href={"/our_story"} className='links'>
+                      <p>Brand</p>
                     </Link>
-                    <Link href={"/"} className='links'>
+                    <Link href={"/drip"} className='links' onClick={() => {
+                      setSummerFilter(null, null, ["Caps", "Bags"])
+                      setProductType("ACCESSORIES")
+                    }}>
                       <p>Accessories</p>
                     </Link>
-                    <Link href={"/"} className='links'>
+                    <Link href={"/drip"} className='links' onClick={() => {
+                      setSummerFilter(null, "Kids", [])
+                      setProductType("KIDS WEAR")
+                    }}>
                       <p>Kids Wear</p>
                     </Link>
-                    <Link href={"/"} className='links'>
-                      <p>Dunya Collection</p>
+                    <Link href={"/drip"} className='links' onClick={() => {
+                      setSummerFilter(null, "Women", [])
+                      setProductType("WOMEN'S WEAR")
+                    }}>
+                      <p>Women</p>
                     </Link>
                   </div>
                 </div>
@@ -97,20 +109,17 @@ export default function Footer() {
                     <Link href={user ? "/dashboard" : "login-out"} className='links'>
                       <p>My Account</p>
                     </Link>
-                    <Link href={"/"} className='links'>
-                      <p>Contact Us</p>
-                    </Link>
-                    <Link href={"/"} className='links'>
+                    <Link href={"/orders_returns"} className='links'>
                       <p>Orders & Returns</p>
                     </Link>
-                    <Link href={"/"} className='links'>
+                    <Link href={"/uk_shipping"} className='links'>
                       <p>UK Shipping</p>
                     </Link>
-                    <Link href={"/"} className='links'>
+                    <Link href={"/International_shipping"} className='links'>
                       <p>International Shipping</p>
                     </Link>
-                    <Link href={"/"} className='links'>
-                      <p>EU VAT</p>
+                    <Link href={"/Acceptable_Use"} className='links'>
+                      <p>Acceptable Use Policy</p>
                     </Link>
                   </div>
                 </div>
@@ -118,16 +127,16 @@ export default function Footer() {
                 <div className='legal bunch'>
                   <h3>Legal</h3>
                   <div className="div-links">
-                    <Link href={"/"} className='links'>
+                    <Link href={"/Terms_Conditions"} className='links'>
                       <p>Terms & Conditions</p>
                     </Link>
-                    <Link href={"/"} className='links'>
+                    <Link href={"/Accessibility"} className='links'>
                       <p>Accessiblity</p>
                     </Link>
-                    <Link href={"/"} className='links'>
+                    <Link href={"/PrivacyPolicy"} className='links'>
                       <p>Privacy Policy</p>
                     </Link>
-                    <Link href={"/"} className='links'>
+                    <Link href={"/CookiePolicy"} className='links'>
                       <p>Cookie Policy</p>
                     </Link>
                   </div>
@@ -143,7 +152,7 @@ export default function Footer() {
                     <Image src={supabse_image_path('/instagram.svg')} width={17} height={17} alt='facebook-svg' />
                     <Image src={supabse_image_path('/tiktok_white.svg')} width={17} height={17} alt='facebook-svg' />
                   </div>
-                  <p>© 2025 Dunya-Drip™. All rights reserved. <span>Privacy Policy</span></p>
+                  <p>© 2025 Dunya-Drip™. All rights reserved. <span onClick={() => router.push("/PrivacyPolicy")}>Privacy Policy</span></p>
                 </div>
 
                 <div className='subscription'>
@@ -160,7 +169,7 @@ export default function Footer() {
                     <button>Subscribe</button>
                   </div>
                   <div className="disclaimer">
-                    <p>By Subscribing You Agree To Our <span>Terms</span> & <span>Privacy Policy</span>.</p>
+                    <p>By Subscribing You Agree To Our <span onClick={() => router.push("/Terms_Conditions")}>Terms</span> & <span onClick={() => router.push("/PrivacyPolicy")}>Privacy Policy</span>.</p>
                   </div>
                 </div>
 

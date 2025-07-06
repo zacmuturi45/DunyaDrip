@@ -1697,7 +1697,7 @@ body {
 
 .drip-card-main {
   min-width: 300px;
-  width: 20%;
+  width: 19%;
   height: 630px;
   position: relative;
 }
@@ -1960,6 +1960,7 @@ body {
   margin: 2.5rem 0;
   display: flex;
   flex-wrap: wrap;
+  gap: 5px;
 }
 .drip-main .drip-container .desert {
   height: 600px;
@@ -3730,6 +3731,7 @@ body {
   text-align: center;
   margin-top: 1.5rem;
   font-size: 0.8rem;
+  line-height: 2;
 }
 .story-main .story-container .story_three {
   background-color: black;
@@ -3858,6 +3860,139 @@ body {
   .story-main .story-container .story_three .story_three_container .text_container .more_text .text p {
     font-size: 0.8rem;
     text-align: start;
+  }
+}
+.orders_returns {
+  padding-top: 200px;
+}
+.orders_returns .orders-returns-page {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 2rem 1rem;
+  border-radius: 10px;
+}
+.orders_returns .orders-returns-page > * {
+  font-family: "Inter";
+}
+.orders_returns .orders-returns-page h1 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #222;
+  text-align: start;
+}
+.orders_returns .orders-returns-page h2 {
+  font-size: 1.1rem;
+  color: #1a1a1a;
+  margin-top: 2.2rem;
+  margin-bottom: 0.9rem;
+}
+.orders_returns .orders-returns-page h3 {
+  font-size: 1rem;
+  color: #000000;
+  margin-top: 1.2rem;
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+}
+.orders_returns .orders-returns-page ul, .orders_returns .orders-returns-page ol {
+  margin: 0 0 1.2rem 0;
+  font-size: 0.8rem;
+}
+.orders_returns .orders-returns-page ul li, .orders_returns .orders-returns-page ol li {
+  margin-bottom: 0.7rem;
+  line-height: 1.6;
+}
+.orders_returns .orders-returns-page p {
+  color: #000000;
+  line-height: 1.7;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+.orders_returns .orders-returns-page a {
+  color: #0b19af;
+  text-decoration: underline;
+}
+.orders_returns .orders-returns-page a:hover {
+  text-decoration: none;
+  color: #087849;
+}
+.orders_returns .orders-returns-page .thank-you {
+  text-align: center;
+  margin-top: 2.5rem;
+  font-size: 1.08rem;
+  color: #000000;
+  font-weight: 600;
+}
+@media (max-width: 600px) {
+  .orders_returns .orders-returns-page {
+    padding: 1.1rem 0.3rem;
+  }
+  .orders_returns .orders-returns-page h1 {
+    font-size: 1.35rem;
+  }
+  .orders_returns .orders-returns-page h2 {
+    font-size: 1.08rem;
+  }
+  .orders_returns .orders-returns-page h3 {
+    font-size: 0.99rem;
+  }
+  .orders_returns .orders-returns-page ul, .orders_returns .orders-returns-page ol {
+    font-size: 0.97rem;
+  }
+  .orders_returns .orders-returns-page p, .orders_returns .orders-returns-page .thank-you {
+    font-size: 0.99rem;
+  }
+}
+
+.shipping-countries-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem 1.5rem;
+  margin: 1rem 0 2rem 0;
+  padding: 0;
+  list-style-type: disc;
+}
+.shipping-countries-list li {
+  min-width: 120px;
+  font-size: 0.93rem;
+  color: #212121;
+}
+
+.shipping-table-wrapper {
+  overflow-x: auto;
+  margin-bottom: 2rem;
+}
+
+.shipping-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.95rem;
+}
+.shipping-table th, .shipping-table td {
+  border: 1px solid #e3e3e3;
+  padding: 0.7rem 1.1rem;
+  text-align: left;
+}
+.shipping-table th {
+  background: #f3f6fc;
+  font-weight: 600;
+  color: #0b19af;
+}
+.shipping-table tr:nth-child(even) {
+  background: #fafbfc;
+}
+
+@media (max-width: 600px) {
+  .shipping-countries-list {
+    gap: 0.4rem 0.8rem;
+  }
+  .shipping-countries-list li {
+    min-width: 90px;
+    font-size: 0.91rem;
+  }
+  .shipping-table th, .shipping-table td {
+    padding: 0.48rem 0.3rem;
+    font-size: 0.92rem;
   }
 }
 .footer-main {
