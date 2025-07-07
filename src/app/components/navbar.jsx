@@ -3,7 +3,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import '../css/index.css';
 import Image from 'next/image';
-import { accessories, flag_array, jacket, kids_accessories, kids_clothing, kids_kicks, men_accessories, men_clothing, men_kicks, newInArray, rep_accessories, rep_clothing, rep_footwear, search_head, shoe, shoe1, shoe2, shoe3, women_accessories, women_clothing, women_kicks, women_summer, x, youtube } from '../../../public/imports';
+import { flag_array, kids_accessories, kids_clothing, men_accessories, men_clothing, men_kicks, newInArray, rep_accessories, rep_clothing, search_head, women_accessories, women_clothing } from '../../../public/imports';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import UseScroll from './navscroll';
@@ -51,13 +51,6 @@ export default function Navbar() {
     const router = useRouter();
     const hideTimeout = useRef(null);
     const { location, setFlagActive, flag_active, setLocation, apply_location, setColorIndex, showFlagBox, setShowFlagBox } = useContext(FlagContext);
-    const searchArray = [
-        { product_image: shoe, product_name: "Nike Arreola", price: "65" },
-        { product_image: shoe1, product_name: "Nike Blue Blood", price: "55" },
-        { product_image: shoe3, product_name: "Nike Creator", price: "35" },
-        { product_image: shoe2, product_name: "Nike Kratos", price: "77" },
-        { product_image: jacket, product_name: "Nike Darkly", price: "85" }
-    ]
 
     const { user, display_name } = useAuth();
     const { setProductType, handleFilterChange, setExclusiveFilter } = useSort();

@@ -1,7 +1,6 @@
 "use client"
 
 import React, { useRef, useState } from 'react'
-import { arrow, arrow_right, featured_array } from '../../../public/imports'
 import Featured_Card from '../components/featured_card'
 import Image from 'next/image'
 import { useCart } from '../contexts/cart_context'
@@ -24,7 +23,7 @@ export default function MensArrivals() {
     };
 
     const nextSlide = () => {
-        if (carousel_index < featured_array.length - 1) {
+        if (carousel_index < 10) {
             setCarouselIndex(carousel_index + 1);
             scrollToIndex(carousel_index + 1)
         }

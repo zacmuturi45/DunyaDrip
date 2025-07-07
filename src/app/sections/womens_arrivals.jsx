@@ -23,7 +23,7 @@ export default function WomensArrivals() {
     };
 
     const nextSlide = () => {
-        if (carousel_index < featured_array.length - 1) {
+        if (carousel_index < 10) {
             setCarouselIndex(carousel_index + 1);
             scrollToIndex(carousel_index + 1)
         }
