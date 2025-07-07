@@ -8,7 +8,7 @@ export const TermsAndConditions = () => {
 
                 <section>
                     <h2>1. General Information</h2>
-                    <p>This website is operated by Dunya Drip. Throughout the site, the terms "we", "us" and "our" refer to Dunya Drip.</p>
+                    <p>This website is operated by Dunya Drip. Throughout the site, the terms &apos;we&apos;, &apos;us&apos; and &apos;our&apos; refer to Dunya Drip.</p>
                 </section>
 
                 <section>

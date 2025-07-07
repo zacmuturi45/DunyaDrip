@@ -47,7 +47,7 @@ export default function OurStory() {
 
                                 <div className="text">
                                     <p>Dunya Drip is made for the ones who stand out, speak up, and wear their truth. We don&apos;t follow fast fashion — we design with intention. From quality materials to meaningful details, everything we drop is made to last, made to spark pride, and made to tell your story.</p>
-                                    <p>So whether you're stepping into the city or into your purpose, do it in drip that represents you. Bold. Authentic. Limitless.</p>
+                                    <p>So whether you&apos;re stepping into the city or into your purpose, do it in drip that represents you. Bold. Authentic. Limitless.</p>
                                 </div>
                             </div>
                         </div>
