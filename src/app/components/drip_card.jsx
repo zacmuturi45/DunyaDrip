@@ -44,12 +44,12 @@ export default function DripCard({ drip_image, product_name, product_price, inde
         <div className='drip-card-main'>
             <div className="drip-card-container">
                 <div className="image" onClick={() => router.push(`/${id}`)}>
-                    <Image src={drip_image} width={100} height={100} unoptimized alt='drip-image' />
+                    <Image src={drip_image} width={100} height={100} unoptimized alt='drip-image' className='drip_product_image' />
                 </div>
                 <div className="drip-info">
                     <div className='one'>
                         <p>{product_name}</p>
-                        <p>{`${location.currency} ${product_price}`}</p>
+                        <p>{`£${product_price}`}</p>
                     </div>
 
                     <div className="hide-div">

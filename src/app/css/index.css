@@ -1023,7 +1023,7 @@ body {
 }
 .featured_card_main .card-img .card-img1 {
   width: 100%;
-  height: 100%;
+  height: auto;
   cursor: pointer;
   transition: all 1.2s cubic-bezier(0.33, 1, 0.68, 1);
 }
@@ -1037,7 +1037,7 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: auto;
   z-index: -1;
   transition: all 1.2s cubic-bezier(0.33, 1, 0.68, 1);
 }
@@ -1746,14 +1746,17 @@ body {
   height: 450px;
   overflow: hidden;
 }
-.drip-card-main .drip-card-container .image > * {
+.drip-card-main .drip-card-container .image .drip_product_image {
   width: 100%;
-  height: 100%;
+  height: auto;
   transition: all 1.2s cubic-bezier(0.33, 1, 0.68, 1);
 }
-.drip-card-main .drip-card-container .image > *:hover {
+.drip-card-main .drip-card-container .image .drip_product_image:hover {
   transform: scale(1.03);
   transition: transform 1.2s cubic-bezier(0.33, 1, 0.68, 1);
+}
+.drip-card-main .drip-card-container .drip-info {
+  text-align: center;
 }
 .drip-card-main .drip-card-container .drip-info .one {
   padding: 1rem 0.5rem;
@@ -1765,6 +1768,9 @@ body {
 }
 .drip-card-main .drip-card-container .drip-info .one p:nth-of-type(2) {
   margin-top: 0.5rem;
+  font-weight: 600;
+  color: rgb(197, 59, 59);
+  font-size: 0.9rem;
 }
 .drip-card-main .drip-card-container .drip-info .one p:nth-of-type(2) span {
   margin-right: 5px;
@@ -2002,6 +2008,49 @@ body {
   opacity: 0.9;
 }
 
+.universal_price {
+  color: rgb(197, 59, 59);
+}
+
+.shipping-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.shipping-modal {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+}
+.shipping-modal button {
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+  margin-right: 5px;
+  padding: 0.5rem 1rem;
+  outline: none;
+  height: 50px;
+}
+.shipping-modal #ship_one {
+  width: 180px;
+}
+
+.shipping-modal .section {
+  margin-bottom: 1rem;
+}
+
 .drip_page_main {
   min-height: 100vh;
   padding-top: 140px;
@@ -2076,6 +2125,7 @@ body {
   font-size: 1.5rem;
   font-weight: 500;
   font-family: "Inter";
+  color: rgb(197, 59, 59);
 }
 .drip_page_main .drip_page_container .container-one .one-detail .div_one .vat {
   font-size: 0.8rem;
@@ -2744,14 +2794,6 @@ body {
 }
 .checkout_main .checkout_container .checkout_div_one .checkout_div_one_container {
   width: 600px;
-}
-.checkout_main .checkout_container .checkout_div_one .checkout_div_one_container .checkout_title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.checkout_main .checkout_container .checkout_div_one .checkout_div_one_container .checkout_title h1 {
-  font-weight: 800;
 }
 .checkout_main .checkout_container .checkout_div_two {
   background-color: rgb(241, 241, 241);
@@ -3893,11 +3935,13 @@ body {
   margin-bottom: 0.3rem;
   font-weight: 600;
 }
-.orders_returns .orders-returns-page ul, .orders_returns .orders-returns-page ol {
+.orders_returns .orders-returns-page ul,
+.orders_returns .orders-returns-page ol {
   margin: 0 0 1.2rem 0;
   font-size: 0.8rem;
 }
-.orders_returns .orders-returns-page ul li, .orders_returns .orders-returns-page ol li {
+.orders_returns .orders-returns-page ul li,
+.orders_returns .orders-returns-page ol li {
   margin-bottom: 0.7rem;
   line-height: 1.6;
 }
@@ -3935,10 +3979,12 @@ body {
   .orders_returns .orders-returns-page h3 {
     font-size: 0.99rem;
   }
-  .orders_returns .orders-returns-page ul, .orders_returns .orders-returns-page ol {
+  .orders_returns .orders-returns-page ul,
+  .orders_returns .orders-returns-page ol {
     font-size: 0.97rem;
   }
-  .orders_returns .orders-returns-page p, .orders_returns .orders-returns-page .thank-you {
+  .orders_returns .orders-returns-page p,
+  .orders_returns .orders-returns-page .thank-you {
     font-size: 0.99rem;
   }
 }
@@ -3968,7 +4014,8 @@ body {
   margin: 1rem 0;
   font-size: 0.95rem;
 }
-.shipping-table th, .shipping-table td {
+.shipping-table th,
+.shipping-table td {
   border: 1px solid #e3e3e3;
   padding: 0.7rem 1.1rem;
   text-align: left;
@@ -3990,7 +4037,8 @@ body {
     min-width: 90px;
     font-size: 0.91rem;
   }
-  .shipping-table th, .shipping-table td {
+  .shipping-table th,
+  .shipping-table td {
     padding: 0.48rem 0.3rem;
     font-size: 0.92rem;
   }
@@ -5127,6 +5175,34 @@ body {
   }
   .cart_page_main .cart_page_container .cart_footer .footer-one .sub p {
     height: 25px;
+  }
+  .drip-card-main .drip-card-container {
+    box-shadow: -1px 0px 39px -7px rgba(0, 0, 0, 0.75);
+    z-index: 999;
+  }
+  .drip-card-main .drip-card-container .drip-info .hide-div {
+    display: block;
+  }
+  .drip-card-main .drip-card-container .drip-info .hide-div .two {
+    position: relative;
+  }
+  .drip-card-main .drip-card-container .drip-info .hide-div .two .size_alert {
+    position: absolute;
+    top: -10px;
+    left: 0;
+    background-color: black;
+    padding: 2px 10px;
+    color: white;
+    border-radius: 5px;
+    display: flex;
+    font-size: 0.8rem;
+  }
+  .drip-card-main .drip-card-container .drip-info .hide-div .two .size_alert .thumbs-down {
+    transform: rotate(90deg);
+    margin-right: 0.5rem;
+  }
+  .drip-card-main .drip-card-container .drip-info .hide-div .two .size_alert .thumbs-down > * {
+    transform: rotate(90deg);
   }
   .drip_page_main .drip_page_container {
     padding: 50px 10px 0 10px;

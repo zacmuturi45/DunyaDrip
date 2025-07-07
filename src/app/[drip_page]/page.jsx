@@ -148,7 +148,7 @@ export default function DripSlug() {
                     </div>
                     <p>4 Reviews</p>
                   </div>
-                  <p className='price'>{`${location.currency} ${image_object.price * merch_quantity}`}</p>
+                  <p className='price'>{`£${image_object.price * merch_quantity}`}</p>
                   <p className='vat'>Inclusive VAT *</p>
                 </div>
 
@@ -199,39 +199,44 @@ export default function DripSlug() {
                       <div className="case">
                         <div className="case_title">
                           <p>UK SHIPPING</p>
-                          <Image src={supabse_image_path('/plus.svg')} width={20} height={20} alt='plus' style={{ cursor: "pointer" }} onClick={() => showDeets(prevDeets => ({
+                          <div onClick={() => showDeets(prevDeets => ({
                             ...prevDeets,
                             deets1: !prevDeets.deets1
-                          }))} />
+                          }))} style={{ cursor: "pointer" }}>{deets.deets1 ? "➖" : "➕"}</div>
                         </div>
-                        <p className={deets.deets1 ? "deets showdeets" : "deets"}>
-                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui deserunt laborum cum quas officiis, minus nesciunt sapiente quia delectus fugit et temporibus distinctio, aut maiores?
-                        </p>
+                        <div className={deets.deets1 ? "deets showdeets" : "deets"}>
+                          <div className="dropdown-content">
+                            <p>📦 Standard: £3.99 (Free over £80) — 2 to 4 days</p>
+                            <p>⚡ Express: £6.99 — 1 to 2 days (before 2pm)</p>
+                            <p>🚚 Next Day: £8.99 — Mon to Fri before 2pm</p>
+                          </div>
+                        </div>
                       </div>
 
                       <div className="case">
                         <div className="case_title">
                           <p>INTERNATIONAL SHIPPING</p>
-                          <Image src={supabse_image_path('/plus.svg')} width={20} height={20} alt='plus' style={{ cursor: "pointer" }} onClick={() => showDeets(prevDeets => ({
+                          <div onClick={() => showDeets(prevDeets => ({
                             ...prevDeets,
                             deets2: !prevDeets.deets2
-                          }))} />
+                          }))} style={{ cursor: "pointer" }}>{deets.deets2 ? "➖" : "➕"}</div>
                         </div>
-                        <p className={deets.deets2 ? "deets showdeets" : "deets"}  >
-                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui deserunt laborum cum quas officiis, minus nesciunt sapiente quia delectus fugit et temporibus distinctio, aut maiores?
+                        <p className={deets.deets2 ? "deets showdeets" : "deets"}>
+                          🌍 Worldwide shipping available — Please see our <span onClick={() => router.push("/International_shipping")} style={{ textDecoration: "underline", cursor: "pointer" }}>International shipping</span> page for countries we currently ship to.
                         </p>
+
                       </div>
 
                       <div className="case" style={{ borderBottom: "1px solid rgb(223, 223, 223)", paddingBottom: "1rem" }}>
                         <div className="case_title">
                           <p>RETURNS</p>
-                          <Image src={supabse_image_path('/plus.svg')} width={20} height={20} alt='plus' style={{ cursor: "pointer" }} onClick={() => showDeets(prevDeets => ({
+                          <div onClick={() => showDeets(prevDeets => ({
                             ...prevDeets,
                             deets3: !prevDeets.deets3
-                          }))} />
+                          }))} style={{ cursor: "pointer" }}>{deets.deets3 ? "➖" : "➕"}</div>
                         </div>
-                        <p className={deets.deets3 ? "deets showdeets" : "deets"}  >
-                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui deserunt laborum cum quas officiis, minus nesciunt sapiente quia delectus fugit et temporibus distinctio, aut maiores?
+                        <p className={deets.deets3 ? "deets showdeets" : "deets"}>
+                          🔄 Returns accepted within 14 days. Items must be unused, in original packaging. Please see our <span onClick={() => router.push("/orders_returns")} style={{ textDecoration: "underline", cursor: "pointer" }}>Returns Page</span> for more information.
                         </p>
                       </div>
                     </div>

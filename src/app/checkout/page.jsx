@@ -6,10 +6,12 @@ import AddressForm from '../components/address_form'
 import Payment from '../components/payment_details'
 import CartProduct from '../components/cart_product'
 import { FlagContext } from '../contexts/flagcontext'
+import { useAuth } from '../contexts/auth_context'
 
 export default function CheckOut() {
-    const { cart, totalz } = useCart();
+    const { cart, totalz, shippingOption } = useCart();
     const { location } = useContext(FlagContext);
+    const { setShowShippingButton } = useAuth();
     const [checkoutForm, setCheckoutForm] = useState({
         country: '',
         firstName: '',
@@ -33,17 +35,12 @@ export default function CheckOut() {
         <div className='checkout_main'>
             <div className="checkout_container">
 
-                {/* CHECKOUT_DIV_ONE */}
                 <div className='checkout_div_one'>
                     <div className="checkout_div_one_container">
-                        {/* <div className='checkout_title'>
-                        <h1>Checkout</h1>
-                        <p>{`Order subtotal (2 items): $300`}</p>
-                    </div> */}
 
                         <div className='checkout_shipping_address'>
 
-                            <div className='shipping_address_form'>
+                            {/* <div className='shipping_address_form'>
                                 <AddressForm
                                     formData={checkoutForm}
                                     setFormData={setCheckoutForm}
@@ -51,7 +48,7 @@ export default function CheckOut() {
                                     onSubmit={handleCheckoutSubmit}
                                     submitButtonLabel="Proceed to Payment"
                                 />
-                            </div>
+                            </div> */}
                         </div>
 
                         <div className='checkout_payment_details'>
@@ -63,7 +60,6 @@ export default function CheckOut() {
                     </div>
 
                 </div>
-                {/* END OF CHECKOUT_DIV_ONE */}
 
 
                 {/* CHECKOUT_DIV_TWO */}
@@ -99,15 +95,19 @@ export default function CheckOut() {
                             <div className="summary">
                                 <div>
                                     <p>Subtotal</p>
-                                    <p>{`${location.currency} ${totalz}`}</p>
+                                    <p className='universal_price'>{`£${totalz}`}</p>
                                 </div>
                                 <div>
                                     <p>Shipping</p>
-                                    <p>Free</p>
+                                    <p className='universal_price' style={{cursor: "pointer", textDecoration: "underline"}} onClick={() => setShowShippingButton(true)}>{`${shippingOption.region}, ${shippingOption.method}`}</p>
+                                </div>
+                                <div>
+                                    <p>Shipping charge</p>
+                                    <p>£{shippingOption.price}</p>
                                 </div>
                                 <div className="total">
                                     <p>Total</p>
-                                    <p>{`${location.currency} ${totalz+44}`}</p>
+                                    <p className='universal_price'>{`£${totalz + 9.99}`}</p>
                                 </div>
                             </div>
 

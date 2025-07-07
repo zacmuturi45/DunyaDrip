@@ -8,6 +8,8 @@ import { useAuth } from "../contexts/auth_context";
 import toast from "react-hot-toast";
 import supabse_image_path from "@/utils/supabase/supabse_image_path";
 import PayPalButton from "./PaypalButton";
+import Link from "next/link";
+import ShippingModal from "./shipping_modal";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
 
@@ -25,9 +27,9 @@ export default function Payment({ shippingDetails }) {
     const [useShippingAddress, setUseShippingAddress] = useState(true);
     const [showmore, setShowMore] = useState(false);
     const [expiry, setExpiry] = useState("");
-    const { cart } = useCart();
+    const { cart, shippingOption } = useCart();
     const [isProcessing, setIsProcessing] = useState(false);
-    const { display_name, user_email } = useAuth();
+    const { display_name, user_email, show_shipping_button, setShowShippingButton } = useAuth();
 
 
     const handleCreditCardPayments = async () => {
@@ -58,6 +60,7 @@ export default function Payment({ shippingDetails }) {
                     customer_email: user_email || undefined,
                     customer_name: display_name || undefined,
                     shippingDetails,
+                    shippingOption,
                 }),
             });
 
@@ -196,7 +199,13 @@ export default function Payment({ shippingDetails }) {
 
         return (
             <button
-                onClick={handleCreditCardPayments}
+                onClick={() => {
+                    if(!shippingOption["is_set"]) {
+                        setShowShippingButton(true)
+                    } else {
+                        handleCreditCardPayments()
+                    }
+                }}
                 className={buttonClass}
                 disabled={isProcessing}
             >
@@ -281,9 +290,13 @@ export default function Payment({ shippingDetails }) {
                 {renderButton()}
             </div>
 
+            {
+                show_shipping_button && <ShippingModal />
+            }
+
             <div className="legal_checkout">
-                <p>Refund Policy</p>
-                <p>Privacy Policy</p>
+                <Link className="next-link" href={"/orders_returns"}><p>Refund Policy</p></Link>
+                <Link className="next-link" href={"/PrivacyPolicy"}><p>Privacy Policy</p></Link>
             </div>
         </div>
     );

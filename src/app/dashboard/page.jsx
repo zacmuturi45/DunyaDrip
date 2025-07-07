@@ -3,9 +3,8 @@
 'use client';
 import { useEffect, Suspense, lazy } from 'react';
 import Sidebar from '../components/sidebar';
-import { usePathname } from 'next/navigation';
-import { useAuth } from '../contexts/auth_context';
 import SectionLoader from '../components/section_loader';
+import { useAuth } from '../contexts/auth_context';
 
 const Orders = lazy(() => import('../sections/orders'));
 const Profile = lazy(() => import('../sections/profile'));
@@ -15,12 +14,7 @@ const ProfileSettings = lazy(() => import('../sections/profile_settings'));
 const Settings = lazy(() => import('../sections/settings'));
 
 export default function Dashboard() {
-  const pathname = usePathname();
-  const { setShowNav, activeSection } = useAuth();
-
-  useEffect(() => {
-    setShowNav(pathname === "/dashboard");
-  }, [pathname, setShowNav])
+  const { activeSection } = useAuth();
 
   const renderSection = () => {
     switch (activeSection) {

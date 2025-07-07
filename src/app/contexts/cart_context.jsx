@@ -16,6 +16,7 @@ export const CartProvider = ({ children }) => {
     const [product, setProducts] = useState([]);
     const [loadingProducts, setLoadingProducts] = useState(true);
     const [filteredProduct, setFilteredProduct] = useState([])
+    const [shippingOption, setShippingOption] = useState({region: "UK", method: "Standard", price: 9.99, is_set: null});
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -40,6 +41,8 @@ export const CartProvider = ({ children }) => {
                     category: item.category,
                     description: item.description,
                     niche: item.niche,
+                    image_url2: item.image_url2 ? supabse_image_path(`/${item.image_url2}`) : null,
+                    price: item.price,
                 };
             })
             setProducts(ext_drip_array)
@@ -74,7 +77,7 @@ export const CartProvider = ({ children }) => {
     const clear_cart = () => setCart([]);
 
     return (
-        <CartContext.Provider value={{ product, totalz, setTotalz, loader, setLoader, cart, setCart, addToCart, remove_from_cart, clear_cart, show_cart, setShowCart, loadingProducts, filteredProduct, setFilteredProduct }}>
+        <CartContext.Provider value={{ shippingOption, setShippingOption, product, totalz, setTotalz, loader, setLoader, cart, setCart, addToCart, remove_from_cart, clear_cart, show_cart, setShowCart, loadingProducts, filteredProduct, setFilteredProduct }}>
             {children}
         </CartContext.Provider>
     );

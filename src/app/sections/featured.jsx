@@ -71,9 +71,10 @@ export default function Featured() {
                                     ))
                                 )
                             ) : (
-                                product.slice(0, 10).map((item, index) => (
-                                    <Featured_Card image={item.image_url} id={item.id} image2={item.image_url} product_name={item.name} product_price={item.price} key={index} index={`mens${index}`} />
-                                ))
+                                product.slice(0, 10).map((item, index) => {
+                                    console.log(`ITEMZZZ ARE ${item.image_url2} SHOW UPPP ${item.image_url}`)
+                                    return <Featured_Card image={item.image_url} id={item.id} image2={item.image_url2} product_name={item.name} product_price={item.price} key={index} index={`mens${index}`} />
+                                })
                             )
                         }
                     </div>

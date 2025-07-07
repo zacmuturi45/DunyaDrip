@@ -5,11 +5,11 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 export async function POST(request) {
     const body = await request.json();
 
-    const { items, customer_email, customer_name, shippingDetails } = body;
+    const { items, customer_email, customer_name, shippingDetails, shippingOption } = body;
 
     const line_items = items.map(item => ({
         price_data: {
-            currency: 'usd',
+            currency: 'gbp',
             product_data: {
                 name: `${item.name} (Size: ${item.size})`,
             },
@@ -17,6 +17,20 @@ export async function POST(request) {
         },
         quantity: item.quantity,
     }));
+
+    if (shippingOption?.price && shippingOption?.method) {
+    line_items.push({
+        price_data: {
+            currency: 'gbp',
+            product_data: {
+                name: `Shipping (${shippingOption.region} - ${shippingOption.method})`,
+            },
+            unit_amount: Math.round(shippingOption.price * 100), // Stripe expects amounts in pence
+        },
+        quantity: 1,
+    });
+}
+
 
     try {
         const session = await stripe.checkout.sessions.create({
@@ -44,6 +58,7 @@ export async function POST(request) {
                 customer_name,
                 items: JSON.stringify(items),
                 shippingDetails: shippingDetails ? JSON.stringify(shippingDetails) : undefined,
+                shippingOption: shippingOption ? JSON.stringify(shippingOption) : undefined
             },
             success_url: `${request.headers.get('origin')}/success?session_id={CHECKOUT_SESSION_ID}`,
             cancel_url: `${request.headers.get('origin')}/cancel?session_id={CHECKOUT_SESSION_ID}`,

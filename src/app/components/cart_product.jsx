@@ -1,9 +1,8 @@
 "use client"
 
 import Image from 'next/image'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { FlagContext } from '../contexts/flagcontext';
-import { x } from '../../../public/imports';
 import { useCart } from '../contexts/cart_context';
 import { useRouter } from 'next/navigation';
 import supabse_image_path from '@/utils/supabase/supabse_image_path';
@@ -34,7 +33,7 @@ export default function CartProduct({ cart_image, cart_item_title, cart_item_siz
 
             <div className="cart_product_details">
                 <h4>{cart_item_title}</h4>
-                <p>{`${location.currency} ${cart_item_price * cart_item_quantity}`}</p>
+                <p className='universal_price'>{`£${cart_item_price * cart_item_quantity}`}</p>
                 <p>Size: <span>{cart_item_size}</span></p>
 
                 <div className="qtty">

@@ -1,6 +1,7 @@
 'use client';
 
 import { createClient } from '@/utils/supabase/client';
+import { usePathname } from 'next/navigation';
 import { createContext, useContext, useEffect, useState } from 'react';
 
 const AuthContext = createContext();
@@ -12,7 +13,8 @@ export function AuthProvider({ children, initialSession = null, initialUser = nu
   const supabase = createClient();
   const [activeSection, setActiveSection] = useState('profile');
   const [profile, setProfile] = useState(null);
-
+  const pathname = usePathname();
+  const [show_shipping_button, setShowShippingButton] = useState(false);
 
   
   const display_name = profile?.first_name
@@ -21,6 +23,9 @@ export function AuthProvider({ children, initialSession = null, initialUser = nu
   const last_name = profile?.last_name ? profile.last_name : user?.user_metadata.last_name;
   const user_email = user?.email;
 
+  useEffect(() => {
+    setShowNav(pathname === '/dashboard');
+  }, [pathname, setShowNav]);
 
   const fetchProfile = async (userId) => {
     if (!userId) {
@@ -38,6 +43,7 @@ export function AuthProvider({ children, initialSession = null, initialUser = nu
       setProfile(null)
     }
   };
+
 
   const refreshUser = async () => {
     const { data: { session } } = await supabase.auth.getSession();
@@ -90,7 +96,7 @@ export function AuthProvider({ children, initialSession = null, initialUser = nu
   }, []);
 
   return (
-    <AuthContext.Provider value={{ profile, refreshUser, user_email, session, user, shownav, setShowNav, display_name, last_name, activeSection, setActiveSection }}>
+    <AuthContext.Provider value={{ profile, refreshUser, user_email, session, user, shownav, setShowNav, display_name, last_name, activeSection, setActiveSection, show_shipping_button, setShowShippingButton }}>
       {children}
     </AuthContext.Provider>
   );

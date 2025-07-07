@@ -86,7 +86,7 @@ export default function SuccessPage() {
             sessionData.items ? (
               <div className='success_card_div'>
                 {sessionData.items.map((item, index) => (
-                  <SuccessCard cart_item_price={`${location.currency} ${(item.amount / 100).toFixed(2)}`} cart_item_quantity={item.quantity} cart_item_size={item.size} cart_item_title={item.name} key={index} identifier={index} />
+                  <SuccessCard cart_item_price={`£${(item.amount / 100).toFixed(2)}`} cart_item_quantity={item.quantity} cart_item_size={item.size} cart_item_title={item.name} key={index} identifier={index} />
                 ))}
               </div>
               // <ul>
@@ -111,10 +111,10 @@ export default function SuccessPage() {
             })}</span></p>
             <p>Payment Method: <span>{sessionData.payment_method.brand.toUpperCase()} ending with **{sessionData.payment_method.last4.slice(0, 3)}</span></p>
             <p>SubTotal: <span>{(sessionData.total / 100).toFixed(2)}</span></p>
-            <p>VAT: <span>{location.currency} {(vat_value / 100).toFixed(2)}</span></p>
+            <p>VAT: <span>£{(vat_value / 100).toFixed(2)}</span></p>
             <p>Shipping: <span></span></p>
             <div className="total_price">
-              <p>Total <span>{location.currency} {((sessionData.total + vat_value) / 100).toFixed(2)}</span></p>
+              <p>Total <span>£{((sessionData.total + vat_value) / 100).toFixed(2)}</span></p>
               <Link href={"/drip"} style={{ alignSelf: "center" }}>
                 <button onClick={() => router.push('/drip')}>Continue Shopping</button>
               </Link>

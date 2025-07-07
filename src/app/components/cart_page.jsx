@@ -76,7 +76,7 @@ export default function CartPage() {
                                 <div className="sub">
                                     <p>Subtotal</p>
                                     {
-                                        loader ? <Loader /> : <p>{`${location.currency} ${totalz}`}</p>
+                                        loader ? <Loader /> : <p className='universal_price'>{`£${totalz}`}</p>
                                     }
                                 </div>
                                 {/* <div className="total">
