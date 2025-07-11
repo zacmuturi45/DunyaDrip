@@ -1790,6 +1790,7 @@ body {
   padding: 1rem 0;
   display: flex;
   gap: 0.5rem;
+  justify-content: center;
 }
 .drip-card-main .drip-card-container .drip-info .hide-div .two .sizes p {
   cursor: pointer;
@@ -1797,7 +1798,7 @@ body {
   font-size: 0.8rem;
   height: 20px;
   border-radius: 10px;
-  padding: 0.75rem;
+  padding: 0.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2322,6 +2323,7 @@ body {
 .drip_page_main .drip_page_container .container-two .cards {
   padding: 1rem 0;
   display: flex;
+  gap: 1rem;
   justify-content: space-between;
   transform: scale(0.8);
   flex-wrap: wrap;
@@ -5178,7 +5180,7 @@ body {
   }
   .drip-card-main .drip-card-container {
     box-shadow: -1px 0px 39px -7px rgba(0, 0, 0, 0.75);
-    z-index: 999;
+    z-index: 1;
   }
   .drip-card-main .drip-card-container .drip-info .hide-div {
     display: block;

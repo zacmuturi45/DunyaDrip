@@ -10,6 +10,9 @@ export async function GET(request, { params }) {
             ],
         });
 
+        const shippingOption = session.metadata?.shippingOption ? JSON.parse(session.metadata.shippingOption) : null;
+
+
         const items = session.metadata?.items
             ? JSON.parse(session.metadata.items)
             : session.line_items?.data.map(item => ({
@@ -28,6 +31,7 @@ export async function GET(request, { params }) {
             },
             total: session.amount_total,
             created: session.created,
+            shippingOption: shippingOption,
             ...session,
             items
         });

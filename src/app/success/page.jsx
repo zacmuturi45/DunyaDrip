@@ -37,7 +37,7 @@ export default function SuccessPage() {
   useEffect(() => {
     if (sessionData) {
       const VAT_RATE = 0.2;
-      const vat = sessionData.total / (1 + VAT_RATE) * VAT_RATE;
+      const vat = ((sessionData.total/100) - sessionData.shippingOption.price) / (1 + VAT_RATE) * VAT_RATE;
       setVatValue(vat);
     }
   }, [sessionData]);
@@ -110,11 +110,11 @@ export default function SuccessPage() {
               hour12: true
             })}</span></p>
             <p>Payment Method: <span>{sessionData.payment_method.brand.toUpperCase()} ending with **{sessionData.payment_method.last4.slice(0, 3)}</span></p>
-            <p>SubTotal: <span>{(sessionData.total / 100).toFixed(2)}</span></p>
-            <p>VAT: <span>£{(vat_value / 100).toFixed(2)}</span></p>
-            <p>Shipping: <span></span></p>
+            <p>SubTotal: <span>{((sessionData.total / 100).toFixed(2) - (sessionData.shippingOption.price + vat_value))}</span></p>
+            <p>VAT: <span>£{vat_value}</span></p>
+            <p>Shipping: <span>{sessionData.shippingOption.price}</span></p>
             <div className="total_price">
-              <p>Total <span>£{((sessionData.total + vat_value) / 100).toFixed(2)}</span></p>
+              <p>Total <span>£{sessionData.total/100}</span></p>
               <Link href={"/drip"} style={{ alignSelf: "center" }}>
                 <button onClick={() => router.push('/drip')}>Continue Shopping</button>
               </Link>

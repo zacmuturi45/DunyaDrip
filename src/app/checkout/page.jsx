@@ -107,7 +107,7 @@ export default function CheckOut() {
                                 </div>
                                 <div className="total">
                                     <p>Total</p>
-                                    <p className='universal_price'>{`£${totalz + 9.99}`}</p>
+                                    <p className='universal_price'>{`£${totalz + shippingOption.price}`}</p>
                                 </div>
                             </div>
 

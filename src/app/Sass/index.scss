@@ -2296,6 +2296,7 @@ body {
                         padding: 1rem 0;
                         display: flex;
                         gap: .5rem;
+                        justify-content: center;
 
                         p {
                             cursor: pointer;
@@ -2303,7 +2304,7 @@ body {
                             font-size: .8rem;
                             height: 20px;
                             border-radius: 10px;
-                            padding: .75rem;
+                            padding: .5rem;
                             display: flex;
                             justify-content: center;
                             align-items: center;
@@ -2950,6 +2951,7 @@ body {
             .cards {
                 padding: 1rem 0;
                 display: flex;
+                gap: 1rem;
                 justify-content: space-between;
                 transform: scale(.8);
                 flex-wrap: wrap;
@@ -5322,6 +5324,7 @@ body {
 
 
 @media screen and (max-width: 580px) {
+    
     .profile-form {
         transform: scale(0.85);
     }
@@ -6687,7 +6690,7 @@ body {
     .drip-card-main {
         .drip-card-container {
             box-shadow: -1px 0px 39px -7px rgba(0, 0, 0, 0.75);
-            z-index: 999;
+            z-index: 1;
 
             .drip-info {
 
