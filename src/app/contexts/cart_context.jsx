@@ -33,7 +33,7 @@ export const CartProvider = ({ children }) => {
                 return {
                     ...item,
                     id: 100 + index,
-                    image_url: item.image_url ? supabse_image_path(`/${item.image_url}`) : null,
+                    image_url: item.image_url ? supabse_image_path(`${item.image_url}`) : null,
                     product_type: item.product_type,
                     color: item.color,
                     size: item.size,
@@ -41,7 +41,7 @@ export const CartProvider = ({ children }) => {
                     category: item.category,
                     description: item.description,
                     niche: item.niche,
-                    image_url2: item.image_url2 ? supabse_image_path(`/${item.image_url2}`) : null,
+                    image_url2: item.image_url2 ? supabse_image_path(`${item.image_url2}`) : null,
                     price: (item.price*0.2)+item.price,
                 };
             })
