@@ -18,7 +18,7 @@ export default function SuccessPage() {
   const { location } = useContext(FlagContext)
   const router = useRouter();
   const [vat_value, setVatValue] = useState(0);
-  const supabase = supabase_client();
+  const supabase = supabase_client;
   const { user } = useAuth();
 
 
@@ -86,7 +86,7 @@ export default function SuccessPage() {
             sessionData.items ? (
               <div className='success_card_div'>
                 {sessionData.items.map((item, index) => (
-                  <SuccessCard cart_item_price={`£${(item.amount / 100).toFixed(2)}`} cart_item_quantity={item.quantity} cart_item_size={item.size} cart_item_title={item.name} key={index} identifier={index} />
+                  <SuccessCard cart_item_price={`£${(item.amount / 100).toFixed(2)}`} cart_item_quantity={item.quantity} cart_item_size={item.size} cart_item_title={item.name} key={index} identifier={index} image={item.image} />
                 ))}
               </div>
               // <ul>
@@ -110,9 +110,9 @@ export default function SuccessPage() {
               hour12: true
             })}</span></p>
             <p>Payment Method: <span>{sessionData.payment_method.brand.toUpperCase()} ending with **{sessionData.payment_method.last4.slice(0, 3)}</span></p>
-            <p>SubTotal: <span>{((sessionData.total / 100).toFixed(2) - (sessionData.shippingOption.price + vat_value))}</span></p>
+            <p>SubTotal: <span>£{((sessionData.total / 100).toFixed(2) - (sessionData.shippingOption.price + vat_value))}</span></p>
             <p>VAT: <span>£{vat_value}</span></p>
-            <p>Shipping: <span>{sessionData.shippingOption.price}</span></p>
+            <p>Shipping: <span>£{sessionData.shippingOption.price}</span></p>
             <div className="total_price">
               <p>Total <span>£{sessionData.total/100}</span></p>
               <Link href={"/drip"} style={{ alignSelf: "center" }}>

@@ -15,6 +15,7 @@ import { useCart } from '../contexts/cart_context';
 import { useAuth } from '../contexts/auth_context';
 import supabse_image_path from '@/utils/supabase/supabse_image_path';
 import { useSort } from '../contexts/sort_context';
+import { AnimatePresence, motion } from 'framer-motion';
 
 
 export default function Navbar() {
@@ -47,14 +48,14 @@ export default function Navbar() {
         sub_drawer4d2: false,
         sub_drawer4d3: false,
     });
-    const { cart, setShowCart } = useCart();
+    const { cart, setShowCart, setRegion } = useCart();
     const router = useRouter();
     const hideTimeout = useRef(null);
     const { location, setFlagActive, flag_active, setLocation, apply_location, setColorIndex, showFlagBox, setShowFlagBox } = useContext(FlagContext);
 
     const { user, display_name } = useAuth();
     const { setProductType, handleFilterChange, setExclusiveFilter } = useSort();
-    const { setFilteredProduct, product } = useCart();
+    const { setShippingOption, product } = useCart();
 
     const [searchQuery, setSearchQuery] = useState("");
     const [searchResults, setSearchResults] = useState([]);
@@ -62,6 +63,30 @@ export default function Navbar() {
     const searchDelay = useRef(null);
     const [carouselPosition, setCarouselPosition] = useState(0);
     const CAROUSEL_VISIBLE_COUNT = 4;
+
+    const dropdownVariants = {
+        hidden: {
+            opacity: 0,
+            transition: {
+                duration: 0.1,
+                ease: "easeInOut"
+            }
+        },
+        visible: {
+            opacity: 1,
+            transition: {
+                duration: 0.45,
+                ease: "easeOut"
+            }
+        },
+        exit: {
+            opacity: 0,
+            transition: {
+                duration: 0.1,
+                ease: "easeIn"
+            }
+        }
+    };
 
     // ...rest of your state and hooks...
 
@@ -578,6 +603,7 @@ export default function Navbar() {
                                     setFlagActive(false)
                                     setColorIndex(3000)
                                     setLocation(apply_location)
+                                    setRegion(apply_location.country_name)
                                 }}>Apply</button>
                             </div>
                         </div>
@@ -592,211 +618,290 @@ export default function Navbar() {
 
                     <div className="main-nav-content" id='main-nav'>
 
-                        <div className={newin ? "newin" : "hide-newin"} onMouseEnter={() => handleMouseEnter(setNewin)} onMouseLeave={() => handleMouseLeave(setNewin)} >
-                            <div className="newin-filter" onMouseEnter={() => handleMouseLeave(setNewin)}></div>
-                            <div className="newin-container">
-                                <div className="newin-detail">
-                                    <h4>NEW IN</h4>
-                                    {
-                                        newInArray.map((item, index) => (
-                                            <p key={index} onClick={() => handleClick(item, "NEW IN")}>{item}</p>
-                                        ))
-                                    }
-                                </div>
-
-                                <div className="summer-collection">
-                                    <div className="summer-card">
-                                        <Image src={supabse_image_path('/newin.webp')} width={100} height={100} unoptimized alt='summer-collection' className='summer-image' />
-                                        <div className="summer-card-detail">
-                                            <h4>Exclusive: Summer Collection 2025</h4>
-                                            <p onClick={() => {
-                                                handleFilterChange("Season", "Summer")
-                                                setProductType("SUMMER COLLECTION")
-                                                router.push("/drip")
-                                            }}>Shop Now</p>
+                        {/* NEW IN DROPDOWN WITH FRAMER MOTION */}
+                        <AnimatePresence>
+                            {newin && (
+                                <motion.div
+                                    className="newin"
+                                    variants={dropdownVariants}
+                                    initial="hidden"
+                                    animate="visible"
+                                    exit="exit"
+                                    onMouseEnter={() => handleMouseEnter(setNewin)}
+                                    onMouseLeave={() => handleMouseLeave(setNewin)}
+                                >
+                                    <div className="newin-filter" onMouseEnter={() => handleMouseLeave(setNewin)}></div>
+                                    <div className="newin-container">
+                                        <div className="newin-detail">
+                                            <h4>NEW IN</h4>
+                                            {
+                                                newInArray.map((item, index) => (
+                                                    <p key={index} onClick={() => {
+                                                        handleClick(item, "NEW IN")
+                                                        handleMouseLeave(setNewin)
+                                                    }}>{item}</p>
+                                                ))
+                                            }
+                                        </div>
+                                        <div className="summer-collection">
+                                            <div className="summer-card">
+                                                <Image src={supabse_image_path('/newin.webp')} width={100} height={100} unoptimized alt='summer-collection' className='summer-image' />
+                                                <div className="summer-card-detail">
+                                                    <h4>Exclusive: Summer Collection 2025</h4>
+                                                    <p onClick={() => {
+                                                        handleFilterChange("Season", "Summer")
+                                                        setProductType("SUMMER COLLECTION")
+                                                        handleMouseLeave(setNewin)
+                                                        router.push("/drip")
+                                                    }}>Shop Now</p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
 
-                        </div>
+                        {/* MEN DROPDOWN WITH FRAMER MOTION */}
 
                         {/* FILTER IS USED HERE */}
 
-                        <div className={men ? "men" : "hide-men"} onMouseEnter={() => handleMouseEnter(setMen)} onMouseLeave={() => handleMouseLeave(setMen)} >
-                            <div className="men-filter" onMouseEnter={() => handleMouseLeave(setMen)}></div>
-                            <div className="men-container">
+                        <AnimatePresence>
+                            {men && (
+                                <motion.div
+                                    className="men"
+                                    variants={dropdownVariants}
+                                    initial="hidden"
+                                    animate="visible"
+                                    exit="exit"
+                                    onMouseEnter={() => handleMouseEnter(setMen)}
+                                    onMouseLeave={() => handleMouseLeave(setMen)}
+                                >
+                                    <div className="men-filter" onMouseEnter={() => handleMouseLeave(setMen)}></div>
+                                    <div className="men-container">
 
-                                <div className='men-clothing'>
-                                    <h4>Clothing</h4>
-                                    {
-                                        men_clothing.map((item, index) => (
-                                            <p key={index} onClick={() => handleClick(item, "Men")}>{item}</p>
-                                        ))
-                                    }
-                                </div>
-
-                                <div className='men-clothing'>
-                                    <h4>Accessories</h4>
-                                    {
-                                        men_accessories.map((item, index) => (
-                                            <p key={index} onClick={() => handleClick(item, "ACCESSORIES")}>{item}</p>
-                                        ))
-                                    }
-                                </div>
-
-                                <div className="summer-collection">
-                                    <div className="summer-card">
-                                        <Image src={supabse_image_path('/summer.webp')} width={100} height={100} unoptimized alt='summer-collection' className='summer-image' />
-                                        <div className="summer-card-detail">
-                                            <h4>Exclusive: Summer Collection 2025</h4>
-                                            <p onClick={() => {
-                                                handleFilterChange("Season", "Summer")
-                                                setProductType("SUMMER COLLECTION")
-                                                router.push("/drip")
-                                            }}>Shop Now</p>
+                                        <div className='men-clothing'>
+                                            <h4>Clothing</h4>
+                                            {
+                                                men_clothing.map((item, index) => (
+                                                    <p key={index} onClick={() => {
+                                                        handleClick(item, "Men")
+                                                        handleMouseLeave(setMen)
+                                                    }}>{item}</p>
+                                                ))
+                                            }
                                         </div>
-                                    </div>
-                                </div>
 
-                            </div>
-                        </div>
+                                        <div className='men-clothing'>
+                                            <h4>Accessories</h4>
+                                            {
+                                                men_accessories.map((item, index) => (
+                                                    <p key={index} onClick={() => {
+                                                        handleClick(item, "ACCESSORIES")
+                                                        handlemouseLeave(setMen)
+                                                    }}>{item}</p>
+                                                ))
+                                            }
+                                        </div>
+
+                                        <div className="summer-collection">
+                                            <div className="summer-card">
+                                                <Image src={supabse_image_path('/summer.webp')} width={100} height={100} unoptimized alt='summer-collection' className='summer-image' />
+                                                <div className="summer-card-detail">
+                                                    <h4>Exclusive: Summer Collection 2025</h4>
+                                                    <p onClick={() => {
+                                                        handleFilterChange("Season", "Summer")
+                                                        setProductType("SUMMER COLLECTION")
+                                                        handlemouseLeave(setMen)
+                                                        router.push("/drip")
+                                                    }}>Shop Now</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
 
                         {/* FILTER IS USED HERE */}
 
-                        <div className={rep ? "rep" : "hide-rep"} onMouseEnter={() => handleMouseEnter(setRep)} onMouseLeave={() => handleMouseLeave(setRep)} >
-                            <div className="rep-filter" onMouseEnter={() => handleMouseLeave(setRep)}></div>
-                            <div className="rep-container">
+                        <AnimatePresence>
+                            {rep && (
+                                <motion.div
+                                    className="rep"
+                                    variants={dropdownVariants}
+                                    initial="hidden"
+                                    animate="visible"
+                                    exit="exit"
+                                    onMouseEnter={() => handleMouseEnter(setRep)}
+                                    onMouseLeave={() => handleMouseLeave(setRep)}
+                                >
+                                    <div className="rep-filter" onMouseEnter={() => handleMouseLeave(setRep)}></div>
+                                    <div className="rep-container">
 
-                                <div className='rep-clothing'>
-                                    <h4>Clothing</h4>
-                                    {
-                                        rep_clothing.map((item, index) => (
-                                            <p key={index} onClick={() => handleClick(item, "CLOTHING")}>{item}</p>
-                                        ))
-                                    }
-                                </div>
-
-                                <div className='rep-clothing'>
-                                    <h4>Accessories</h4>
-                                    {
-                                        rep_accessories.map((item, index) => (
-                                            <p key={index} onClick={() => handleClick(item, "ACCESSORIES")}>{item}</p>
-                                        ))
-                                    }
-                                </div>
-
-                                <div className="summer-collection">
-                                    <div className="summer-card">
-                                        <Image src={supabse_image_path('/ethnic.jpeg')} width={100} height={100} unoptimized alt='summer-collection' className='summer-image' />
-                                        <div className="summer-card-detail">
-                                            <h4>Exclusive: Summer Collection 2025</h4>
-                                            <p onClick={() => {
-                                                handleFilterChange("Season", "Summer")
-                                                setProductType("SUMMER COLLECTION")
-                                                router.push("/drip")
-                                            }}>Shop Now</p>
+                                        <div className='rep-clothing'>
+                                            <h4>Clothing</h4>
+                                            {
+                                                rep_clothing.map((item, index) => (
+                                                    <p key={index} onClick={() => {
+                                                        handleClick(item, "CLOTHING")
+                                                        handleMouseLeave(setRep)
+                                                    }}>{item}</p>
+                                                ))
+                                            }
                                         </div>
-                                    </div>
-                                </div>
 
-                            </div>
-
-                        </div>
-
-                        <div className={categories ? "kids" : "hide-kids"} id='catdiv' onMouseEnter={() => handleMouseEnter(setCategories)} onMouseLeave={() => handleMouseLeave(setCategories)}>
-                            <div className="kids-filter" onMouseEnter={() => handleMouseLeave(setCategories)}></div>
-
-                            <div className="kids-container">
-
-                                <div className='kids-clothing'>
-                                    <h4>Clothing</h4>
-                                    {
-                                        kids_clothing.map((item, index) => (
-                                            <p key={index} onClick={() => handleClick(item, "KID'S CLOTHING")}>{item}</p>
-                                        ))
-                                    }
-                                </div>
-
-                                <div className='kids-clothing'>
-                                    <h4>Accessories</h4>
-                                    {
-                                        kids_accessories.map((item, index) => (
-                                            <p key={index} onClick={() => handleClick(item, "KID'S ACCESSORIES")}>{item}</p>
-                                        ))
-                                    }
-                                </div>
-
-                                <div className="summer-collection">
-                                    <div className="summer-card">
-                                        <Image src={supabse_image_path('/kids.jpg')} width={100} height={100} unoptimized alt='summer-collection' className='summer-image' />
-                                        <div className="summer-card-detail">
-                                            <h4>Exclusive: Summer Collection 2025</h4>
-                                            <p onClick={() => {
-                                                handleFilterChange("Season", "Summer")
-                                                setProductType("SUMMER COLLECTION")
-                                                router.push("/drip")
-                                            }}>Shop Now</p>
+                                        <div className='rep-clothing'>
+                                            <h4>Accessories</h4>
+                                            {
+                                                rep_accessories.map((item, index) => (
+                                                    <p key={index} onClick={() => {
+                                                        handleClick(item, "ACCESSORIES")
+                                                        handleMouseLeave(setRep)
+                                                    }}>{item}</p>
+                                                ))
+                                            }
                                         </div>
-                                    </div>
-                                </div>
 
-                            </div>
-
-                        </div>
-
-                        <div className={conditions ? "women" : "hide-women"} id='catdiv' onMouseEnter={() => handleMouseEnter(setConditions)} onMouseLeave={() => handleMouseLeave(setConditions)}>
-                            <div className="women-filter" onMouseEnter={() => handleMouseLeave(setConditions)}></div>
-
-                            <div className="women-container">
-
-                                <div className='women-clothing'>
-                                    <h4>Clothing</h4>
-                                    {
-                                        women_clothing.map((item, index) => (
-                                            <p key={index} onClick={() => {
-                                                handleClick(item, "Women")
-                                            }}>{item}</p>
-                                        ))
-                                    }
-                                </div>
-
-                                {/* <div className='women-clothing'>
-                                    <h4>Kicks</h4>
-                                    {
-                                        women_kicks.map((item, index) => (
-                                            <p key={index}>{item}</p>
-                                        ))
-                                    }
-                                </div> */}
-
-                                <div className='women-clothing'>
-                                    <h4>Accessories</h4>
-                                    {
-                                        women_accessories.map((item, index) => (
-                                            <p key={index} onClick={() => {
-                                                handleClick(item, "Women")
-                                            }}>{item}</p>
-                                        ))
-                                    }
-                                </div>
-
-                                <div className="summer-collection">
-                                    <div className="summer-card">
-                                        <Image src={supabse_image_path('/women_summer.webp')} width={100} height={100} unoptimized alt='summer-collection' className='summer-image' />
-                                        <div className="summer-card-detail">
-                                            <h4>Exclusive: Summer Collection 2025</h4>
-                                            <p onClick={() => {
-                                                handleFilterChange("Season", "Summer")
-                                                setProductType("SUMMER COLLECTION")
-                                                router.push("/drip")
-                                            }}>Shop Now</p>
+                                        <div className="summer-collection">
+                                            <div className="summer-card">
+                                                <Image src={supabse_image_path('/ethnic.jpeg')} width={100} height={100} unoptimized alt='summer-collection' className='summer-image' />
+                                                <div className="summer-card-detail">
+                                                    <h4>Exclusive: Summer Collection 2025</h4>
+                                                    <p onClick={() => {
+                                                        handleFilterChange("Season", "Summer")
+                                                        setProductType("SUMMER COLLECTION")
+                                                        handleMouseLeave(setRep)
+                                                        router.push("/drip")
+                                                    }}>Shop Now</p>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
 
-                            </div>
-                        </div>
+                                    </div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+
+                        <AnimatePresence>
+                            {categories && (
+                                <motion.div
+                                    className="kids"
+                                    variants={dropdownVariants}
+                                    initial="hidden"
+                                    animate="visible"
+                                    exit="exit"
+                                    onMouseEnter={() => handleMouseEnter(setCategories)}
+                                    onMouseLeave={() => handleMouseLeave(setCategories)}
+                                >
+                                    <div className="kids-filter" onMouseEnter={() => handleMouseLeave(setCategories)}></div>
+
+                                    <div className="kids-container">
+
+                                        <div className='kids-clothing'>
+                                            <h4>Clothing</h4>
+                                            {
+                                                kids_clothing.map((item, index) => (
+                                                    <p key={index} onClick={() => {
+                                                        handleClick(item, "KID'S CLOTHING")
+                                                        handleMouseLeave(setCategories)
+                                                    }}>{item}</p>
+                                                ))
+                                            }
+                                        </div>
+
+                                        <div className='kids-clothing'>
+                                            <h4>Accessories</h4>
+                                            {
+                                                kids_accessories.map((item, index) => (
+                                                    <p key={index} onClick={() => {
+                                                        handleClick(item, "KID'S ACCESSORIES")
+                                                        handleMouseLeave(setCategories)
+                                                    }}>{item}</p>
+                                                ))
+                                            }
+                                        </div>
+
+                                        <div className="summer-collection">
+                                            <div className="summer-card">
+                                                <Image src={supabse_image_path('/kids.jpg')} width={100} height={100} unoptimized alt='summer-collection' className='summer-image' />
+                                                <div className="summer-card-detail">
+                                                    <h4>Exclusive: Summer Collection 2025</h4>
+                                                    <p onClick={() => {
+                                                        handleFilterChange("Season", "Summer")
+                                                        setProductType("SUMMER COLLECTION")
+                                                        handleMouseLeave(setCategories)
+                                                        router.push("/drip")
+                                                    }}>Shop Now</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+
+                        <AnimatePresence>
+                            {conditions && (
+                                <motion.div
+                                    className="women"
+                                    variants={dropdownVariants}
+                                    initial="hidden"
+                                    animate="visible"
+                                    exit="exit"
+                                    onMouseEnter={() => handleMouseEnter(setConditions)}
+                                    onMouseLeave={() => handleMouseLeave(setConditions)}
+                                >
+                                    <div className="women-filter" onMouseEnter={() => handleMouseLeave(setConditions)}></div>
+
+                                    <div className="women-container">
+
+                                        <div className='women-clothing'>
+                                            <h4>Clothing</h4>
+                                            {
+                                                women_clothing.map((item, index) => (
+                                                    <p key={index} onClick={() => {
+                                                        handleClick(item, "Women")
+                                                        handleMouseLeave(setConditions)
+                                                    }}>{item}</p>
+                                                ))
+                                            }
+                                        </div>
+
+                                        <div className='women-clothing'>
+                                            <h4>Accessories</h4>
+                                            {
+                                                women_accessories.map((item, index) => (
+                                                    <p key={index} onClick={() => {
+                                                        handleClick(item, "Women")
+                                                        handleMouseLeave(setConditions)
+                                                    }}>{item}</p>
+                                                ))
+                                            }
+                                        </div>
+
+                                        <div className="summer-collection">
+                                            <div className="summer-card">
+                                                <Image src={supabse_image_path('/women_summer.webp')} width={100} height={100} unoptimized alt='summer-collection' className='summer-image' />
+                                                <div className="summer-card-detail">
+                                                    <h4>Exclusive: Summer Collection 2025</h4>
+                                                    <p onClick={() => {
+                                                        handleFilterChange("Season", "Summer")
+                                                        setProductType("SUMMER COLLECTION")
+                                                        handleMouseLeave(setConditions)
+                                                        router.push("/drip")
+                                                    }}>Shop Now</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+
 
                         <div className="nav-tier2">
 
@@ -828,32 +933,51 @@ export default function Navbar() {
                         {/* End of Nav Tier 2 */}
 
                         <div className='nav-links'>
-                            <Link href="/" className='links' id='categories' onMouseEnter={() => {
+                            <Link href="/drip" onClick={() => {
+                                setExclusiveFilter(null, null)
+                                setProductType("New In")
+                                handleMouseLeave(setNewin)
+                            }} className='links' id='categories' onMouseEnter={() => {
                                 handleMouseEnter(setNewin, setMen)
                                 setMen(false)
                             }} onMouseLeave={() => handleMouseLeave(setNewin)}>
                                 <p>NEW IN</p>
                                 <div className="indicator"></div>
                             </Link>
-                            <div className='links' onMouseEnter={() => {
+                            <Link href={"/drip"} className='links' onMouseEnter={() => {
                                 handleMouseEnter(setMen, setNewin)
                                 setConditions(false)
-                            }} onMouseLeave={() => handleMouseLeave(setMen)} onClick={() => handleClick(null, "MEN")}>
+                            }} onMouseLeave={() => handleMouseLeave(setMen)} onClick={() => {
+                                setExclusiveFilter("Men", null)
+                                setProductType("Men")
+                                handleMouseLeave(setMen)
+                            }}>
                                 <p>MEN</p>
                                 <div className="indicator"></div>
-                            </div>
-                            <Link href="/interior" className='links' id='wellsol' onMouseEnter={() => {
+                            </Link>
+                            <Link href="/drip" onClick={() => {
+                                setExclusiveFilter("Women", null)
+                                setProductType("Women")
+                                handleMouseLeave(setConditions)
+                            }} className='links' id='wellsol' onMouseEnter={() => {
                                 handleMouseEnter(setConditions, setMen)
                                 setCategories(false)
                             }} onMouseLeave={() => handleMouseLeave(setConditions)}>
                                 <p>WOMEN</p>
                                 <div className="indicator"></div>
                             </Link>
-                            <Link href="/shop" className='links' onMouseEnter={() => handleMouseEnter(setCategories, setConditions)} onMouseLeave={() => handleMouseLeave(setCategories)}>
+                            <Link href="/drip" onClick={() => {
+                                setExclusiveFilter("Kids", null)
+                                setProductType("Kids")
+                                handleMouseLeave(setCategories)
+                            }} className='links' onMouseEnter={() => handleMouseEnter(setCategories, setConditions)} onMouseLeave={() => handleMouseLeave(setCategories)}>
                                 <p>KIDS</p>
                                 <div className="indicator"></div>
                             </Link>
-                            <Link href="/blog" className='links' id='blogdiv'>
+                            <Link href="/drip" onClick={() => {
+                                setExclusiveFilter(null, "Bags")
+                                setProductType("Bags")
+                            }} className='links' id='blogdiv'>
                                 <p>BAGS</p>
                                 <div className="indicator"></div>
                             </Link>
@@ -861,7 +985,10 @@ export default function Navbar() {
                                 <p>BRAND</p>
                                 <div className="indicator"></div>
                             </Link>
-                            <Link href="/blog" className='links' id='blogdiv' onMouseEnter={() => handleMouseEnter(setRep, setNewin)} onMouseLeave={() => handleMouseLeave(setRep)}>
+                            <Link href="/drip" onClick={() => {
+                                setExclusiveFilter("Rep Your Country", null)
+                                setProductType("Rep Your Country")
+                            }} className='links' id='blogdiv' onMouseEnter={() => handleMouseEnter(setRep, setNewin)} onMouseLeave={() => handleMouseLeave(setRep)}>
                                 <p>REP YOUR COUNTRY</p>
                                 <div className="indicator"></div>
                             </Link>

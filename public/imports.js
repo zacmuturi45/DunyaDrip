@@ -656,14 +656,188 @@ export const kids_accessories = [
 
 export const flag_array = [
   { flag_image: UK, country_name: "UK", currency: "GBP" },
-  { flag_image: South_Africa, country_name: "South Africa", currency: "ZAR" },
-  { flag_image: Taiwan, country_name: "Taiwan", currency: "TWD" },
   { flag_image: France, country_name: "France", currency: "EUR" },
-  { flag_image: Egypt, country_name: "Egypt", currency: "EGP" },
-  { flag_image: Colombia, country_name: "Colombia", currency: "COP" },
-  { flag_image: USA, country_name: "United States", currency: "USD" },
-  { flag_image: Kenya, country_name: "Kenya", currency: "KES" },
   { flag_image: Germany, country_name: "Germany", currency: "EUR" },
   { flag_image: Netherlands, country_name: "Netherlands", currency: "EUR" },
   { flag_image: Belgium, country_name: "Belgium", currency: "EUR" }
 ];
+
+export const countries_we_ship_to = [
+    "UK",
+    "Germany",
+    "Netherlands",
+    "Belgium",
+    "France",
+];
+
+export const SHIPPING_RATES = {
+  UK: {
+    Standard: 3.99,
+    Express: 6.99,
+    "Next Day": 8.99
+  },
+  France: {
+    Standard: 9.99,
+    Express: 14.99,
+    "Next Day": 19.99
+  },
+  Germany: {
+    Standard: 9.99,
+    Express: 14.99,
+    "Next Day": 19.99
+  },
+  Netherlands: {
+    Standard: 9.99,
+    Express: 14.99,
+    "Next Day": 19.99
+  },
+  Belgium: {
+    Standard: 9.99,
+    Express: 14.99,
+    "Next Day": 19.99
+  }
+};
+
+
+export const SHIPPING_RATES_FULL = {
+    UK: {
+        Standard: 3.99,
+        Express: 6.99,
+        "Next Day": 8.99
+    },
+    Austria: {
+        Standard: 9.99,
+        Express: 14.99,
+        "Next Day": 19.99
+    },
+    Belgium: {
+        Standard: 9.99,
+        Express: 14.99,
+        "Next Day": 19.99
+    },
+    Bulgaria: {
+        Standard: 9.99,
+        Express: 14.99,
+        "Next Day": 19.99
+    },
+    Croatia: {
+        Standard: 9.99,
+        Express: 14.99,
+        "Next Day": 19.99
+    },
+    Cyprus: {
+        Standard: 9.99,
+        Express: 14.99,
+        "Next Day": 19.99
+    },
+    Czechia: {
+        Standard: 9.99,
+        Express: 14.99,
+        "Next Day": 19.99
+    },
+    Denmark: {
+        Standard: 9.99,
+        Express: 14.99,
+        "Next Day": 19.99
+    },
+    Estonia: {
+        Standard: 9.99,
+        Express: 14.99,
+        "Next Day": 19.99
+    },
+    Finland: {
+        Standard: 9.99,
+        Express: 14.99,
+        "Next Day": 19.99
+    },
+    France: {
+        Standard: 9.99,
+        Express: 14.99,
+        "Next Day": 19.99
+    },
+    Germany: {
+        Standard: 9.99,
+        Express: 14.99,
+        "Next Day": 19.99
+    },
+    Greece: {
+        Standard: 9.99,
+        Express: 14.99,
+        "Next Day": 19.99
+    },
+    Hungary: {
+        Standard: 9.99,
+        Express: 14.99,
+        "Next Day": 19.99
+    },
+    Ireland: {
+        Standard: 9.99,
+        Express: 14.99,
+        "Next Day": 19.99
+    },
+    Italy: {
+        Standard: 9.99,
+        Express: 14.99,
+        "Next Day": 19.99
+    },
+    Latvia: {
+        Standard: 9.99,
+        Express: 14.99,
+        "Next Day": 19.99
+    },
+    Lithuania: {
+        Standard: 9.99,
+        Express: 14.99,
+        "Next Day": 19.99
+    },
+    Luxembourg: {
+        Standard: 9.99,
+        Express: 14.99,
+        "Next Day": 19.99
+    },
+    Malta: {
+        Standard: 9.99,
+        Express: 14.99,
+        "Next Day": 19.99
+    },
+    Netherlands: {
+        Standard: 9.99,
+        Express: 14.99,
+        "Next Day": 19.99
+    },
+    Poland: {
+        Standard: 9.99,
+        Express: 14.99,
+        "Next Day": 19.99
+    },
+    Portugal: {
+        Standard: 9.99,
+        Express: 14.99,
+        "Next Day": 19.99
+    },
+    Romania: {
+        Standard: 9.99,
+        Express: 14.99,
+        "Next Day": 19.99
+    },
+    Slovakia: {
+        Standard: 9.99,
+        Express: 14.99,
+        "Next Day": 19.99
+    },
+    Slovenia: {
+        Standard: 9.99,
+        Express: 14.99,
+        "Next Day": 19.99
+    },
+    Spain: {
+        Standard: 9.99,
+        Express: 14.99,
+        "Next Day": 19.99
+    },
+    Sweden: {
+        Standard: 9.99,
+        Express: 14.99,
+        "Next Day": 19.99
+    }
+};

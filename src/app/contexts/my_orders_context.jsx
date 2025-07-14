@@ -11,7 +11,7 @@ export const OrderProvider = ({ children }) => {
     const [orders, setOrders] = useState([])
     const { user_email } = useAuth();
     const [loading, setLoading] = useState(true);
-    const supabase = supabase_client();
+    const supabase = supabase_client
 
     useEffect(() => {
         if (!user_email) {

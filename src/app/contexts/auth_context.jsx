@@ -10,7 +10,7 @@ export function AuthProvider({ children, initialSession = null, initialUser = nu
   const [session, setSession] = useState(initialSession);
   const [user, setUser] = useState(initialUser);
   const [shownav, setShowNav] = useState(false);
-  const supabase = createClient();
+  const supabase = createClient;
   const [activeSection, setActiveSection] = useState('profile');
   const [profile, setProfile] = useState(null);
   const pathname = usePathname();

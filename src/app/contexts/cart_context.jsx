@@ -12,8 +12,9 @@ export const CartProvider = ({ children }) => {
     const [show_cart, setShowCart] = useState(false);
     const [loader, setLoader] = useState(false);
     const [totalz, setTotalz] = useState(0);
-    const supabase = supabase_client()
+    const supabase = supabase_client
     const [product, setProducts] = useState([]);
+    const [region, setRegion] = useState('UK');
     const [loadingProducts, setLoadingProducts] = useState(true);
     const [filteredProduct, setFilteredProduct] = useState([])
     const [shippingOption, setShippingOption] = useState({region: "UK", method: "Standard", price: 9.99, is_set: null});
@@ -77,7 +78,7 @@ export const CartProvider = ({ children }) => {
     const clear_cart = () => setCart([]);
 
     return (
-        <CartContext.Provider value={{ shippingOption, setShippingOption, product, totalz, setTotalz, loader, setLoader, cart, setCart, addToCart, remove_from_cart, clear_cart, show_cart, setShowCart, loadingProducts, filteredProduct, setFilteredProduct }}>
+        <CartContext.Provider value={{ region, setRegion, shippingOption, setShippingOption, product, totalz, setTotalz, loader, setLoader, cart, setCart, addToCart, remove_from_cart, clear_cart, show_cart, setShowCart, loadingProducts, filteredProduct, setFilteredProduct }}>
             {children}
         </CartContext.Provider>
     );

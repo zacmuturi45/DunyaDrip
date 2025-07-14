@@ -27,7 +27,7 @@ export default function Payment({ shippingDetails }) {
     const [useShippingAddress, setUseShippingAddress] = useState(true);
     const [showmore, setShowMore] = useState(false);
     const [expiry, setExpiry] = useState("");
-    const { cart, shippingOption } = useCart();
+    const { cart, shippingOption, setShippingOption } = useCart();
     const [isProcessing, setIsProcessing] = useState(false);
     const { display_name, user_email, show_shipping_button, setShowShippingButton } = useAuth();
 
@@ -44,7 +44,8 @@ export default function Payment({ shippingDetails }) {
             name: item.product_name,
             amount: item.product_price * 100,
             quantity: item.quantity,
-            size: item.size
+            size: item.size,
+            image: item.drip_image,
         }));
 
         try {
@@ -200,6 +201,10 @@ export default function Payment({ shippingDetails }) {
         return (
             <button
                 onClick={() => {
+                    setShippingOption(prev => ({
+                        ...prev,
+                        is_set: false
+                    }));
                     if(!shippingOption["is_set"]) {
                         setShowShippingButton(true)
                     } else {
@@ -209,7 +214,7 @@ export default function Payment({ shippingDetails }) {
                 className={buttonClass}
                 disabled={isProcessing}
             >
-                {buttonText}
+                {shippingOption["is_set"] ? "Pay Now" : buttonText}
             </button>
         );
     };

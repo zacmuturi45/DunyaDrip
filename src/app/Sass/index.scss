@@ -687,6 +687,8 @@ body {
                 z-index: 4;
                 justify-content: center;
                 padding: 25px;
+                max-height: 600px;
+                min-height: 600px;
 
                 .newin-filter {
                     position: absolute;
@@ -777,6 +779,8 @@ body {
                 display: flex;
                 padding: 25px;
                 justify-content: center;
+                max-height: 600px;
+                min-height: 600px;
                 z-index: 4;
 
                 .men-filter {
@@ -866,6 +870,8 @@ body {
                 padding: 25px;
                 justify-content: center;
                 z-index: 4;
+                max-height: 600px;
+                min-height: 600px;
 
                 .women-filter {
                     position: absolute;
@@ -949,7 +955,8 @@ body {
                 left: 0;
                 width: 100%;
                 background-color: #ffffff;
-                height: auto;
+                max-height: 600px;
+                min-height: 600px;
                 display: flex;
                 padding: 25px;
                 justify-content: center;
@@ -1093,6 +1100,8 @@ body {
                 padding: 25px;
                 justify-content: center;
                 z-index: 4;
+                max-height: 600px;
+                min-height: 600px;
 
                 .kids-filter {
                     position: absolute;
@@ -2998,6 +3007,12 @@ body {
     .cart_product_div {
         margin-right: 1.5rem;
         cursor: pointer;
+        >* {
+            width: 100px;
+            height: 150px;
+            border-radius: 5px;
+            object-fit: cover;
+        }
     }
 
     .cart_product_details {
@@ -4297,6 +4312,7 @@ body {
                     .greentick-circle {
                         width: 70;
                         height: 70;
+                        object-fit: cover;
                     }
                 }
             }
