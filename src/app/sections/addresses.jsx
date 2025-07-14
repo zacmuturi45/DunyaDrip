@@ -8,7 +8,7 @@ import { toast } from 'react-hot-toast';
 
 export default function AddressForm() {
   const { user } = useAuth();
-  const supabase = supabase_client();
+  const supabase = supabase_client;
   const [allAddresses, setAllAddresses] = useState([]);
   const [editingId, setEditingId] = useState(null);
   const [loading, setLoading] = useState(false);

@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { supabase_client } from "@/utils/supabase/clint";
 import { useAuth } from "../contexts/auth_context";
 import toast from "react-hot-toast";
 import SectionLoader from "../components/section_loader";
+import { supabase_client } from "@/utils/supabase/clint";
 
 export default function EditProfileForm() {
-  const supabase = supabase_client();
+  const supabase = supabase_client;
   const [profile, setProfile] = useState({ first_name: "", last_name: "" });
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
