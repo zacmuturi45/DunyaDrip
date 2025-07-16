@@ -15,6 +15,7 @@ export function AuthProvider({ children, initialSession = null, initialUser = nu
   const [profile, setProfile] = useState(null);
   const pathname = usePathname();
   const [show_shipping_button, setShowShippingButton] = useState(false);
+  const [unloggedUserEmail, setUnloggedUserEmail] = useState("");
 
   
   const display_name = profile?.first_name
@@ -96,7 +97,7 @@ export function AuthProvider({ children, initialSession = null, initialUser = nu
   }, []);
 
   return (
-    <AuthContext.Provider value={{ profile, refreshUser, user_email, session, user, shownav, setShowNav, display_name, last_name, activeSection, setActiveSection, show_shipping_button, setShowShippingButton }}>
+    <AuthContext.Provider value={{ profile, refreshUser, user_email, session, user, shownav, setShowNav, display_name, last_name, activeSection, setActiveSection, show_shipping_button, setShowShippingButton, unloggedUserEmail, setUnloggedUserEmail }}>
       {children}
     </AuthContext.Provider>
   );

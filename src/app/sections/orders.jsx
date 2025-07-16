@@ -42,12 +42,11 @@ export default function Orders() {
                 <tbody>
                   {orders.map((order) => {
                     const date = new Date(order.created_at).toLocaleDateString("en-GB");
-                    console.log(`DATE IZZZZZZZZZZ ${date}`)
                     return (
                       <tr key={order.id}>
                         <td>{order.id.slice(0, 6)}...</td>
                         <td>{order.customer_email}</td>
-                        <td>{order.items.length}</td>
+                        <td>{order.products.length}</td>
                         <td>{(order.total / 100).toFixed(2)}</td>
                         <td>{date}</td>
                         <td>
@@ -68,8 +67,8 @@ export default function Orders() {
                 <div className="order_detail_card">
                   {orders
                     .find((o) => o.id === expanded)
-                    .items.map((item, index) => (
-                      <SuccessCard cart_item_price={`${location.currency} ${(item.amount / 100).toFixed(2)}`} cart_item_quantity={item.quantity} cart_item_size={item.size} cart_item_title={item.name} key={index} identifier={index} />
+                    .products.map((item, index) => (
+                      <SuccessCard cart_item_price={`£ ${(item.amount / 100).toFixed(2)}`} cart_item_quantity={item.quantity} cart_item_size={item.size} cart_item_title={item.name} key={index} identifier={index} image={item.image} />
                     ))}
                 </div>
               </div>

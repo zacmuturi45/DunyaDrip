@@ -825,7 +825,7 @@ export default function Navbar() {
 
                                         <div className="summer-collection">
                                             <div className="summer-card">
-                                                <Image src={supabse_image_path('/kids.jpg')} width={100} height={100} unoptimized alt='summer-collection' className='summer-image' />
+                                                <Image src={supabse_image_path('/kids.jpeg')} width={100} height={100} unoptimized alt='summer-collection' className='summer-image' />
                                                 <div className="summer-card-detail">
                                                     <h4>Exclusive: Summer Collection 2025</h4>
                                                     <p onClick={() => {

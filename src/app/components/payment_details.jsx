@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { loadStripe } from "@stripe/stripe-js"
 import { useCart } from "../contexts/cart_context";
@@ -10,6 +10,7 @@ import supabse_image_path from "@/utils/supabase/supabse_image_path";
 import PayPalButton from "./PaypalButton";
 import Link from "next/link";
 import ShippingModal from "./shipping_modal";
+import { createClient } from "@/utils/supabase/client";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
 
@@ -29,12 +30,26 @@ export default function Payment({ shippingDetails }) {
     const [expiry, setExpiry] = useState("");
     const { cart, shippingOption, setShippingOption } = useCart();
     const [isProcessing, setIsProcessing] = useState(false);
-    const { display_name, user_email, show_shipping_button, setShowShippingButton } = useAuth();
+    const { display_name, user_email, show_shipping_button, setShowShippingButton, unloggedUserEmail, user } = useAuth();
+    const supabase = createClient;
 
+    useEffect(() => {
+        if (show_shipping_button) {
+            // Prevent scrolling
+            document.body.style.overflow = 'hidden';
+        } else {
+            // Re-enable scrolling
+            document.body.style.overflow = '';
+        }
+        // Cleanup in case the component unmounts while panel is open
+        return () => {
+            document.body.style.overflow = '';
+        }
+    }, [show_shipping_button]);
 
     const handleCreditCardPayments = async () => {
         if (cart.length <= 0) {
-            toast.error('Your cart is emtpy')
+            toast.error('Your cart is empty')
             return;
         }
 
@@ -48,6 +63,36 @@ export default function Payment({ shippingDetails }) {
             image: item.drip_image,
         }));
 
+        let orderId = null;
+
+        try {
+            const { data, error } = await supabase
+                .from('client_orders')
+                .insert([
+                    {
+                        user_id: user?.id || null,
+                        products: items,
+                        status: 'pending',
+                        email: user_email || unloggedUserEmail,
+                        shipping_details: shippingDetails || null,
+                        shipping_option: shippingOption || null,
+                    }
+                ])
+                .select();
+
+            if (error || !data || !data[0]) {
+                toast.error("Failed to create order. Please try again.");
+                setIsProcessing(false);
+                return;
+            };
+
+            orderId = data[0].id;
+        } catch (err) {
+            toast.error("Order creation error.");
+            setIsProcessing(false);
+            return;
+        }
+
         try {
             const stripe = await stripePromise;
 
@@ -57,11 +102,11 @@ export default function Payment({ shippingDetails }) {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    items,
-                    customer_email: user_email || undefined,
+                    order_id: orderId,
+                    customer_email: user_email || unloggedUserEmail,
                     customer_name: display_name || undefined,
-                    shippingDetails,
-                    shippingOption,
+                    shippingOption: shippingOption || null,
+                    items,
                 }),
             });
 
@@ -205,7 +250,7 @@ export default function Payment({ shippingDetails }) {
                         ...prev,
                         is_set: false
                     }));
-                    if(!shippingOption["is_set"]) {
+                    if (!shippingOption["is_set"]) {
                         setShowShippingButton(true)
                     } else {
                         handleCreditCardPayments()

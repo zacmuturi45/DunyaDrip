@@ -2027,23 +2027,88 @@ body {
   width: 90%;
   max-width: 400px;
 }
+.shipping-modal > * {
+  font-family: "Inter";
+}
+.shipping-modal h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #222;
+  text-align: center;
+}
+.shipping-modal .section {
+  margin-bottom: 1.2rem;
+}
+.shipping-modal .section label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.4rem;
+  color: #333;
+}
+.shipping-modal .section input[type=email] {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+.shipping-modal .section input[type=email]:focus {
+  border-color: #222;
+  outline: none;
+}
+.shipping-modal .section .email-error {
+  color: #e74c3c;
+  background: #fbeaea;
+  padding: 0.4rem 0.7rem;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  margin-top: 0.3rem;
+}
+.shipping-modal #region-select-input {
+  width: 180px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.shipping-modal #region-select {
+  display: flex;
+  justify-content: space-between;
+}
+.shipping-modal #method-select {
+  display: flex;
+}
+.shipping-modal #method-select input {
+  margin-right: 0.5rem;
+  width: auto;
+  align-self: center;
+  margin-bottom: 0.3rem;
+  font-family: "Inter";
+}
+.shipping-modal #method-select label {
+  align-self: center;
+  font-family: "Inter";
+}
 .shipping-modal button {
-  background-color: black;
+  background-color: #222;
   color: white;
   border-radius: 5px;
   cursor: pointer;
   border: none;
   margin-right: 5px;
-  padding: 0.5rem 1rem;
+  padding: 0.2rem 1rem;
   outline: none;
-  height: 50px;
+  height: 40px;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+.shipping-modal button:hover {
+  background: #444;
 }
 .shipping-modal #ship_one {
   width: 180px;
-}
-
-.shipping-modal .section {
-  margin-bottom: 1rem;
 }
 
 .drip_page_main {
@@ -2433,10 +2498,12 @@ body {
   top: 0;
   right: 0;
   z-index: 1000;
-  overflow: hidden;
+  box-sizing: border-box;
 }
 .cart_page_main .cart_page_container {
+  box-sizing: border-box;
   width: 450px;
+  max-height: 100%;
   height: 100%;
   background-color: white;
   position: absolute;
@@ -2450,8 +2517,10 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid rgb(209, 209, 209);
+  border-bottom: 1px solid rgb(210, 210, 210);
   padding: 2.5rem 1rem;
+  box-sizing: border-box;
+  height: 10vh;
 }
 .cart_page_main .cart_page_container .carty .cart_page_one h3 {
   font-weight: 800;
@@ -2482,8 +2551,9 @@ body {
   opacity: 0.4;
 }
 .cart_page_main .cart_page_container .carty .cart_page_two {
-  height: 65vh;
+  height: 68vh;
   overflow-y: scroll;
+  box-sizing: border-box;
 }
 .cart_page_main .cart_page_container .carty .cart_page_two .shopping_bag {
   width: 100%;
@@ -2500,18 +2570,19 @@ body {
   color: rgb(162, 162, 162);
 }
 .cart_page_main .cart_page_container .cart_footer {
+  box-sizing: border-box;
   background-color: rgb(230, 230, 230);
-  height: 100%;
+  box-sizing: border-box;
+  height: 22vh;
 }
 .cart_page_main .cart_page_container .cart_footer .footer-one {
-  padding: 1rem;
-  margin-bottom: 1rem;
+  padding: 0.2rem 1rem;
 }
 .cart_page_main .cart_page_container .cart_footer .footer-one .sub {
   display: flex;
   justify-content: space-between;
-  padding: 1.5rem 0 0 0;
-  border-bottom: 1px solid rgb(235, 235, 235);
+  padding-top: 1.5rem;
+  border-bottom: 1px solid rgb(210, 210, 210);
 }
 .cart_page_main .cart_page_container .cart_footer .footer-one .sub p {
   font-family: "Inter";
@@ -2526,6 +2597,7 @@ body {
 }
 .cart_page_main .cart_page_container .cart_footer .footer-two button {
   width: 100%;
+  height: 50px;
   background-color: black;
   color: white;
   padding: 1rem 0;
@@ -2533,6 +2605,7 @@ body {
   cursor: pointer;
   font-family: "Inter";
   border-radius: 5px;
+  font-size: 1rem;
 }
 .cart_page_main .cart_page_container .cart_footer .footer-two button:hover {
   opacity: 0.9;

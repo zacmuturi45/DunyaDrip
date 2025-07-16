@@ -5,7 +5,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 export async function POST(request) {
     const body = await request.json();
 
-    const { items, customer_email, customer_name, shippingDetails, shippingOption } = body;
+    const { customer_email, customer_name, shippingOption, order_id, items } = body;
 
     const line_items = items.map(item => ({
         price_data: {
@@ -39,7 +39,7 @@ export async function POST(request) {
             mode: 'payment',
             customer_email,
             shipping_address_collection: {
-                allowed_countries: ['US', 'GB', 'FR', 'GM']
+                allowed_countries: ['US', 'GB', 'FR', 'BG', 'NL', 'GE']
             },
             // shipping: shippingDetails
             //     ? {
@@ -56,9 +56,7 @@ export async function POST(request) {
             //     : undefined,
             metadata: {
                 customer_name,
-                items: JSON.stringify(items),
-                shippingDetails: shippingDetails ? JSON.stringify(shippingDetails) : undefined,
-                shippingOption: shippingOption ? JSON.stringify(shippingOption) : undefined
+                order_id,
             },
             success_url: `${request.headers.get('origin')}/success?session_id={CHECKOUT_SESSION_ID}`,
             cancel_url: `${request.headers.get('origin')}/cancel?session_id={CHECKOUT_SESSION_ID}`,
