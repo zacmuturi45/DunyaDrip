@@ -117,14 +117,41 @@ export default function Payment({ shippingDetails }) {
                 setIsProcessing(false);
                 return;
             } else {
-                setCart([]);
-                if (user) {
-                    await supabase
-                        .from('user_carts')
-                        .delete()
-                        .eq('user_id', user.id);
-                }
-                Cookies.remove('cart');
+                const clearCart = async () => {
+                    try {
+                        // Clear local state first
+                        setCart([]);
+
+                        // Remove cookie
+                        Cookies.remove('cart');
+
+                        // Delete from Supabase if user is logged in
+                        if (user?.id) {
+                            const supabase = createClient;
+                            const { error } = await supabase
+                                .from('user_carts')
+                                .delete()
+                                .eq('user_id', user.id);
+
+                            if (error) throw error;
+
+                            console.log('Supabase cart deleted successfully');
+                        }
+
+                    } catch (error) {
+                        console.error('Cart deletion failed:', {
+                            error: error.message,
+                            stack: error.stack,
+                            supabaseError: error.code ? {
+                                code: error.code,
+                                details: error.details,
+                                hint: error.hint
+                            } : null
+                        });
+                    }
+                };
+
+                clearCart();
             }
 
             const session = await response.json();

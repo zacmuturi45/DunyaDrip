@@ -28,8 +28,18 @@ export const CartProvider = ({ children }) => {
                     .from('user_carts')
                     .select('carts')
                     .eq('user_id', user.id)
-                    .single();
-                if (data?.carts) {
+                    .maybeSingle();
+
+                if (error) {
+                    console.error('Supabase error:', {
+                        code: error.code,
+                        message: error.message,
+                        details: error.details,
+                    });
+                }
+                
+
+                if (data?.carts && data?.carts.length > 0) {
                     setCart(data.carts);
                     Cookies.remove('cart');
                 }
