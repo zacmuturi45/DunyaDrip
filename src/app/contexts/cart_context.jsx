@@ -33,6 +33,10 @@ export const CartProvider = ({ children }) => {
                     setCart(data.carts);
                     Cookies.remove('cart');
                 }
+
+                if (error) {
+                    console.error('Error loading cart from DB:', error);
+                }
             }
         };
         loadCartFromDB();
@@ -53,7 +57,9 @@ export const CartProvider = ({ children }) => {
                         .from('user_carts')
                         .upsert([
                             { user_id: user.id, carts: cart }
-                        ])
+                        ],
+                            { onConflict: ['user_id'] }
+                        )
                         .select();
 
                     if (error) {

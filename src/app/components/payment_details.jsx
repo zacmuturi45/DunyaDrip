@@ -11,6 +11,7 @@ import PayPalButton from "./PaypalButton";
 import Link from "next/link";
 import ShippingModal from "./shipping_modal";
 import { createClient } from "@/utils/supabase/client";
+import Cookies from "js-cookie";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
 
@@ -28,7 +29,7 @@ export default function Payment({ shippingDetails }) {
     const [useShippingAddress, setUseShippingAddress] = useState(true);
     const [showmore, setShowMore] = useState(false);
     const [expiry, setExpiry] = useState("");
-    const { cart, shippingOption, setShippingOption } = useCart();
+    const { cart, shippingOption, setShippingOption, setCart } = useCart();
     const [isProcessing, setIsProcessing] = useState(false);
     const { display_name, user_email, show_shipping_button, setShowShippingButton, unloggedUserEmail, user } = useAuth();
     const supabase = createClient;
@@ -115,6 +116,15 @@ export default function Payment({ shippingDetails }) {
                 toast.error(errorMsg.error || "Checkout failed");
                 setIsProcessing(false);
                 return;
+            } else {
+                setCart([]);
+                if (user) {
+                    await supabase
+                        .from('user_carts')
+                        .delete()
+                        .eq('user_id', user.id);
+                }
+                Cookies.remove('cart');
             }
 
             const session = await response.json();
