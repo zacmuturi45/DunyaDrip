@@ -5,14 +5,19 @@ import { useAuth } from "../contexts/auth_context";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useOrders } from "../contexts/my_orders_context";
+import Cookies from "js-cookie";
+import { useCart } from "../contexts/cart_context";
 
 export default function Profile() {
   const { display_name, setShowNav, last_name, user_email, setActiveSection } = useAuth(); 
   const router = useRouter();
   const [loading, setLoading] = useState(false)
   const { orders }  = useOrders();
+  const { setCart } = useCart();
 
   const handleSignOut = async () => {
+    setCart([]);
+    Cookies.remove('cart');
     setLoading(true)
     const toastId = toast.loading('Logging out...')
 

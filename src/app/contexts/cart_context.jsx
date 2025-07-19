@@ -1,7 +1,9 @@
 "use client"
 
-import { supabase_client } from "@/utils/supabase/clint";
 import supabse_image_path from "@/utils/supabase/supabse_image_path";
+import Cookies from "js-cookie";
+import { useAuth } from "./auth_context";
+import { createClient } from "@/utils/supabase/client";
 
 const { createContext, useState, useContext, useEffect } = require("react")
 
@@ -12,18 +14,75 @@ export const CartProvider = ({ children }) => {
     const [show_cart, setShowCart] = useState(false);
     const [loader, setLoader] = useState(false);
     const [totalz, setTotalz] = useState(0);
-    const supabase = supabase_client
     const [product, setProducts] = useState([]);
+    const { user } = useAuth();
     const [region, setRegion] = useState('UK');
     const [loadingProducts, setLoadingProducts] = useState(true);
     const [filteredProduct, setFilteredProduct] = useState([])
-    const [shippingOption, setShippingOption] = useState({region: "UK", method: "Standard", price: 9.99, is_set: null});
+    const [shippingOption, setShippingOption] = useState({ region: "UK", method: "Standard", price: 9.99, is_set: null });
+
+    useEffect(() => {
+        const loadCartFromDB = async () => {
+            if (user) {
+                const { data, error } = await createClient
+                    .from('user_carts')
+                    .select('carts')
+                    .eq('user_id', user.id)
+                    .single();
+                if (data?.carts) {
+                    setCart(data.carts);
+                    Cookies.remove('cart');
+                }
+            }
+        };
+        loadCartFromDB();
+    }, [user]);
+
+    useEffect(() => {
+        const savedCart = Cookies.get('cart');
+        if (savedCart) {
+            setCart(JSON.parse(savedCart));
+        }
+    }, [])
+
+    useEffect(() => {
+        const updateCartInDB = async () => {
+            if (user && cart.length > 0) {
+                try {
+                    const { data, error } = await createClient
+                        .from('user_carts')
+                        .upsert([
+                            { user_id: user.id, carts: cart }
+                        ])
+                        .select();
+
+                    if (error) {
+                        console.error('Error updating cart:', error);
+                        return;
+                    }
+
+                    console.log('Cart updated successfully:', data);
+                } catch (err) {
+                    console.error('Unexpected error:', err);
+                }
+            }
+        };
+
+        updateCartInDB();
+    }, [cart, user]);
+
+    useEffect(() => {
+        if (!user) {
+            Cookies.set('cart', JSON.stringify(cart), { expires: 7 });
+        }
+    }, [cart, user]);
+
 
     useEffect(() => {
         const fetchProducts = async () => {
             setLoadingProducts(true)
             let ext_drip_array = []
-            const { data, error } = await supabase.from('all_products').select();
+            const { data, error } = await createClient.from('all_products').select();
             if (error) console.error('Fetch error:', error);
             if (!data || data.length === 0) {
                 console.error("No fetches for youuu")
@@ -34,7 +93,7 @@ export const CartProvider = ({ children }) => {
                 return {
                     ...item,
                     id: 100 + index,
-                    image_url: item.image_url ? supabse_image_path(`${item.image_url}`) : null,
+                    image_url: item.image_url ? supabse_image_path(`${item.image_url2}`) : null,
                     product_type: item.product_type,
                     color: item.color,
                     size: item.size,
@@ -43,7 +102,7 @@ export const CartProvider = ({ children }) => {
                     description: item.description,
                     niche: item.niche,
                     image_url2: item.image_url2 ? supabse_image_path(`${item.image_url2}`) : null,
-                    price: (item.price*0.2)+item.price,
+                    price: (item.price * 0.2) + item.price,
                 };
             })
             setProducts(ext_drip_array)

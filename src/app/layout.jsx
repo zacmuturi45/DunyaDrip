@@ -41,9 +41,9 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <FlagProvider>
-          <CartProvider>
-            <AuthProvider initialSession={session} initialUser={user}>
+        <AuthProvider initialSession={session} initialUser={user}>
+          <FlagProvider>
+            <CartProvider>
               <OrderProvider>
                 <SortProvider>
                   <div className="layout-root">
@@ -54,9 +54,9 @@ export default async function RootLayout({ children }) {
                   </div>
                 </SortProvider>
               </OrderProvider>
-            </AuthProvider>
-          </CartProvider>
-        </FlagProvider>
+            </CartProvider>
+          </FlagProvider>
+        </AuthProvider>
       </body>
     </html>
   );

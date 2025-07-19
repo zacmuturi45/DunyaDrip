@@ -44,7 +44,7 @@ export default function DripSlug() {
 
 
   useEffect(() => {
-    const existing_product = cart.find(item => item.id === image_object.id && item.size === selected_size.size)
+    const existing_product = cart.find(item => item?.id === image_object?.id && item?.size === selected_size.size)
     if (existing_product) {
       setMerchQuantity(existing_product.quantity)
     }
