@@ -109,7 +109,7 @@ export const CartProvider = ({ children }) => {
                 return {
                     ...item,
                     id: 100 + index,
-                    image_url: item.image_url ? supabse_image_path(`${item.image_url2}`) : null,
+                    image_url: item.image_url ? supabse_image_path(`${item.image_url}`) : null,
                     product_type: item.product_type,
                     color: item.color,
                     size: item.size,

@@ -18,6 +18,7 @@ export default function DripSlug() {
   const [selected_size, setSelectedSize] = useState({ index: null, size: "M" })
   const { cart, addToCart, setShowCart, product } = useCart();
   const [show_cart_panel, setShowCartPanel] = useState(false);
+  const [zoomable, setZoomable] = useState(false);
   const [loader, setLoader] = useState(false);
   const [main_image, setMainImage] = useState(null);
   const [loadingProduct, setLoadingProduct] = useState(true);
@@ -62,7 +63,6 @@ export default function DripSlug() {
   useEffect(() => {
     if (image_object) {
       setMainImage(image_object.image_url)
-      console.log(`image objec url is ${image_object.image_url}`)
       setLoadingProduct(false);
     } else if (product.length > 0) {
       setLoadingProduct(false)
@@ -130,8 +130,9 @@ export default function DripSlug() {
                   <Image src={image_object.image_url} width={100} height={100} alt='drip_image' unoptimized className={blackBorder.image_four ? "black-border" : ""} onClick={() => changeBorder("image_four", "image_url")} />
                 </div>
 
-                <div className='main_image'>
-                  <Image src={main_image} width={100} height={100} alt='drip_image' unoptimized />
+                <div className={!zoomable ? "main_image" : "bigger_main_image"} >
+                  { zoomable && <Image src={supabse_image_path('/x.svg')} width={20} height={20} alt='zoom-out' className='zoom-out' onClick={() => setZoomable(false)} /> }
+                  <Image src={main_image} width={100} height={100} alt='drip_image' unoptimized className={!zoomable ? "zoomable" : "shrinkable"} onClick={() => setZoomable(!zoomable)} />
                 </div>
               </div>
 

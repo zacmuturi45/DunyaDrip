@@ -2594,10 +2594,14 @@ body {
 // SHIPPING MODAL
 .shipping-modal-backdrop {
     position: fixed;
-    top: 0; left: 0;
-    width: 100vw; height: 100vh;
-    background: rgba(0,0,0,0.5);
-    display: flex; justify-content: center; align-items: center;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     z-index: 999;
 }
 
@@ -2607,6 +2611,7 @@ body {
     border-radius: 10px;
     width: 90%;
     max-width: 400px;
+
     >* {
         font-family: "Inter";
     }
@@ -2621,12 +2626,14 @@ body {
 
     .section {
         margin-bottom: 1.2rem;
+
         label {
             display: block;
             font-weight: 500;
             margin-bottom: 0.4rem;
             color: #333;
         }
+
         input[type="email"] {
             width: 100%;
             padding: 0.6rem 0.8rem;
@@ -2634,11 +2641,13 @@ body {
             border-radius: 6px;
             font-size: 1rem;
             transition: border-color 0.2s;
+
             &:focus {
                 border-color: #222;
                 outline: none;
             }
         }
+
         .email-error {
             color: #e74c3c;
             background: #fbeaea;
@@ -2648,6 +2657,7 @@ body {
             margin-top: 0.3rem;
         }
     }
+
     #region-select-input {
         width: 180px;
         border: 1px solid #ccc;
@@ -2662,6 +2672,7 @@ body {
 
     #method-select {
         display: flex;
+
         input {
             margin-right: 0.5rem;
             width: auto;
@@ -2669,6 +2680,7 @@ body {
             margin-bottom: .3rem;
             font-family: "Inter";
         }
+
         label {
             align-self: center;
             font-family: "Inter";
@@ -2688,10 +2700,12 @@ body {
         font-size: 1rem;
         font-weight: 500;
         transition: background 0.2s;
+
         &:hover {
             background: #444;
         }
     }
+
     #ship_one {
         width: 180px;
     }
@@ -2732,14 +2746,45 @@ body {
                     }
                 }
 
+                .bigger_main_image {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba(255, 255, 255, 1);
+                    z-index: 1000;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    .shrinkable {
+                        cursor: zoom-out;
+                        width: 35%;
+                        height: auto;
+                    }
+
+                    .zoom-out {
+                        position: absolute;
+                        top: 5%;
+                        right: 5%;
+                        border-radius: 50%;
+                        padding: 15px;
+                        width: 45px;
+                        height: 45px;
+                        box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+                        cursor: pointer;
+                    }
+                }
+
                 .main_image {
                     width: 100%;
                     height: auto;
 
-                    >* {
+                    .zoomable {
+                        cursor: zoom-in;
                         width: 100%;
                         height: auto;
-                        cursor: pointer;
                     }
                 }
             }
@@ -3078,6 +3123,7 @@ body {
     .cart_product_div {
         margin-right: 1.5rem;
         cursor: pointer;
+
         >* {
             width: 100px;
             height: 150px;
@@ -3267,6 +3313,7 @@ body {
                     justify-content: space-between;
                     padding-top: 1.5rem;
                     border-bottom: 1px solid rgb(210, 210, 210);
+
                     p {
                         font-family: "Inter";
                         height: 50px;
@@ -5416,7 +5463,7 @@ body {
 
 
 @media screen and (max-width: 580px) {
-    
+
     .profile-form {
         transform: scale(0.85);
     }
@@ -5540,6 +5587,15 @@ body {
                             width: 100px;
                             height: 100%;
                         }
+                    }
+
+                    .bigger_main_image {
+                        .shrinkable {
+                            cursor: zoom-out;
+                            width: 100%;
+                            height: auto;
+                        }
+
                     }
                 }
 

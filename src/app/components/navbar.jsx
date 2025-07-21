@@ -712,7 +712,7 @@ export default function Navbar() {
                                                     <p onClick={() => {
                                                         handleFilterChange("Season", "Summer")
                                                         setProductType("SUMMER COLLECTION")
-                                                        handlemouseLeave(setMen)
+                                                        handleMouseLeave(setMen)
                                                         router.push("/drip")
                                                     }}>Shop Now</p>
                                                 </div>

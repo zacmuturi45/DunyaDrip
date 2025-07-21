@@ -35,6 +35,7 @@ export { default as cancel } from "./cancel.svg";
 export { default as desert } from "./desert.svg";
 export { default as search_head } from "./search-head.svg";
 export { default as flags } from "./flags.svg";
+export { default as sharp } from "./sharp_plus.svg";
 
 // Object mapping country names (as returned by ipwho.is) to ISO currency codes
 
