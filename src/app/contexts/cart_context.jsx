@@ -118,7 +118,10 @@ export const CartProvider = ({ children }) => {
                     description: item.description,
                     niche: item.niche,
                     image_url2: item.image_url2 ? supabse_image_path(`${item.image_url2}`) : null,
-                    price: (item.price * 0.2) + item.price,
+                    image_url3: item.image_url2 ? supabse_image_path(`${item.image_url3}`) : null,
+                    image_url4: item.image_url2 ? supabse_image_path(`${item.image_url4}`) : null,
+                    price: item.price,
+                    // price: (item.price * 0.2) + item.price,
                 };
             })
             setProducts(ext_drip_array)

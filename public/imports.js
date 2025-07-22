@@ -36,6 +36,7 @@ export { default as desert } from "./desert.svg";
 export { default as search_head } from "./search-head.svg";
 export { default as flags } from "./flags.svg";
 export { default as sharp } from "./sharp_plus.svg";
+export { default as arrowright } from "./arrow-right.svg";
 
 // Object mapping country names (as returned by ipwho.is) to ISO currency codes
 
@@ -672,10 +673,15 @@ export const countries_we_ship_to = [
 ];
 
 export const SHIPPING_RATES = {
+//   UK: {
+//     Standard: 3.99,
+//     Express: 6.99,
+//     "Next Day": 8.99
+//   },
   UK: {
-    Standard: 3.99,
-    Express: 6.99,
-    "Next Day": 8.99
+    Standard: 0,
+    Express: 0,
+    "Next Day": 0
   },
   France: {
     Standard: 9.99,

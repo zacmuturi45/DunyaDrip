@@ -2,7 +2,7 @@
 
 import { useParams, useRouter } from 'next/navigation'
 import React, { useContext, useEffect, useState } from 'react'
-import { size_array } from '../../../public/imports';
+import { arrowright, size_array } from '../../../public/imports';
 import Image from 'next/image';
 import { FlagContext } from '../contexts/flagcontext';
 import DripCard from '../components/drip_card';
@@ -124,15 +124,17 @@ export default function DripSlug() {
             <div className='container-one'>
               <div className='one-images'>
                 <div className='carousel_images'>
-                  <Image src={image_object.image_url} width={100} height={100} alt='drip_image' unoptimized className={blackBorder.image_one ? "black-border" : ""} onClick={() => changeBorder("image_one", "image_url")} />
-                  <Image src={image_object.image_url} width={100} height={100} alt='drip_image' unoptimized className={blackBorder.image_two ? "black-border" : ""} onClick={() => changeBorder("image_two", "image_url")} />
-                  <Image src={image_object.image_url} width={100} height={100} alt='drip_image' unoptimized className={blackBorder.image_three ? "black-border" : ""} onClick={() => changeBorder("image_three", "image_url")} />
-                  <Image src={image_object.image_url} width={100} height={100} alt='drip_image' unoptimized className={blackBorder.image_four ? "black-border" : ""} onClick={() => changeBorder("image_four", "image_url")} />
+                  <Image src={image_object.image_url} width={100} height={100} alt='drip_image' unoptimized className={blackBorder.image_one ? "black-border black-border-image" : "black-border-image"} onClick={() => changeBorder("image_one", "image_url")} />
+                  <Image src={image_object.image_url2} width={100} height={100} alt='drip_image' unoptimized className={blackBorder.image_two ? "black-border black-border-image" : "black-border-image"} onClick={() => changeBorder("image_two", "image_url2")} />
+                  <Image src={image_object.image_url3} width={100} height={100} alt='drip_image' unoptimized className={blackBorder.image_three ? "black-border black-border-image" : "black-border-image"} onClick={() => changeBorder("image_three", "image_url3")} />
+                  <Image src={image_object.image_url4} width={100} height={100} alt='drip_image' unoptimized className={blackBorder.image_four ? "black-border black-border-image" : "black-border-image"} onClick={() => changeBorder("image_four", "image_url4")} />
                 </div>
 
                 <div className={!zoomable ? "main_image" : "bigger_main_image"} >
                   { zoomable && <Image src={supabse_image_path('/x.svg')} width={20} height={20} alt='zoom-out' className='zoom-out' onClick={() => setZoomable(false)} /> }
+                  <Image src={arrowright} width={25} height={25} alt='arrow-right' className='arrowright' style={!zoomable ? {display: "none"} : {display: "block", transform: "rotate(180deg)"}} />
                   <Image src={main_image} width={100} height={100} alt='drip_image' unoptimized className={!zoomable ? "zoomable" : "shrinkable"} onClick={() => setZoomable(!zoomable)} />
+                  <Image src={arrowright} width={25} height={25} alt='arrow-right' className='arrowright'  style={!zoomable ? {display: "none"} : {display: "block"}}  />
                 </div>
               </div>
 
