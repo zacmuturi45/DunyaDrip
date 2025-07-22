@@ -2,14 +2,16 @@ import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
+
 export async function POST(request) {
+    console.log(`STRIPEEEEE ${process.env.STRIPE_SECRET_KEY}`);
     const body = await request.json();
 
     const { customer_email, customer_name, shippingOption, order_id, items } = body;
 
     const line_items = items.map(item => ({
         price_data: {
-            currency: 'gbp',
+            currency: 'kes',
             product_data: {
                 name: `${item.name} (Size: ${item.size})`,
             },
