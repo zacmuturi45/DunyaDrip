@@ -57,6 +57,7 @@ export default function ShippingModal({ onClose }) {
                             type="email"
                             value={email}
                             onChange={e => {
+                                setEmail(e.target.value);
                                 setUnloggedUserEmail(e.target.value);
                                 setEmailError('');
                             }}
