@@ -37,6 +37,13 @@ export { default as search_head } from "./search-head.svg";
 export { default as flags } from "./flags.svg";
 export { default as sharp } from "./sharp_plus.svg";
 export { default as arrowright } from "./arrow-right.svg";
+export { default as settings } from "./settings_admin.svg";
+export { default as analytics } from "./analytics.svg";
+export { default as products } from "./products.svg";
+export { default as newsletter } from "./newsletter.svg";
+export { default as dashboard } from "./dashboard.svg";
+export { default as offers } from "./offers.svg";
+export { default as calendar } from "./calendar.svg";
 
 // Object mapping country names (as returned by ipwho.is) to ISO currency codes
 
