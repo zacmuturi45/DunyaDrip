@@ -24,7 +24,7 @@ const geistMono = localFont({
 
 export const metadata = {
   title: "Dunya Drip",
-  description: "Achieve the Prime of your Life through our innovative health and wellness solutions.",
+  description: "Fashion is not just about clothes, it's a lifestyle. Dunya Drip brings you the latest trends and styles to express yourself.",
 };
 
 export default async function RootLayout({ children }) {
