@@ -199,7 +199,7 @@ export default function Navbar() {
     return (
         <>
             {/* <div className={visible ? 'nav-main' : 'nav-main hide-nav'}> */}
-            <div className="hide-nav nav-main">
+            <div className="nav-main">
                 <div className="nav-container">
                     <div className={burgerActive ? "mobile-nav" : "mobile-nav hide-mobile-nav"}>
                         <div className="mobile-nav-container">

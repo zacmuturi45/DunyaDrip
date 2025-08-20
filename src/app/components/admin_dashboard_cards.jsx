@@ -2,8 +2,8 @@
 import supabse_image_path from '@/utils/supabase/supabse_image_path'
 import Image from 'next/image'
 import React, { useState } from 'react'
+import { filterOptions } from '../../../public/imports'
 
-const filterOptions = ['Last 30 days', 'Last 3 months', 'Last 6 months']
 
 export default function Admin_dashboard_cards({ title, svg_image, description, setDateFilter, metrics }) {
   const [selectedFilter, setSelectedFilter] = useState('Last 30 days')

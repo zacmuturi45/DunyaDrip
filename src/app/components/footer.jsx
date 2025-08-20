@@ -18,7 +18,8 @@ export default function Footer() {
   const router = useRouter();
 
   useEffect(() => {
-    setTime(localTime())
+    const { time_now } = localTime();
+    setTime(time_now)
     updateTime()
   }, [time])
 
@@ -27,7 +28,8 @@ export default function Footer() {
     const getSeconds = now.getSeconds()
     const secondsDifference = 1000 * (60 - getSeconds)
     setInterval(() => {
-      setTime(localTime())
+      const { time_now } = localTime();
+      setTime(time_now)
     }, secondsDifference);
   }
 

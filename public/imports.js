@@ -9,6 +9,7 @@ import Kenya from "./flags/Kenya.svg";
 import Germany from "./flags/germany.svg";
 import Netherlands from "./flags/netherlands.svg"
 import Belgium from "./flags/belgium.svg";
+import supabse_image_path from "@/utils/supabase/supabse_image_path";
 
 const targetDate = new Date(Date.UTC(2025, 5, 25, 1, 0, 0)); // March 30, 2025, 01:00 AM UTC
 
@@ -28,6 +29,48 @@ export const calculateTimeLeft = () => {
         seconds: Math.floor((difference / (1000)) % 60),
     }
 }
+
+export const filterOptions = ['Last 30 days', 'Last 3 months', 'Last 6 months']
+
+export const topSellingProducts = [
+  {
+    name: "Black Hoodie",
+    sold: 120,
+    image: supabse_image_path("dunya_featured1.webp"),
+  },
+  {
+    name: "White T-shirt",
+    sold: 98,
+    image: supabse_image_path("dunya_featured1b.webp"),
+  },
+  {
+    name: "Cargo Pants",
+    sold: 75,
+    image: supabse_image_path("dunya_featured2.webp"),
+  },
+  {
+    name: "Denim Jacket",
+    sold: 60,
+    image: supabse_image_path("dunya_featured3.webp"),
+  },
+  {
+    name: "White T-shirt",
+    sold: 98,
+    image: supabse_image_path("dunya_featured1b.webp"),
+  },
+  {
+    name: "Cargo Pants",
+    sold: 75,
+    image: supabse_image_path("dunya_featured2.webp"),
+  },
+  {
+    name: "Denim Jacket",
+    sold: 60,
+    image: supabse_image_path("dunya_featured3.webp"),
+  },
+];
+
+
 
 export { default as UK_flag } from "./flags/UK.svg";
 export { default as ukflag } from "./ukflag.svg";
@@ -550,22 +593,28 @@ export const size_array = [
 ]
 
 export const localTime = () => {
-    const now = new Date()
-    const hours = now.getHours()
-    const minutes = now.getMinutes()
-    const timeZoneOffset = -now.getTimezoneOffset() / 60
-    const gmtSign = timeZoneOffset >= 0 ? '+' : '-';
-    const gmtOffset = `${gmtSign}${Math.abs(timeZoneOffset)}`;
+  const now = new Date();
 
-    const formattedHours = hours >= 10 ? hours : `0${hours}`
-    const formattedMinutes = minutes >= 10 ? minutes : `0${minutes}`
+  // Time
+  const hours = now.getHours();
+  const minutes = now.getMinutes();
+  const timeZoneOffset = -now.getTimezoneOffset() / 60;
+  const gmtSign = timeZoneOffset >= 0 ? '+' : '-';
+  const gmtOffset = `${gmtSign}${Math.abs(timeZoneOffset)}`;
 
-    const am_pm = hours >= 12 ? 'PM' : 'AM';
+  const formattedHours = hours >= 10 ? hours : `0${hours}`;
+  const formattedMinutes = minutes >= 10 ? minutes : `0${minutes}`;
+  const am_pm = hours >= 12 ? 'PM' : 'AM';
+  const time_now = `${formattedHours}:${formattedMinutes} ${am_pm} GMT${gmtOffset}`;
 
-    const time_now = `${formattedHours}:${formattedMinutes} ${am_pm} GMT${gmtOffset}`
+  // Date (e.g. "30 May")
+  const day = now.getDate();
+  const month = now.toLocaleString('default', { month: 'short' }); // "May"
 
-    return time_now
-}
+  const date_now = `${day} ${month}`;
+
+  return { time_now, date_now };
+};
 
 
 
