@@ -3,6 +3,7 @@
 import { getLocation } from "@/utils/getLocation";
 import { createContext, useEffect, useState } from "react";
 import { flag_array, UK_flag } from "../../../public/imports";
+import { usePathname } from "next/navigation";
 
 export const FlagContext = createContext();
 
@@ -13,6 +14,17 @@ export const FlagProvider = ({ children }) => {
     const [color_index, setColorIndex] = useState(3000);
     const [showFlagBox, setShowFlagBox] = useState(false);
     const [timezone, setTimeZone] = useState("Great Britain");
+    const [is_nav, setIsNav] = useState(false);
+    const pathname = usePathname();
+
+
+    useEffect(() => {
+        if (pathname.includes("/admin")) {
+            setIsNav(true);
+        } else {
+            setIsNav(false);
+        }
+    }, [pathname]);
 
 
 
@@ -37,7 +49,7 @@ export const FlagProvider = ({ children }) => {
     }, []);
 
     return (
-        <FlagContext.Provider value={{ color_index, setColorIndex, location, setLocation, apply_location, setApplyLocation, flag_active, setFlagActive, showFlagBox, setShowFlagBox, timezone }}>
+        <FlagContext.Provider value={{ color_index, setColorIndex, location, setLocation, apply_location, setApplyLocation, flag_active, setFlagActive, showFlagBox, setShowFlagBox, timezone, is_nav }}>
             { children }
         </FlagContext.Provider>
     );

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useAuth } from '../contexts/auth_context';
 import supabse_image_path from '@/utils/supabase/supabse_image_path';
 import { analytics, dashboard, newsletter, offers, products, settings } from '../../../public/imports';
+import Link from 'next/link';
 
 export default function AdminSidebar() {
     const { setActiveSection, activeSection } = useAuth();
@@ -30,6 +31,7 @@ export default function AdminSidebar() {
     return (
         <aside className="admin-sidebar">
             <div className="admin-sidebar-container">
+                <Link href={"/"} style={{ textDecoration: 'none' }}>
                 <div className='admin-logo'>
                     <div className='admin-image'>
                         <Image
@@ -44,6 +46,7 @@ export default function AdminSidebar() {
                         <p>Drip</p>
                     </div>
                 </div>
+                </Link>
 
                 <div className='admin-links'>
                     <div className="links-list">

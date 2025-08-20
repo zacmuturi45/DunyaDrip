@@ -51,7 +51,7 @@ export default function Navbar() {
     const { cart, setShowCart, setRegion } = useCart();
     const router = useRouter();
     const hideTimeout = useRef(null);
-    const { location, setFlagActive, flag_active, setLocation, apply_location, setColorIndex, showFlagBox, setShowFlagBox } = useContext(FlagContext);
+    const { location, setFlagActive, flag_active, setLocation, apply_location, setColorIndex, showFlagBox, setShowFlagBox, is_nav } = useContext(FlagContext);
 
     const { user, display_name } = useAuth();
     const { setProductType, handleFilterChange, setExclusiveFilter } = useSort();
@@ -199,7 +199,7 @@ export default function Navbar() {
     return (
         <>
             {/* <div className={visible ? 'nav-main' : 'nav-main hide-nav'}> */}
-            <div className="nav-main">
+            <div className={is_nav ? "hide-nav nav-main" : "nav-main"}>
                 <div className="nav-container">
                     <div className={burgerActive ? "mobile-nav" : "mobile-nav hide-mobile-nav"}>
                         <div className="mobile-nav-container">
