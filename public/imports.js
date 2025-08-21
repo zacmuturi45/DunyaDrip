@@ -30,7 +30,7 @@ export const calculateTimeLeft = () => {
     }
 }
 
-export const filterOptions = ['Last 30 days', 'Last 3 months', 'Last 6 months']
+export const filterOptions = ['Last 7 days', 'Last 30 days', 'Last 3 months', 'Last 6 months', 'Last 12 months'];
 
 export const topSellingProducts = [
   {

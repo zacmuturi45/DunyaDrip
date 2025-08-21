@@ -4320,9 +4320,9 @@ body {
   display: flex;
 }
 .admin_dashboard_card .admin_dashboard_card_body .two p {
-  color: rgb(255, 0, 0);
   margin-left: 0.5rem;
   font-size: 0.8rem;
+  font-weight: 600;
 }
 
 .sales_analytics {

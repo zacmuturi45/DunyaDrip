@@ -20,6 +20,8 @@ export default function DashboardHome() {
   const { date_now } = localTime()
   const supabase = createClient;
   last30Days.setDate(today.getDate() - 30);
+  const [globalCardFilter, setGlobalCardFilter] = useState('Last 30 days');
+
 
   // --- SEARCH ---
   const [searchQuery, setSearchQuery] = useState('');
@@ -94,33 +96,148 @@ export default function DashboardHome() {
     'Pending Delivery': last30Days,
   });
 
+const calculateMetricsComparison = (currentPeriodData, previousPeriodData) => {
+  // Total Revenue calculation
+  const currentRevenue = currentPeriodData
+    .filter(order => order.total !== null)
+    .reduce((sum, order) => sum + (order.total || 0), 0);
+  const previousRevenue = previousPeriodData
+    .filter(order => order.total !== null)
+    .reduce((sum, order) => sum + (order.total || 0), 0);
+
+  // Total Orders calculation (count all orders)
+  const currentOrders = currentPeriodData.length;
+  const previousOrders = previousPeriodData.length;
+
+  // Pending Deliveries calculation (orders with null total)
+  const currentPending = currentPeriodData.filter(order => order.status === 'pending').length;
+  const previousPending = previousPeriodData.filter(order => order.status === 'pending').length;
+
+  // Total Customers calculation (unique emails)
+  const currentUniqueEmails = new Set(
+    currentPeriodData.map(order => order.email).filter(email => email)
+  ).size;
+  const previousUniqueEmails = new Set(
+    previousPeriodData.map(order => order.email).filter(email => email)
+  ).size;
+
+  // Helper function to calculate percentage change
+  const getPercentageChange = (current, previous) => {
+    if (previous === 0) {
+      return {
+        percentageChange: current > 0 ? 100 : 0,
+        isRising: current > 0
+      };
+    }
+    const change = ((current - previous) / previous) * 100;
+    return {
+      percentageChange: Math.floor(change),
+      isRising: change > 0
+    };
+  };
+
+  return {
+    revenue: {
+      ...getPercentageChange(currentRevenue, previousRevenue),
+      currentValue: (currentRevenue / 100).toFixed(2), // Convert to GBP
+      previousValue: `£${(previousRevenue / 100).toFixed(2)}` // Convert to GBP
+    },
+    orders: {
+      ...getPercentageChange(currentOrders, previousOrders),
+      currentValue: currentOrders,
+      previousValue: previousOrders
+    },
+    pendingDeliveries: {
+      ...getPercentageChange(currentPending, previousPending),
+      currentValue: currentPending,
+      previousValue: previousPending
+    },
+    customers: {
+      ...getPercentageChange(currentUniqueEmails, previousUniqueEmails),
+      currentValue: currentUniqueEmails,
+      previousValue: previousUniqueEmails
+    }
+  };
+};
+
+// Add this state to store all metrics comparison data
+const [metricsComparison, setMetricsComparison] = useState({
+  revenue: { percentageChange: 0, isRising: true, currentValue: 0, previousValue: 0 },
+  orders: { percentageChange: 0, isRising: true, currentValue: 0, previousValue: 0 },
+  pendingDeliveries: { percentageChange: 0, isRising: true, currentValue: 0, previousValue: 0 },
+  customers: { percentageChange: 0, isRising: true, currentValue: 0, previousValue: 0 }
+});
+
   useEffect(() => {
     const fetchSalesData = async () => {
-      let fromDate = dayjs().subtract(30, 'day').toISOString();
+      let currentFromDate = dayjs().subtract(30, 'day').toISOString();
+      let previousFromDate = dayjs().subtract(60, 'day').toISOString();
+      let previousToDate = dayjs().subtract(30, 'day').toISOString();
 
       if (filterSales === 'Last 7 days') {
-        fromDate = dayjs().subtract(7, 'day').toISOString();
+        currentFromDate = dayjs().subtract(7, 'day').toISOString();
+        previousFromDate = dayjs().subtract(14, 'day').toISOString();
+        previousToDate = dayjs().subtract(7, 'day').toISOString();
+        } else if (filterSales === 'Last 30 days') {
+        currentFromDate = dayjs().subtract(30, 'day').toISOString();
+        previousFromDate = dayjs().subtract(60, 'day').toISOString();
+        previousToDate = dayjs().subtract(30, 'day').toISOString();
+        } else if (filterSales === 'Last 3 months') {
+        currentFromDate = dayjs().subtract(3, 'month').toISOString();
+        previousFromDate = dayjs().subtract(6, 'month').toISOString();
+        previousToDate = dayjs().subtract(3, 'month').toISOString();
       } else if (filterSales === 'Last 6 months') {
-        fromDate = dayjs().subtract(6, 'month').toISOString();
+        currentFromDate = dayjs().subtract(6, 'month').toISOString();
+        previousFromDate = dayjs().subtract(12, 'month').toISOString();
+        previousToDate = dayjs().subtract(6, 'month').toISOString();
       } else if (filterSales === 'Last 12 months') {
-        fromDate = dayjs().subtract(12, 'month').toISOString();
+        currentFromDate = dayjs().subtract(12, 'month').toISOString();
+        previousFromDate = dayjs().subtract(24, 'month').toISOString();
+        previousToDate = dayjs().subtract(12, 'month').toISOString();
       }
 
-      const { data, error } = await supabase
-        .from('client_orders')
-        .select('created_at, total')
-        .gte('created_at', fromDate)
-        .not('total', 'is', null)
-        .order('created_at', { ascending: true });
+      try {
+        // Fetch current period data
+        const { data: currentData, error: currentError } = await supabase
+          .from('client_orders')
+          .select('created_at, total, email, status')
+          .gte('created_at', currentFromDate)
+          .order('created_at', { ascending: true });
 
-      if (error) {
-        console.error('Error fetching sales data:', error.message);
-      } else {
-        setSalesData(data || []);
+        // Fetch previous period data for comparison
+        const { data: previousData, error: previousError } = await supabase
+          .from('client_orders')
+          .select('created_at, total, email, status')
+          .gte('created_at', previousFromDate)
+          .lt('created_at', previousToDate)
+          .not('total', 'is', null)
+          .order('created_at', { ascending: true });
+
+        if (currentError) {
+          console.error('Error fetching current sales data:', currentError.message);
+          return;
+        }
+
+        if (previousError) {
+          console.error('Error fetching previous sales data:', previousError.message);
+          return;
+        }
+
+        const chartSalesData = (currentData || []).filter(order => order.total !== null);
+        setSalesData(chartSalesData);
+
+        // Calculate comparison
+        const comparison = calculateMetricsComparison(currentData || [], previousData || []);
+        setMetricsComparison(comparison);
+
+      } catch (error) {
+        console.error('Error in fetchSalesData:', error);
       }
     };
+
     fetchSalesData();
   }, [filterSales, supabase]);
+
 
   useEffect(() => {
     const fetchDashboardData = async () => {
@@ -193,12 +310,28 @@ export default function DashboardHome() {
     setShowDropdown(false);
   };
 
-  const dash_array = [
-    { title: 'Total Revenue', svg_image: 'cash.svg', description: metrics.totalRevenue || 'Loading...' },
-    { title: 'Total Orders', svg_image: 'cart_dash.svg', description: metrics.totalOrders || 'Loading...' },
-    { title: 'Total Customers', svg_image: 'customers.svg', description: metrics.totalCustomers || 'Loading...' },
-    { title: 'Pending Delivery', svg_image: 'truck.svg', description: metrics.pendingDelivery || 'Loading...' },
-  ];
+const dash_array = [
+  { 
+    title: 'Total Revenue', 
+    svg_image: 'cash.svg', 
+    description: `£${(metricsComparison.revenue.currentValue / 1000).toFixed(2)}`,
+  },
+  { 
+    title: 'Total Orders', 
+    svg_image: 'cart_dash.svg', 
+    description: metricsComparison.orders.currentValue.toString(),
+  },
+  { 
+    title: 'Total Customers', 
+    svg_image: 'customers.svg', 
+    description: metricsComparison.customers.currentValue.toString(),
+  },
+  { 
+    title: 'Pending Deliveries', 
+    svg_image: 'truck.svg', 
+    description: metricsComparison.pendingDeliveries.currentValue.toString(),
+  },
+];
 
   const showDashboard = !selectedResult && searchQuery.trim() === '';
 
@@ -321,7 +454,7 @@ export default function DashboardHome() {
           <div className="dashboard-icons">
             <div className="dashboard-date">
               <Image src={supabse_image_path("calendar.svg")} width={20} height={20} alt='notifications' />
-              <p style={{fontFamily: "Inter"}}>{ date_now }</p>
+              <p style={{ fontFamily: "Inter" }}>{date_now}</p>
             </div>
             <div className="dashboard-notification">
               <Image src={supabse_image_path("bell.svg")} width={20} height={20} alt='notifications-svg' />
@@ -335,14 +468,20 @@ export default function DashboardHome() {
           <>
             <div className='dashboard-cards'>
               {dash_array.map((item, index) => (
-                <Admin_dashboard_cards
+                <div key={index}>
+                  <Admin_dashboard_cards
                   key={index}
                   title={item.title}
                   svg_image={item.svg_image}
                   description={item.description}
                   setDateFilter={setDateFilter}
                   metrics={metrics}
+                  sales_data={metricsComparison}
+                  setFilterSales={setFilterSales}
+                  globalCardFilter={globalCardFilter}
+                  setGlobalCardFilter={setGlobalCardFilter}                  
                 />
+                </div>
               ))}
             </div>
 
