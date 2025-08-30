@@ -19,6 +19,7 @@ export default function DashboardHome() {
   const last30Days = new Date();
   const { date_now } = localTime()
   const supabase = createClient;
+  // const [topSellingProducts, setTopSellingProducts] = useState([]);
   last30Days.setDate(today.getDate() - 30);
   const [globalCardFilter, setGlobalCardFilter] = useState('Last 30 days');
 
@@ -28,6 +29,47 @@ export default function DashboardHome() {
   const [searchResults, setSearchResults] = useState([]);
   const [searchLoading, setSearchLoading] = useState(false);
   const [selectedResult, setSelectedResult] = useState(null);
+
+  // useEffect(() => {
+  //   const fetchTopSellingProducts = async () => {
+  //     try {
+  //       const { data, error } = await supabase
+  //         .from('client_orders')
+  //         .select('products, total, email')
+  //         .not('total', 'is', null)
+
+  //       if (error) {
+  //         console.error('Supabase error:', error)
+  //         return;
+  //       }
+
+  //       if (!data || data.length === 0) {
+  //         setTopSellingProducts({});
+  //         return;
+  //       }
+
+  //       const st = new Set(data)
+  //       const my_obj = {};
+  //       const unique_obj = Array.from(st).forEach((order) => {
+  //         data.forEach((item) => {
+  //           if (item.email === order.email) {
+  //             my_obj[item.email] = (my_obj[item.email] || 0) + 1;
+  //           }
+  //         })
+  //       })
+
+  //       const productCounts = Object.fromEntries(
+  //         Object.entries(my_obj).sort(([, a], [, b]) => b - a).slice(0, 7)
+  //       )
+
+  //       setTopSellingProducts(productCounts)
+
+  //     } catch (error) {
+  //       console.error('Error fetching top selling products:', error);
+  //     }
+  //   }
+  //   fetchTopSellingProducts();
+  // }, [])
 
   // --- TRIGGER SEARCH ON CHANGE (debounced) ---
   useEffect(() => {
@@ -96,77 +138,77 @@ export default function DashboardHome() {
     'Pending Delivery': last30Days,
   });
 
-const calculateMetricsComparison = (currentPeriodData, previousPeriodData) => {
-  // Total Revenue calculation
-  const currentRevenue = currentPeriodData
-    .filter(order => order.total !== null)
-    .reduce((sum, order) => sum + (order.total || 0), 0);
-  const previousRevenue = previousPeriodData
-    .filter(order => order.total !== null)
-    .reduce((sum, order) => sum + (order.total || 0), 0);
+  const calculateMetricsComparison = (currentPeriodData, previousPeriodData) => {
+    // Total Revenue calculation
+    const currentRevenue = currentPeriodData
+      .filter(order => order.total !== null)
+      .reduce((sum, order) => sum + (order.total || 0), 0);
+    const previousRevenue = previousPeriodData
+      .filter(order => order.total !== null)
+      .reduce((sum, order) => sum + (order.total || 0), 0);
 
-  // Total Orders calculation (count all orders)
-  const currentOrders = currentPeriodData.length;
-  const previousOrders = previousPeriodData.length;
+    // Total Orders calculation (count all orders)
+    const currentOrders = currentPeriodData.length;
+    const previousOrders = previousPeriodData.length;
 
-  // Pending Deliveries calculation (orders with null total)
-  const currentPending = currentPeriodData.filter(order => order.status === 'pending').length;
-  const previousPending = previousPeriodData.filter(order => order.status === 'pending').length;
+    // Pending Deliveries calculation (orders with null total)
+    const currentPending = currentPeriodData.filter(order => order.status === 'pending').length;
+    const previousPending = previousPeriodData.filter(order => order.status === 'pending').length;
 
-  // Total Customers calculation (unique emails)
-  const currentUniqueEmails = new Set(
-    currentPeriodData.map(order => order.email).filter(email => email)
-  ).size;
-  const previousUniqueEmails = new Set(
-    previousPeriodData.map(order => order.email).filter(email => email)
-  ).size;
+    // Total Customers calculation (unique emails)
+    const currentUniqueEmails = new Set(
+      currentPeriodData.map(order => order.email).filter(email => email)
+    ).size;
+    const previousUniqueEmails = new Set(
+      previousPeriodData.map(order => order.email).filter(email => email)
+    ).size;
 
-  // Helper function to calculate percentage change
-  const getPercentageChange = (current, previous) => {
-    if (previous === 0) {
+    // Helper function to calculate percentage change
+    const getPercentageChange = (current, previous) => {
+      if (previous === 0) {
+        return {
+          percentageChange: current > 0 ? 100 : 0,
+          isRising: current > 0
+        };
+      }
+      const change = ((current - previous) / previous) * 100;
       return {
-        percentageChange: current > 0 ? 100 : 0,
-        isRising: current > 0
+        percentageChange: Math.floor(change),
+        isRising: change > 0
       };
-    }
-    const change = ((current - previous) / previous) * 100;
+    };
+
     return {
-      percentageChange: Math.floor(change),
-      isRising: change > 0
+      revenue: {
+        ...getPercentageChange(currentRevenue, previousRevenue),
+        currentValue: (currentRevenue / 100).toFixed(2), // Convert to GBP
+        previousValue: `£${(previousRevenue / 100).toFixed(2)}` // Convert to GBP
+      },
+      orders: {
+        ...getPercentageChange(currentOrders, previousOrders),
+        currentValue: currentOrders,
+        previousValue: previousOrders
+      },
+      pendingDeliveries: {
+        ...getPercentageChange(currentPending, previousPending),
+        currentValue: currentPending,
+        previousValue: previousPending
+      },
+      customers: {
+        ...getPercentageChange(currentUniqueEmails, previousUniqueEmails),
+        currentValue: currentUniqueEmails,
+        previousValue: previousUniqueEmails
+      }
     };
   };
 
-  return {
-    revenue: {
-      ...getPercentageChange(currentRevenue, previousRevenue),
-      currentValue: (currentRevenue / 100).toFixed(2), // Convert to GBP
-      previousValue: `£${(previousRevenue / 100).toFixed(2)}` // Convert to GBP
-    },
-    orders: {
-      ...getPercentageChange(currentOrders, previousOrders),
-      currentValue: currentOrders,
-      previousValue: previousOrders
-    },
-    pendingDeliveries: {
-      ...getPercentageChange(currentPending, previousPending),
-      currentValue: currentPending,
-      previousValue: previousPending
-    },
-    customers: {
-      ...getPercentageChange(currentUniqueEmails, previousUniqueEmails),
-      currentValue: currentUniqueEmails,
-      previousValue: previousUniqueEmails
-    }
-  };
-};
-
-// Add this state to store all metrics comparison data
-const [metricsComparison, setMetricsComparison] = useState({
-  revenue: { percentageChange: 0, isRising: true, currentValue: 0, previousValue: 0 },
-  orders: { percentageChange: 0, isRising: true, currentValue: 0, previousValue: 0 },
-  pendingDeliveries: { percentageChange: 0, isRising: true, currentValue: 0, previousValue: 0 },
-  customers: { percentageChange: 0, isRising: true, currentValue: 0, previousValue: 0 }
-});
+  // Add this state to store all metrics comparison data
+  const [metricsComparison, setMetricsComparison] = useState({
+    revenue: { percentageChange: 0, isRising: true, currentValue: 0, previousValue: 0 },
+    orders: { percentageChange: 0, isRising: true, currentValue: 0, previousValue: 0 },
+    pendingDeliveries: { percentageChange: 0, isRising: true, currentValue: 0, previousValue: 0 },
+    customers: { percentageChange: 0, isRising: true, currentValue: 0, previousValue: 0 }
+  });
 
   useEffect(() => {
     const fetchSalesData = async () => {
@@ -178,11 +220,11 @@ const [metricsComparison, setMetricsComparison] = useState({
         currentFromDate = dayjs().subtract(7, 'day').toISOString();
         previousFromDate = dayjs().subtract(14, 'day').toISOString();
         previousToDate = dayjs().subtract(7, 'day').toISOString();
-        } else if (filterSales === 'Last 30 days') {
+      } else if (filterSales === 'Last 30 days') {
         currentFromDate = dayjs().subtract(30, 'day').toISOString();
         previousFromDate = dayjs().subtract(60, 'day').toISOString();
         previousToDate = dayjs().subtract(30, 'day').toISOString();
-        } else if (filterSales === 'Last 3 months') {
+      } else if (filterSales === 'Last 3 months') {
         currentFromDate = dayjs().subtract(3, 'month').toISOString();
         previousFromDate = dayjs().subtract(6, 'month').toISOString();
         previousToDate = dayjs().subtract(3, 'month').toISOString();
@@ -310,28 +352,28 @@ const [metricsComparison, setMetricsComparison] = useState({
     setShowDropdown(false);
   };
 
-const dash_array = [
-  { 
-    title: 'Total Revenue', 
-    svg_image: 'cash.svg', 
-    description: `£${(metricsComparison.revenue.currentValue / 1000).toFixed(2)}`,
-  },
-  { 
-    title: 'Total Orders', 
-    svg_image: 'cart_dash.svg', 
-    description: metricsComparison.orders.currentValue.toString(),
-  },
-  { 
-    title: 'Total Customers', 
-    svg_image: 'customers.svg', 
-    description: metricsComparison.customers.currentValue.toString(),
-  },
-  { 
-    title: 'Pending Deliveries', 
-    svg_image: 'truck.svg', 
-    description: metricsComparison.pendingDeliveries.currentValue.toString(),
-  },
-];
+  const dash_array = [
+    {
+      title: 'Total Revenue',
+      svg_image: 'cash.svg',
+      description: `£${(metricsComparison.revenue.currentValue / 1000).toFixed(2)}`,
+    },
+    {
+      title: 'Total Orders',
+      svg_image: 'cart_dash.svg',
+      description: metricsComparison.orders.currentValue.toString(),
+    },
+    {
+      title: 'Total Customers',
+      svg_image: 'customers.svg',
+      description: metricsComparison.customers.currentValue.toString(),
+    },
+    {
+      title: 'Pending Deliveries',
+      svg_image: 'truck.svg',
+      description: metricsComparison.pendingDeliveries.currentValue.toString(),
+    },
+  ];
 
   const showDashboard = !selectedResult && searchQuery.trim() === '';
 
@@ -470,17 +512,17 @@ const dash_array = [
               {dash_array.map((item, index) => (
                 <div key={index}>
                   <Admin_dashboard_cards
-                  key={index}
-                  title={item.title}
-                  svg_image={item.svg_image}
-                  description={item.description}
-                  setDateFilter={setDateFilter}
-                  metrics={metrics}
-                  sales_data={metricsComparison}
-                  setFilterSales={setFilterSales}
-                  globalCardFilter={globalCardFilter}
-                  setGlobalCardFilter={setGlobalCardFilter}                  
-                />
+                    key={index}
+                    title={item.title}
+                    svg_image={item.svg_image}
+                    description={item.description}
+                    setDateFilter={setDateFilter}
+                    metrics={metrics}
+                    sales_data={metricsComparison}
+                    setFilterSales={setFilterSales}
+                    globalCardFilter={globalCardFilter}
+                    setGlobalCardFilter={setGlobalCardFilter}
+                  />
                 </div>
               ))}
             </div>
@@ -489,7 +531,7 @@ const dash_array = [
               <div className='one'>
                 <div className="one_container">
                   <div className='one_title'>
-                    <h2 style={{ fontFamily: "Inter", fontWeight: 700, color: "rgb(48, 48, 48)", fontSize: "1.5rem" }}>Sales Analytics</h2>
+                    <h2 style={{ fontFamily: "Inter", fontWeight: 700, color: "rgb(48, 48, 48)", fontSize: "1.5rem" }}>Top Selling Products</h2>
                     <div className="sort_tab" style={{ display: "flex", alignItems: "center" }}>
                       <p style={{ color: "gray", fontFamily: "Inter", fontSize: ".9rem", marginRight: ".5rem", fontWeight: 500 }}>Sort by</p>
                       <div className='arrow' id='arrow_tab' onClick={() => setShowDropdown(!showDropdown)} style={{ border: "1px solid rgba(216, 216, 216, 1)", padding: "3px 10px", borderRadius: "2px", minWidth: "150px" }}>
@@ -517,22 +559,22 @@ const dash_array = [
                       </div>
                     </div>
                   </div>
-
+                  {/* 
                   <div className='one_analytics'>
                     <OneAnalytics title={"Income"} value={"24,000"} percentage={"-0.34%"} icon={"tipblue.svg"} />
                     <div className="middle_child">
                       <OneAnalytics title={"Expenses"} value={"4,000"} percentage={"-0.32%"} icon={"tiporange.svg"} />
                     </div>
                     <OneAnalytics title={"Balance"} value={"20,000"} percentage={"-0.22%"} icon={"tipgreen.svg"} />
-                  </div>
+                  </div> */}
 
                   <div className="top_selling">
-                    <h3 className="top_selling_title">Top Selling Products</h3>
+                    {/* <h3 className="top_selling_title">Top Selling Products</h3> */}
                     <div className="carousel">
                       {topSellingProducts.map((product, index) => (
                         <div className="product_card" key={index}>
                           <div className="product_image">
-                            <Image src={product.image} width={100} height={100} alt={product.name} />
+                            <Image src={product.image} width={100} height={100} alt={product.name} unoptimized />
                           </div>
                           <div className="product_info">
                             <p className="product_name">{product.name}</p>

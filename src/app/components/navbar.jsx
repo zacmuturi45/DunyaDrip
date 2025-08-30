@@ -192,6 +192,20 @@ export default function Navbar() {
         }
     }, [showSearchPanel]);
 
+    useEffect(() => {
+        if (burgerActive) {
+            // Prevent scrolling
+            document.body.style.overflow = 'hidden';
+        } else {
+            // Re-enable scrolling
+            document.body.style.overflow = '';
+        }
+        // Cleanup in case the component unmounts while panel is open
+        return () => {
+            document.body.style.overflow = '';
+        }
+    }, [burgerActive]);
+
 
 
 
@@ -205,60 +219,84 @@ export default function Navbar() {
                         <div className="mobile-nav-container">
 
                             <div className="mobile-nav-links">
-                                <div className="mobile-nav-links-title">
+                                <div
+                                    onClick={() => open_drawer("drawer1")}
+                                    className="mobile-nav-links-title">
                                     <p>NEW IN</p>
-                                    <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' onClick={() => open_drawer("drawer1")} className={hide_drawer.drawer1 ? "rotate" : ""} />
+                                    <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' className={hide_drawer.drawer1 ? "rotate" : ""} />
                                 </div>
                                 <div className={hide_drawer.drawer1 ? "one-drawer" : "hide-drawer"}>
-                                    <p>Hoodies</p>
-                                    <p>Sweatpants</p>
-                                    <p>T-Shirts</p>
+                                    <p
+                                        onClick={() => {
+                                            handleClick('Hoodies', "NEW IN")
+                                            setBurgerActive(false)
+                                            open_drawer("drawer1")
+                                        }}
+                                    >Hoodies</p>
+                                    <p
+                                        onClick={() => {
+                                            handleClick('Sweatpants', "NEW IN")
+                                            setBurgerActive(false)
+                                            open_drawer("drawer1")
+                                        }}
+                                    >Sweatpants</p>
+                                    <p
+                                        onClick={() => {
+                                            handleClick('T-Shirts', "NEW IN")
+                                            setBurgerActive(false)
+                                            open_drawer("drawer1")
+                                        }}
+                                    >T-Shirts</p>
                                 </div>
                             </div>
 
                             <div className="mobile-nav-links">
-                                <div className="mobile-nav-links-title">
+                                <div
+                                    onClick={() => open_drawer("drawer2")}
+                                    className="mobile-nav-links-title">
                                     <p>MEN</p>
-                                    <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' onClick={() => open_drawer("drawer2")} className={hide_drawer.drawer2 ? "rotate" : ""} />
+                                    <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' className={hide_drawer.drawer2 ? "rotate" : ""} />
                                 </div>
                                 <div className={hide_drawer.drawer2 ? "mobile-nav-links-detail" : "hide-drawer"}>
                                     <div>
-                                        <div className="two-drawer">
+                                        <div
+                                            onClick={() => open_drawer("sub_drawer1d1")}
+                                            className="two-drawer">
                                             <p>Clothing</p>
-                                            <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' onClick={() => open_drawer("sub_drawer1d1")} style={hide_drawer.sub_drawer1d1 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
+                                            <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' style={hide_drawer.sub_drawer1d1 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
                                         </div>
                                         <div className={hide_drawer.sub_drawer1d1 ? "p-drawer" : "hide-drawer"}>
-                                            <p>Hoodies</p>
-                                            <p>Sweaters</p>
-                                            <p>Sweatpants</p>
-                                            <p>Varsity Jackets</p>
-                                            <p>Leather Vests</p>
-                                            <p>T-Shirts</p>
+                                            {
+                                                men_clothing.map((item, index) => (
+                                                    <p key={index} onClick={() => {
+                                                        handleClick(item, "Men")
+                                                        setBurgerActive(false)
+                                                        open_drawer("sub_drawer1d1")
+                                                        open_drawer("drawer2")
+                                                    }}>{item}</p>
+                                                ))
+                                            }
                                         </div>
                                     </div>
 
-                                    {/* <div>
-                                        <div className="two-drawer">
-                                            <p>Kicks</p>
-                                            <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' onClick={() => open_drawer("sub_drawer1d2")} style={hide_drawer.sub_drawer1d2 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
-                                        </div>
-                                        <div className={hide_drawer.sub_drawer1d2 ? "p-drawer" : "hide-drawer"}>
-                                            <p>T-shirts</p>
-                                            <p>Denim</p>
-                                            <p>Shorts</p>
-                                            <p>Chinos</p>
-                                            <p>Pants</p>
-                                        </div>
-                                    </div> */}
-
                                     <div>
-                                        <div className="two-drawer">
+                                        <div
+                                            onClick={() => open_drawer("sub_drawer1d3")}
+                                            className="two-drawer">
                                             <p>Accessories</p>
-                                            <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' onClick={() => open_drawer("sub_drawer1d3")} style={hide_drawer.sub_drawer1d3 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
+                                            <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' style={hide_drawer.sub_drawer1d3 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
                                         </div>
                                         <div className={hide_drawer.sub_drawer1d3 ? "p-drawer" : "hide-drawer"}>
-                                            <p>Caps</p>
-                                            <p>Bags</p>
+                                            {
+                                                men_accessories.map((item, index) => (
+                                                    <p key={index} onClick={() => {
+                                                        handleClick(item, "ACCESSORIES")
+                                                        setBurgerActive(false)
+                                                        open_drawer("sub_drawer1d3")
+                                                        open_drawer("drawer2")
+                                                    }}>{item}</p>
+                                                ))
+                                            }
                                         </div>
                                     </div>
 
@@ -268,52 +306,55 @@ export default function Navbar() {
                             {/* WOMEN-MOBILE-NAV */}
 
                             <div className="mobile-nav-links">
-                                <div className="mobile-nav-links-title">
+                                <div
+                                    onClick={() => open_drawer("drawer3")}
+                                    className="mobile-nav-links-title">
                                     <p>WOMEN</p>
-                                    <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' onClick={() => open_drawer("drawer3")} className={hide_drawer.drawer3 ? "rotate" : ""} />
+                                    <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' className={hide_drawer.drawer3 ? "rotate" : ""} />
                                 </div>
                                 <div className={hide_drawer.drawer3 ? "mobile-nav-links-detail" : "hide-drawer"}>
                                     <div>
-                                        <div className="two-drawer">
+                                        <div
+                                            onClick={() => open_drawer("sub_drawer2d1")}
+                                            className="two-drawer">
                                             <p>Clothing</p>
-                                            <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' onClick={() => open_drawer("sub_drawer2d1")} style={hide_drawer.sub_drawer2d1 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
+                                            <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' style={hide_drawer.sub_drawer2d1 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
                                         </div>
                                         <div className={hide_drawer.sub_drawer2d1 ? "p-drawer" : "hide-drawer"}>
-                                            <p>Dresses</p>
-                                            <p>Blouses</p>
-                                            <p>Leggings</p>
-                                            <p>Skirts</p>
-                                            <p>Jackets</p>
+                                            {
+                                                women_clothing.map((item, index) => (
+                                                    <p key={index} onClick={() => {
+                                                        handleClick(item, "Women")
+                                                        setBurgerActive(false)
+                                                        open_drawer("sub_drawer2d1")
+                                                        open_drawer("drawer3")
+                                                    }}>{item}</p>
+                                                ))
+                                            }
                                         </div>
                                     </div>
 
                                     <div>
-                                        <div className="two-drawer">
-                                            <p>Shoes</p>
-                                            <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' onClick={() => open_drawer("sub_drawer2d2")} style={hide_drawer.sub_drawer2d2 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
+                                        <div
+                                            onClick={() => open_drawer("sub_drawer2d2")}
+                                            className="two-drawer">
+                                            <p>Accessories</p>
+                                            <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' style={hide_drawer.sub_drawer2d2 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
                                         </div>
                                         <div className={hide_drawer.sub_drawer2d2 ? "p-drawer" : "hide-drawer"}>
-                                            <p>Heels</p>
-                                            <p>Flats</p>
-                                            <p>Sneakers</p>
-                                            <p>Boots</p>
-                                            <p>Sandals</p>
+                                            {
+                                                women_accessories.map((item, index) => (
+                                                    <p key={index} onClick={() => {
+                                                        handleClick(item, "Women")
+                                                        setBurgerActive(false)
+                                                        open_drawer("sub_drawer2d2")
+                                                        open_drawer("drawer3")
+                                                    }}>{item}</p>
+                                                ))
+                                            }
                                         </div>
                                     </div>
 
-                                    <div>
-                                        <div className="two-drawer">
-                                            <p>Accessories</p>
-                                            <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' onClick={() => open_drawer("sub_drawer2d3")} style={hide_drawer.sub_drawer2d3 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
-                                        </div>
-                                        <div className={hide_drawer.sub_drawer2d3 ? "p-drawer" : "hide-drawer"}>
-                                            <p>Handbags</p>
-                                            <p>Scarves</p>
-                                            <p>Jewelry</p>
-                                            <p>Watches</p>
-                                            <p>Gloves</p>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
 
@@ -324,50 +365,52 @@ export default function Navbar() {
                             {/* KIDS-MOBILE-NAV */}
 
                             <div className="mobile-nav-links">
-                                <div className="mobile-nav-links-title">
+                                <div
+                                    onClick={() => open_drawer("drawer4")}
+                                    className="mobile-nav-links-title">
                                     <p>KIDS</p>
-                                    <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' onClick={() => open_drawer("drawer4")} className={hide_drawer.drawer4 ? "rotate" : ""} />
+                                    <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' className={hide_drawer.drawer4 ? "rotate" : ""} />
                                 </div>
                                 <div className={hide_drawer.drawer4 ? "mobile-nav-links-detail" : "hide-drawer"}>
                                     <div>
-                                        <div className="two-drawer">
+                                        <div
+                                            onClick={() => open_drawer("sub_drawer3d1")}
+                                            className="two-drawer">
                                             <p>Clothing</p>
-                                            <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' onClick={() => open_drawer("sub_drawer3d1")} style={hide_drawer.sub_drawer3d1 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
+                                            <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' style={hide_drawer.sub_drawer3d1 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
                                         </div>
                                         <div className={hide_drawer.sub_drawer3d1 ? "p-drawer" : "hide-drawer"}>
-                                            <p>Shirts</p>
-                                            <p>Jackets</p>
-                                            <p>Jeans</p>
-                                            <p>Shorts</p>
-                                            <p>Pajamas</p>
+                                            {
+                                                kids_clothing.map((item, index) => (
+                                                    <p key={index} onClick={() => {
+                                                        handleClick(item, "KID'S CLOTHING")
+                                                        setBurgerActive(false)
+                                                        open_drawer("sub_drawer3d1")
+                                                        open_drawer("drawer4")
+                                                    }}>{item}</p>
+                                                ))
+                                            }
                                         </div>
                                     </div>
 
                                     <div>
-                                        <div className="two-drawer">
-                                            <p>Shoes</p>
-                                            <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' onClick={() => open_drawer("sub_drawer3d2")} style={hide_drawer.sub_drawer3d2 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
-                                        </div>
-                                        <div className={hide_drawer.sub_drawer3d2 ? "p-drawer" : "hide-drawer"}>
-                                            <p>Boots</p>
-                                            <p>Sneakers</p>
-                                            <p>Sandals</p>
-                                            <p>Slip-ons</p>
-                                            <p>School Shoes</p>
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <div className="two-drawer">
+                                        <div
+                                            onClick={() => open_drawer("sub_drawer3d3")}
+                                            className="two-drawer">
                                             <p>Accessories</p>
-                                            <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' onClick={() => open_drawer("sub_drawer3d3")} style={hide_drawer.sub_drawer3d3 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
+                                            <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' style={hide_drawer.sub_drawer3d3 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
                                         </div>
                                         <div className={hide_drawer.sub_drawer3d3 ? "p-drawer" : "hide-drawer"}>
-                                            <p>Hats</p>
-                                            <p>Belts</p>
-                                            <p>Gloves</p>
-                                            <p>Socks</p>
-                                            <p>Backpacks</p>
+                                            {
+                                                kids_accessories.map((item, index) => (
+                                                    <p key={index} onClick={() => {
+                                                        handleClick(item, "KID'S CLOTHING")
+                                                        setBurgerActive(false)
+                                                        open_drawer("sub_drawer3d3")
+                                                        open_drawer("drawer4")
+                                                    }}>{item}</p>
+                                                ))
+                                            }
                                         </div>
                                     </div>
                                 </div>
@@ -377,75 +420,78 @@ export default function Navbar() {
                             {/* KIDS-MOBILE-NAV */}
 
                             <div className="mobile-nav-links">
-                                <div className="mobile-nav-links-title">
+                                <Link href="/drip" onClick={() => {
+                                    setExclusiveFilter(null, "Bags")
+                                    setProductType("Bags")
+                                    setBurgerActive(false)
+                                }} className="mobile-nav-links-title next-link">
                                     <p>BAGS</p>
-                                    {/* <Image src={plus} width={15} height={15} alt='plus' /> */}
-                                </div>
+                                    <div className="indicator"></div>
+                                </Link>
+
                                 <div className="mobile-nav-links-detail"></div>
                             </div>
 
-                            {/* <div className="mobile-nav-links">
-                                <div className="mobile-nav-links-title">
-                                    <p>EYEWEAR</p>
-                                </div>
-                                <div className="mobile-nav-links-detail"></div>
-                            </div> */}
+
                             <div className="mobile-nav-links">
                                 <div className="mobile-nav-links-title">
-                                    <Link className='nav-link' href={"/our_story"}><p>BRAND</p></Link>
-                                    {/* <Image src={plus} width={15} height={15} alt='plus' /> */}
+                                    <Link href="/our_story" onClick={() => setBurgerActive(false)} className="mobile-nav-links-title next-link">
+                                        <p>BRAND</p>
+                                    </Link>
                                 </div>
-                                <div className="mobile-nav-links-detail"></div>
                             </div>
 
 
                             {/* REP-YOUR-COUNTRY */}
 
                             <div className="mobile-nav-links">
-                                <div className="mobile-nav-links-title">
+                                <div
+                                    onClick={() => open_drawer("drawer5")}
+                                    className="mobile-nav-links-title">
                                     <p>REP YOUR COUNTRY</p>
-                                    <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' onClick={() => open_drawer("drawer5")} className={hide_drawer.drawer5 ? "rotate" : ""} />
+                                    <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' className={hide_drawer.drawer5 ? "rotate" : ""} />
                                 </div>
                                 <div className={hide_drawer.drawer5 ? "mobile-nav-links-detail" : "hide-drawer"}>
                                     <div>
-                                        <div className="two-drawer">
+                                        <div
+                                            onClick={() => open_drawer("sub_drawer4d1")}
+                                            className="two-drawer">
                                             <p>National Wear</p>
-                                            <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' onClick={() => open_drawer("sub_drawer4d1")} style={hide_drawer.sub_drawer4d1 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
+                                            <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' style={hide_drawer.sub_drawer4d1 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
                                         </div>
                                         <div className={hide_drawer.sub_drawer4d1 ? "p-drawer" : "hide-drawer"}>
-                                            <p>African Prints</p>
-                                            <p>Kimono</p>
-                                            <p>Sarong</p>
-                                            <p>Dirndl</p>
-                                            <p>Sari</p>
+                                            {
+                                                rep_clothing.map((item, index) => (
+                                                    <p key={index} onClick={() => {
+                                                        handleClick(item, "CLOTHING")
+                                                        setBurgerActive(false)
+                                                        open_drawer("sub_drawer4d1")
+                                                        open_drawer("drawer5")
+                                                    }}>{item}</p>
+                                                ))
+                                            }
                                         </div>
                                     </div>
 
-                                    <div>
-                                        <div className="two-drawer">
-                                            <p>Sports Jerseys</p>
-                                            <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' onClick={() => open_drawer("sub_drawer4d2")} style={hide_drawer.sub_drawer4d2 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
-                                        </div>
-                                        <div className={hide_drawer.sub_drawer4d2 ? "p-drawer" : "hide-drawer"}>
-                                            <p>Soccer</p>
-                                            <p>Basketball</p>
-                                            <p>Baseball</p>
-                                            <p>Cricket</p>
-                                            <p>Rugby</p>
-                                        </div>
-                                    </div>
 
                                     <div>
-                                        <div className="two-drawer">
+                                        <div
+                                            onClick={() => open_drawer("sub_drawer4d3")}
+                                            className="two-drawer">
                                             <p>Flags & Accessories</p>
-                                            <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' onClick={() => open_drawer("sub_drawer4d3")} style={hide_drawer.sub_drawer4d3 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
+                                            <Image src={supabse_image_path('/plus.svg')} width={15} height={15} alt='plus' style={hide_drawer.sub_drawer4d3 ? { transform: "rotate(45deg)" } : { transform: "rotate(0deg)" }} />
                                         </div>
                                         <div className={hide_drawer.sub_drawer4d3 ? "p-drawer" : "hide-drawer"}>
-                                            <p>Flag T-shirts</p>
-                                            <p>Scarves</p>
-                                            <p>Caps</p>
-                                            <p>Wristbands</p>
-                                            <p>Face Paint</p>
+                                            {
+                                                rep_accessories.map((item, index) => (
+                                                    <p key={index} onClick={() => {
+                                                        handleClick(item, "ACCESSORIES")
+                                                        setBurgerActive(false)
+                                                        open_drawer("sub_drawer4d3")
+                                                        open_drawer("drawer5")
+                                                    }}>{item}</p>
+                                                ))
+                                            }
                                         </div>
                                     </div>
                                 </div>
@@ -699,7 +745,7 @@ export default function Navbar() {
                                                 men_accessories.map((item, index) => (
                                                     <p key={index} onClick={() => {
                                                         handleClick(item, "ACCESSORIES")
-                                                        handlemouseLeave(setMen)
+                                                        handleMouseLeave(setMen)
                                                     }}>{item}</p>
                                                 ))
                                             }
@@ -994,17 +1040,6 @@ export default function Navbar() {
                                 <div className="indicator"></div>
                             </Link>
                         </div>
-
-                        {/* <div className='nav-cart-div'>
-        <div className="cart-div">
-            <button>
-                (+254) 706534206
-            </button>
-            <button id='nav-button2'>
-                Book Session
-            </button>
-        </div>
-    </div> */}
 
 
                         <div className='mobile-cart-div'>

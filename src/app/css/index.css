@@ -4342,6 +4342,10 @@ body {
 }
 .sales_analytics .one .one_container {
   padding: 2.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  justify-content: space-between;
 }
 .sales_analytics .one .one_container .one_title {
   display: flex;
@@ -4400,13 +4404,13 @@ body {
   letter-spacing: 1px;
 }
 .sales_analytics .one .one_container .top_selling {
-  margin-top: 2rem;
+  margin-top: 3rem;
 }
 .sales_analytics .one .one_container .top_selling .top_selling_title {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 600;
   font-family: "Inter";
-  color: #303030;
+  color: #525252;
   margin-bottom: 1rem;
 }
 .sales_analytics .one .one_container .top_selling .carousel {
@@ -4421,7 +4425,7 @@ body {
   display: none;
 }
 .sales_analytics .one .one_container .top_selling .carousel .product_card {
-  min-width: 160px;
+  min-width: 200px;
   flex: 0 0 auto;
   background-color: #f9f9f9;
   border-radius: 10px;
@@ -4433,8 +4437,8 @@ body {
   align-items: center;
 }
 .sales_analytics .one .one_container .top_selling .carousel .product_card .product_image {
-  width: 100px;
-  height: 100px;
+  width: 140px;
+  height: 140px;
   overflow: hidden;
   border-radius: 8px;
 }
@@ -4574,6 +4578,10 @@ body {
   }
 }
 .admin-section .admin-section-dashboard-container .dashboard-nav .two .detailed-result {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px);
   background: #fff;
   border-radius: 1rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
@@ -4581,11 +4589,8 @@ body {
   margin: 2rem auto;
   width: 40vw;
   text-align: center;
-  animation: fadeIn 0.3s ease-in-out;
-  position: absolute;
-  top: 100px;
-  left: 50%;
-  transform: translateX(-50%);
+  opacity: 0;
+  animation: slideInCentered 0.3s ease-in-out forwards;
 }
 .admin-section .admin-section-dashboard-container .dashboard-nav .two .detailed-result h3 {
   font-size: 1.5rem;
@@ -4636,14 +4641,14 @@ body {
   text-align: start;
   width: 70%;
 }
-@keyframes fadeIn {
+@keyframes slideInCentered {
   from {
     opacity: 0;
-    transform: translateY(15px);
+    transform: translateX(-50%) translateY(-20px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(-50%) translateY(0);
   }
 }
 .admin-section .admin-section-dashboard-container .dashboard-nav .dashboard-icons {
