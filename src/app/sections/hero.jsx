@@ -6,7 +6,7 @@ import supabse_image_path from '@/utils/supabase/supabse_image_path'
 export default function Hero() {
   return (
     <div className='hero-main'>
-      <Image src={supabse_image_path('/dunya_hero2.jpg')} width={100} height={100} alt='hero-image' unoptimized className='main-hero-image' />
+      <Image src={supabse_image_path('/carl_hero.jpeg')} width={100} height={100} alt='hero-image' unoptimized className='main-hero-image' />
     </div>
   )
 }

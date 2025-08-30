@@ -147,9 +147,7 @@ export default function Navbar() {
     }
 
     const handleMouseLeave = (setSomething) => {
-        hideTimeout.current = setTimeout(() => {
             setSomething(false);
-        }, 200);
     };
 
     const open_drawer = (drawer_name) => {
@@ -692,9 +690,9 @@ export default function Navbar() {
                                         </div>
                                         <div className="summer-collection">
                                             <div className="summer-card">
-                                                <Image src={supabse_image_path('/newin.webp')} width={100} height={100} unoptimized alt='summer-collection' className='summer-image' />
+                                                <Image src={supabse_image_path('/carl_hero.jpeg')} width={100} height={100} unoptimized alt='summer-collection' className='summer-image' />
                                                 <div className="summer-card-detail">
-                                                    <h4>Exclusive: Summer Collection 2025</h4>
+                                                    <h4>Exclusive: Winter Collection 2025</h4>
                                                     <p onClick={() => {
                                                         handleFilterChange("Season", "Summer")
                                                         setProductType("SUMMER COLLECTION")
@@ -753,9 +751,9 @@ export default function Navbar() {
 
                                         <div className="summer-collection">
                                             <div className="summer-card">
-                                                <Image src={supabse_image_path('/summer.webp')} width={100} height={100} unoptimized alt='summer-collection' className='summer-image' />
+                                                <Image src={supabse_image_path('/carl_hero.jpeg')} width={100} height={100} unoptimized alt='summer-collection' className='summer-image' />
                                                 <div className="summer-card-detail">
-                                                    <h4>Exclusive: Summer Collection 2025</h4>
+                                                    <h4>Exclusive: Winter Collection 2025</h4>
                                                     <p onClick={() => {
                                                         handleFilterChange("Season", "Summer")
                                                         setProductType("SUMMER COLLECTION")
@@ -813,9 +811,9 @@ export default function Navbar() {
 
                                         <div className="summer-collection">
                                             <div className="summer-card">
-                                                <Image src={supabse_image_path('/ethnic.jpeg')} width={100} height={100} unoptimized alt='summer-collection' className='summer-image' />
+                                                <Image src={supabse_image_path('/carl_hero.jpeg')} width={100} height={100} unoptimized alt='summer-collection' className='summer-image' />
                                                 <div className="summer-card-detail">
-                                                    <h4>Exclusive: Summer Collection 2025</h4>
+                                                    <h4>Exclusive: Winter Collection 2025</h4>
                                                     <p onClick={() => {
                                                         handleFilterChange("Season", "Summer")
                                                         setProductType("SUMMER COLLECTION")
@@ -872,9 +870,9 @@ export default function Navbar() {
 
                                         <div className="summer-collection">
                                             <div className="summer-card">
-                                                <Image src={supabse_image_path('/kids.jpeg')} width={100} height={100} unoptimized alt='summer-collection' className='summer-image' />
+                                                <Image src={supabse_image_path('/carl_hero.jpeg')} width={100} height={100} unoptimized alt='summer-collection' className='summer-image' />
                                                 <div className="summer-card-detail">
-                                                    <h4>Exclusive: Summer Collection 2025</h4>
+                                                    <h4>Exclusive: Winter Collection 2025</h4>
                                                     <p onClick={() => {
                                                         handleFilterChange("Season", "Summer")
                                                         setProductType("SUMMER COLLECTION")
@@ -931,9 +929,9 @@ export default function Navbar() {
 
                                         <div className="summer-collection">
                                             <div className="summer-card">
-                                                <Image src={supabse_image_path('/women_summer.webp')} width={100} height={100} unoptimized alt='summer-collection' className='summer-image' />
+                                                <Image src={supabse_image_path('/carl_hero.jpeg')} width={100} height={100} unoptimized alt='summer-collection' className='summer-image' />
                                                 <div className="summer-card-detail">
-                                                    <h4>Exclusive: Summer Collection 2025</h4>
+                                                    <h4>Exclusive: Winter Collection 2025</h4>
                                                     <p onClick={() => {
                                                         handleFilterChange("Season", "Summer")
                                                         setProductType("SUMMER COLLECTION")

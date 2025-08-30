@@ -2,12 +2,14 @@ import React from 'react'
 import CollectionCircle from '../components/collection_circle'
 
 const collection_array = [
-    { image: "jacket.webp", label: "Jackets" },
-    { image: "shoe3.webp", label: "Hoodies" },
-    { image: "shoe.webp", label: "Sweatpants" },
-    { image: "shoe4.webp", label: "Bags" },
-    { image: "shoe3.webp", label: "T-Shirts" },
-    { image: "shoe.webp", label: "Caps" },
+    { image: "puff_jack.png", label: "Jackets" },
+    { image: "red_hoodie.png", label: "Hoodies" },
+    { image: "sweatpants_black.png", label: "Sweatpants" },
+    { image: "black_bag.png", label: "Bags" },
+    { image: "graphic_tee.png", label: "T-Shirts" },
+    { image: "cap_black.png", label: "Caps" },
+    { image: "vrsty_jacket.png", label: "Varsity Jackets" },
+    { image: "leather_vest.png", label: "Leather Vests" },
 ]
 
 export default function ShopByCollection() {

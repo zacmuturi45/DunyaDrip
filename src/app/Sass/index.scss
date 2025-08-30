@@ -347,10 +347,12 @@ body {
 
                 .card-image {
                     height: 80%;
+                    overflow: hidden;
 
                     >* {
                         width: 100%;
-                        height: 100%;
+                        min-height: 100%;
+                        height: auto;
                     }
                 }
 
@@ -711,8 +713,8 @@ body {
                         cursor: pointer;
 
                         .summer-image {
-                            width: 500px;
-                            height: auto;
+                            width: auto;
+                            height: 400px;
                         }
 
                         .summer-card-detail {
@@ -826,8 +828,8 @@ body {
                         cursor: pointer;
 
                         .summer-image {
-                            width: 500px;
-                            height: auto;
+                            width: auto;
+                            height: 400px;
                         }
 
                         .summer-card-detail {
@@ -916,8 +918,8 @@ body {
                         cursor: pointer;
 
                         .summer-image {
-                            width: 500px;
-                            height: auto;
+                            width: auto;
+                            height: 400px;
                         }
 
                         .summer-card-detail {
@@ -1005,8 +1007,8 @@ body {
                         cursor: pointer;
 
                         .summer-image {
-                            width: 500px;
-                            height: auto;
+                            width: auto;
+                            height: 400px;
                         }
 
                         .summer-card-detail {
@@ -1146,8 +1148,8 @@ body {
                         cursor: pointer;
 
                         .summer-image {
-                            width: 500px;
-                            height: auto;
+                            width: auto;
+                            height: 400px;
                         }
 
                         .summer-card-detail {
@@ -1277,12 +1279,14 @@ body {
 // HERO-SECTION
 
 .hero-main {
-    height: 110vh;
+    width: 100%;
+    height: 105vh;
+    overflow: hidden;
     padding-top: 0;
 
     .main-hero-image {
         width: 100%;
-        height: 100%;
+        height: auto;
     }
 }
 
@@ -1849,10 +1853,11 @@ body {
         overflow: hidden;
         cursor: pointer;
         transition: all .2s ease-in-out;
+        padding: 1rem;
 
         >* {
-            width: 100%;
-            height: 100%;
+            width: 80%;
+            height: auto;
         }
 
         &:hover {
@@ -1899,7 +1904,8 @@ body {
         .array {
             display: flex;
             padding: 2.5rem 0;
-            justify-content: space-around;
+            justify-content: center;
+            gap: 2rem;
         }
     }
 }
@@ -5433,7 +5439,6 @@ body {
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
-            justify-content: space-between;
 
             .one_title {
                 display: flex;
@@ -5657,14 +5662,14 @@ body {
                     flex-direction: column;
                     gap: 1.5rem;
 
-                      /* Hide scrollbar for Chrome, Safari and Opera */
+                    /* Hide scrollbar for Chrome, Safari and Opera */
                     &::-webkit-scrollbar {
                         display: none;
                     }
 
-                   
-                    -ms-overflow-style: none;  // IE and Edge
-                    scrollbar-width: none; 
+
+                    -ms-overflow-style: none; // IE and Edge
+                    scrollbar-width: none;
 
                     background-color: #fafafa; // light neutral background
                     border-radius: 1rem;
@@ -5675,21 +5680,25 @@ body {
 
                     .search-result {
                         height: 50px;
+
                         .user-results {
                             display: flex;
                             height: 100%;
                             align-items: center;
                             gap: 1.5rem;
+
                             .profile_pic {
                                 width: 50px;
                                 height: 100%;
                                 overflow: hidden;
                                 border-radius: 10px;
+
                                 .img {
                                     width: 100%;
                                     height: auto;
                                 }
                             }
+
                             p {
                                 font-family: "Inter";
                                 font-weight: 500;
@@ -5803,16 +5812,19 @@ body {
                     .product-details-container {
                         display: flex;
                         gap: 1rem;
+
                         .image-container {
                             width: 200px;
                             height: 200px;
                             overflow: hidden;
                             border-radius: 10px;
+
                             >* {
                                 width: 100%;
                                 height: auto;
                             }
                         }
+
                         .details-container {
                             display: flex;
                             flex-direction: column;
@@ -5828,6 +5840,7 @@ body {
                         opacity: 0;
                         transform: translateX(-50%) translateY(-20px);
                     }
+
                     to {
                         opacity: 1;
                         transform: translateX(-50%) translateY(0);
@@ -6640,7 +6653,17 @@ body {
 
                 .card-main {
                     width: 150px;
-                    height: auto;
+                    height: 300px;
+
+                    .card-image {
+                        height: 80%;
+
+                        >* {
+                            width: 100%;
+                            min-height: 100%;
+                            height: auto;
+                        }
+                    }
 
                     .details {
                         padding: 1.2rem .5rem;

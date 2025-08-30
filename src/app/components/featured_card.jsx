@@ -13,7 +13,7 @@ export default function Featured_Card({ image, image2, product_name, product_pri
 
     return (
         <div className='featured_card_main' key={index} >
-            <div className="card-img" onClick={() => {
+            <div className="card-img" style={{backgroundColor: "white"}} onClick={() => {
                 setIsLoading(true)
                 router.push(`/${id}`)
 
