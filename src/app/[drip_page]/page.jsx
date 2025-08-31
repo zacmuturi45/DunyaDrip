@@ -10,6 +10,7 @@ import { useCart } from '../contexts/cart_context';
 import Loader from '../components/loader';
 import supabse_image_path from '@/utils/supabase/supabse_image_path';
 import Spinner from '../components/spinner';
+import ProductCard from '../components/similar_card';
 
 export default function DripSlug() {
   const params = useParams();
@@ -24,6 +25,7 @@ export default function DripSlug() {
   const [loadingProduct, setLoadingProduct] = useState(true);
   const params_id = parseInt(params.drip_page, 10);
   const router = useRouter();
+  const [img_src, setImgSrc] = useState("image_url");
   const [blackBorder, setBlackBorder] = useState({
     image_one: true,
     image_two: false,
@@ -70,6 +72,20 @@ export default function DripSlug() {
     }
   }, [image_object, product])
 
+      useEffect(() => {
+        if (zoomable) {
+            // Prevent scrolling
+            document.body.style.overflow = 'hidden';
+        } else {
+            // Re-enable scrolling
+            document.body.style.overflow = '';
+        }
+        // Cleanup in case the component unmounts while panel is open
+        return () => {
+            document.body.style.overflow = '';
+        }
+    }, [zoomable]);
+
 
 
 
@@ -102,6 +118,7 @@ export default function DripSlug() {
   }
 
   const changeBorder = (img, imgSrc) => {
+    setImgSrc(imgSrc)
     setBlackBorder(prevState => {
       if (prevState[img]) return prevState;
 
@@ -112,6 +129,53 @@ export default function DripSlug() {
       return newState;
     });
     setMainImage(image_object[imgSrc])
+  }
+
+  const img_map = {
+    image_url: "image_one",
+    image_url2: "image_two",
+    image_url3: "image_three",
+    image_url4: "image_four"
+  }
+
+  const zoom_image = (operation) => {
+
+    const match = img_src.match(/\d+$/)
+    let img_num = match ? parseInt(match[0], 10) : 1
+    img_num = operation === "next" ? img_num + 1 : img_num - 1;
+
+    if (img_num < 1) img_num = 1
+    if (img_num > 4) img_num = 4
+
+    const dg = img_num === 1 ? 'image_url' : `image_url${img_num}`;
+    setImgSrc(dg)
+    changeBorder(img_map[dg], dg)
+
+    // let dg;
+
+    // if (operation === "next") {
+    //   const img_num = parseInt(img_src[9], 10) + 1
+    //   if (img_num) {
+    //     img_num === 5 ? dg = 'image_url4' : dg = 'image_url' + img_num.toString();
+    //     setImgSrc(dg)
+    //     changeBorder(img_map[dg], dg)
+    //   } else {
+    //     dg = 'image_url2'
+    //     setImgSrc(dg)
+    //     changeBorder(img_map[dg], dg)
+    //   }
+    // } else {
+    //   const img_num = parseInt(img_src[9], 10) - 1
+    //   if (img_num) {
+    //     img_num === 1 ? dg = 'image_url' : dg = 'image_url' + img_num.toString();
+    //     setImgSrc(dg)
+    //     changeBorder(img_map[dg], dg)
+    //   } else {
+    //     dg = 'image_url'
+    //     setImgSrc(dg)
+    //     changeBorder(img_map[dg], dg)
+    //   }
+    // }
   }
 
   if (!image_object) return <Loader />
@@ -131,10 +195,10 @@ export default function DripSlug() {
                 </div>
 
                 <div className={!zoomable ? "main_image" : "bigger_main_image"} >
-                  { zoomable && <Image src={supabse_image_path('/x.svg')} width={20} height={20} alt='zoom-out' className='zoom-out' onClick={() => setZoomable(false)} /> }
-                  <Image src={arrowright} width={25} height={25} alt='arrow-right' className='arrowright' style={!zoomable ? {display: "none"} : {display: "block", transform: "rotate(180deg)"}} />
-                  <Image src={main_image} width={100} height={100} alt='drip_image' unoptimized className={!zoomable ? "zoomable" : "shrinkable"} onClick={() => setZoomable(!zoomable)} />
-                  <Image src={arrowright} width={25} height={25} alt='arrow-right' className='arrowright'  style={!zoomable ? {display: "none"} : {display: "block"}}  />
+                  {zoomable && <Image src={supabse_image_path('/x.svg')} width={20} height={20} alt='zoom-out' className='zoom-out' onClick={() => setZoomable(false)} />}
+                  <Image src={arrowright} width={25} height={25} alt='arrow-right' className='arrowright' id='left' style={!zoomable ? { display: "none" } : { display: "block", transform: "rotate(180deg)" }} onClick={() => zoom_image("prev")} />
+                  <Image src={main_image} width={100} height={100} alt='drip_image' unoptimized id={!zoomable ? "" : "img_main"} className={!zoomable ? "zoomable" : "shrinkable"} onClick={() => setZoomable(!zoomable)} />
+                  <Image src={arrowright} width={25} height={25} alt='arrow-right' className='arrowright' id='right' style={!zoomable ? { display: "none" } : { display: "block" }} onClick={() => zoom_image("next")} />
                 </div>
               </div>
 
@@ -256,7 +320,7 @@ export default function DripSlug() {
                 <div className="cards">
                   {
                     product.slice(0, 4).map((item, index) => (
-                      <DripCard id={item.id} drip_image={item.image_url} product_name={item.name} product_price={item.price} index={index} key={`drip_card_component${index}`} />
+                      <ProductCard id={item.id} image={item.image_url} name={item.name} price={item.price} key={item.id} />
                     ))
                   }
                 </div>
