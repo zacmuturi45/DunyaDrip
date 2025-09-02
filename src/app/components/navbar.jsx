@@ -3,7 +3,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import '../css/index.css';
 import Image from 'next/image';
-import { flag_array, kids_accessories, kids_clothing, men_accessories, men_clothing, men_kicks, newInArray, rep_accessories, rep_clothing, search_head, women_accessories, women_clothing } from '../../../public/imports';
+import { arrowright, flag_array, kids_accessories, kids_clothing, men_accessories, men_clothing, men_kicks, newInArray, rep_accessories, rep_clothing, search_head, women_accessories, women_clothing } from '../../../public/imports';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import UseScroll from './navscroll';
@@ -546,7 +546,7 @@ export default function Navbar() {
                             </div>
 
                             <div className="search-results-container">
-                                <p>SEARCH RESULTS</p>
+                                <p>{searchResults.length > 0 ? `SEARCH RESULTS (${searchResults.length})` : 'SEARCH RESULTS'}</p>
                                 <div className="cards-container">
                                     {searchLoading ? (
                                         <div className="search-loader" style={{ textAlign: "center", width: "100%" }}>
@@ -568,8 +568,9 @@ export default function Navbar() {
                                         ) : (
                                             <div className="carousel-wrapper">
                                                 {searchResults.length > CAROUSEL_VISIBLE_COUNT && (
+                                                    
                                                     <button className="carousel-arrow left" onClick={handleLeft} disabled={carouselPosition === 0}>
-                                                        &#8592;
+                                                       <Image src={arrowright} width={25} height={25} alt='arrow-right' style={{transform: "rotate(180deg)"}} className='carousel_svg' />
                                                     </button>
                                                 )}
                                                 <div className="carousel-viewport">
@@ -610,7 +611,7 @@ export default function Navbar() {
                                                         onClick={handleRight}
                                                         disabled={carouselPosition >= searchResults.length - CAROUSEL_VISIBLE_COUNT}
                                                     >
-                                                        &#8594;
+                                                       <Image src={arrowright} width={25} height={25} alt='arrow-right' />
                                                     </button>
                                                 )}
                                             </div>
