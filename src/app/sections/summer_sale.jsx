@@ -71,7 +71,7 @@ export default function SummerSale() {
         <div className='summer-main'>
             <div className="summer-main-container">
                 <div className="summer-content">
-                    <div className="one"><h2>Summer Sale Promotion</h2></div>
+                    <div className="one"><h2>Limited Time Offer</h2></div>
                     <div className="two"><h1>Buy 3 or more items and get 30% off</h1></div>
                     <div className="three"><h2>Free Delivery in UK</h2></div>
                     <div className="four-container">
@@ -110,8 +110,8 @@ export default function SummerSale() {
 
                             <div className='text'>
                                 <div className="text-slider" ref={text_slider}>
-                                    <p ref={text_one}>Summer Countdown •</p>
-                                    <p ref={text_two}>Summer Countdown •</p>
+                                    <p ref={text_one}>Countdown Timer •</p>
+                                    <p ref={text_two}>Countdown Timer •</p>
                                 </div>
                             </div>
                             {/* 
@@ -122,7 +122,7 @@ export default function SummerSale() {
                     </div>
 
                     <div className="summer-side">
-                        <h3>Summer sale is here!</h3>
+                        <h3>Grab Your Savings today!</h3>
                         <p>30% off for fully priced merchandise</p>
                         <div className="category">
                             <p onClick={handleShopMen}>Shop men</p>

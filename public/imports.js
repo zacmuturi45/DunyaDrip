@@ -11,7 +11,7 @@ import Netherlands from "./flags/netherlands.svg"
 import Belgium from "./flags/belgium.svg";
 import supabse_image_path from "@/utils/supabase/supabse_image_path";
 
-const targetDate = new Date(Date.UTC(2025, 5, 25, 1, 0, 0)); // March 30, 2025, 01:00 AM UTC
+const targetDate = new Date(Date.UTC(2025, 10, 25, 1, 0, 0)); // March 30, 2025, 01:00 AM UTC
 
 export const calculateTimeLeft = () => {
     const now = new Date();
