@@ -72,19 +72,19 @@ export default function DripSlug() {
     }
   }, [image_object, product])
 
-      useEffect(() => {
-        if (zoomable) {
-            // Prevent scrolling
-            document.body.style.overflow = 'hidden';
-        } else {
-            // Re-enable scrolling
-            document.body.style.overflow = '';
-        }
-        // Cleanup in case the component unmounts while panel is open
-        return () => {
-            document.body.style.overflow = '';
-        }
-    }, [zoomable]);
+  useEffect(() => {
+    if (zoomable) {
+      // Prevent scrolling
+      document.body.style.overflow = 'hidden';
+    } else {
+      // Re-enable scrolling
+      document.body.style.overflow = '';
+    }
+    // Cleanup in case the component unmounts while panel is open
+    return () => {
+      document.body.style.overflow = '';
+    }
+  }, [zoomable]);
 
 
 
@@ -138,6 +138,8 @@ export default function DripSlug() {
     image_url4: "image_four"
   }
 
+  const img_array = [image_object?.image_url, image_object?.image_url2, image_object?.image_url3, image_object?.image_url4].filter(Boolean);
+
   const zoom_image = (operation) => {
 
     const match = img_src.match(/\d+$/)
@@ -148,8 +150,10 @@ export default function DripSlug() {
     if (img_num > 4) img_num = 4
 
     const dg = img_num === 1 ? 'image_url' : `image_url${img_num}`;
-    setImgSrc(dg)
-    changeBorder(img_map[dg], dg)
+    if (image_object[dg]) {
+      setImgSrc(dg)
+      changeBorder(img_map[dg], dg)
+    }
 
     // let dg;
 
@@ -178,21 +182,31 @@ export default function DripSlug() {
     // }
   }
 
-  if (!image_object) return <Loader />
 
   return (
     <div className='drip_page_main'>
       {
-        !loadingProduct ?
+        !loadingProduct && image_object ?
           <div className="drip_page_container">
             <div className='container-one'>
               <div className='one-images'>
-                <div className='carousel_images'>
-                  <Image src={image_object.image_url} width={100} height={100} alt='drip_image' unoptimized className={blackBorder.image_one ? "black-border black-border-image" : "black-border-image"} onClick={() => changeBorder("image_one", "image_url")} />
-                  <Image src={image_object.image_url2} width={100} height={100} alt='drip_image' unoptimized className={blackBorder.image_two ? "black-border black-border-image" : "black-border-image"} onClick={() => changeBorder("image_two", "image_url2")} />
-                  <Image src={image_object.image_url3} width={100} height={100} alt='drip_image' unoptimized className={blackBorder.image_three ? "black-border black-border-image" : "black-border-image"} onClick={() => changeBorder("image_three", "image_url3")} />
-                  <Image src={image_object.image_url4} width={100} height={100} alt='drip_image' unoptimized className={blackBorder.image_four ? "black-border black-border-image" : "black-border-image"} onClick={() => changeBorder("image_four", "image_url4")} />
+                <div className="carousel_images">
+                  {
+                    image_object && (
+                      img_array.map((img, index) => (
+                        <div className={blackBorder[Object.keys(blackBorder)[index]] ? "black-border black-border-image" : "black-border-image"} key={`drip_image${index}`} onClick={() => changeBorder(Object.keys(blackBorder)[index], Object.keys(img_map)[index])}>
+                          <Image src={img} width={100} height={100} alt='drip_image' unoptimized />
+                        </div>
+                      ))
+                    )
+                  }
                 </div>
+                {/* <div className='carousel_images'>
+                  <Image src={image_object.image_url || null} width={100} height={100} alt='drip_image' unoptimized className={blackBorder.image_one ? "black-border black-border-image" : "black-border-image"} onClick={() => changeBorder("image_one", "image_url")} />
+                  <Image src={image_object.image_url2 || null} width={100} height={100} alt='drip_image' unoptimized className={blackBorder.image_two ? "black-border black-border-image" : "black-border-image"} onClick={() => changeBorder("image_two", "image_url2")} />
+                  <Image src={image_object.image_url3 || null} width={100} height={100} alt='drip_image' unoptimized className={blackBorder.image_three ? "black-border black-border-image" : "black-border-image"} onClick={() => changeBorder("image_three", "image_url3")} />
+                  <Image src={image_object.image_url4 || null} width={100} height={100} alt='drip_image' unoptimized className={blackBorder.image_four ? "black-border black-border-image" : "black-border-image"} onClick={() => changeBorder("image_four", "image_url4")} />
+                </div> */}
 
                 <div className={!zoomable ? "main_image" : "bigger_main_image"} >
                   {zoomable && <Image src={supabse_image_path('/x.svg')} width={20} height={20} alt='zoom-out' className='zoom-out' onClick={() => setZoomable(false)} />}
@@ -329,7 +343,7 @@ export default function DripSlug() {
           </div>
           :
           <>
-            <Loader />
+            <Spinner />
           </>
       }
     </div>
