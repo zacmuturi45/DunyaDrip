@@ -68,30 +68,6 @@ export default function CheckOut() {
                         <div className='checkout_div_two_title'>
                             <h1>Summary</h1>
 
-                            {/* <div className="promo-code-section">
-                                <input
-                                    type="text"
-                                    className="promo-input"
-                                    placeholder="Enter promo code"
-                                    value={promoCode}
-                                    onChange={(e) => setPromoCode(e.target.value)}
-                                />
-                                <button
-                                    type="button"
-                                    className="apply-button"
-                                    onClick={() => {
-                                        if (promoCode.trim().toLowerCase() === "discount10") {
-                                            setPromoMessage("Promo code applied! 10% discount.");
-                                        } else {
-                                            setPromoMessage("Invalid promo code.");
-                                        }
-                                    }}
-                                >
-                                    Apply
-                                </button>
-                                {promoMessage && <p className="promo-message">{promoMessage}</p>}
-                            </div> */}
-
                             <div className="summary">
                                 <div>
                                     <p>Subtotal</p>

@@ -196,35 +196,6 @@ export default function Payment({ shippingDetails }) {
                         <Image src={supabse_image_path('/cards.svg')} width={100} height={100} alt="redirect_image" className="redirect_image" />
                         <p>Fast, secure checkout with all major credit and debit cards.</p>
                     </div>
-                    // <div className="payment-details">
-                    //     <div className="input-grid">
-                    //         <input type="text" placeholder="Cardholder Name" className="input" />
-                    //         <input type="text" placeholder="Card Number" className="input" />
-                    //         <input type="text" autoComplete="cc-exp" value={expiry} onChange={handleChange} placeholder="Expiry Date (MM/YY)" className="input" />
-                    //         <input type="text" placeholder="CVC" className="input" />
-                    //     </div>
-
-                    //     <div className="checkbox-wrapper">
-                    //         <input
-                    //             type="checkbox"
-                    //             id="billingAddress"
-                    //             checked={useShippingAddress}
-                    //             onChange={() => setUseShippingAddress(!useShippingAddress)}
-                    //         />
-                    //         <label htmlFor="billingAddress">Use shipping address as billing address</label>
-                    //     </div>
-
-                    //     {!useShippingAddress && (
-                    //         <div className="billing-form">
-                    //             <input type="text" placeholder="Billing Address Line 1" className="input" />
-                    //             <input type="text" placeholder="Billing Address Line 2" className="input" />
-                    //             <input type="text" placeholder="City" className="input" />
-                    //             <input type="text" placeholder="State" className="input" />
-                    //             <input type="text" placeholder="Postal Code" className="input" />
-                    //             <input type="text" placeholder="Country" className="input" />
-                    //         </div>
-                    //     )}
-                    // </div>
                 );
             case "paypal":
                 return (

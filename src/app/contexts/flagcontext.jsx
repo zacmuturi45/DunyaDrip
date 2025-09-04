@@ -19,7 +19,7 @@ export const FlagProvider = ({ children }) => {
 
 
     useEffect(() => {
-        if (pathname.includes("/admin")) {
+        if (pathname.includes("/admin") || pathname.includes("/dashboard")) {
             setIsNav(true);
         } else {
             setIsNav(false);

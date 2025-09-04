@@ -338,6 +338,7 @@ body {
                 display: flex;
                 justify-content: center;
                 align-items: center;
+
                 >* {
                     width: 15px;
                     height: 15px;
@@ -427,7 +428,7 @@ body {
                         padding: 15px;
                         width: 45px;
                         height: 45px;
-                        box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);                     
+                        box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
                         background: white;
                         cursor: pointer;
                         border: none;
@@ -2770,6 +2771,7 @@ body {
                         height: 120px;
                         cursor: pointer;
                         overflow: hidden;
+
                         >* {
                             height: auto;
                         }
@@ -3003,7 +3005,7 @@ body {
                             width: 100%;
                             height: 100%;
                             border-radius: 50%;
-                            background-color: black;
+                            border: 1px solid black;
                         }
                     }
                 }
@@ -3950,10 +3952,8 @@ body {
 .dashboard-container {
     display: flex;
     height: 100vh;
-    padding: 150px 0 0 200px;
+    padding: 20px 0 0 200px;
     background-color: #fafafa;
-    // background-image: url("/pngtree.jpg");
-    // background-size: cover;
 
     .dashboard-content {
         flex: 1;
@@ -3969,7 +3969,7 @@ body {
 .sidebar {
     background-color: #111;
     box-sizing: content-box;
-    padding: 150px 10px 0 50px;
+    padding: 20px 10px 0 50px;
     color: #fff;
     height: 100vh;
     width: 100px;
@@ -3984,6 +3984,41 @@ body {
 
     &:hover {
         width: 240px;
+
+        .home_button {
+            border-radius: 5px;
+
+            span {
+                opacity: 1;
+            }
+
+            &:hover {
+                background-color: rgba(68, 68, 68, 0.2);
+            }
+        }
+    }
+
+}
+
+.home_button {
+    cursor: pointer;
+
+    .home_button_container {
+        display: flex;
+        align-items: center;
+        padding: 0.75rem 1rem;
+
+        .home_button_svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        span {
+            opacity: 0;
+            margin-left: 0.75rem;
+            color: white;
+        }
+
     }
 }
 
@@ -4640,100 +4675,346 @@ body {
 // LIQUID LOADER
 
 // MY ORDERS
-.ordersPage {
-    height: auto;
-    margin: 2.5rem 1rem 1rem 0;
-    padding-bottom: 2.5rem;
+.orders_card_product_main {
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(220, 220, 220);
 
-    .table_container {
-        padding: 1rem;
-        width: 100%;
-        height: 600px;
-        overflow-y: scroll;
+    .orders_card_product_div {
+        margin-right: 1.5rem;
+        cursor: pointer;
         display: flex;
-        justify-content: center;
+
+        .one {
+            .orders_card_image {
+                width: 150px;
+                height: 180px;
+                object-fit: cover;
+            }
+        }
+        .orders_card_product_details {
+            padding-left: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: 250px;
+            h4 {
+                font-weight: 500;
+                font-family: "Inter";
+                font-size: .9rem;
+                cursor: pointer;
+
+                &:hover {
+                    opacity: 0.7;
+                }
+            }
+
+            p:nth-of-type(1) {
+                margin: 1rem 0;
+                color: rgb(0, 0, 0);
+                font-size: .9rem;
+                font-weight: 700;
+                font-family: "Inter";
+            }
+
+            p:nth-of-type(2) {
+                font-size: .85rem;
+
+                span {
+                    border: 1px solid black;
+                    border-style: dotted;
+                    width: 10px;
+                    font-size: .85rem;
+                    font-family: "Inter";
+                    height: 10px;
+                    padding: 3px 10px;
+                    cursor: pointer;
+                    margin-right: 1rem;
+                }
+            }
+
+        }        
     }
 
-    h2 {
-        margin-bottom: 1.5rem;
-        font-size: 2rem;
+    .status {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+
+        h5 {
+            font-weight: 700;
+            font-family: "Inter";
+            font-size: 1rem;
+            color: rgb(76, 76, 76);
+            margin-bottom: 5px;
+        }
+
+        p {
+            font-weight: 700;
+            font-family: "Inter";
+            text-transform: capitalize;
+            font-size: 1rem;
+            // padding: 5px 10px;
+            // border-radius: 5px;
+            // box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
+        }
+    }
+
+    .delivery_date {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        h5 {
+            font-family: "Inter";
+            font-size: 1rem;
+            color: rgb(76, 76, 76);
+            margin-bottom: 5px;
+        }
+        p {
+            font-family: "Inter";
+            font-size: 1rem;
+            font-weight: 700;
+        }
+    }
+}
+
+
+.ordersPage {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    >h2 {
+        font-size: 1.8rem;
         font-weight: 600;
+        margin-bottom: 2rem;
+        color: #222;
         text-align: center;
         font-family: "Inter";
     }
 
-    @media (max-width: 768px) {
-        padding: 1rem;
+    .table_container {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem; // space between month groups
 
-        h2 {
-            font-size: 1.5rem;
+        .month-group {
+            background: #fff;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+            border: 1px solid #f0f0f0;
+
+            h2 {
+                font-size: 1.4rem;
+                font-weight: 600;
+                margin-bottom: 1.2rem;
+                color: #444;
+                border-left: 4px solid #111;
+                padding-left: 0.75rem;
+                font-family: "Inter";
+            }
+
+            .orders-table {
+                width: 100%;
+                border-collapse: collapse;
+                border-radius: 0.75rem;
+                overflow: hidden;
+
+                thead {
+                    background: #f9fafb;
+
+                    th {
+                        text-align: left;
+                        font-size: 0.9rem;
+                        font-weight: 600;
+                        padding: 1rem;
+                        border-bottom: 1px solid #e5e7eb;
+                        color: #333;
+                        font-family: "Inter";
+                    }
+                }
+
+                tbody {
+                    tr {
+                        height: 64px; // ✅ constant row height
+                        border-bottom: 1px solid #f0f0f0;
+                        transition: background 0.2s ease;
+
+                        &:hover {
+                            background: #f9f9f9;
+                        }
+
+                        &:last-child {
+                            border-bottom: none;
+                        }
+
+                        td {
+                            padding: 1rem;
+                            font-size: 0.95rem;
+                            color: #555;
+                            font-family: "Inter";
+
+                            &:nth-child(1) {
+                                font-weight: 500;
+                                color: #222;
+                                font-family: "Inter";
+                            }
+
+                            &:nth-child(3) {
+                                text-transform: capitalize;
+                                font-weight: 500;
+                                font-family: "Inter";
+                            }
+
+                            &:nth-child(4) {
+                                font-weight: 600;
+                                color: #111;
+                                font-family: "Inter";
+                            }
+                        }
+
+                        #detail_button {
+                            span {
+                                background-color: rgb(89, 89, 255);
+                                padding: 5px 15px;
+                                border-radius: 5px;
+                                font-family: "Inter";
+                                color: white;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
 
-.ordersTable {
-    width: 90%;
-    border-collapse: collapse;
-    margin-bottom: 1rem;
-
-    th,
-    td {
+// ✅ Responsive
+@media (max-width: 768px) {
+    .ordersPage {
         padding: 1rem;
-        border: 1px solid #ddd;
-        text-align: left;
-    }
 
-    th {
-        background-color: #f5f5f5;
-    }
+        .table_container {
+            gap: 2rem;
 
-    button {
-        background-color: #0070f3;
-        color: white;
-        border: none;
-        padding: 0.5rem 1rem;
-        cursor: pointer;
-        border-radius: 4px;
+            .month-group {
+                padding: 1rem;
 
-        &:hover {
-            background-color: #005bb5;
-        }
-    }
+                .orders-table {
+                    font-size: 0.85rem;
 
-    @media (max-width: 768px) {
-
-        th,
-        td {
-            padding: 0.5rem;
-            font-size: 0.85rem;
-        }
-
-        button {
-            padding: 0.3rem 0.6rem;
-            font-size: 0.8rem;
+                    th,
+                    td {
+                        padding: 0.75rem;
+                    }
+                }
+            }
         }
     }
 }
+
+
 
 .orderDetails {
-    background: #fafafa;
-    border-radius: 6px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
     padding: 1.5rem;
-    margin-top: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    h3 {
-        margin-bottom: 2rem;
-        text-transform: uppercase;
-        text-decoration: underline;
-        text-underline-offset: 3px;
+    .x_button {
+        box-sizing: border-box;
+        position: absolute;
+        top: 50px;
+        right: 50px;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        border-radius: 50%;
+        padding: 15px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        >* {
+            width: 15px;
+            height: 15px;
+        }
     }
 
-    .order_detail_card {
-        box-shadow: 0 0 8px 0 rgba(50, 60, 90, 1.08);
+    .order_details_container {
+        min-width: 60%;
+        height: 100%;
+        margin: 0 auto;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        padding: 0 2rem;
+
+        .order_details_cards {
+            .title {
+                border-bottom: 1px solid rgb(227, 227, 227);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 1rem 0;
+
+                .div_one {
+                    color: white;
+                    padding: .5rem 1rem;
+                    border-radius: 5px;
+                    display: flex;
+                    align-items: center;
+
+                    p {
+                        font-family: "Inter";
+                        color: rgba(0, 0, 0, 0.3);
+                        margin-right: 1.2rem;
+
+                    }
+
+                    .p_one {
+                        padding: .7rem 1rem;
+                        border-radius: 1.2rem;
+                        font-weight: 700;
+                        background-color: rgb(224, 224, 224);
+
+                        span {
+                            color: rgb(0, 81, 255);
+                            font-family: "Inter";
+                            font-size: .9rem;
+                        }
+                    }
+                }
+
+                .div_two {
+                    p {
+                        font-family: "Inter";
+                        font-weight: 700;
+                        color: rgba(0, 0, 0, 0.3);
+
+                        span {
+                            margin-left: .5rem;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -6262,14 +6543,17 @@ body {
                             overflow-y: scroll;
                             justify-content: space-between;
                         }
+
                         .carousel-item {
                             margin-bottom: 1rem;
                             padding: 0;
                         }
+
                         .carousel-arrow {
                             width: 30px;
                             height: 30px;
                             display: none;
+
                             >* {
                                 width: 15px;
                                 height: 15px;
@@ -6746,7 +7030,7 @@ body {
                     width: 80%;
                 }
             }
-            
+
         }
 
     }
@@ -7102,6 +7386,7 @@ body {
         .drip_page_container {
             width: 100%;
             padding: 140px 25px 0 25px;
+
             .container-two {
                 .cards {
                     .product-card {

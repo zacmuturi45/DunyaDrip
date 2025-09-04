@@ -2360,7 +2360,7 @@ body {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background-color: black;
+  border: 1px solid black;
 }
 .drip_page_main .drip_page_container .container-one .two-detail .quantity h4 {
   font-size: 1rem;
@@ -2836,38 +2836,11 @@ body {
   padding: 1.5rem;
 }
 
-.payment-details {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.input-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
-
-.billing-form {
-  margin-top: 1rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
-
 .input {
   width: 100%;
   padding: 0.8rem;
   border: 1px solid #ccc;
   border-radius: 8px;
-  font-size: 0.9rem;
-}
-
-.checkbox-wrapper {
-  margin-top: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
   font-size: 0.9rem;
 }
 
@@ -2997,45 +2970,6 @@ body {
   font-size: 1.5rem;
   margin-bottom: 1.5rem;
 }
-.checkout_main .checkout_container .checkout_div_two .checkout_div_two_container .checkout_div_two_title .promo-code-section {
-  display: flex;
-  margin-bottom: 1.5rem;
-}
-.checkout_main .checkout_container .checkout_div_two .checkout_div_two_container .checkout_div_two_title .promo-input {
-  width: 100%;
-  padding: 0.8rem;
-  border: 1px solid #ccc;
-  border-bottom-left-radius: 8px;
-  border-top-left-radius: 8px;
-  height: 40px;
-  box-sizing: border-box;
-  margin-bottom: 0.5rem;
-  font-size: 0.9rem;
-}
-.checkout_main .checkout_container .checkout_div_two .checkout_div_two_container .checkout_div_two_title .apply-button {
-  align-self: flex-start;
-  box-sizing: border-box;
-  background: black;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0.8rem 1.2rem;
-  height: 40px;
-  border: none;
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-.checkout_main .checkout_container .checkout_div_two .checkout_div_two_container .checkout_div_two_title .apply-button:hover {
-  background: #333;
-}
-.checkout_main .checkout_container .checkout_div_two .checkout_div_two_container .checkout_div_two_title .promo-message {
-  margin-top: 0.5rem;
-  font-size: 0.85rem;
-  color: green;
-}
 .checkout_main .checkout_container .checkout_div_two .checkout_div_two_container .checkout_div_two_title .summary > div {
   display: flex;
   justify-content: space-between;
@@ -3139,7 +3073,7 @@ body {
 .dashboard-container {
   display: flex;
   height: 100vh;
-  padding: 150px 0 0 200px;
+  padding: 20px 0 0 200px;
   background-color: #fafafa;
 }
 .dashboard-container .dashboard-content {
@@ -3152,7 +3086,7 @@ body {
 .sidebar {
   background-color: #111;
   box-sizing: content-box;
-  padding: 150px 10px 0 50px;
+  padding: 20px 10px 0 50px;
   color: #fff;
   height: 100vh;
   width: 100px;
@@ -3168,22 +3102,32 @@ body {
 .sidebar:hover {
   width: 240px;
 }
+.sidebar:hover .home_button {
+  border-radius: 5px;
+}
+.sidebar:hover .home_button span {
+  opacity: 1;
+}
+.sidebar:hover .home_button:hover {
+  background-color: rgba(68, 68, 68, 0.2);
+}
 
-.sidebar-header {
+.home_button {
+  cursor: pointer;
+}
+.home_button .home_button_container {
   display: flex;
   align-items: center;
-  padding: 1rem;
+  padding: 0.75rem 1rem;
 }
-.sidebar-header .brand-name {
-  margin-left: 0.5rem;
-  font-size: 1.2rem;
-  white-space: nowrap;
+.home_button .home_button_container .home_button_svg {
+  width: 40px;
+  height: 40px;
+}
+.home_button .home_button_container span {
   opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.sidebar:hover .brand-name {
-  opacity: 1;
+  margin-left: 0.75rem;
+  color: white;
 }
 
 .sidebar-menu {
@@ -3709,90 +3653,288 @@ body {
     background-color: #f1f3f2;
   }
 }
-.ordersPage {
-  height: auto;
-  margin: 2.5rem 1rem 1rem 0;
-  padding-bottom: 2.5rem;
-}
-.ordersPage .table_container {
-  padding: 1rem;
+.orders_card_product_main {
   width: 100%;
-  height: 600px;
-  overflow-y: scroll;
+  padding: 1rem;
   display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgb(220, 220, 220);
+}
+.orders_card_product_main .orders_card_product_div {
+  margin-right: 1.5rem;
+  cursor: pointer;
+  display: flex;
+}
+.orders_card_product_main .orders_card_product_div .one .orders_card_image {
+  width: 150px;
+  height: 180px;
+  object-fit: cover;
+}
+.orders_card_product_main .orders_card_product_div .orders_card_product_details {
+  padding-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 250px;
+}
+.orders_card_product_main .orders_card_product_div .orders_card_product_details h4 {
+  font-weight: 500;
+  font-family: "Inter";
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.orders_card_product_main .orders_card_product_div .orders_card_product_details h4:hover {
+  opacity: 0.7;
+}
+.orders_card_product_main .orders_card_product_div .orders_card_product_details p:nth-of-type(1) {
+  margin: 1rem 0;
+  color: rgb(0, 0, 0);
+  font-size: 0.9rem;
+  font-weight: 700;
+  font-family: "Inter";
+}
+.orders_card_product_main .orders_card_product_div .orders_card_product_details p:nth-of-type(2) {
+  font-size: 0.85rem;
+}
+.orders_card_product_main .orders_card_product_div .orders_card_product_details p:nth-of-type(2) span {
+  border: 1px solid black;
+  border-style: dotted;
+  width: 10px;
+  font-size: 0.85rem;
+  font-family: "Inter";
+  height: 10px;
+  padding: 3px 10px;
+  cursor: pointer;
+  margin-right: 1rem;
+}
+.orders_card_product_main .status {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+.orders_card_product_main .status h5 {
+  font-weight: 700;
+  font-family: "Inter";
+  font-size: 1rem;
+  color: rgb(76, 76, 76);
+  margin-bottom: 5px;
+}
+.orders_card_product_main .status p {
+  font-weight: 700;
+  font-family: "Inter";
+  text-transform: capitalize;
+  font-size: 1rem;
+}
+.orders_card_product_main .delivery_date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
 }
-.ordersPage h2 {
-  margin-bottom: 1.5rem;
-  font-size: 2rem;
+.orders_card_product_main .delivery_date h5 {
+  font-family: "Inter";
+  font-size: 1rem;
+  color: rgb(76, 76, 76);
+  margin-bottom: 5px;
+}
+.orders_card_product_main .delivery_date p {
+  font-family: "Inter";
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.ordersPage {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.ordersPage > h2 {
+  font-size: 1.8rem;
   font-weight: 600;
+  margin-bottom: 2rem;
+  color: #222;
   text-align: center;
   font-family: "Inter";
 }
+.ordersPage .table_container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+.ordersPage .table_container .month-group {
+  background: #fff;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  border: 1px solid #f0f0f0;
+}
+.ordersPage .table_container .month-group h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+  color: #444;
+  border-left: 4px solid #111;
+  padding-left: 0.75rem;
+  font-family: "Inter";
+}
+.ordersPage .table_container .month-group .orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+.ordersPage .table_container .month-group .orders-table thead {
+  background: #f9fafb;
+}
+.ordersPage .table_container .month-group .orders-table thead th {
+  text-align: left;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  color: #333;
+  font-family: "Inter";
+}
+.ordersPage .table_container .month-group .orders-table tbody tr {
+  height: 64px;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background 0.2s ease;
+}
+.ordersPage .table_container .month-group .orders-table tbody tr:hover {
+  background: #f9f9f9;
+}
+.ordersPage .table_container .month-group .orders-table tbody tr:last-child {
+  border-bottom: none;
+}
+.ordersPage .table_container .month-group .orders-table tbody tr td {
+  padding: 1rem;
+  font-size: 0.95rem;
+  color: #555;
+  font-family: "Inter";
+}
+.ordersPage .table_container .month-group .orders-table tbody tr td:nth-child(1) {
+  font-weight: 500;
+  color: #222;
+  font-family: "Inter";
+}
+.ordersPage .table_container .month-group .orders-table tbody tr td:nth-child(3) {
+  text-transform: capitalize;
+  font-weight: 500;
+  font-family: "Inter";
+}
+.ordersPage .table_container .month-group .orders-table tbody tr td:nth-child(4) {
+  font-weight: 600;
+  color: #111;
+  font-family: "Inter";
+}
+.ordersPage .table_container .month-group .orders-table tbody tr #detail_button span {
+  background-color: rgb(89, 89, 255);
+  padding: 5px 15px;
+  border-radius: 5px;
+  font-family: "Inter";
+  color: white;
+  cursor: pointer;
+}
+
 @media (max-width: 768px) {
   .ordersPage {
     padding: 1rem;
   }
-  .ordersPage h2 {
-    font-size: 1.5rem;
+  .ordersPage .table_container {
+    gap: 2rem;
   }
-}
-
-.ordersTable {
-  width: 90%;
-  border-collapse: collapse;
-  margin-bottom: 1rem;
-}
-.ordersTable th,
-.ordersTable td {
-  padding: 1rem;
-  border: 1px solid #ddd;
-  text-align: left;
-}
-.ordersTable th {
-  background-color: #f5f5f5;
-}
-.ordersTable button {
-  background-color: #0070f3;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  border-radius: 4px;
-}
-.ordersTable button:hover {
-  background-color: #005bb5;
-}
-@media (max-width: 768px) {
-  .ordersTable th,
-  .ordersTable td {
-    padding: 0.5rem;
+  .ordersPage .table_container .month-group {
+    padding: 1rem;
+  }
+  .ordersPage .table_container .month-group .orders-table {
     font-size: 0.85rem;
   }
-  .ordersTable button {
-    padding: 0.3rem 0.6rem;
-    font-size: 0.8rem;
+  .ordersPage .table_container .month-group .orders-table th,
+  .ordersPage .table_container .month-group .orders-table td {
+    padding: 0.75rem;
   }
 }
-
 .orderDetails {
-  background: #fafafa;
-  border-radius: 6px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
   padding: 1.5rem;
-  margin-top: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.orderDetails h3 {
-  margin-bottom: 2rem;
-  text-transform: uppercase;
-  text-decoration: underline;
-  text-underline-offset: 3px;
+.orderDetails .x_button {
+  box-sizing: border-box;
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.orderDetails .order_detail_card {
-  box-shadow: 0 0 8px 0 rgb(50, 60, 90);
+.orderDetails .x_button > * {
+  width: 15px;
+  height: 15px;
+}
+.orderDetails .order_details_container {
+  min-width: 60%;
+  height: 100%;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  padding: 0 2rem;
+}
+.orderDetails .order_details_container .order_details_cards .title {
+  border-bottom: 1px solid rgb(227, 227, 227);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+.orderDetails .order_details_container .order_details_cards .title .div_one {
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+.orderDetails .order_details_container .order_details_cards .title .div_one p {
+  font-family: "Inter";
+  color: rgba(0, 0, 0, 0.3);
+  margin-right: 1.2rem;
+}
+.orderDetails .order_details_container .order_details_cards .title .div_one .p_one {
+  padding: 0.7rem 1rem;
+  border-radius: 1.2rem;
+  font-weight: 700;
+  background-color: rgb(224, 224, 224);
+}
+.orderDetails .order_details_container .order_details_cards .title .div_one .p_one span {
+  color: rgb(0, 81, 255);
+  font-family: "Inter";
+  font-size: 0.9rem;
+}
+.orderDetails .order_details_container .order_details_cards .title .div_two p {
+  font-family: "Inter";
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.3);
+}
+.orderDetails .order_details_container .order_details_cards .title .div_two p span {
+  margin-left: 0.5rem;
 }
 
 .settings-page {
@@ -5250,9 +5392,6 @@ body {
   }
   .ordersPage .orderDetails {
     width: 100%;
-  }
-  .ordersTable {
-    width: 650px;
   }
   .dashboard-container {
     padding: 150px 0 0 25px;

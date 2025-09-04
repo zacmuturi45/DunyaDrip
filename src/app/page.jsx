@@ -48,12 +48,13 @@ export default function Home() {
       <WomensArrivals />
       <Wild />
       <TopPicks obsRef={observerRef} />
-      <>
-        {
-          showBanner && <NewsLetter setShowBanner={setShowBanner} />
-        }
-      </>
       <PreFooter />
     </div>
   );
 }
+
+      // <>
+      //   {
+      //     showBanner && <NewsLetter setShowBanner={setShowBanner} />
+      //   }
+      // </>

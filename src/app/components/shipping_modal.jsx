@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useCart } from '../contexts/cart_context';
 import { useAuth } from '../contexts/auth_context';
-import { countries_we_ship_to, SHIPPING_RATES } from '../../../public/imports';
+import { countries_we_ship_to, SHIPPING_RATES, SHIPPING_RATES_FULL } from '../../../public/imports';
 
 function validateEmail(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -84,7 +84,7 @@ export default function ShippingModal({ onClose }) {
                 </div>
                 <div className="section">
                     <label>Delivery Method:</label>
-                    {Object.keys(SHIPPING_RATES[region]).map((opt) => (
+                    {Object.keys(SHIPPING_RATES_FULL[region]).map((opt) => (
                         <div key={opt} id='method-select'>
                             <input
                                 type="radio"
@@ -94,7 +94,7 @@ export default function ShippingModal({ onClose }) {
                                 onChange={(e) => setMethod(e.target.value)}
                                 required
                             />
-                            <label>{opt} — £{SHIPPING_RATES[region][opt].toFixed(2)}</label>
+                            <label>{opt} — £{SHIPPING_RATES_FULL[region][opt].toFixed(2)}</label>
                         </div>
                     ))}
                 </div>

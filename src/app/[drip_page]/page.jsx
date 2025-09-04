@@ -2,7 +2,7 @@
 
 import { useParams, useRouter } from 'next/navigation'
 import React, { useContext, useEffect, useState } from 'react'
-import { arrowright, size_array } from '../../../public/imports';
+import { arrowright, getColors, size_array } from '../../../public/imports';
 import Image from 'next/image';
 import { FlagContext } from '../contexts/flagcontext';
 import DripCard from '../components/drip_card';
@@ -140,6 +140,7 @@ export default function DripSlug() {
 
   const img_array = [image_object?.image_url, image_object?.image_url2, image_object?.image_url3, image_object?.image_url4].filter(Boolean);
 
+  
   const zoom_image = (operation) => {
 
     const match = img_src.match(/\d+$/)
@@ -259,8 +260,8 @@ export default function DripSlug() {
                     }
                   </div>
                   <div className="color">
-                    <p className='color-p'>Color: <span>Black</span></p>
-                    <div className='color-span'><span></span></div>
+                    <p className='color-p'>Color: <span>{image_object.color[0]}</span></p>
+                    <div className='color-span'><span style={{backgroundColor: `${getColors(image_object.color[0])}`}}></span></div>
                   </div>
                   <div className="quantity">
                     <h4>Quantity</h4>

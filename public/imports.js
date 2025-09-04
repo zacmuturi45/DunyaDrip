@@ -33,41 +33,41 @@ export const calculateTimeLeft = () => {
 export const filterOptions = ['Last 7 days', 'Last 30 days', 'Last 3 months', 'Last 6 months', 'Last 12 months'];
 
 export const topSellingProducts = [
-  {
-    name: "Black Hoodie",
-    sold: 120,
-    image: supabse_image_path("dunya_featured1.webp"),
-  },
-  {
-    name: "White T-shirt",
-    sold: 98,
-    image: supabse_image_path("dunya_featured1b.webp"),
-  },
-  {
-    name: "Cargo Pants",
-    sold: 75,
-    image: supabse_image_path("dunya_featured2.webp"),
-  },
-  {
-    name: "Denim Jacket",
-    sold: 60,
-    image: supabse_image_path("dunya_featured3.webp"),
-  },
-  {
-    name: "White T-shirt",
-    sold: 98,
-    image: supabse_image_path("dunya_featured1b.webp"),
-  },
-  {
-    name: "Cargo Pants",
-    sold: 75,
-    image: supabse_image_path("dunya_featured2.webp"),
-  },
-  {
-    name: "Denim Jacket",
-    sold: 60,
-    image: supabse_image_path("dunya_featured3.webp"),
-  },
+    {
+        name: "Black Hoodie",
+        sold: 120,
+        image: supabse_image_path("dunya_featured1.webp"),
+    },
+    {
+        name: "White T-shirt",
+        sold: 98,
+        image: supabse_image_path("dunya_featured1b.webp"),
+    },
+    {
+        name: "Cargo Pants",
+        sold: 75,
+        image: supabse_image_path("dunya_featured2.webp"),
+    },
+    {
+        name: "Denim Jacket",
+        sold: 60,
+        image: supabse_image_path("dunya_featured3.webp"),
+    },
+    {
+        name: "White T-shirt",
+        sold: 98,
+        image: supabse_image_path("dunya_featured1b.webp"),
+    },
+    {
+        name: "Cargo Pants",
+        sold: 75,
+        image: supabse_image_path("dunya_featured2.webp"),
+    },
+    {
+        name: "Denim Jacket",
+        sold: 60,
+        image: supabse_image_path("dunya_featured3.webp"),
+    },
 ];
 
 
@@ -593,27 +593,27 @@ export const size_array = [
 ]
 
 export const localTime = () => {
-  const now = new Date();
+    const now = new Date();
 
-  // Time
-  const hours = now.getHours();
-  const minutes = now.getMinutes();
-  const timeZoneOffset = -now.getTimezoneOffset() / 60;
-  const gmtSign = timeZoneOffset >= 0 ? '+' : '-';
-  const gmtOffset = `${gmtSign}${Math.abs(timeZoneOffset)}`;
+    // Time
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+    const timeZoneOffset = -now.getTimezoneOffset() / 60;
+    const gmtSign = timeZoneOffset >= 0 ? '+' : '-';
+    const gmtOffset = `${gmtSign}${Math.abs(timeZoneOffset)}`;
 
-  const formattedHours = hours >= 10 ? hours : `0${hours}`;
-  const formattedMinutes = minutes >= 10 ? minutes : `0${minutes}`;
-  const am_pm = hours >= 12 ? 'PM' : 'AM';
-  const time_now = `${formattedHours}:${formattedMinutes} ${am_pm} GMT${gmtOffset}`;
+    const formattedHours = hours >= 10 ? hours : `0${hours}`;
+    const formattedMinutes = minutes >= 10 ? minutes : `0${minutes}`;
+    const am_pm = hours >= 12 ? 'PM' : 'AM';
+    const time_now = `${formattedHours}:${formattedMinutes} ${am_pm} GMT${gmtOffset}`;
 
-  // Date (e.g. "30 May")
-  const day = now.getDate();
-  const month = now.toLocaleString('default', { month: 'short' }); // "May"
+    // Date (e.g. "30 May")
+    const day = now.getDate();
+    const month = now.toLocaleString('default', { month: 'short' }); // "May"
 
-  const date_now = `${day} ${month}`;
+    const date_now = `${day} ${month}`;
 
-  return { time_now, date_now };
+    return { time_now, date_now };
 };
 
 
@@ -713,53 +713,83 @@ export const kids_accessories = [
 ];
 
 export const flag_array = [
-  { flag_image: UK, country_name: "UK", currency: "GBP" },
-  { flag_image: France, country_name: "France", currency: "EUR" },
-  { flag_image: Germany, country_name: "Germany", currency: "EUR" },
-  { flag_image: Netherlands, country_name: "Netherlands", currency: "EUR" },
-  { flag_image: Belgium, country_name: "Belgium", currency: "EUR" }
+    { flag_image: UK, country_name: "UK", currency: "GBP" },
+    { flag_image: France, country_name: "France", currency: "EUR" },
+    { flag_image: Germany, country_name: "Germany", currency: "EUR" },
+    { flag_image: Netherlands, country_name: "Netherlands", currency: "EUR" },
+    { flag_image: Belgium, country_name: "Belgium", currency: "EUR" }
 ];
+
+
+export const SHIPPING_RATES = {
+    //   UK: {
+    //     Standard: 3.99,
+    //     Express: 6.99,
+    //     "Next Day": 8.99
+    //   },
+    UK: {
+        Standard: 0,
+        Express: 0,
+        "Next Day": 0
+    },
+    France: {
+        Standard: 9.99,
+        Express: 14.99,
+        "Next Day": 19.99
+    },
+    Germany: {
+        Standard: 9.99,
+        Express: 14.99,
+        "Next Day": 19.99
+    },
+    Netherlands: {
+        Standard: 9.99,
+        Express: 14.99,
+        "Next Day": 19.99
+    },
+    Belgium: {
+        Standard: 9.99,
+        Express: 14.99,
+        "Next Day": 19.99
+    },
+    USA: {
+        Standard: 14.99,
+        Express: 24.99,
+        "Next Day": 34.99
+    }
+};
 
 export const countries_we_ship_to = [
     "UK",
-    "Germany",
-    "Netherlands",
+    "Austria",
     "Belgium",
+    "Bulgaria",
+    "Croatia",
+    "Cyprus",
+    "Czechia",
+    "Denmark",
+    "Estonia",
+    "Finland",
     "France",
+    "Germany",
+    "Greece",
+    "Hungary",
+    "Ireland",
+    "Italy",
+    "Latvia",
+    "Lithuania",
+    "Luxembourg",
+    "Malta",
+    "Netherlands",
+    "Poland",
+    "Portugal",
+    "Romania",
+    "Slovakia",
+    "Slovenia",
+    "Spain",
+    "Sweden",
+    "USA"
 ];
-
-export const SHIPPING_RATES = {
-//   UK: {
-//     Standard: 3.99,
-//     Express: 6.99,
-//     "Next Day": 8.99
-//   },
-  UK: {
-    Standard: 0,
-    Express: 0,
-    "Next Day": 0
-  },
-  France: {
-    Standard: 9.99,
-    Express: 14.99,
-    "Next Day": 19.99
-  },
-  Germany: {
-    Standard: 9.99,
-    Express: 14.99,
-    "Next Day": 19.99
-  },
-  Netherlands: {
-    Standard: 9.99,
-    Express: 14.99,
-    "Next Day": 19.99
-  },
-  Belgium: {
-    Standard: 9.99,
-    Express: 14.99,
-    "Next Day": 19.99
-  }
-};
 
 
 export const SHIPPING_RATES_FULL = {
@@ -902,5 +932,257 @@ export const SHIPPING_RATES_FULL = {
         Standard: 9.99,
         Express: 14.99,
         "Next Day": 19.99
+    },
+    USA: {
+        Standard: 14.99,
+        Express: 24.99,
+        "Next Day": 34.99
+    }
+};
+
+
+const colorMap = {
+    Maroon: "#800000",
+    Navy: "#000080",
+    Olive: "#808000",
+    Teal: "#008080",
+    Purple: "#800080",
+    Gray: "#808080",
+    Black: "#000000",
+    White: "#FFFFFF",
+    Red: "#FF0000",
+    Blue: "#0000FF",
+    Green: "#008000",
+    Yellow: "#FFFF00",
+    Orange: "#FFA500",
+    Pink: "#FFC0CB",
+    Lilac: "#C8A2C8",
+    Beige: "#F5F5DC",
+    Brown: "#A52A2A",
+    Cream: "#FFFDD0",
+    Khaki: "#F0E68C",
+    Gold: "#FFD700",
+    Silver: "#C0C0C0",
+    Cyan: "#00FFFF",
+    Magenta: "#FF00FF",
+    LightBlue: "rgb(173, 216, 230)",
+    LightGreen: "rgb(144, 238, 144)",
+    LightGray: "rgb(211, 211, 211)",
+    DarkGray: "rgb(169, 169, 169)",
+    DarkBlue: "rgb(0, 0, 139)",
+    DarkGreen: "rgb(0, 100, 0)",
+    Burgundy: "#800020",
+    Mustard: "#FFDB58",
+    Coral: "#FF7F50",
+    Mint: "#98FF98",
+    Lavender: "#E6E6FA",
+    Salmon: "#FA8072",
+    Indigo: "#4B0082",
+    Violet: "#EE82EE",
+    Turquoise: "#40E0D0",
+    Peach: "#FFE5B4",
+    Chocolate: "#D2691E",
+    Tan: "#D2B48C",
+    Emerald: "#50C878",
+    Sapphire: "#0F52BA",
+    Ruby: "#E0115F",
+    Amber: "#FFBF00",
+    Aquamarine: "#7FFFD4",
+    Charcoal: "#36454F",
+    Slate: "#708090",
+    Ivory: "#FFFFF0",
+    Plum: "#DDA0DD",
+    Rose: "#FF007F",
+    SkyBlue: "#87CEEB",
+    Wheat: "#F5DEB3",
+    Azure: "#007FFF",
+    Periwinkle: "#CCCCFF",
+    Fuchsia: "#FF00FF",
+    Lime: "#00FF00",
+    OliveDrab: "#6B8E23",
+    SeaGreen: "#2E8B57",
+    ChocolateBrown: "#D2691E",
+    Firebrick: "#B22222",
+    ForestGreen: "#228B22",
+    HotPink: "#FF69B4",
+    LightCoral: "#F08080",
+    MediumPurple: "#9370DB",
+    MidnightBlue: "#191970",
+    NavyBlue: "#000080",
+    OldLace: "#FDF5E6",
+    RosyBrown: "#BC8F8F",
+    SaddleBrown: "#8B4513",
+    Tomato: "#FF6347",
+    YellowGreen: "#9ACD32"
+};
+
+export const getColors = (colors) => {
+    return colorMap[colors] || "#000000";
+}
+
+export const groupOrdersByMonth = (orders) => {
+    return orders.reduce((groups, one_order) => {
+        const order_date = new Date(one_order.created_at)
+        const monthYear = order_date.toLocaleString('default', {
+            month: "long",
+            year: "numeric"
+        })
+
+        if (!groups[monthYear]) {
+            groups[monthYear] = []
+        }
+
+        groups[monthYear].push(one_order)
+
+        return groups
+    }, {})
+}
+
+
+export const ESTIMATED_TIME = {
+    UK: {
+        Standard: 3,
+        Express: 2,
+        "Next Day": 1
+    },
+    Austria: {
+        Standard: 5,
+        Express: 3,
+        "Next Day": 2
+    },
+    Belgium: {
+        Standard: 4,
+        Express: 2,
+        "Next Day": 1
+    },
+    Bulgaria: {
+        Standard: 7,
+        Express: 5,
+        "Next Day": 3
+    },
+    Croatia: {
+        Standard: 6,
+        Express: 4,
+        "Next Day": 2
+    },
+    Cyprus: {
+        Standard: 8,
+        Express: 6,
+        "Next Day": 4
+    },
+    Czechia: {
+        Standard: 5,
+        Express: 3,
+        "Next Day": 2
+    },
+    Denmark: {
+        Standard: 5,
+        Express: 3,
+        "Next Day": 2
+    },
+    Estonia: {
+        Standard: 6,
+        Express: 4,
+        "Next Day": 3
+    },
+    Finland: {
+        Standard: 6,
+        Express: 4,
+        "Next Day": 3
+    },
+    France: {
+        Standard: 4,
+        Express: 2,
+        "Next Day": 1
+    },
+    Germany: {
+        Standard: 4,
+        Express: 2,
+        "Next Day": 1
+    },
+    Greece: {
+        Standard: 7,
+        Express: 5,
+        "Next Day": 3
+    },
+    Hungary: {
+        Standard: 5,
+        Express: 3,
+        "Next Day": 2
+    },
+    Ireland: {
+        Standard: 4,
+        Express: 2,
+        "Next Day": 1
+    },
+    Italy: {
+        Standard: 5,
+        Express: 3,
+        "Next Day": 2
+    },
+    Latvia: {
+        Standard: 6,
+        Express: 4,
+        "Next Day": 3
+    },
+    Lithuania: {
+        Standard: 6,
+        Express: 4,
+        "Next Day": 3
+    },
+    Luxembourg: {
+        Standard: 4,
+        Express: 2,
+        "Next Day": 1
+    },
+    Malta: {
+        Standard: 7,
+        Express: 5,
+        "Next Day": 3
+    },
+    Netherlands: {
+        Standard: 4,
+        Express: 2,
+        "Next Day": 1
+    },
+    Poland: {
+        Standard: 5,
+        Express: 3,
+        "Next Day": 2
+    },
+    Portugal: {
+        Standard: 6,
+        Express: 4,
+        "Next Day": 2
+    },
+    Romania: {
+        Standard: 6,
+        Express: 4,
+        "Next Day": 2
+    },
+    Slovakia: {
+        Standard: 5,
+        Express: 3,
+        "Next Day": 2
+    },
+    Slovenia: {
+        Standard: 5,
+        Express: 3,
+        "Next Day": 2
+    },
+    Spain: {
+        Standard: 5,
+        Express: 3,
+        "Next Day": 2
+    },
+    Sweden: {
+        Standard: 5,
+        Express: 3,
+        "Next Day": 2
+    },
+    USA: {
+        Standard: 10,
+        Express: 6,
+        "Next Day": 3
     }
 };

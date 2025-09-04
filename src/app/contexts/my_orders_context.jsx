@@ -26,7 +26,8 @@ export const OrderProvider = ({ children }) => {
             const { data, error } = await supabase
                 .from('client_orders')
                 .select('*')
-                .eq('email', user_email);
+                .eq('email', user_email)
+                .order('created_at', { ascending: false });
 
             if (error) {
                 console.error(error);
