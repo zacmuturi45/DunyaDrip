@@ -1041,13 +1041,13 @@ export default function Navbar() {
                         </div>
 
 
-                        <div className='mobile-cart-div'>
+                        {/* <div className='mobile-cart-div'>
                             <div className="cart-div">
                                 <button id='nav-button2' style={{ backgroundColor: "white", color: "black", transform: "scale(0.85)" }}>
                                     Book Session
                                 </button>
                             </div>
-                        </div>
+                        </div> */}
 
 
                     </div>

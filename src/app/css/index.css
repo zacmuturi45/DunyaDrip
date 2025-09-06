@@ -5639,20 +5639,17 @@ body {
 }
 @media screen and (max-width: 720px) {
   .ordersPage {
-    border: 2px solid red;
     padding: 0 10px;
   }
   .ordersPage > h2 {
     font-size: 1.5rem;
   }
   .ordersPage .table_container {
-    border: 2px solid blue;
     width: 100%;
     overflow: scroll;
   }
   .ordersPage .table_container .month-group {
     min-width: 650px;
-    border: 1px solid yellow;
   }
   .ordersPage .table_container .month-group h2 {
     font-size: 1.1rem;
@@ -5675,6 +5672,8 @@ body {
   }
   .dashboard-container {
     padding: 15px 0 70px 0;
+    border: 2px solid red;
+    box-sizing: border-box;
   }
   .dashboard-container .page .templates h4 {
     font-size: 0.85rem;
