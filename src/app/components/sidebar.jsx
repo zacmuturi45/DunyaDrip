@@ -21,7 +21,7 @@ export default function Sidebar() {
       <div className="home_button">
         <div className="home_button_container">
           <Image src={supabse_image_path('/dash_home.svg')} width={100} height={100} alt='dash_home_svg' className='home_button_svg' />
-          <Link href={"/"} className='next-link'><span>Home</span></Link>
+          <Link href={"/"} className='next-link home-link'><span>Home</span></Link>
         </div>
       </div>
       <ul className="sidebar-menu">
