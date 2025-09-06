@@ -6,11 +6,12 @@ import supabse_image_path from '@/utils/supabase/supabse_image_path';
 import Link from 'next/link';
 
 const sections = [
-  { key: 'account', label: 'Account', img: "account.svg" },
-  { key: 'orders', label: 'Orders', img: "white_bag.svg" },
-  { key: 'addresses', label: 'Addresses', img: "address.svg" },
-  { key: 'profile_settings', label: 'Profile', img: "white_profile.svg" },
-  { key: 'settings', label: 'Settings', img: "settings.svg" }
+  { key: 'home', label: 'Home', img: "dash_home.svg", link: "/" },
+  { key: 'account', label: 'Account', img: "account.svg", link: "" },
+  { key: 'orders', label: 'Orders', img: "white_bag.svg", link: "" },
+  { key: 'addresses', label: 'Addresses', img: "address.svg", link: "" },
+  { key: 'profile_settings', label: 'Profile', img: "white_profile.svg", link: "" },
+  { key: 'settings', label: 'Settings', img: "settings.svg", link: "" }
 ];
 
 export default function Sidebar() {
@@ -18,22 +19,28 @@ export default function Sidebar() {
 
   return (
     <div className="sidebar">
-      <div className="home_button">
+      {/* <div className="home_button">
         <div className="home_button_container">
           <Image src={supabse_image_path('/dash_home.svg')} width={100} height={100} alt='dash_home_svg' className='home_button_svg' />
           <Link href={"/"} className='next-link home-link'><span>Home</span></Link>
         </div>
-      </div>
+      </div> */}
       <ul className="sidebar-menu">
         {sections.map((section) => (
-          <li
-            key={section.key}
-            className={`sidebar-item ${activeSection === section.key ? 'active' : ''}`}
-            onClick={() => setActiveSection(section.key)}
-          >
-            <Image src={supabse_image_path(`/${section.img}`)} alt="icon" width={20} height={20} className='sidebar-img' />
-            <span className="sidebar-label">{section.label}</span>
-          </li>
+          <Link
+            className='white-link'
+            href={section.link}
+            key={section.img}
+            >
+            <li
+              key={section.key}
+              className={`sidebar-item ${activeSection === section.key ? 'active' : ''}`}
+              onClick={() => setActiveSection(section.key)}
+            >
+              <Image src={supabse_image_path(`/${section.img}`)} alt="icon" width={20} height={20} className='sidebar-img' />
+              <span className="sidebar-label">{section.label}</span>
+            </li>
+          </Link>
         ))}
       </ul>
     </div>

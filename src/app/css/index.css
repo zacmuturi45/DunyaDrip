@@ -83,6 +83,11 @@ body {
   color: black;
 }
 
+.white-link {
+  text-decoration: none;
+  color: white;
+}
+
 @keyframes float {
   0%, 100% {
     transform: translateX(0);
@@ -514,13 +519,13 @@ body {
 .nav-main .nav-container .main-nav-content .nav-tier2 .nav-tier2-three .nav-tier2-bag .bag-items {
   position: absolute;
   top: -0.4rem;
-  right: -0.7rem;
+  right: -0.4rem;
   background-color: rgb(0, 0, 0);
   padding: 0.5rem;
   font-size: 0.6rem;
   font-weight: 800;
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -3075,6 +3080,7 @@ body {
   height: 100vh;
   padding: 20px 0 0 200px;
   background-color: #fafafa;
+  position: relative;
 }
 .dashboard-container .dashboard-content {
   flex: 1;
@@ -5415,10 +5421,9 @@ body {
     width: 100%;
     flex-direction: row;
     padding: 0;
-    overflow: scroll;
+    overflow: hidden;
     justify-content: center;
     align-items: center;
-    border: 3px solid red;
   }
   .sidebar:hover {
     width: 100%;
@@ -5432,21 +5437,26 @@ body {
   .home_button .home_button_container {
     padding: 0;
   }
+  .sidebar-menu {
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: center;
+    height: fit-content;
+    width: 100%;
+    overflow-x: scroll;
+    margin: 0;
+    gap: 1rem;
+    box-sizing: border-box;
+  }
+  .sidebar-menu ::-webkit-scrollbar {
+    display: none;
+  }
   .sidebar-item {
-    margin: 0 1rem;
-    padding: 0.4rem;
+    margin: 0;
   }
   .sidebar-item span {
     display: none;
-  }
-  .sidebar-menu {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    margin: auto 25px;
-    border: 2px solid blue;
-    box-sizing: border-box;
   }
   .page {
     padding: 1.5rem 25px;
