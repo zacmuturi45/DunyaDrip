@@ -3659,6 +3659,12 @@ body {
     background-color: #f1f3f2;
   }
 }
+.mid_container {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+}
+
 .orders_card_product_main {
   width: 100%;
   padding: 1rem;
@@ -3921,7 +3927,7 @@ body {
 }
 .orderDetails .order_details_container .order_details_cards .title .div_one p {
   font-family: "Inter";
-  color: rgba(0, 0, 0, 0.3);
+  color: rgba(0, 0, 0, 0.6);
   margin-right: 1.2rem;
 }
 .orderDetails .order_details_container .order_details_cards .title .div_one .p_one {
@@ -3938,7 +3944,7 @@ body {
 .orderDetails .order_details_container .order_details_cards .title .div_two p {
   font-family: "Inter";
   font-weight: 700;
-  color: rgba(0, 0, 0, 0.3);
+  color: rgba(0, 0, 0, 0.6);
 }
 .orderDetails .order_details_container .order_details_cards .title .div_two p span {
   margin-left: 0.5rem;
@@ -5102,6 +5108,15 @@ body {
 }
 
 @media screen and (max-width: 580px) {
+  .mid_container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+  }
+  .orderDetails .order_details_container .order_details_cards .title .div_one .p_one {
+    padding: 0;
+  }
   .nav-main .nav-container .search-panel .search-results-container .cards-container .carousel-inner {
     flex-wrap: wrap;
     height: 70vh;
@@ -5389,6 +5404,40 @@ body {
   }
 }
 @media screen and (max-width: 980px) {
+  .orderDetails {
+    padding: 0;
+  }
+  .orderDetails .x_button {
+    top: 5px;
+    right: 10px;
+  }
+  .orderDetails .order_details_container {
+    width: 100%;
+    border-radius: 0;
+    padding: 0;
+  }
+  .orderDetails .order_details_container .order_details_cards .title .div_one {
+    padding: 0 15px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .orderDetails .order_details_container .order_details_cards .title .div_one p {
+    font-size: 0.8rem;
+  }
+  .orderDetails .order_details_container .order_details_cards .title .div_one .p_one {
+    width: 100%;
+    word-wrap: break-word;
+  }
+  .orderDetails .order_details_container .order_details_cards .title .div_one .p_one span {
+    font-size: 0.8rem;
+  }
+  .orderDetails .order_details_container .order_details_cards .title .div_two {
+    padding-right: 0.5rem;
+  }
+  .orderDetails .order_details_container .order_details_cards .title .div_two p {
+    font-size: 0.8rem;
+  }
   .ordersPage {
     width: 100%;
     overflow-x: scroll;
@@ -5638,6 +5687,67 @@ body {
   }
 }
 @media screen and (max-width: 720px) {
+  .orders_card_product_main {
+    padding: 0.5rem;
+  }
+  .orders_card_product_main .orders_card_product_div {
+    margin-right: 0.5rem;
+  }
+  .orders_card_product_main .orders_card_product_div .one .orders_card_image {
+    width: 120px;
+    height: 150px;
+  }
+  .orders_card_product_main .orders_card_product_div .orders_card_product_details {
+    width: 130px;
+    padding-left: 0.5rem;
+  }
+  .orders_card_product_main .orders_card_product_div .orders_card_product_details h4 {
+    font-size: 0.8rem;
+  }
+  .orders_card_product_main .orders_card_product_div .orders_card_product_details p:nth-of-type(1) {
+    font-size: 0.7rem;
+  }
+  .orders_card_product_main .orders_card_product_div .orders_card_product_details p:nth-of-type(2) {
+    font-size: 0.7rem;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .orders_card_product_main .orders_card_product_div .orders_card_product_details p:nth-of-type(2) span {
+    font-size: 0.7rem;
+    width: fit-content;
+    height: 20px;
+    font-weight: 700;
+  }
+  .orders_card_product_main .status h5 {
+    font-size: 0.7rem;
+  }
+  .orders_card_product_main .status p {
+    font-size: 0.7rem;
+  }
+  .orders_card_product_main .delivery_date h5 {
+    font-size: 0.7rem;
+  }
+  .orders_card_product_main .delivery_date p {
+    font-size: 0.7rem;
+  }
+  .orderDetails .x_button {
+    width: 15px;
+    height: 15px;
+  }
+  .orderDetails .x_button > * {
+    width: 10px;
+    height: 10px;
+  }
+  .orderDetails .order_details_container {
+    padding-top: 1.5rem;
+  }
+  .orderDetails .order_details_container .order_details_cards .title {
+    flex-direction: column;
+  }
+  .orderDetails .order_details_container .order_details_cards .title .div_one {
+    align-items: center;
+  }
   .ordersPage {
     padding: 0 10px;
   }

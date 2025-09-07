@@ -5,9 +5,9 @@ const purgecss = require('gulp-purgecss')
 
 function buildSass() {
     return src('src/app/Sass/*.scss')
-    .pipe(gulpSass().on('error', gulpSass.logError))
-    .pipe(purgecss({ content: ['src/app/**/*.jsx']}))
-    .pipe(dest('src/app/css'))
+        .pipe(gulpSass().on('error', gulpSass.logError))
+        .pipe(purgecss({ content: ['src/app/**/*.jsx'] }))
+        .pipe(dest('src/app/css'))
 }
 
 function watchSass() {

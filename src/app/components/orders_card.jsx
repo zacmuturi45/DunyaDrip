@@ -37,25 +37,27 @@ export default function OrdersCard({ identifier, cart_item_title, cart_item_size
                 </div>
             </div>
 
-            <div className="status">
-                <h5>Status</h5>
-                <p style={{ color: `${statusColor(delivery_status)}` }}>{delivery_status}</p>
-            </div>
+            <div className="mid_container">
+                <div className="status">
+                    <h5>Status</h5>
+                    <p style={{ color: `${statusColor(delivery_status)}` }}>{delivery_status}</p>
+                </div>
 
-            <div className="delivery_date">
-                {
-                    delivery_status === 'delivered' ? (
-                        <>
-                            <h5>Delivered on:</h5>
-                            <p style={{ color: `${statusColor(delivery_status)}` }}>{calculate_delivery(ESTIMATED_TIME[shippingOption.region][shippingOption.method])}</p>
-                        </>
-                    ) : (
-                        <>
-                            <h5>Delivery Expected By</h5>
-                            <p style={{ color: `${statusColor(delivery_status)}` }}>{calculate_delivery(ESTIMATED_TIME[shippingOption.region][shippingOption.method])}</p>
-                        </>
-                    )
-                }
+                <div className="delivery_date">
+                    {
+                        delivery_status === 'delivered' ? (
+                            <>
+                                <h5>Delivered on:</h5>
+                                <p style={{ color: `${statusColor(delivery_status)}` }}>{calculate_delivery(ESTIMATED_TIME[shippingOption.region][shippingOption.method])}</p>
+                            </>
+                        ) : (
+                            <>
+                                <h5>Delivery Expected By</h5>
+                                <p style={{ color: `${statusColor(delivery_status)}` }}>{calculate_delivery(ESTIMATED_TIME[shippingOption.region][shippingOption.method])}</p>
+                            </>
+                        )
+                    }
+                </div>
             </div>
 
         </div>
