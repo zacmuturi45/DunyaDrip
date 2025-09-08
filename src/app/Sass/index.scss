@@ -7447,6 +7447,7 @@ body {
             }
         }
         .order_details_container {
+            overflow: scroll;
             padding-top: 1.5rem;
             .order_details_cards {
                 .title {

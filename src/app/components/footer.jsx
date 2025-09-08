@@ -197,12 +197,12 @@ export default function Footer() {
                   <Image src={supabse_image_path('/amex.svg')} height={35} width={35} alt='globe-image' />
                 </div>
 
-                <div className="zacdiv">
+                {/* <div className="zacdiv">
                   <Image src={flags} width={15} height={15} alt='flag-svg' style={{transform: "rotateY(180deg)"}} />
                   <p>zac.muturi.codes</p>
                   <Image src={flags} width={15} height={15} alt='flag-svg' />
 
-                </div>
+                </div> */}
 
                 <div className="three-two">
                   <div className="timezone">

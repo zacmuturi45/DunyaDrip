@@ -5740,6 +5740,7 @@ body {
     height: 10px;
   }
   .orderDetails .order_details_container {
+    overflow: scroll;
     padding-top: 1.5rem;
   }
   .orderDetails .order_details_container .order_details_cards .title {
