@@ -9,10 +9,10 @@ import Cookies from "js-cookie";
 import { useCart } from "../contexts/cart_context";
 
 export default function Profile() {
-  const { display_name, setShowNav, last_name, user_email, setActiveSection } = useAuth(); 
+  const { display_name, setShowNav, last_name, user_email, setActiveSection, refreshUser } = useAuth();
   const router = useRouter();
   const [loading, setLoading] = useState(false)
-  const { orders }  = useOrders();
+  const { orders } = useOrders();
   const { setCart } = useCart();
 
   const handleSignOut = async () => {
@@ -31,14 +31,16 @@ export default function Profile() {
       }
 
       toast.success('Logged out successfully', { id: toastId })
+
+      await refreshUser()
+      setShowNav(false)
       router.push('/')
-      setTimeout(() => {
-        window.location.reload();
-      }, 500);
+      // setTimeout(() => {
+      //   window.location.reload();
+      // }, 500);
     } catch (error) {
       toast.error(error.message, { id: toastId })
     } finally {
-      setShowNav(false)
       setLoading(false)
     }
   }
@@ -47,16 +49,11 @@ export default function Profile() {
   return (
     <div className="page">
       <div className="template-one">
-      <h2>{`Hello ${display_name === undefined ? "" : display_name}`}</h2>
-      {/* <button onClick={() => {
-        setShowNav(false)
-        router.push("/")
-      }}>Home</button> */}
-      {/* <p>You don&apos;t currently have any orders.</p>
-      <p>Once you have checked out, you can view and track your order here.</p> */}
-      <button onClick={handleSignOut} disabled={loading}>
-        {loading ? "Logging out..." : "Log Out"}
-      </button>
+        <h2>{`Hello ${display_name === undefined ? "" : display_name}`}</h2>
+
+        <button onClick={handleSignOut} disabled={loading}>
+          {loading ? "Logging out..." : "Log Out"}
+        </button>
       </div>
 
       <div className="templates">
@@ -70,8 +67,8 @@ export default function Profile() {
               {`You have ${orders.length} orders.`}
             </p>) : (
               <>
-              <p>You do not have any orders for now.</p>
-          <p>All your orders will be displayed here.</p>
+                <p>You do not have any orders for now.</p>
+                <p>All your orders will be displayed here.</p>
               </>
             )
           }
