@@ -37,15 +37,11 @@ export const CartProvider = ({ children }) => {
                         details: error.details,
                     });
                 }
-                
+
 
                 if (data?.carts && data?.carts.length > 0) {
                     setCart(data.carts);
                     Cookies.remove('cart');
-                }
-
-                if (error) {
-                    console.error('Error loading cart from DB:', error);
                 }
             }
         };
@@ -53,11 +49,13 @@ export const CartProvider = ({ children }) => {
     }, [user]);
 
     useEffect(() => {
-        const savedCart = Cookies.get('cart');
-        if (savedCart) {
-            setCart(JSON.parse(savedCart));
+        if (!user) {
+            const savedCart = Cookies.get('cart');
+            if (savedCart) {
+                setCart(JSON.parse(savedCart));
+            }
         }
-    }, [])
+    }, [user])
 
     useEffect(() => {
         const updateCartInDB = async () => {
@@ -77,7 +75,6 @@ export const CartProvider = ({ children }) => {
                         return;
                     }
 
-                    console.log('Cart updated successfully:', data);
                 } catch (err) {
                     console.error('Unexpected error:', err);
                 }
@@ -128,7 +125,7 @@ export const CartProvider = ({ children }) => {
             setLoadingProducts(false);
         };
         fetchProducts()
-    }, []);
+    }, [user]);
 
 
 
