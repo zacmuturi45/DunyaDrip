@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 import Hero from "./sections/hero";
@@ -53,8 +53,8 @@ export default function Home() {
   );
 }
 
-      // <>
-      //   {
-      //     showBanner && <NewsLetter setShowBanner={setShowBanner} />
-      //   }
-      // </>
+// <>
+//   {
+//     showBanner && <NewsLetter setShowBanner={setShowBanner} />
+//   }
+// </>

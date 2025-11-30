@@ -10,6 +10,9 @@ import { cookies } from "next/headers";
 import { createServerClient } from "@supabase/ssr";
 import { OrderProvider } from "./contexts/my_orders_context";
 import { SortProvider } from "./contexts/sort_context";
+import Image from "next/image";
+import { notFound } from "../../public/imports";
+import supabse_image_path from "@/utils/supabase/supabse_image_path";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -24,7 +27,8 @@ const geistMono = localFont({
 
 export const metadata = {
   title: "Dunya Drip",
-  description: "Fashion is not just about clothes, it's a lifestyle. Dunya Drip brings you the latest trends and styles to express yourself.",
+  description:
+    "Fashion is not just about clothes, it's a lifestyle. Dunya Drip brings you the latest trends and styles to express yourself.",
 };
 
 export default async function RootLayout({ children }) {
@@ -35,13 +39,35 @@ export default async function RootLayout({ children }) {
     { cookies: { getAll: () => cookieStore.getAll() } }
   );
 
-  const { data: { session } } = await supabase.auth.getSession();
-  const { data: { user } } = await supabase.auth.getUser();
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <AuthProvider initialSession={session} initialUser={user}>
+        <div className="four_0_four">
+          <Image
+            src={supabse_image_path("/dunyadriptransparent.png")}
+            width={150}
+            height={50}
+            alt="not-found"
+            className="not_found"
+            style={{ marginBottom: "150px" }}
+          />
+          <Image
+            src={notFound}
+            width={200}
+            height={200}
+            alt="not-found"
+            className="not_found"
+          />
+          <h1>site under maintenance</h1>
+        </div>
+        {/* <AuthProvider initialSession={session} initialUser={user}>
           <FlagProvider>
             <CartProvider>
               <OrderProvider>
@@ -56,7 +82,7 @@ export default async function RootLayout({ children }) {
               </OrderProvider>
             </CartProvider>
           </FlagProvider>
-        </AuthProvider>
+        </AuthProvider> */}
       </body>
     </html>
   );

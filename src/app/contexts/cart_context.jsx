@@ -59,7 +59,7 @@ export const CartProvider = ({ children }) => {
 
     useEffect(() => {
         const updateCartInDB = async () => {
-            if (user && cart.length > 0) {
+            if (user) {
                 try {
                     const { data, error } = await createClient
                         .from('user_carts')

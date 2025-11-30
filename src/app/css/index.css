@@ -16,6 +16,19 @@ body {
   padding: 0;
 }
 
+.four_0_four {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.four_0_four h1 {
+  font-size: 64px;
+  text-transform: uppercase;
+}
+
 .spin_container {
   height: 25px;
   width: 25px;
@@ -5687,6 +5700,15 @@ body {
   }
 }
 @media screen and (max-width: 720px) {
+  .four_0_four {
+    padding: 0 1rem;
+    gap: 2.5rem;
+  }
+  .four_0_four h1 {
+    text-align: center;
+    font-size: 48px;
+    word-wrap: break-word;
+  }
   .orders_card_product_main {
     padding: 0.5rem;
   }
