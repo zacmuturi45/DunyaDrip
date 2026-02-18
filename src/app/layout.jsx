@@ -36,7 +36,7 @@ export default async function RootLayout({ children }) {
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-    { cookies: { getAll: () => cookieStore.getAll() } }
+    { cookies: { getAll: () => cookieStore.getAll() } },
   );
 
   const {
@@ -49,7 +49,7 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <div className="four_0_four">
+        {/* <div className="four_0_four">
           <Image
             src={supabse_image_path("/dunyadriptransparent.png")}
             width={150}
@@ -66,8 +66,8 @@ export default async function RootLayout({ children }) {
             className="not_found"
           />
           <h1>site under maintenance</h1>
-        </div>
-        {/* <AuthProvider initialSession={session} initialUser={user}>
+        </div> */}
+        <AuthProvider initialSession={session} initialUser={user}>
           <FlagProvider>
             <CartProvider>
               <OrderProvider>
@@ -75,14 +75,16 @@ export default async function RootLayout({ children }) {
                   <div className="layout-root">
                     <Navbar />
                     <CartPage />
-                    <main>{children} <Toaster /></main>
+                    <main>
+                      {children} <Toaster />
+                    </main>
                     <Footer />
                   </div>
                 </SortProvider>
               </OrderProvider>
             </CartProvider>
           </FlagProvider>
-        </AuthProvider> */}
+        </AuthProvider>
       </body>
     </html>
   );
